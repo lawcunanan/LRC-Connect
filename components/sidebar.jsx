@@ -42,7 +42,7 @@ export function Sidebar({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }) {
 	const { toggleDarkMode, isDarkMode } = useColor();
 	const [showLogoutModal, setShowLogoutModal] = useState(false);
 	const users = ["USR-2", "USR-3", "USR-4", "USR-5", "USR-6"].includes(
-		userDetails?.us_level
+		userDetails?.us_level,
 	);
 
 	const superadmin = userDetails?.us_level === "USR-1";
@@ -75,19 +75,19 @@ export function Sidebar({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }) {
 		<>
 			<div
 				className={cn(
-					"fixed inset-0 bg-black/40 z-40 md:hidden transition-opacity duration-300",
+					"fixed inset-0 bg-black/40  z-30 md:hidden transition-opacity duration-300",
 					isOpen
 						? "opacity-100 pointer-events-auto"
-						: "opacity-0 pointer-events-none"
+						: "opacity-0 pointer-events-none",
 				)}
 				onClick={() => setIsOpen(false)}
 			/>
 
 			<div
 				className={cn(
-					"fixed top-0 left-0 h-screen z-50 bg-card border-r border-border transition-all duration-300 overflow-y-auto flex flex-col",
+					"fixed top-0 left-0 h-screen z-30 bg-card border-r border-border transition-all duration-300 overflow-y-auto flex flex-col",
 					"md:relative md:top-0 md:left-0 md:block md:w-64 w-64",
-					isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+					isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0 ",
 				)}
 				style={{ width: "16rem" }}
 			>
@@ -95,7 +95,7 @@ export function Sidebar({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }) {
 					{users && !["USR-5", "USR-6"].includes(userDetails?.us_level) && (
 						<button
 							onClick={() => router.push("/home")}
-							className="flex items-center gap-3 px-3 py-2 text-foreground rounded-lg hover:bg-accent transition-colors w-full text-left text-xs mb-4"
+							className="flex items-center gap-3 px-3 py-2 text-foreground rounded-lg hover:bg-accent transition-colors w-full text-left text-sm mb-4"
 						>
 							<FiArrowLeft className="w-4 h-4" />
 							Back
@@ -103,7 +103,7 @@ export function Sidebar({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }) {
 					)}
 
 					<div className="space-y-1">
-						<p className="px-3 text-muted-foreground uppercase tracking-wider mb-2 text-[11px]">
+						<p className="px-3 text-muted-foreground uppercase tracking-wider mb-2 text-xs">
 							General
 						</p>
 
@@ -230,7 +230,7 @@ export function Sidebar({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }) {
 								)}
 
 								{!["USR-4", "USR-5", "USR-6"].includes(
-									userDetails?.us_level
+									userDetails?.us_level,
 								) && (
 									<SidebarCollapse
 										label="Essential Report"
@@ -278,7 +278,7 @@ export function Sidebar({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }) {
 					</div>
 
 					<div className="mt-6 space-y-1">
-						<p className="px-3 text-muted-foreground uppercase tracking-wider mb-2 text-[11px]">
+						<p className="px-3 text-muted-foreground uppercase tracking-wider mb-2 text-xs">
 							Tools
 						</p>
 
@@ -292,7 +292,7 @@ export function Sidebar({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }) {
 
 						<button
 							onClick={toggleDarkMode}
-							className="flex items-center gap-3 px-3 py-2 text-foreground rounded-lg hover:bg-accent transition-colors w-full text-left text-xs"
+							className="flex items-center gap-3 px-3 py-2 text-foreground rounded-lg hover:bg-accent transition-colors w-full text-left text-sm"
 						>
 							{isDarkMode ? (
 								<FiSun className="w-4 h-4" />
@@ -304,7 +304,7 @@ export function Sidebar({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }) {
 
 						<button
 							onClick={() => setShowLogoutModal(true)}
-							className="flex items-center gap-3 px-3 py-2 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors w-full text-left text-xs"
+							className="flex items-center gap-3 px-3 py-2 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors w-full text-left text-sm"
 						>
 							<FiLogOut className="w-4 h-4" />
 							Logout
@@ -336,8 +336,8 @@ const SidebarItem = ({
 		<Link
 			href={href}
 			className={cn(
-				"flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-[12px]",
-				isActive ? "text-white font-medium" : "text-foreground hover:bg-accent"
+				"flex items-center gap-3 px-3 py-2 rounded-lg transition-colors text-sm",
+				isActive ? "text-white font-medium" : "text-foreground hover:bg-accent",
 			)}
 			style={{
 				backgroundColor: isActive ? "var(--color-primary)" : undefined,
@@ -363,10 +363,10 @@ const SidebarCollapse = ({ label, icon: Icon, name, children }) => {
 			<div
 				onClick={() => setExpanded(!expanded)}
 				className={cn(
-					"flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-colors text-[12px]",
+					"flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-colors text-sm",
 					isActive
 						? "text-white font-medium"
-						: "text-foreground hover:bg-accent"
+						: "text-foreground hover:bg-accent",
 				)}
 				style={{
 					backgroundColor: isActive ? "var(--color-primary)" : undefined,

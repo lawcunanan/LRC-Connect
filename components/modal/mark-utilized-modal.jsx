@@ -97,20 +97,20 @@ const MarkUtilizedModal = ({
 		>
 			<div className="flex-1 overflow-y-auto p-6 space-y-6">
 				<div>
-					<h5 className="font-medium text-foreground mb-4 text-[13px]">
+					<h5 className="font-medium text-foreground mb-4 text-sm">
 						Resources Details
 					</h5>
 					{renderResource(transaction)}
 				</div>
 
 				<div>
-					<h5 className="font-medium text-foreground mb-4 text-[13px]">
+					<h5 className="font-medium text-foreground mb-4 text-sm">
 						Patron Details
 					</h5>
 					{renderPatron(transaction?.tr_patron)}
 				</div>
 				<div>
-					<h5 className="font-medium text-foreground mb-4 text-[13px]">
+					<h5 className="font-medium text-foreground mb-4 text-sm">
 						Schedule
 					</h5>
 					{renderSchedule(transaction)}
@@ -121,11 +121,11 @@ const MarkUtilizedModal = ({
 					available &&
 					availableHoldings.length > 0 && (
 						<div>
-							<h5 className="font-medium text-foreground mb-2 text-[13px]">
+							<h5 className="font-medium text-foreground mb-2 text-sm">
 								Choose an accession number
 							</h5>
 							<select
-								className="w-full border border-gray-300 rounded-md p-2 text-[12px] focus:outline-none focus:ring-2 focus:ring-blue-500"
+								className="w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
 								value={selectedAccession}
 								onChange={(e) => setSelectedAccession(e.target.value)}
 							>
@@ -145,7 +145,7 @@ const MarkUtilizedModal = ({
 					<div className="space-y-3">
 						<div className="flex items-center space-x-2">
 							<AlertTriangle className="w-4 h-4 text-amber-500" />
-							<p className="font-medium text-foreground text-[12px]">
+							<p className="font-medium text-foreground text-sm">
 								The following transactions will be cancelled:
 							</p>
 						</div>
@@ -157,20 +157,20 @@ const MarkUtilizedModal = ({
 										<tr>
 											<th
 												scope="col"
-												className="px-4 py-3 text-left text-foreground  font-medium text-[12px]"
+												className="px-4 py-3 text-left text-foreground  font-medium text-sm"
 											>
 												Transaction ID
 											</th>
 											<th
 												scope="col"
-												className="px-4 py-3 text-left text-foreground  font-medium text-[12px]"
+												className="px-4 py-3 text-left text-foreground  font-medium text-sm"
 											>
 												Date of Use
 											</th>
 											{transaction?.tr_type == "Material" && (
 												<th
 													scope="col"
-													className="px-4 py-3 text-left text-foreground font-medium text-[12px]"
+													className="px-4 py-3 text-left text-foreground font-medium text-sm"
 												>
 													Due Date
 												</th>
@@ -179,14 +179,14 @@ const MarkUtilizedModal = ({
 												<>
 													<th
 														scope="col"
-														className="px-4 py-3 text-left text-foreground font-medium text-[12px]"
+														className="px-4 py-3 text-left text-foreground font-medium text-sm"
 													>
 														Session Start
 													</th>
 
 													<th
 														scope="col"
-														className="px-4 py-3 text-left text-foreground font-medium text-[12px]"
+														className="px-4 py-3 text-left text-foreground font-medium text-sm"
 													>
 														Session End
 													</th>
@@ -197,23 +197,23 @@ const MarkUtilizedModal = ({
 									<tbody className="bg-white divide-y divide-gray-200">
 										{hasAffectedTransactions?.map((transaction) => (
 											<tr key={transaction?.id}>
-												<td className="px-4 py-2 whitespace-nowrap text-foreground text-[12px]">
+												<td className="px-4 py-2 whitespace-nowrap text-foreground text-sm">
 													{transaction?.tr_qr}
 												</td>
-												<td className="px-4 py-2 whitespace-nowrap text-foreground text-[12px]">
+												<td className="px-4 py-2 whitespace-nowrap text-foreground text-sm">
 													{transaction?.tr_date}
 												</td>
 												{transaction?.tr_type == "Material" && (
-													<td className="px-4 py-2 whitespace-nowrap text-foreground text-[12px]">
+													<td className="px-4 py-2 whitespace-nowrap text-foreground text-sm">
 														{transaction?.tr_dateDue}
 													</td>
 												)}
 												{transaction?.tr_type !== "Material" && (
 													<>
-														<td className="px-4 py-2 whitespace-nowrap text-foreground text-[12px]">
+														<td className="px-4 py-2 whitespace-nowrap text-foreground text-sm">
 															{transaction?.tr_sessionStart}
 														</td>
-														<td className="px-4 py-2 whitespace-nowrap text-foreground text-[12px]">
+														<td className="px-4 py-2 whitespace-nowrap text-foreground text-sm">
 															{transaction?.tr_sessionEnd}
 														</td>
 													</>
@@ -237,7 +237,7 @@ const MarkUtilizedModal = ({
 						className={`${
 							hasAffectedTransactions ? "text-amber-800" : "text-blue-800"
 						}`}
-						style={{ fontSize: "12px" }}
+						
 					>
 						<strong>Note:</strong>{" "}
 						{hasAffectedTransactions && hasAffectedTransactions?.length > 0
@@ -251,13 +251,13 @@ const MarkUtilizedModal = ({
 				<Button
 					onClick={() => onClose()}
 					variant="outline"
-					className="bg-transparent h-10 px-4 text-[12px]"
+					className="bg-transparent h-10 px-4 text-sm"
 				>
 					Cancel
 				</Button>
 				<Button
 					onClick={handleConfirm}
-					className="bg-primary-custom hover:bg-secondary-custom text-white h-10 text-[12px]"
+					className="bg-primary-custom hover:bg-secondary-custom text-white h-10 text-sm"
 					disabled={
 						!available ||
 						(selectedAccession == "" &&

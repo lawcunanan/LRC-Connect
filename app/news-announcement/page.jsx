@@ -112,7 +112,7 @@ export default function NewsAnnouncementPage() {
 				Alert,
 				pageLimit,
 				pagination,
-				setPagination
+				setPagination,
 			);
 		}
 
@@ -137,7 +137,7 @@ export default function NewsAnnouncementPage() {
 				Alert,
 				pageLimit,
 				pagination,
-				setPagination
+				setPagination,
 			);
 		}
 
@@ -161,10 +161,10 @@ export default function NewsAnnouncementPage() {
 					<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 						<div className="flex flex-col gap-4 md:gap-6  md:flex-col lg:flex-row sm:items-left justify-between mb-8 animate-slide-up">
 							<div>
-								<h1 className="font-semibold text-foreground text-[20px]">
+								<h1 className="font-semibold text-foreground text-xl">
 									News & Announcements
 								</h1>
-								<p className="text-muted-foreground text-[14px]">
+								<p className="text-muted-foreground text-base">
 									Stay updated with the latest library news and important
 									announcements
 								</p>
@@ -176,7 +176,7 @@ export default function NewsAnnouncementPage() {
 										variant={focusMode === "News" ? "default" : "ghost"}
 										size="sm"
 										onClick={() => setFocusMode("News")}
-										className={`h-9 px-3 rounded-r-none  text-[12px] ${
+										className={`h-9 px-3 rounded-r-none  text-base ${
 											focusMode === "News"
 												? "bg-primary-custom text-white hover:text-white hover:bg-primary-custom/90"
 												: "hover:bg-accent"
@@ -191,7 +191,7 @@ export default function NewsAnnouncementPage() {
 										}
 										size="sm"
 										onClick={() => setFocusMode("Announcements")}
-										className={`h-9 px-3 rounded-l-none text-[12px] ${
+										className={`h-9 px-3 rounded-l-none text-base ${
 											focusMode === "Announcements"
 												? "bg-primary-custom text-white hover:text-white hover:bg-primary-custom/90"
 												: "hover:bg-accent"
@@ -204,14 +204,14 @@ export default function NewsAnnouncementPage() {
 
 								{userDetails &&
 									["USR-2", "USR-3", "USR-4"].includes(
-										userDetails?.us_level
+										userDetails?.us_level,
 									) && (
 										<Button
 											onClick={() => {
 												setSelectedNewsAnnouncements({});
 												setIsModalOpen(true);
 											}}
-											className="bg-primary-custom hover:bg-secondary-custom text-white h-9 px-4 text-[12px]"
+											className="bg-primary-custom hover:bg-secondary-custom text-white h-9 px-4 text-base"
 										>
 											<FiPlus className="mr-1 h-4 w-4" />
 											Add New {focusMode}
@@ -224,7 +224,7 @@ export default function NewsAnnouncementPage() {
 						<div className="grid grid-cols-1 lg:grid-cols-3 gap-14 animate-slide-up-delay-1">
 							<div className="lg:col-span-2">
 								<div className="flex items-center justify-between mb-3">
-									<h2 className="font-semibold text-foreground leading-none m-0 p-0 align-baseline text-[18px]">
+									<h2 className="font-semibold text-foreground leading-none m-0 p-0 align-baseline text-lg">
 										{focusMode === "News"
 											? "Latest News"
 											: "Current Announcements"}
@@ -232,7 +232,7 @@ export default function NewsAnnouncementPage() {
 
 									<Badge
 										variant="secondary"
-										className="text-muted-foreground text-[12px] font-normal"
+										className="text-muted-foreground text-sm font-normal"
 									>
 										{mainData?.length} items
 									</Badge>
@@ -245,7 +245,7 @@ export default function NewsAnnouncementPage() {
 										value={searchQuery}
 										onChange={(e) => setSearchQuery(e.target.value)}
 										className="pl-10 h-9 bg-background border-border"
-										style={{ fontSize: "12px" }}
+										
 									/>
 								</div>
 
@@ -268,38 +268,38 @@ export default function NewsAnnouncementPage() {
 													<div className="flex items-center gap-2">
 														<Badge
 															variant="outline"
-															className="text-primary border-primary/20 text-[11px]"
+															className="text-primary border-primary/20 text-sm"
 														>
 															{item.na_category}
 														</Badge>
 														<Badge
-															className={`text-[12px] ${getvisibilityColor(
-																item.na_visibility
-															)}`}
+															className={`${getvisibilityColor(
+																item.na_visibility,
+															)} text-sm`}
 														>
-															<div className="flex items-center gap-1 text-[11px]">
+															<div className="flex items-center gap-1 text-sm">
 																{getvisibilityIcon(item.na_visibility)}
 																{item.na_visibility}
 															</div>
 														</Badge>
 														{focusMode === "Announcements" &&
 															item.na_urgent && (
-																<Badge className="bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300 text-[11px]">
+																<Badge className="bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300 text-xs">
 																	Urgent
 																</Badge>
 															)}
 													</div>
-													<div className="flex items-center gap-2 text-muted-foreground text-[11px]">
+													<div className="flex items-center gap-2 text-muted-foreground text-sm">
 														<FiClock className="w-3 h-3" />
 														{item.na_createdAtFormatted}
 													</div>
 												</div>
 
-												<h3 className="font-semibold text-foreground mb-1 text-[16px]">
+												<h3 className="font-semibold text-foreground mb-1 text-base">
 													{item.na_title}
 												</h3>
 
-												<div className="text-muted-foreground mb-4 text-[12px] whitespace-pre-wrap">
+												<div className="text-muted-foreground mb-4 text-sm whitespace-pre-wrap">
 													<span
 														className={
 															mainSeeAll === index ? "mr-1" : "line-clamp-3 "
@@ -312,14 +312,14 @@ export default function NewsAnnouncementPage() {
 														onClick={() =>
 															setMainSeeAll(mainSeeAll === index ? null : index)
 														}
-														className="text-primary text-[12px] hover:underline cursor-pointer"
+														className="text-primary text-sm hover:underline cursor-pointer"
 													>
 														{mainSeeAll === index ? "See less" : "See all"}
 													</span>
 												</div>
 
 												<div className="flex flex-wrap items-center justify-between gap-4">
-													<div className="flex items-center gap-4 text-muted-foreground text-[11px]">
+													<div className="flex items-center gap-4 text-muted-foreground text-sm">
 														<span>By {item.na_author}</span>
 														<div className="flex items-center gap-1">
 															<FiClock className="w-3 h-3" />
@@ -333,7 +333,7 @@ export default function NewsAnnouncementPage() {
 													<div className="flex items-center gap-1">
 														{userDetails &&
 															["USR-2", "USR-3", "USR-4"].includes(
-																userDetails?.us_level
+																userDetails?.us_level,
 															) && (
 																<>
 																	<Button
@@ -395,14 +395,14 @@ export default function NewsAnnouncementPage() {
 
 							<div className="lg:col-span-1">
 								<div className="flex items-center justify-between mb-3">
-									<h2 className="font-semibold text-foreground leading-none m-0 p-0 align-baseline text-[18px] lg:text-[14px]">
+									<h2 className="font-semibold text-foreground leading-none m-0 p-0 align-baseline text-base">
 										{focusMode === "News"
 											? "Recent Announcements"
 											: "Recent News"}
 									</h2>
 									<Badge
 										variant="secondary"
-										className="text-muted-foreground text-[12px] lg:text-[11px] font-normal"
+										className="text-muted-foreground text-sm lg:text-xs font-normal"
 									>
 										{sideData?.length} items
 									</Badge>
@@ -426,33 +426,33 @@ export default function NewsAnnouncementPage() {
 												<div className="flex flex-wrap items-center gap-2 mb-3 lg:mb-2">
 													<Badge
 														variant="outline"
-														className="text-primary border-primary/20 text-[11px]"
+														className="text-primary border-primary/20 text-sm"
 													>
 														{item.na_category}
 													</Badge>
 
 													<Badge
 														className={`${getvisibilityColor(
-															item.na_visibility
-														)} text-[11px]`}
+															item.na_visibility,
+														)} text-sm`}
 													>
-														<div className="flex items-center gap-1 text-[11px]">
+														<div className="flex items-center gap-1 text-sm">
 															{getvisibilityIcon(item.na_visibility)}
 															{item.na_visibility}
 														</div>
 													</Badge>
 													{focusMode !== "Announcements" && item.na_urgent && (
-														<Badge className="bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300 text-[11px]">
+														<Badge className="bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300 text-xs">
 															Urgent
 														</Badge>
 													)}
 												</div>
 
-												<h3 className="font-semibold text-foreground mb-1 text-[16px] lg:text-[12px]">
+												<h3 className="font-semibold text-foreground mb-1 text-base lg:text-sm">
 													{item.na_title}
 												</h3>
 
-												<div className="text-muted-foreground mb-4 lg:mb-3 text-[12px] whitespace-pre-wrap">
+												<div className="text-muted-foreground mb-4 lg:mb-3 text-sm whitespace-pre-wrap">
 													<span
 														className={
 															subSeeAll === index ? "mr-1" : "line-clamp-2"
@@ -465,15 +465,15 @@ export default function NewsAnnouncementPage() {
 														onClick={() =>
 															setSubSeeAll(subSeeAll === index ? null : index)
 														}
-														className="text-primary text-[12px] hover:underline cursor-pointer"
+														className="text-primary text-sm hover:underline cursor-pointer"
 													>
 														{subSeeAll === index ? "See less" : "See all"}
 													</span>
 												</div>
 
-												<div className="flex items-center gap-4 text-muted-foreground text-[11px]">
+												<div className="flex items-center gap-4 text-muted-foreground text-xs">
 													<span>By {item.na_author}</span>
-													<div className="flex items-center gap-2 text-muted-foreground text-[11px]">
+													<div className="flex items-center gap-2 text-muted-foreground text-xs">
 														<FiClock className="w-3 h-3" />
 														{item.na_createdAtFormatted}
 													</div>

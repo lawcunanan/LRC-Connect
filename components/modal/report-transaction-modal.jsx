@@ -83,10 +83,10 @@ export function DamageReportModal({
 					<div className="flex items-start gap-3">
 						<FiAlertTriangle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
 						<div>
-							<p className="font-bold text-red-800 mb-1 text-[12px]">
+							<p className="font-bold text-red-800 mb-1 text-sm">
 								Damage Report Summary
 							</p>
-							<p className="text-red-700 text-[11px]">
+							<p className="text-red-700 text-xs">
 								This summary outlines the damages found upon the return of the
 								borrowed material. The item must be returned to the library for
 								further inspection and appropriate action. <br />
@@ -115,7 +115,7 @@ export function DamageReportModal({
 								/>
 								<Label
 									htmlFor={`reason-${damageType}`}
-									className="text-foreground cursor-pointer font-normal text-[12px]"
+									className="text-foreground cursor-pointer font-normal text-sm"
 								>
 									{damageType}
 								</Label>
@@ -126,7 +126,7 @@ export function DamageReportModal({
 					<div className="space-y-2 mt-4">
 						<Label
 							htmlFor="custom-reason"
-							className="font-medium text-foreground text-[12px]"
+							className="font-medium text-foreground text-sm"
 						>
 							Additional notes by admin (if any):
 						</Label>
@@ -136,7 +136,7 @@ export function DamageReportModal({
 							value={customDamage}
 							onChange={(e) => setCustomDamage(e.target.value)}
 							className="resize-none h-24"
-							style={{ fontSize: "12px" }}
+							
 						/>
 					</div>
 				</div>
@@ -146,13 +146,13 @@ export function DamageReportModal({
 				<Button
 					onClick={handleClose}
 					variant="outline"
-					className="bg-transparent h-10 px-4 text-[12px]"
+					className="bg-transparent h-10 px-4 text-sm"
 				>
 					Cancel
 				</Button>
 				<Button
 					onClick={handleSubmit}
-					className="bg-red-600 hover:bg-red-700 text-white h-10 text-[12px]"
+					className="bg-red-600 hover:bg-red-700 text-white h-10 text-sm"
 					disabled={selectedDamageTypes.length == 0 && customDamage == ""}
 				>
 					<LoadingSpinner loading={btnLoading} />

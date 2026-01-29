@@ -48,7 +48,7 @@ const MarkCompletedModal = ({
 		>
 			<div className="flex-1 overflow-y-auto p-6 space-y-6">
 				<div>
-					<h5 className="font-medium text-foreground mb-4 text-[13px]">
+					<h5 className="font-medium text-foreground mb-4 text-sm">
 						Resources Details
 					</h5>
 					{renderResource(transaction)}
@@ -56,7 +56,7 @@ const MarkCompletedModal = ({
 
 				{isPersonnel && (
 					<div>
-						<h5 className="font-medium text-foreground mb-4 text-[13px]">
+						<h5 className="font-medium text-foreground mb-4 text-sm">
 							Patron Details
 						</h5>
 						{renderPatron(transaction.tr_patron)}
@@ -64,7 +64,7 @@ const MarkCompletedModal = ({
 				)}
 
 				<div>
-					<h5 className="font-medium text-foreground mb-4 text-[13px]">
+					<h5 className="font-medium text-foreground mb-4 text-sm">
 						Schedule
 					</h5>
 					{renderSchedule(transaction)}
@@ -73,7 +73,7 @@ const MarkCompletedModal = ({
 				{!isPersonnel && renderLibrary(transaction)}
 
 				<div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-					<p className="text-blue-800 text-[12px]">
+					<p className="text-blue-800 text-sm">
 						<strong>Note:</strong> This action will mark the transaction as
 						completed and cannot be undone. The resource will be available for
 						new reservations.
@@ -85,13 +85,13 @@ const MarkCompletedModal = ({
 				<Button
 					onClick={() => onClose()}
 					variant="outline"
-					className="bg-transparent h-10 px-4 text-[12px]"
+					className="bg-transparent h-10 px-4 text-sm"
 				>
 					Cancel
 				</Button>
 				<Button
 					onClick={handleConfirm}
-					className="bg-primary-custom hover:bg-secondary-custom text-white h-10 text-[12px]"
+					className="bg-primary-custom hover:bg-secondary-custom text-white h-10 text-sm"
 				>
 					<LoadingSpinner loading={btnLoading} />
 					Mark as Completed

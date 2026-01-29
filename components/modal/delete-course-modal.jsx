@@ -31,11 +31,11 @@ export function DeleteCourseModal({
 					<FiAlertTriangle className="w-5 h-5 text-red-600" />
 				</div>
 				<div className="flex-1">
-					<p className="text-foreground font-medium text-[12px]">
+					<p className="text-foreground font-medium text-sm">
 						Are you sure you want to delete{" "}
 						<span className="font-semibold">{actionData?.title}</span>?
 					</p>
-					<p className="text-muted-foreground mt-1 text-[11px]">
+					<p className="text-muted-foreground mt-1 text-xs">
 						This action cannot be undone.
 					</p>
 				</div>
@@ -46,14 +46,14 @@ export function DeleteCourseModal({
 					type="button"
 					onClick={onClose}
 					variant="outline"
-					className="bg-transparent h-10 px-4 text-[12px]"
+					className="bg-transparent h-10 px-4 text-sm"
 				>
 					Cancel
 				</Button>
 				<Button
 					type="button"
 					onClick={handleConfirm}
-					className="bg-red-600 text-white hover:bg-red-700 text-[12px] h-10 px-4"
+					className="bg-red-600 text-white hover:bg-red-700 text-sm h-10 px-4"
 				>
 					<LoadingSpinner loading={btnLoading} />
 					Delete

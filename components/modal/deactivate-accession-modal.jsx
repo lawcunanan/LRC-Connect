@@ -131,11 +131,11 @@ export function DeactivateAccessionModal({
 					<div>
 						<p
 							className={`${warningTextColor} font-medium mb-1`}
-							style={{ fontSize: "11px" }}
+							
 						>
 							{warningTitle}
 						</p>
-						<p className={warningSubTextColor} style={{ fontSize: "11px" }}>
+						<p className={warningSubTextColor} >
 							{warningMessage}
 						</p>
 					</div>
@@ -143,7 +143,7 @@ export function DeactivateAccessionModal({
 
 				{accessionToDeactivate?.ho_access && (
 					<div className="p-3 bg-muted/30 border border-border rounded-md">
-						<p className="text-foreground font-medium text-[12px]">
+						<p className="text-foreground font-medium text-sm">
 							Accession Number: {accessionToDeactivate?.ho_access}
 						</p>
 					</div>
@@ -151,7 +151,7 @@ export function DeactivateAccessionModal({
 
 				<div className="space-y-4">
 					<div>
-						<h3 className="font-normal text-foreground mb-3 text-[12px]">
+						<h3 className="font-normal text-foreground mb-3 text-sm">
 							{reasonLabel}
 						</h3>
 						<div className="space-y-3">
@@ -164,7 +164,7 @@ export function DeactivateAccessionModal({
 									/>
 									<Label
 										htmlFor={`reason-${reason}`}
-										className="text-foreground cursor-pointer font-normal text-[12px]"
+										className="text-foreground cursor-pointer font-normal text-sm"
 									>
 										{reason}
 									</Label>
@@ -176,7 +176,7 @@ export function DeactivateAccessionModal({
 					<div className="space-y-2">
 						<Label
 							htmlFor="custom-reason"
-							className="font-medium text-foreground text-[12px]"
+							className="font-medium text-foreground text-sm"
 						>
 							Other Reason (optional):
 						</Label>
@@ -186,7 +186,7 @@ export function DeactivateAccessionModal({
 							value={customReason}
 							onChange={(e) => setCustomReason(e.target.value)}
 							className="resize-none h-24"
-							style={{ fontSize: "12px" }}
+							
 						/>
 					</div>
 				</div>
@@ -196,7 +196,7 @@ export function DeactivateAccessionModal({
 				<Button
 					variant="outline"
 					onClick={handleClose}
-					className="bg-transparent h-10 px-4 text-[12px]"
+					className="bg-transparent h-10 px-4 text-sm"
 				>
 					Cancel
 				</Button>
@@ -204,7 +204,7 @@ export function DeactivateAccessionModal({
 					variant={buttonVariant}
 					onClick={handleSubmit}
 					disabled={selectedReasons.length === 0 && !customReason.trim()}
-					className="h-10 text-[12px]"
+					className="h-10 text-sm"
 				>
 					{buttonText}
 				</Button>

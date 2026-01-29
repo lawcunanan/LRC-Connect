@@ -84,7 +84,7 @@ export function ExcelImportModal({
 				donor,
 				pricePerItem,
 				setBtnloading,
-				Alert
+				Alert,
 			);
 			handleClose();
 		}
@@ -99,7 +99,7 @@ export function ExcelImportModal({
 			setSelectedMaterials,
 			setStep,
 			setBtnloading,
-			Alert
+			Alert,
 		);
 	};
 
@@ -131,7 +131,7 @@ export function ExcelImportModal({
 	const isAllSelected =
 		materialData.length > 0 &&
 		materialData.every((mat) =>
-			selectedMaterials.some((sel) => sel.mt_callNo === mat.mt_callNo)
+			selectedMaterials.some((sel) => sel.mt_callNo === mat.mt_callNo),
 		);
 
 	const toggleSelectAll = (checked) => {
@@ -152,7 +152,7 @@ export function ExcelImportModal({
 				li_id,
 				setMaterialTypes,
 				setLoading,
-				Alert
+				Alert,
 			);
 			unsubscribers.push(unsubscribeMaterialTypes);
 
@@ -160,7 +160,7 @@ export function ExcelImportModal({
 				li_id,
 				setCategories,
 				setLoading,
-				Alert
+				Alert,
 			);
 			unsubscribers.push(unsubscribeCategory);
 
@@ -168,7 +168,7 @@ export function ExcelImportModal({
 				li_id,
 				setShelves,
 				setLoading,
-				Alert
+				Alert,
 			);
 			unsubscribers.push(unsubscribeShelf);
 
@@ -176,7 +176,7 @@ export function ExcelImportModal({
 				li_id,
 				setDonors,
 				setLoading,
-				Alert
+				Alert,
 			);
 
 			unsubscribers.push(unsubscribeDonor);
@@ -206,25 +206,24 @@ export function ExcelImportModal({
 							<div className="mx-auto w-16 h-16 bg-primary-custom/10 rounded-full flex items-center justify-center mb-4">
 								<FiFileText className="w-8 h-8 text-primary-custom" />
 							</div>
-							<h3 className="font-semibold text-foreground mb-2 text-[16px]">
+							<h3 className="font-semibold text-foreground mb-2 text-base">
 								Upload Excel File
 							</h3>
-							<p className="text-muted-foreground text-[12px]">
+							<p className="text-muted-foreground text-sm">
 								Select an Excel file (.xlsx, .xls) containing material
 								information
 							</p>
-							<p className="text-muted-foreground text-[11px]">
+							<p className="text-muted-foreground text-xs">
 								Excel files only (Max 10MB)
 							</p>
 
 							<div className="grid grid-cols-1 sm:grid-cols-5 gap-4 text-left pt-10">
 								<div>
-									<label className="block text-foreground font-medium mb-2 text-[12px]">
+									<label className="block text-foreground font-medium mb-2 text-sm">
 										Material Type <span className="text-red-500">*</span>
 									</label>
 									<select
-										className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9"
-										style={{ fontSize: "12px" }}
+										className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 										value={materialType}
 										onChange={(e) => setMaterialType(e.target.value)}
 									>
@@ -237,12 +236,11 @@ export function ExcelImportModal({
 									</select>
 								</div>
 								<div>
-									<label className="block text-foreground font-medium mb-2 text-[12px]">
+									<label className="block text-foreground font-medium mb-2 text-sm">
 										Category <span className="text-red-500">*</span>
 									</label>
 									<select
-										className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9"
-										style={{ fontSize: "12px" }}
+										className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 										value={category}
 										onChange={(e) => setCategory(e.target.value)}
 									>
@@ -255,12 +253,11 @@ export function ExcelImportModal({
 									</select>
 								</div>
 								<div>
-									<label className="block text-foreground font-medium mb-2 text-[12px]">
+									<label className="block text-foreground font-medium mb-2 text-sm">
 										Shelf <span className="text-red-500">*</span>
 									</label>
 									<select
-										className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9"
-										style={{ fontSize: "12px" }}
+										className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 										value={shelf}
 										onChange={(e) => setShelf(e.target.value)}
 									>
@@ -274,12 +271,11 @@ export function ExcelImportModal({
 								</div>
 
 								<div>
-									<label className="block text-foreground font-medium mb-2 text-[12px]">
+									<label className="block text-foreground font-medium mb-2 text-sm">
 										Type <span className="text-red-500">*</span>
 									</label>
 									<select
-										className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9"
-										style={{ fontSize: "12px" }}
+										className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 										value={acquisitionType}
 										onChange={(e) => setAcquisitionType(e.target.value)}
 									>
@@ -293,12 +289,11 @@ export function ExcelImportModal({
 
 								{acquisitionType === "Donated" ? (
 									<div>
-										<label className="block text-foreground font-medium mb-2 text-[12px]">
+										<label className="block text-foreground font-medium mb-2 text-sm">
 											Donor <span className="text-red-500">*</span>
 										</label>
 										<select
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9"
-											style={{ fontSize: "12px" }}
+											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 											value={donor}
 											onChange={(e) => setDonor(e.target.value)}
 										>
@@ -312,7 +307,7 @@ export function ExcelImportModal({
 									</div>
 								) : (
 									<div>
-										<label className="block text-foreground font-medium mb-2 text-[12px]">
+										<label className="block text-foreground font-medium mb-2 text-sm">
 											Price per Item <span className="text-red-500">*</span>
 										</label>
 										<Input
@@ -320,8 +315,7 @@ export function ExcelImportModal({
 											placeholder="e.g., 25.99"
 											value={pricePerItem}
 											onChange={(e) => setPricePerItem(e.target.value)}
-											className="h-9 bg-background border-border text-foreground w-full"
-											style={{ fontSize: "12px" }}
+											className="h-9 bg-background border-border text-foreground w-full text-sm"
 											step="0.01"
 											min="0"
 										/>
@@ -332,8 +326,7 @@ export function ExcelImportModal({
 								type="file"
 								accept=".xlsx,.xls"
 								onChange={handleFileSelect}
-								className="mt-4 cursor-pointer"
-								style={{ fontSize: "12px" }}
+								className="mt-4 cursor-pointer text-sm"
 							/>
 						</div>
 
@@ -342,10 +335,10 @@ export function ExcelImportModal({
 								<div className="flex items-center gap-3">
 									<FiFileText className="w-5 h-5 text-primary-custom" />
 									<div className="flex-1">
-										<p className="font-medium text-foreground text-[12px]">
+										<p className="font-medium text-foreground text-sm">
 											{selectedFile.name}
 										</p>
-										<p className="text-muted-foreground text-[11px]">
+										<p className="text-muted-foreground text-xs">
 											{(selectedFile.size / 1024 / 1024).toFixed(2)} MB
 										</p>
 									</div>
@@ -357,7 +350,7 @@ export function ExcelImportModal({
 							<Button
 								onClick={handleClose}
 								variant="outline"
-								className="h-10 w-fit text-[12px]"
+								className="h-10 w-fit text-sm"
 							>
 								Cancel
 							</Button>
@@ -371,7 +364,7 @@ export function ExcelImportModal({
 									shelf == "" ||
 									(donor == "" && pricePerItem == 0)
 								}
-								className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-[12px]"
+								className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-sm"
 							>
 								{btnLoading ? (
 									<>
@@ -395,7 +388,7 @@ export function ExcelImportModal({
 							<EmptyState data={materialData} loading={btnLoading} />
 						) : (
 							<>
-								<span className="text-foreground font-medium text-[12px]">
+								<span className="text-foreground font-medium text-sm">
 									{selectedMaterials.length} of {materialData.length} valid
 									materials selected
 								</span>
@@ -413,7 +406,7 @@ export function ExcelImportModal({
 												{excelHeader.map((header) => (
 													<th
 														key={header}
-														className="text-left py-4 px-6 font-semibold text-[12px] text-foreground"
+														className="text-left py-4 px-6 font-semibold text-sm text-foreground"
 													>
 														{header}
 													</th>
@@ -423,7 +416,7 @@ export function ExcelImportModal({
 										<tbody>
 											{materialData.map((mat, index) => {
 												const isChecked = selectedMaterials.some(
-													(sel) => sel.mt_callNo === mat.mt_callNo
+													(sel) => sel.mt_callNo === mat.mt_callNo,
 												);
 												return (
 													<tr
@@ -443,7 +436,7 @@ export function ExcelImportModal({
 														{allHeaders.map((key) => (
 															<td
 																key={key}
-																className="py-4 px-6 text-[12px] min-w-[150px] text-left align-top"
+																className="py-4 px-6 text-sm min-w-[150px] text-left align-top"
 															>
 																{mat[key]}
 															</td>
@@ -458,13 +451,13 @@ export function ExcelImportModal({
 								<div className="flex justify-end gap-3">
 									<Button
 										variant="outline"
-										className="bg-transparent h-10 px-4 text-[12px]"
+										className="bg-transparent h-10 px-4 text-sm"
 										onClick={() => setStep("upload")}
 									>
 										Back
 									</Button>
 									<Button
-										className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-[12px]"
+										className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-sm"
 										onClick={handleImport}
 										disabled={selectedMaterials.length === 0}
 									>

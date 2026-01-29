@@ -69,7 +69,7 @@ export default function RegisterComputer() {
 				userDetails?.uid,
 				formData,
 				setBtnloading,
-				Alert
+				Alert,
 			);
 			setFormData(defaultValues);
 		} else if (type == "edit" && id) {
@@ -79,7 +79,7 @@ export default function RegisterComputer() {
 				userDetails?.uid,
 				formData,
 				setBtnloading,
-				Alert
+				Alert,
 			);
 		}
 	};
@@ -99,7 +99,7 @@ export default function RegisterComputer() {
 					<div className="mb-6 animate-fade-in">
 						<button
 							onClick={() => router.back()}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
 						>
 							<FiArrowLeft className="w-4 h-4" />
 							Back to Previous page
@@ -107,10 +107,10 @@ export default function RegisterComputer() {
 					</div>
 
 					<div className="mb-8 animate-slide-up">
-						<h1 className="font-semibold text-foreground text-[20px]">
+						<h1 className="font-semibold text-foreground text-xl">
 							{type === "register" ? "Register Computer" : "Update Computer"}
 						</h1>
-						<p className="text-muted-foreground text-[14px]">
+						<p className="text-muted-foreground text-base">
 							{type === "register"
 								? "Add a new computer resource to the system with complete technical specifications"
 								: "Update the computer resource information and modify technical specifications"}
@@ -121,17 +121,17 @@ export default function RegisterComputer() {
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-slide-up-delay-1 items-start">
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardContent className="p-6">
-									<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+									<h2 className="font-semibold text-foreground text-base mb-[5px]">
 										Computer Information
 									</h2>
-									<p className="text-muted-foreground text-[12px] mb-4">
+									<p className="text-muted-foreground text-sm mb-4">
 										Enter the technical details and specifications for the
 										computer resource.
 									</p>
 
 									<div className="space-y-4">
 										<div>
-											<label className="block text-foreground font-medium mb-2 text-[12px]">
+											<label className="block text-foreground font-medium mb-2 text-sm">
 												Computer Name
 											</label>
 											<Input
@@ -139,15 +139,14 @@ export default function RegisterComputer() {
 												value={formData?.co_name}
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="Computer Lab 01-A"
-												className="bg-card border-border text-foreground h-9"
-												style={{ fontSize: "11px" }}
+												className="bg-card border-border text-foreground h-9 text-xs"
 												required
 											/>
 										</div>
 
 										<div className="grid grid-cols-2 gap-4">
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													Date Added
 												</label>
 												<Input
@@ -155,13 +154,12 @@ export default function RegisterComputer() {
 													type="date"
 													value={formData?.co_date}
 													onChange={(e) => handleChange(e, setFormData)}
-													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "11px" }}
+													className="bg-card border-border text-foreground h-9 text-xs"
 													required
 												/>
 											</div>
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													Asset Tag
 												</label>
 												<Input
@@ -169,15 +167,14 @@ export default function RegisterComputer() {
 													value={formData?.co_assetTag}
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="CMP-001"
-													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "11px" }}
+													className="bg-card border-border text-foreground h-9 text-xs"
 													required
 												/>
 											</div>
 										</div>
 
 										<div>
-											<label className="block text-foreground font-medium mb-2 text-[12px]">
+											<label className="block text-foreground font-medium mb-2 text-sm">
 												Description
 											</label>
 											<Textarea
@@ -186,15 +183,14 @@ export default function RegisterComputer() {
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="High-performance desktop computer..."
 												rows={3}
-												className="bg-card border-border text-foreground"
-												style={{ fontSize: "12px" }}
+												className="bg-card border-border text-foreground text-sm"
 												required
 											/>
 										</div>
 
 										<div className="grid grid-cols-2 gap-4">
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													Min Duration
 												</label>
 												<Input
@@ -203,13 +199,12 @@ export default function RegisterComputer() {
 													value={formData?.co_minDuration}
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="1 hour"
-													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "11px" }}
+													className="bg-card border-border text-foreground h-9 text-xs"
 													required
 												/>
 											</div>
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													Max Duration
 												</label>
 												<Input
@@ -219,14 +214,13 @@ export default function RegisterComputer() {
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="4 hours"
 													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "11px" }}
 													required
 												/>
 											</div>
 										</div>
 
 										<div>
-											<label className="block text-foreground font-medium mb-2 text-[12px]">
+											<label className="block text-foreground font-medium mb-2 text-sm">
 												Specifications
 											</label>
 											<Input
@@ -235,7 +229,6 @@ export default function RegisterComputer() {
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="Intel i7, 16GB RAM, GTX 1660"
 												className="bg-card border-border text-foreground h-9"
-												style={{ fontSize: "11px" }}
 												required
 											/>
 										</div>
@@ -245,11 +238,11 @@ export default function RegisterComputer() {
 
 							<Card className="bg-card border-border shadow-sm animate-slide-up-delay-2">
 								<CardHeader className="pb-4">
-									<CardTitle className="text-foreground flex items-center gap-2 text-[16px]">
+									<CardTitle className="text-foreground flex items-center gap-2 text-base">
 										<FiImage className="w-4 h-4" />
 										Cover Image
 									</CardTitle>
-									<p className="text-muted-foreground text-[12px]">
+									<p className="text-muted-foreground text-sm">
 										Upload cover image (.jpg, .png)
 									</p>
 								</CardHeader>
@@ -293,13 +286,13 @@ export default function RegisterComputer() {
 											type="button"
 											variant="outline"
 											onClick={handleCancel}
-											className="bg-transparent hover:bg-accent text-foreground h-10 w-fit text-[12px]"
+											className="bg-transparent hover:bg-accent text-foreground h-10 w-fit text-sm"
 										>
 											Cancel
 										</Button>
 										<Button
 											type="submit"
-											className="bg-primary-custom hover:bg-secondary-custom text-white  h-10 w-fit text-[12px]"
+											className="bg-primary-custom hover:bg-secondary-custom text-white  h-10 w-fit text-sm"
 											disabled={!type}
 										>
 											<LoadingSpinner loading={btnLoading} />
@@ -329,12 +322,12 @@ export default function RegisterComputer() {
 													)}
 												</div>
 												<div className="flex-1">
-													<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+													<h2 className="font-semibold text-foreground text-base mb-[5px]">
 														{formData?.co_status === "Active"
 															? "Deactivate Computer"
 															: "Activate Computer"}
 													</h2>
-													<p className="text-muted-foreground leading-relaxed text-[12px]">
+													<p className="text-muted-foreground leading-relaxed text-sm">
 														{formData?.co_status === "Active"
 															? "This will remove the computer from search results and circulation. The computer can be reactivated later by an administrator."
 															: "This will restore the computer to be available again in search results and circulation."}
@@ -347,7 +340,7 @@ export default function RegisterComputer() {
 													type="button"
 													variant="outline"
 													onClick={() => setShowDeactivateModal(true)}
-													className={`w-full h-9 transition-colors text-[12px] ${
+													className={`w-full h-9 transition-colors text-sm ${
 														formData?.co_status === "Active"
 															? "border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300"
 															: "border-green-200 text-green-600 hover:bg-green-50 hover:border-green-300"

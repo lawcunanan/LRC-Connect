@@ -1,4 +1,6 @@
 import { FiClock, FiCalendar } from "react-icons/fi";
+import { Badge } from "@/components/ui/badge";
+import { getStatusColor } from "@/controller/custom/getStatusColor";
 
 export const renderuserDetails = (user, isTable = false) => {
 	if (!user) return;
@@ -15,12 +17,12 @@ export const renderuserDetails = (user, isTable = false) => {
 			<div className="min-w-0">
 				<h4
 					className={`text-foreground font-medium break-words whitespace-normal  ${
-						isTable ? "text-[12px]" : "text-[14px]"
+						isTable ? "text-sm" : "text-base"
 					}`}
 				>
 					{user?.lo_user?.us_name || "user Name"}
 				</h4>
-				<p className="text-primary-custom text-[12px] mb-2 break-words whitespace-normal">
+				<p className="text-primary-custom text-sm mb-2 break-words whitespace-normal">
 					{user?.lo_user?.us_type || "Type"}
 					<span className="text-muted-foreground break-words whitespace-normal">
 						{" • "}
@@ -28,20 +30,20 @@ export const renderuserDetails = (user, isTable = false) => {
 					</span>
 				</p>
 				<div className="mb-2">
-					<p className="text-foreground text-[12px]">Email</p>
-					<p className="text-muted-foreground text-[12px] break-words whitespace-normal">
+					<p className="text-foreground text-sm">Email</p>
+					<p className="text-muted-foreground text-sm break-words whitespace-normal">
 						{user?.lo_user?.us_email || "NA"}
 					</p>
 				</div>
 				<div>
-					<p className="text-foreground text-[12px]">Library</p>
-					<p className="text-muted-foreground text-[12px] break-words whitespace-normal">
+					<p className="text-foreground text-sm">Library</p>
+					<p className="text-muted-foreground text-sm break-words whitespace-normal">
 						{user?.lo_user?.us_library || "NA"}
 					</p>
 				</div>
 			</div>
 			{!isTable && (
-				<Badge className={`text-[12px] ${getStatusColor(user?.lo_status)}`}>
+				<Badge className={`text-xs ${getStatusColor(user?.lo_status)}`}>
 					{user?.lo_status}
 				</Badge>
 			)}
@@ -64,12 +66,12 @@ export const renderlibraryDetails = (library, isTable = false) => {
 			<div className="min-w-0">
 				<h4
 					className={`text-foreground font-medium break-words whitespace-normal  ${
-						isTable ? "text-[12px]" : "text-[14px]"
+						isTable ? "text-sm" : "text-base"
 					}`}
 				>
 					{library?.lo_library?.li_name || "Library Name"}
 				</h4>
-				<p className="text-primary-custom text-[12px] mb-2 break-words whitespace-normal">
+				<p className="text-primary-custom text-sm mb-2 break-words whitespace-normal">
 					{library?.lo_library?.li_qr || "QR"}
 					<span className="text-muted-foreground break-words whitespace-normal">
 						{" • "}
@@ -78,21 +80,21 @@ export const renderlibraryDetails = (library, isTable = false) => {
 				</p>
 
 				<div className="mb-2">
-					<p className="text-foreground text-[12px]">School Name</p>
-					<p className="text-muted-foreground text-[12px] break-words whitespace-normal">
+					<p className="text-foreground text-sm">School Name</p>
+					<p className="text-muted-foreground text-sm break-words whitespace-normal">
 						{library?.lo_library?.li_schoolName || "NA"}
 					</p>
 				</div>
 
 				<div>
-					<p className="text-foreground text-[12px]">Address</p>
-					<p className="text-muted-foreground text-[12px] break-words whitespace-normal">
+					<p className="text-foreground text-sm">Address</p>
+					<p className="text-muted-foreground text-sm break-words whitespace-normal">
 						{library?.lo_library?.li_address || "NA"}
 					</p>
 				</div>
 			</div>
 			{!isTable && (
-				<Badge className={`text-[12px] ${getStatusColor(library.lo_status)}`}>
+				<Badge className={`text-sm ${getStatusColor(library.lo_status)}`}>
 					{library.lo_status}
 				</Badge>
 			)}
@@ -104,43 +106,43 @@ export const renderuserLog = (user) => {
 	return (
 		<div className="space-y-4 mb-4">
 			<div className="flex items-start gap-3">
-				<FiCalendar className="text-foreground text-[15px] mt-[2px]" />
+				<FiCalendar className="text-foreground text-base mt-[2px]" />
 				<div>
-					<p className="text-foreground text-[12px] break-words whitespace-normal">
+					<p className="text-foreground text-sm break-words whitespace-normal">
 						{user?.lo_createdAt || "NA"}
 					</p>
-					<p className="text-muted-foreground text-[12px]">Date</p>
+					<p className="text-muted-foreground text-sm">Date</p>
 				</div>
 			</div>
 
 			<div className="grid grid-cols-3 gap-3">
 				<div className="flex items-start gap-2">
-					<FiClock className="flex-shrink-0 text-foreground text-[15px] mt-[2px]" />
+					<FiClock className="flex-shrink-0 text-foreground text-base mt-[2px]" />
 					<div>
-						<p className="text-foreground  text-[12px] break-words whitespace-normal">
+						<p className="text-foreground  text-sm break-words whitespace-normal">
 							{user?.lo_timeIn || "NA"}
 						</p>
-						<p className="text-muted-foreground text-[12px]">Time In</p>
+						<p className="text-muted-foreground text-sm">Time In</p>
 					</div>
 				</div>
 
 				<div className="flex items-start gap-2">
-					<FiClock className="flex-shrink-0 text-foreground text-[15px] mt-[2px]" />
+					<FiClock className="flex-shrink-0 text-foreground text-base mt-[2px]" />
 					<div>
-						<p className="text-foreground  text-[12px] break-words whitespace-normal">
+						<p className="text-foreground  text-sm break-words whitespace-normal">
 							{user?.lo_timeOut || "NA"}
 						</p>
-						<p className="text-muted-foreground text-[12px]">Time Out</p>
+						<p className="text-muted-foreground text-sm">Time Out</p>
 					</div>
 				</div>
 
 				<div className="flex items-start gap-2">
-					<FiClock className="flex-shrink-0 text-foreground text-[15px] mt-[2px]" />
+					<FiClock className="flex-shrink-0 text-foreground text-base mt-[2px]" />
 					<div>
-						<p className="text-foreground text-[12px] break-words whitespace-normal">
+						<p className="text-foreground text-sm break-words whitespace-normal">
 							{user?.lo_duration || "NA"}
 						</p>
-						<p className="text-muted-foreground text-[12px]">Duration</p>
+						<p className="text-muted-foreground text-sm">Duration</p>
 					</div>
 				</div>
 			</div>

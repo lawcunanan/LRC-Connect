@@ -74,7 +74,7 @@ export function PenaltyListModal({
 			report,
 			reportID,
 			setBtnLoading,
-			Alert
+			Alert,
 		);
 		setSelectedPenalties([]);
 		setBtnLoadingType("");
@@ -103,7 +103,7 @@ export function PenaltyListModal({
 				selectedType,
 				setReportData,
 				setLoading,
-				Alert
+				Alert,
 			);
 		}
 
@@ -125,7 +125,7 @@ export function PenaltyListModal({
 			>
 				<div className="flex flex-col h-full max-h-[90vh]">
 					<div className="flex items-center flex-1 px-6 pt-6">
-						<div className="relative flex-1 max-w-md">
+						<div className="relative flex-1 max-w-lg">
 							<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 
 							<Input
@@ -133,7 +133,6 @@ export function PenaltyListModal({
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
 								className="pl-10 pr-28 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-								style={{ fontSize: "12px" }}
 							/>
 
 							<div className="absolute right-0 top-0 h-full flex items-center pr-2">
@@ -141,7 +140,7 @@ export function PenaltyListModal({
 									<select
 										value={selectedType}
 										onChange={(e) => setSelectedType(e.target.value)}
-										className="h-full pl-2 pr-6 text-xs rounded-l-none border-l border-border focus:outline-none bg-background appearance-none text-[12px]"
+										className="h-full pl-2 pr-6 text-xs rounded-l-none border-l border-border focus:outline-none bg-background appearance-none text-sm"
 									>
 										<option disabled>Filter</option>
 										<option value="">All Resource Types</option>
@@ -163,13 +162,13 @@ export function PenaltyListModal({
 						>
 							<div className="px-6 pt-6 mb-2">
 								<TabsList className="grid w-full grid-cols-3">
-									<TabsTrigger value="Active" className="text-[12px]">
+									<TabsTrigger value="Active" className="text-sm">
 										Active Penalty
 									</TabsTrigger>
-									<TabsTrigger value="Settled" className="text-[12px]">
+									<TabsTrigger value="Settled" className="text-sm">
 										Penalty History
 									</TabsTrigger>
-									<TabsTrigger value="Waived" className="text-[12px]">
+									<TabsTrigger value="Waived" className="text-sm">
 										Waived List
 									</TabsTrigger>
 								</TabsList>
@@ -186,7 +185,7 @@ export function PenaltyListModal({
 												onClick={() =>
 													handleStatus("Settled", reportData, selectedPenalties)
 												}
-												className="flex items-center gap-2 h-10 text-[12px]"
+												className="flex items-center gap-2 h-10 text-sm"
 											>
 												{btnLoadingType === "Settled" && (
 													<LoadingSpinner loading={btnLoading} />
@@ -199,7 +198,7 @@ export function PenaltyListModal({
 													handleStatus("Waived", reportData, selectedPenalties)
 												}
 												variant="destructive"
-												className="flex items-center gap-2 h-10 text-[12px]"
+												className="flex items-center gap-2 h-10 text-sm"
 											>
 												{btnLoadingType === "Waived" && (
 													<LoadingSpinner loading={btnLoading} />
@@ -298,7 +297,7 @@ const PenaltyTable = ({
 						{columns.map((col, idx) => (
 							<th
 								key={idx}
-								className="text-left py-4 px-6 font-semibold text-foreground text-[12px]"
+								className="text-left py-4 px-6 font-semibold text-foreground text-sm"
 							>
 								{col === "Check Box" ? (
 									<Checkbox
@@ -327,7 +326,7 @@ const PenaltyTable = ({
 								switch (col) {
 									case "Check Box":
 										return (
-											<td key={colIndex} className="py-4 px-6">
+											<td key={colIndex} className="py-4 px-6 text-sm">
 												<Checkbox
 													checked={selectedPenalties.includes(report?.id)}
 													onCheckedChange={(checked) =>
@@ -338,18 +337,24 @@ const PenaltyTable = ({
 										);
 									case "Transaction":
 										return (
-											<td key={colIndex} className="py-4 px-6 min-w-[150px]">
-												<p className="font-medium text-foreground text-[12px]">
+											<td
+												key={colIndex}
+												className="py-4 px-6 min-w-[150px] text-sm"
+											>
+												<p className="font-medium text-foreground text-sm">
 													{report.tr_qr}
 												</p>
-												<p className="text-muted-foreground mb-2 text-[12px]">
+												<p className="text-muted-foreground mb-2 text-sm">
 													{report?.tr_createdAt}
 												</p>
 											</td>
 										);
 									case "Resource Details":
 										return (
-											<td key={colIndex} className="py-4 px-6 min-w-[400px]">
+											<td
+												key={colIndex}
+												className="py-4 px-6 min-w-[400px] text-sm"
+											>
 												{renderResource(report, true)}
 											</td>
 										);
@@ -357,7 +362,7 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 min-w-[200px] text-[11px]"
+												className="py-4 px-6 min-w-[200px] text-sm"
 											>
 												{report?.tr_patron
 													? renderPatron(report.tr_patron, true)
@@ -369,7 +374,7 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 min-w-[200px] text-[11px]"
+												className="py-4 px-6 min-w-[200px] text-sm"
 											>
 												{renderPatron(report?.tr_personnel, true) ||
 													"No personnel assigned."}
@@ -377,7 +382,10 @@ const PenaltyTable = ({
 										);
 									case "Schedule":
 										return (
-											<td key={colIndex} className="py-4 px-6 min-w-[250px]">
+											<td
+												key={colIndex}
+												className="py-4 px-6 min-w-[250px] text-sm"
+											>
 												{renderSchedule(report)}
 											</td>
 										);
@@ -385,7 +393,7 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 min-w-[350px] text-[12px]"
+												className="py-4 px-6 min-w-[350px] text-sm"
 											>
 												<ul className="list-disc pl-4">
 													{report?.re_remarks.map((remark, i) => (
@@ -398,7 +406,7 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 min-w-[200px] text-[12px] text-foreground"
+												className="py-4 px-6 min-w-[200px] text-sm text-foreground"
 											>
 												{report?.re_instruction || "No instruction provided."}
 											</td>
@@ -407,7 +415,7 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 min-w-[150px] text-[12px] text-foreground"
+												className="py-4 px-6 min-w-[150px] text-sm text-foreground"
 											>
 												{report?.re_deadline || "No deadline."}
 											</td>
@@ -417,19 +425,19 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 text-[12px]  min-w-[150px] text-foreground"
+												className="py-4 px-6 text-sm  min-w-[150px] text-foreground"
 											>
 												{report?.re_dateSettled || report?.tr_dateWaived || "—"}
 											</td>
 										);
 									case "Actions":
 										return (
-											<td key={colIndex} className="py-4 px-6">
+											<td key={colIndex} className="py-4 px-6 text-sm">
 												<Button
 													onClick={() => handleActionClick(report)}
 													variant="outline"
 													size="sm"
-													className="h-9 px-2 text-[12px]"
+													className="h-9 px-2 text-sm"
 												>
 													Take Action
 												</Button>

@@ -145,35 +145,35 @@ export function DeactivateResourceModal({
 						{resourceStatus === "Inactive" ? (
 							<>
 								<p
-									className="text-green-800 dark:text-green-300 font-medium mb-1 text-[12px]"
-									style={{ fontSize: "11px" }}
+									className="text-green-800 dark:text-green-300 font-medium mb-1 text-sm"
+									
 								>
 									Info: This action will activate the{" "}
 									{resourceTypeDisplay.toLowerCase()}.
 								</p>
-								<p className="text-green-700 dark:text-green-400 text-[11px]">
+								<p className="text-green-700 dark:text-green-400 text-xs">
 									The {resourceTypeDisplay.toLowerCase()} will be made available
 									again to users and can be reserved or accessed.
 								</p>
 							</>
 						) : resourceType === "library" ? (
 							<>
-								<p className="text-red-800 dark:text-red-300 font-medium mb-1 text-[12px]">
+								<p className="text-red-800 dark:text-red-300 font-medium mb-1 text-sm">
 									Warning: This action will deactivate the library from the
 									system
 								</p>
-								<p className="text-red-700 dark:text-red-400 text-[11px]">
+								<p className="text-red-700 dark:text-red-400 text-xs">
 									The library will no longer be accessible or visible to users.
 									All operations may be disabled until reactivation.
 								</p>
 							</>
 						) : (
 							<>
-								<p className="text-red-800 dark:text-red-300 font-medium mb-1 text-[12px]">
+								<p className="text-red-800 dark:text-red-300 font-medium mb-1 text-sm">
 									Warning: This action will remove the{" "}
 									{resourceType.toLowerCase()} from circulation
 								</p>
-								<p className="text-red-700 dark:text-red-400 text-[11px]">
+								<p className="text-red-700 dark:text-red-400 text-xs">
 									The {resourceType.toLowerCase()} will not appear in results
 									and can't be reserved. Reversal is admin-only.
 								</p>
@@ -184,7 +184,7 @@ export function DeactivateResourceModal({
 
 				{resourceTitle && (
 					<div className="p-3 bg-muted/30 border border-border rounded-md">
-						<p className="text-foreground font-medium text-[12px]">
+						<p className="text-foreground font-medium text-sm">
 							{resourceTypeDisplay}: {resourceTitle}
 						</p>
 					</div>
@@ -193,7 +193,7 @@ export function DeactivateResourceModal({
 				{resourceStatus !== "Inactive" && (
 					<div className="space-y-4">
 						<div>
-							<h3 className="font-normal text-foreground mb-3 text-[12px]">
+							<h3 className="font-normal text-foreground mb-3 text-sm">
 								Select deactivation reason(s):
 							</h3>
 							<div className="space-y-3">
@@ -206,7 +206,7 @@ export function DeactivateResourceModal({
 										/>
 										<Label
 											htmlFor={`reason-${reason}`}
-											className="text-foreground cursor-pointer font-normal text-[12px]"
+											className="text-foreground cursor-pointer font-normal text-sm"
 										>
 											{reason}
 										</Label>
@@ -218,7 +218,7 @@ export function DeactivateResourceModal({
 						<div className="space-y-2">
 							<Label
 								htmlFor="custom-reason"
-								className="font-medium text-foreground text-[12px]"
+								className="font-medium text-foreground text-sm"
 							>
 								Custom reason (optional):
 							</Label>
@@ -228,7 +228,7 @@ export function DeactivateResourceModal({
 								value={customReason}
 								onChange={(e) => setCustomReason(e.target.value)}
 								className="resize-none h-24"
-								style={{ fontSize: "12px" }}
+								
 							/>
 						</div>
 					</div>
@@ -239,12 +239,12 @@ export function DeactivateResourceModal({
 				<Button
 					onClick={handleClose}
 					variant="outline"
-					className="bg-transparent h-10 px-4 text-[12px]"
+					className="bg-transparent h-10 px-4 text-sm"
 				>
 					Cancel
 				</Button>
 				<Button
-					className="h-10 text-[12px]"
+					className="h-10 text-sm"
 					variant={resourceStatus === "Inactive" ? "default" : "destructive"}
 					onClick={handleSubmit}
 					disabled={

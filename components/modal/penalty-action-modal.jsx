@@ -54,7 +54,7 @@ export function PenaltyActionModal({
 
 				<div className="space-y-3">
 					<div>
-						<label className="block font-medium text-foreground mb-2 text-[12px]">
+						<label className="block font-medium text-foreground mb-2 text-sm">
 							Action to Take
 						</label>
 						<Textarea
@@ -62,12 +62,12 @@ export function PenaltyActionModal({
 							value={actionText}
 							onChange={(e) => setActionText(e.target.value)}
 							className="w-full min-h-[100px]"
-							style={{ fontSize: "12px" }}
+							
 						/>
 					</div>
 
 					<div>
-						<label className="block font-medium text-foreground mb-2 text-[12px]">
+						<label className="block font-medium text-foreground mb-2 text-sm">
 							Deadline
 						</label>
 						<Input
@@ -75,7 +75,7 @@ export function PenaltyActionModal({
 							value={deadline}
 							onChange={(e) => setDeadline(e.target.value)}
 							className="w-full"
-							style={{ fontSize: "12px" }}
+							
 							min={new Date().toISOString().split("T")[0]}
 						/>
 					</div>
@@ -84,7 +84,7 @@ export function PenaltyActionModal({
 				<div className="flex justify-end gap-3 pt-4 border-t border-border">
 					<Button
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 						onClick={() => onClose()}
 					>
 						Cancel
@@ -92,7 +92,7 @@ export function PenaltyActionModal({
 					<Button
 						onClick={handleSubmit}
 						disabled={!actionText.trim()}
-						className="bg-blue-600 hover:bg-blue-700 text-white h-10 text-[12px]"
+						className="bg-blue-600 hover:bg-blue-700 text-white h-10 text-sm"
 					>
 						<LoadingSpinner loading={btnLoading} />
 						Record Action

@@ -51,7 +51,7 @@ export function EntryExitUserModal({ isOpen, onClose, li_id, us_id, Alert }) {
 					<div className="space-y-2">
 						<Label
 							htmlFor="user-id"
-							className="block text-foreground font-medium mb-2 text-[12px]"
+							className="block text-foreground font-medium mb-2 text-sm"
 						>
 							Enter User ID
 						</Label>
@@ -65,7 +65,7 @@ export function EntryExitUserModal({ isOpen, onClose, li_id, us_id, Alert }) {
 									value={userId}
 									onChange={(e) => setUserId(e.target.value)}
 									className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 pr-10"
-									style={{ fontSize: "12px" }}
+									
 								/>
 								<Button
 									onClick={() => setIsScannerOpen(true)}
@@ -80,7 +80,7 @@ export function EntryExitUserModal({ isOpen, onClose, li_id, us_id, Alert }) {
 							<Button
 								type="button"
 								onClick={handleSubmit}
-								className="h-10 px-4 text-[12px] bg-primary text-white hover:bg-primary/90 "
+								className="h-10 px-4 text-sm bg-primary text-white hover:bg-primary/90 "
 								disabled={!userId}
 							>
 								<LoadingSpinner loading={btnLoading} />

@@ -72,7 +72,7 @@ export default function BorrowingLimitsModal({
 				className="relative z-10 w-full max-w-md mx-4 max-h-[90vh] flex flex-col bg-card border border-border rounded-xl shadow-lg overflow-hidden transform animate-slide-up scale-100 transition-transform duration-300"
 			>
 				<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 bg-primary-custom text-white rounded-t-lg">
-					<CardTitle className="text-[16px] font-semibold flex items-center gap-2">
+					<CardTitle className="text-base font-semibold flex items-center gap-2">
 						<FiBookOpen className="w-5 h-5" />
 						Borrowing Limits
 					</CardTitle>
@@ -86,7 +86,7 @@ export default function BorrowingLimitsModal({
 				</CardHeader>
 
 				<CardContent className="p-6 space-y-6 overflow-y-auto text-sm text-muted-foreground">
-					<p className="text-[12px]">
+					<p className="text-sm">
 						Set the maximum number of items and borrowing duration for different
 						user types.
 					</p>
@@ -94,13 +94,13 @@ export default function BorrowingLimitsModal({
 					{/* Tabs for Student, Faculty, Admin */}
 					<Tabs defaultValue="student" className="w-full">
 						<TabsList className="grid w-full grid-cols-3 mb-4 bg-muted rounded-lg">
-							<TabsTrigger value="student" className="text-[12px]">
+							<TabsTrigger value="student" className="text-sm">
 								Student
 							</TabsTrigger>
-							<TabsTrigger value="faculty" className="text-[12px]">
+							<TabsTrigger value="faculty" className="text-sm">
 								Faculty
 							</TabsTrigger>
-							<TabsTrigger value="administrator" className="text-[12px]">
+							<TabsTrigger value="administrator" className="text-sm">
 								Administrator
 							</TabsTrigger>
 						</TabsList>
@@ -114,7 +114,7 @@ export default function BorrowingLimitsModal({
 										<div className="grid grid-cols-2 gap-4">
 											{["maxItems", "borrowDays"].map((field) => (
 												<div className="space-y-2" key={field}>
-													<label className="block font-medium text-foreground text-[12px]">
+													<label className="block font-medium text-foreground text-sm">
 														{field === "maxItems"
 															? "Max Items"
 															: "Borrow Days Range"}
@@ -128,7 +128,7 @@ export default function BorrowingLimitsModal({
 															handleInputChange(key, field, e.target.value)
 														}
 														className="h-9 bg-background border border-border text-foreground"
-														style={{ fontSize: "12px" }}
+														
 														placeholder={field === "maxItems" ? "5" : "14"}
 													/>
 												</div>
@@ -145,13 +145,13 @@ export default function BorrowingLimitsModal({
 					<Button
 						onClick={() => onClose()}
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 					>
 						Cancel
 					</Button>
 					<Button
 						onClick={handleSave}
-						className="bg-primary-custom hover:bg-primary-custom/90 text-white h-10 px-4 text-[12px]"
+						className="bg-primary-custom hover:bg-primary-custom/90 text-white h-10 px-4 text-sm"
 					>
 						<LoadingSpinner loading={btnLoading} />
 						Save Limits

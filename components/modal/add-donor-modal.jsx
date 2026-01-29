@@ -43,7 +43,7 @@ export function AddDonorModal({
 				userDetails.uid,
 				newDonor,
 				setBtnloading,
-				Alert
+				Alert,
 			);
 		} else {
 			await insertDonor(
@@ -51,7 +51,7 @@ export function AddDonorModal({
 				userDetails.uid,
 				newDonor,
 				setBtnloading,
-				Alert
+				Alert,
 			);
 		}
 
@@ -73,7 +73,7 @@ export function AddDonorModal({
 			do_name,
 			"Inactive",
 			setBtnloading,
-			Alert
+			Alert,
 		);
 		resetForm();
 	};
@@ -89,22 +89,21 @@ export function AddDonorModal({
 		>
 			<form onSubmit={handleSubmit} className="p-6 space-y-4">
 				<div>
-					<Label className="text-foreground font-medium text-[12px]">
+					<Label className="text-foreground font-medium text-base">
 						Donor Name
 					</Label>
 					<Input
 						value={newDonor}
 						onChange={(e) => setNewDonor(e.target.value)}
 						placeholder="Enter donor name"
-						className="mt-1 h-9 bg-background border-border text-foreground"
-						style={{ fontSize: "12px" }}
+						className="mt-1 h-9 bg-background border-border text-foreground text-sm"
 						required
 						autoFocus
 					/>
 				</div>
 
 				<div className="space-y-2">
-					<Label className="text-foreground font-medium text-[12px]">
+					<Label className="text-foreground font-medium text-base">
 						Registered Donors
 					</Label>
 					{donors?.length > 0 &&
@@ -113,9 +112,7 @@ export function AddDonorModal({
 								key={index}
 								className="flex items-center justify-between p-2 bg-muted/30 rounded hover:bg-muted/50 transition-colors duration-200"
 							>
-								<span className="text-foreground text-[12px]">
-									{item.do_name}
-								</span>
+								<span className="text-foreground text-sm">{item.do_name}</span>
 								<span>
 									<Button
 										type="button"
@@ -152,14 +149,14 @@ export function AddDonorModal({
 							onClose();
 						}}
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-base"
 					>
 						Cancel
 					</Button>
 					<Button
 						type="submit"
 						disabled={!newDonor.trim()}
-						className="bg-primary-custom text-white hover:opacity-90 h-10 px-4 disabled:opacity-50 disabled:cursor-not-allowed text-[12px]"
+						className="bg-primary-custom text-white hover:opacity-90 h-10 px-4 disabled:opacity-50 disabled:cursor-not-allowed text-base"
 					>
 						<LoadingSpinner loading={btnLoading} />
 						{editingDonorId ? "Update" : "Add Donor"}

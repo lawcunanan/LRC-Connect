@@ -88,7 +88,7 @@ export function CancelTransactionModal({
 				<div className="flex items-start space-x-3 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-md">
 					<FiAlertCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
 					<div>
-						<p className="text-amber-800 dark:text-amber-300 text-[12px]">
+						<p className="text-amber-800 dark:text-amber-300 text-sm">
 							This action cannot be undone. The transaction will be marked as
 							cancelled and the resource will become available for others.
 						</p>
@@ -97,7 +97,7 @@ export function CancelTransactionModal({
 
 				<div className="space-y-4">
 					<div>
-						<h3 className="font-normal text-foreground mb-3 text-[12px]">
+						<h3 className="font-normal text-foreground mb-3 text-sm">
 							Select cancellation reason(s):
 						</h3>
 						<div className="space-y-3">
@@ -113,7 +113,7 @@ export function CancelTransactionModal({
 									/>
 									<Label
 										htmlFor={`reason-${reason}`}
-										className="text-foreground cursor-pointer font-normal text-[12px]"
+										className="text-foreground cursor-pointer font-normal text-sm"
 									>
 										{reason}
 									</Label>
@@ -125,7 +125,7 @@ export function CancelTransactionModal({
 					<div className="space-y-2">
 						<Label
 							htmlFor="custom-reason"
-							className="font-medium text-foreground text-[12px]"
+							className="font-medium text-foreground text-sm"
 						>
 							Custom reason (optional):
 						</Label>
@@ -135,7 +135,7 @@ export function CancelTransactionModal({
 							value={customReason}
 							onChange={(e) => setCustomReason(e.target.value)}
 							className="resize-none h-24"
-							style={{ fontSize: "12px" }}
+							
 						/>
 					</div>
 				</div>
@@ -145,12 +145,12 @@ export function CancelTransactionModal({
 				<Button
 					onClick={handleClose}
 					variant="outline"
-					className="bg-transparent h-10 px-4 text-[12px]"
+					className="bg-transparent h-10 px-4 text-sm"
 				>
 					Cancel
 				</Button>
 				<Button
-					className="h-10 text-[12px]"
+					className="h-10 text-sm"
 					variant="destructive"
 					onClick={handleSubmit}
 					disabled={selectedReasons.length == 0 && customReason == ""}

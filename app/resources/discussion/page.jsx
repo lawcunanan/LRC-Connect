@@ -65,7 +65,7 @@ export default function discussionResourcesPage() {
 				pageLimit,
 				pageCursors,
 				setPageCursors,
-				currentPage
+				currentPage,
 			);
 		}
 	}, [userDetails, currentPage, selectedStatus, searchQuery]);
@@ -83,10 +83,10 @@ export default function discussionResourcesPage() {
 					<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 						<div className="flex items-left justify-between mb-8 animate-slide-up flex-col sm:flex-row gap-4">
 							<div className="w-fit">
-								<h1 className="font-semibold text-foreground text-[20px]">
+								<h1 className="font-semibold text-foreground text-xl">
 									Discussion Room Resources
 								</h1>
-								<p className="text-muted-foreground text-[14px]">
+								<p className="text-muted-foreground text-base">
 									Browse and manage all available discussion rooms and meeting
 									spaces
 								</p>
@@ -96,10 +96,10 @@ export default function discussionResourcesPage() {
 									<Button
 										onClick={() =>
 											router.push(
-												"/resources/discussion/register?type=register"
+												"/resources/discussion/register?type=register",
 											)
 										}
-										className="bg-primary text-white hover:opacity-90 h-9 px-4 flex items-center gap-2 w-fit font-normal text-[12px]"
+										className="bg-primary text-white hover:opacity-90 h-9 px-4 flex items-center gap-2 w-fit font-normal text-sm"
 									>
 										<FiPlus className="w-4 h-4" />
 										Register Room
@@ -109,14 +109,13 @@ export default function discussionResourcesPage() {
 
 						<div className="mb-8 animate-slide-up-delay-1">
 							<div className="flex items-center justify-between mb-4 gap-6">
-								<div className="relative flex items-center flex-1 max-w-md">
+								<div className="relative flex items-center flex-1 max-w-lg">
 									<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 									<Input
 										placeholder="Search discussions..."
 										value={searchQuery}
 										onChange={(e) => setSearchQuery(e.target.value)}
 										className="pl-10 pr-32 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-										style={{ fontSize: "12px" }}
 									/>
 
 									<div className="absolute right-0 top-0 h-full flex items-center gap-2 pr-2">
@@ -130,7 +129,7 @@ export default function discussionResourcesPage() {
 											<select
 												value={selectedStatus}
 												onChange={(e) => setSelectedStatus(e.target.value)}
-												className="h-full pl-2 pr-6 text-xs rounded-l-none border-l border-border focus:outline-none bg-background appearance-none text-[12px]"
+												className="h-full pl-2 pr-6 text-xs rounded-l-none border-l border-border focus:outline-none bg-background appearance-none text-sm"
 											>
 												<option disabled>Filter</option>
 												<option value="Active">Active</option>
@@ -189,24 +188,24 @@ export default function discussionResourcesPage() {
 
 												<div className="flex-1 min-w-0 space-y-2">
 													<div>
-														<h4 className="font-medium text-foreground text-[14px]">
+														<h4 className="font-medium text-foreground text-base">
 															{discussion.dr_name}
 														</h4>
-														<p className="text-muted-foreground text-[12px]">
+														<p className="text-muted-foreground text-sm">
 															{discussion.dr_createdAtFormatted}
 														</p>
 													</div>
 
 													<div>
-														<p className="text-[12px]">Room Capacity</p>
-														<p className="text-muted-foreground text-[12px]">
+														<p className="text-sm">Room Capacity</p>
+														<p className="text-muted-foreground text-sm">
 															{discussion.dr_capacity}
 														</p>
 													</div>
 
 													<div>
-														<p className="text-[12px]">Description</p>
-														<p className="text-muted-foreground text-[12px] line-clamp-3">
+														<p className="text-sm">Description</p>
+														<p className="text-muted-foreground text-sm line-clamp-3">
 															{discussion.dr_description}
 														</p>
 													</div>
@@ -214,10 +213,10 @@ export default function discussionResourcesPage() {
 													<Button
 														variant="link"
 														size="sm"
-														className="text-primary-custom hover:text-secondary-custom text-[12px] p-0"
+														className="text-primary-custom hover:text-secondary-custom text-sm p-0"
 														onClick={() =>
 															router.push(
-																`/resources/discussion/details?id=${discussion.id}`
+																`/resources/discussion/details?id=${discussion.id}`,
 															)
 														}
 													>
@@ -248,7 +247,7 @@ export default function discussionResourcesPage() {
 													].map((header) => (
 														<th
 															key={header}
-															className="text-left py-4 px-6 font-semibold text-foreground text-[12px]"
+															className="text-left py-4 px-6 font-semibold text-foreground text-sm"
 														>
 															{header}
 														</th>
@@ -263,7 +262,7 @@ export default function discussionResourcesPage() {
 															index % 2 === 0 ? "bg-background" : "bg-muted/10"
 														}`}
 													>
-														<td className="py-4 px-6  w-28  min-w-[180px]">
+														<td className="py-4 px-6  w-28  min-w-[180px] text-sm">
 															<img
 																src={
 																	discussion.dr_photoURL || "/placeholder.svg"
@@ -272,43 +271,43 @@ export default function discussionResourcesPage() {
 																className={`h-28 w-28 object-cover rounded-lg bg-gray-100 flex-shrink-0 `}
 															/>
 														</td>
-														<td className="py-4 px-6 text-foreground  font-medium  text-[12px] min-w-[250px]">
+														<td className="py-4 px-6 text-foreground  font-medium  text-sm min-w-[250px]">
 															{discussion.dr_name}
 														</td>
-														<td className="py-4 px-6 min-w-[150px]">
+														<td className="py-4 px-6 min-w-[150px] text-sm">
 															<Badge
 																className={`${getStatusColor(
-																	discussion.dr_status
-																)} text-[12px]`}
+																	discussion.dr_status,
+																)} text-sm`}
 															>
 																{discussion.dr_status}
 															</Badge>
 														</td>
-														<td className="py-4 px-6 text-foreground text-[12px] min-w-[150px]">
+														<td className="py-4 px-6 text-foreground text-sm min-w-[150px]">
 															{discussion.dr_capacity}
 														</td>
 
-														<td className="py-4 px-6 text-foreground text-[12px] min-w-[150px]">
+														<td className="py-4 px-6 text-foreground text-sm min-w-[150px]">
 															{discussion.dr_minDurationFormatted} -{" "}
 															{discussion.dr_maxDurationFormatted}
 														</td>
-														<td className="py-4 px-6 text-foreground text-[12px] min-w-[150px]">
+														<td className="py-4 px-6 text-foreground text-sm min-w-[150px]">
 															{discussion.dr_equipment}
 														</td>
-														<td className="py-4 px-6 text-foreground text-[12px] min-w-[350px]">
+														<td className="py-4 px-6 text-foreground text-sm min-w-[350px]">
 															<div className="line-clamp-3">
 																{discussion.dr_description}{" "}
 															</div>
 														</td>
 
-														<td className="py-4 px-6">
+														<td className="py-4 px-6 text-sm">
 															<Button
 																variant="link"
 																size="sm"
-																className="text-primary-custom hover:text-secondary-custom text-[12px] p-0"
+																className="text-primary-custom hover:text-secondary-custom text-sm p-0"
 																onClick={() =>
 																	router.push(
-																		`/resources/discussion/details?id=${discussion.id}`
+																		`/resources/discussion/details?id=${discussion.id}`,
 																	)
 																}
 															>

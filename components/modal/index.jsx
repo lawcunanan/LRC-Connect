@@ -56,7 +56,7 @@ export function Modal({ isOpen, onClose, title, children, size = "md" }) {
 				<div className="flex items-center justify-between p-4 border-b border-border">
 					<h2
 						className="font-semibold text-foreground"
-						style={{ fontSize: "16px" }}
+						
 					>
 						{title}
 					</h2>

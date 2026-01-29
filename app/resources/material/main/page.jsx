@@ -67,7 +67,7 @@ export default function ResourceMaterials() {
 				userDetails?.us_liID,
 				setMaterialData,
 				setLoading,
-				Alert
+				Alert,
 			);
 
 			getLibraryFeatureList(setLibraryData, setLoading, Alert);
@@ -90,10 +90,10 @@ export default function ResourceMaterials() {
 
 					<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 						<div className="mb-8 animate-fade-in">
-							<h1 className="font-semibold text-foreground text-[20px]">
+							<h1 className="font-semibold text-foreground text-xl">
 								Resource Materials
 							</h1>
-							<p className="text-muted-foreground text-[14px]">
+							<p className="text-muted-foreground text-base">
 								Manage and browse library resources and materials
 							</p>
 						</div>
@@ -101,17 +101,17 @@ export default function ResourceMaterials() {
 						<div className="animate-slide-up">
 							<div className="flex items-start justify-between mb-6">
 								<div>
-									<h2 className="font-semibold text-foreground text-[18px]">
+									<h2 className="font-semibold text-foreground text-lg">
 										Main Library
 									</h2>
-									<p className="text-muted-foreground text-[12px]">
+									<p className="text-muted-foreground text-sm">
 										Central Hub of Learning and Discovery
 									</p>
 								</div>
 								<Button
 									variant="link"
 									size="sm"
-									className="text-primary-custom hover:text-secondary-custom text-[12px] px-0"
+									className="text-primary-custom hover:text-secondary-custom text-sm px-0"
 									onClick={() => router.push("/resources/material/main/all")}
 								>
 									See All
@@ -129,10 +129,10 @@ export default function ResourceMaterials() {
 										>
 											<format.icon className="w-6 h-6" />
 										</div>
-										<h4 className="font-medium text-foreground text-center mt-3 text-[14px]">
+										<h4 className="font-medium text-foreground text-center mt-3 text-base">
 											{format.name}
 										</h4>
-										<p className="text-muted-foreground text-center  text-[12px]">
+										<p className="text-muted-foreground text-center  text-sm">
 											{format.count.toLocaleString()} items
 										</p>
 									</div>
@@ -154,10 +154,10 @@ export default function ResourceMaterials() {
 												/>
 												<div className="flex-1  space-y-2">
 													<div>
-														<h4 className="font-medium text-foreground text-[14px]">
+														<h4 className="font-medium text-foreground text-base">
 															{material?.ma_title}
 														</h4>
-														<p className="text-primary-custom text-[12px]">
+														<p className="text-primary-custom text-sm">
 															{material.ma_copyright}
 															<span className="text-muted-foreground">
 																{" • "}
@@ -167,15 +167,15 @@ export default function ResourceMaterials() {
 													</div>
 
 													<div>
-														<p className="text-[12px]">Author</p>
-														<p className="text-muted-foreground  text-[12px]">
+														<p className="text-sm">Author</p>
+														<p className="text-muted-foreground  text-sm">
 															{material.ma_author}
 														</p>
 													</div>
 
 													<div>
-														<p className="text-[12px]">Description</p>
-														<p className="text-muted-foreground  text-[12px] line-clamp-2">
+														<p className="text-sm">Description</p>
+														<p className="text-muted-foreground  text-sm line-clamp-2">
 															{material.ma_description}
 														</p>
 													</div>
@@ -183,10 +183,10 @@ export default function ResourceMaterials() {
 													<Button
 														variant="link"
 														size="sm"
-														className="text-primary-custom hover:text-secondary-custom text-[12px] px-0 "
+														className="text-primary-custom hover:text-secondary-custom text-sm px-0 "
 														onClick={() =>
 															router.push(
-																`/resources/material/details?id=${material.id}`
+																`/resources/material/details?id=${material.id}`,
 															)
 														}
 													>
@@ -203,10 +203,10 @@ export default function ResourceMaterials() {
 						<div className="animate-slide-up-delay-1 mt-8">
 							<div className="flex items-start justify-between mb-6">
 								<div>
-									<h2 className="font-semibold text-foreground text-[18px]">
+									<h2 className="font-semibold text-foreground text-lg">
 										Library Branches
 									</h2>
-									<p className="text-muted-foreground text-[12px]">
+									<p className="text-muted-foreground text-sm">
 										Extending Knowledge Across Campuses
 									</p>
 								</div>
@@ -214,7 +214,7 @@ export default function ResourceMaterials() {
 								<Button
 									variant="link"
 									size="sm"
-									className="text-primary-custom hover:text-secondary-custom text-[12px] px-0"
+									className="text-primary-custom hover:text-secondary-custom text-sm px-0"
 									onClick={() =>
 										router.push("/resources/material/branches/all")
 									}
@@ -242,10 +242,10 @@ export default function ResourceMaterials() {
 													/>
 												</div>
 												<div className="p-4">
-													<h4 className="font-medium text-foreground text-[14px]">
+													<h4 className="font-medium text-foreground text-base">
 														{branch.li_name}
 													</h4>
-													<p className="text-muted-foreground text-[12px]">
+													<p className="text-muted-foreground text-sm">
 														{branch.li_address}
 													</p>
 												</div>
@@ -259,17 +259,17 @@ export default function ResourceMaterials() {
 						<div className="animate-slide-up-delay-2 mt-8">
 							<div className="flex items-start justify-between mb-6">
 								<div>
-									<h2 className="font-semibold text-foreground text-[18px]">
+									<h2 className="font-semibold text-foreground text-lg">
 										Library of Congress Integration
 									</h2>
-									<p className="text-muted-foreground text-[12px]">
+									<p className="text-muted-foreground text-sm">
 										Access World-Class Catalogs and Resources
 									</p>
 								</div>
 								<Button
 									variant="link"
 									size="sm"
-									className="text-primary-custom hover:text-secondary-custom text-[12px] px-0"
+									className="text-primary-custom hover:text-secondary-custom text-sm px-0"
 									onClick={() =>
 										router.push("/resources/material/congress/all")
 									}
@@ -285,19 +285,16 @@ export default function ResourceMaterials() {
 											<FiBookmark className="w-10 h-10 text-white" />
 										</div>
 										<div className="flex-1">
-											<h3 className="font-medium text-[16px]">
+											<h3 className="font-medium text-base">
 												Library of Congress Resources
 											</h3>
-											<p className="text-blue-100 mb-6 leading-relaxed text-[12px]">
+											<p className="text-blue-100 mb-6 leading-relaxed text-sm">
 												Access the world's largest library collection with over
 												170 million items including books, recordings,
 												photographs, newspapers, maps, and manuscripts in
 												various formats and languages.
 											</p>
-											<div
-												className="flex flex-wrap items-center gap-6 text-blue-100"
-												style={{ fontSize: "11px" }}
-											>
+											<div className="flex flex-wrap items-center gap-6 text-blue-100 text-xs">
 												<div className="flex items-center gap-2">
 													<FiBook className="w-5 h-5" />
 													<span>17+ Million Books</span>

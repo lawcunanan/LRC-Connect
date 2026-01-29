@@ -58,7 +58,7 @@ export function MaterialTypeModal({
 					<>
 						{type == "Section" ? (
 							<div>
-								<Label className="text-foreground font-medium text-[12px]">
+								<Label className="text-foreground font-medium text-sm">
 									Section
 								</Label>
 								<Input
@@ -71,13 +71,13 @@ export function MaterialTypeModal({
 									}
 									placeholder="e.g., Book, Journal"
 									className="mt-1 h-9 bg-background border-border text-foreground w-full"
-									style={{ fontSize: "12px" }}
+									
 								/>
 							</div>
 						) : (
 							<div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
 								<div>
-									<Label className="text-foreground font-medium text-[12px]">
+									<Label className="text-foreground font-medium text-sm">
 										MARC Tag
 									</Label>
 									<Input
@@ -90,11 +90,11 @@ export function MaterialTypeModal({
 										}
 										placeholder="e.g., 100, 245"
 										className="mt-1 h-9 bg-background border-border text-foreground"
-										style={{ fontSize: "12px" }}
+										
 									/>
 								</div>{" "}
 								<div>
-									<Label className="text-foreground font-medium text-[12px]">
+									<Label className="text-foreground font-medium text-sm">
 										Title
 									</Label>
 									<Input
@@ -107,7 +107,7 @@ export function MaterialTypeModal({
 										}
 										placeholder="e.g., Author, Title"
 										className="mt-1 h-9 bg-background border-border text-foreground"
-										style={{ fontSize: "12px" }}
+										
 										disabled={
 											materialField.mt_sectionIndex === 0 &&
 											materialField.mt_fieldIndex < 12
@@ -115,7 +115,7 @@ export function MaterialTypeModal({
 									/>
 								</div>
 								<div>
-									<Label className="text-foreground font-medium text-[12px]">
+									<Label className="text-foreground font-medium text-sm">
 										Type
 									</Label>
 									<select
@@ -126,7 +126,7 @@ export function MaterialTypeModal({
 												mt_type: e.target.value,
 											})
 										}
-										className="mt-1 h-9 w-full bg-background border border-border text-foreground rounded-md px-2 text-[12px]"
+										className="mt-1 h-9 w-full bg-background border border-border text-foreground rounded-md px-2 text-sm"
 										disabled={
 											materialField.mt_sectionIndex === 0 &&
 											materialField.mt_fieldIndex < 12
@@ -160,7 +160,7 @@ export function MaterialTypeModal({
 								/>
 								<label
 									htmlFor="transfer-section"
-									className="text-foreground font-medium cursor-pointer text-[12px]"
+									className="text-foreground font-medium cursor-pointer text-sm"
 								>
 									Transfer to another section
 								</label>
@@ -169,13 +169,13 @@ export function MaterialTypeModal({
 
 					{transferToOtherSection && (
 						<div>
-							<label className="block text-foreground font-medium mb-2 text-[12px]">
+							<label className="block text-foreground font-medium mb-2 text-sm">
 								Select Section <span className="text-red-500">*</span>
 							</label>
 							<select
 								value={selectedSectionIndex}
 								onChange={(e) => setSelectedSectionIndex(e.target.value)}
-								className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+								className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 								required={transferToOtherSection}
 							>
 								<option value="">Choose a section...</option>
@@ -185,7 +185,7 @@ export function MaterialTypeModal({
 									</option>
 								))}
 							</select>
-							<p className="text-muted-foreground mt-1 text-[11px]">
+							<p className="text-muted-foreground mt-1 text-xs">
 								The account will be transferred to the selected section and
 								maintain access there.
 							</p>
@@ -198,13 +198,13 @@ export function MaterialTypeModal({
 						type="button"
 						onClick={handleCancel}
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 					>
 						Cancel
 					</Button>
 					<Button
 						type="submit"
-						className="h-10 bg-primary-custom hover:bg-secondary-custom text-[12px]"
+						className="h-10 bg-primary-custom hover:bg-secondary-custom text-sm"
 					>
 						{transferToOtherSection ? "Transfer" : actionType} {type}
 					</Button>

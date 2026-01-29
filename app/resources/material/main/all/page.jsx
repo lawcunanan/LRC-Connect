@@ -139,7 +139,7 @@ export default function MaterialsPage() {
 				pageLimit,
 				pageCursors,
 				setPageCursors,
-				currentPage
+				currentPage,
 			);
 		}
 	}, [
@@ -167,7 +167,7 @@ export default function MaterialsPage() {
 				setShelves,
 				null,
 				null,
-				Alert
+				Alert,
 			);
 		}
 	}, [userDetails]);
@@ -182,7 +182,7 @@ export default function MaterialsPage() {
 				<main className="pt-28 pb-6 px-6 sm:px-6 md:px-16 lg:px-[100px] xl:px-[150px]">
 					<button
 						onClick={() => router.back()}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit mb-6 animate-fade-in text-[11px]"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit mb-6 animate-fade-in text-xs"
 					>
 						<FiArrowLeft className="w-4 h-4" />
 						Back to Previous page
@@ -190,10 +190,10 @@ export default function MaterialsPage() {
 
 					<div className="flex items-left justify-between mb-8 animate-slide-up flex-col sm:flex-row gap-4">
 						<div className="w-fit">
-							<h1 className="font-semibold text-foreground text-[20px]">
+							<h1 className="font-semibold text-foreground text-xl">
 								Material Resources
 							</h1>
-							<p className="text-muted-foreground text-[14px]">
+							<p className="text-muted-foreground text-base">
 								Browse and manage all available library resources and materials
 							</p>
 						</div>
@@ -202,7 +202,7 @@ export default function MaterialsPage() {
 							["USR-2", "USR-3", "USR-4"].includes(userDetails?.us_level) && (
 								<DropdownMenu>
 									<DropdownMenuTrigger asChild>
-										<Button className="bg-primary text-white hover:opacity-90 h-9 px-4 flex items-center gap-2 w-fit font-normal text-[12px]">
+										<Button className="bg-primary text-white hover:opacity-90 h-9 px-4 flex items-center gap-2 w-fit font-normal text-sm">
 											Register Material
 											<FiChevronDown className="w-4 h-4" />
 										</Button>
@@ -212,7 +212,7 @@ export default function MaterialsPage() {
 											onClick={() =>
 												router.push("/resources/material/main/register/type")
 											}
-											className="cursor-pointer text-[12px]"
+											className="cursor-pointer text-sm"
 										>
 											<FiEdit className="w-4 h-4" />
 											Material Type Registration
@@ -220,17 +220,17 @@ export default function MaterialsPage() {
 										<DropdownMenuItem
 											onClick={() =>
 												router.push(
-													"/resources/material/main/register/material?type=register"
+													"/resources/material/main/register/material?type=register",
 												)
 											}
-											className="cursor-pointer text-[12px]"
+											className="cursor-pointer text-sm"
 										>
 											<FiEdit className="w-4 h-4" />
 											Material Registration
 										</DropdownMenuItem>
 
 										<DropdownMenuItem
-											className="cursor-pointer text-[12px]"
+											className="cursor-pointer text-sm"
 											onClick={() => setShowExcelImportModal(true)}
 										>
 											<FiFileText className="w-4 h-4" />
@@ -238,11 +238,11 @@ export default function MaterialsPage() {
 										</DropdownMenuItem>
 
 										<DropdownMenuItem
-											className="text-[12px]"
+											className="text-sm"
 											onClick={() =>
 												handleDownload(
 													"/template/Material Template.xlsx",
-													"Material Template.xlsx"
+													"Material Template.xlsx",
 												)
 											}
 										>
@@ -256,14 +256,13 @@ export default function MaterialsPage() {
 
 					<div className="mb-8 animate-slide-up-delay-1">
 						<div className="flex items-center justify-between mb-4 gap-6">
-							<div className="relative flex items-center flex-1 max-w-md">
+							<div className="relative flex items-center flex-1 max-w-lg">
 								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 								<Input
 									placeholder="Search material..."
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
-									className="pl-10 pr-28 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-									style={{ fontSize: "12px" }}
+									className="pl-10 pr-28 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
 								/>
 
 								<div className="absolute right-0 top-0 h-full flex items-center gap-2 pr-2">
@@ -274,7 +273,7 @@ export default function MaterialsPage() {
 									<Button
 										onClick={() => setShowFilters(!showFilters)}
 										variant="ghost"
-										className="h-8 px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-[12px]"
+										className="h-8 px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
 									>
 										Filter
 									</Button>
@@ -337,17 +336,17 @@ export default function MaterialsPage() {
 							selectedStatus !== "All" ||
 							selectedShelf !== "All") && (
 							<div className="flex items-center gap-2 mb-4">
-								<span className="text-muted-foreground text-[11px]">
+								<span className="text-muted-foreground text-xs">
 									Active Filters:
 								</span>
 								{selectedStatus !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
 										Status: {selectedStatus}
 									</span>
 								)}
 
 								{selectedFormat !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
 										Format: {selectedFormat || "Unknown"}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -357,7 +356,7 @@ export default function MaterialsPage() {
 								)}
 
 								{selectedType !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
 										Type:{" "}
 										{materialTypes.find((type) => type.id === selectedType)
 											?.mt_name || "Unknown"}
@@ -368,10 +367,10 @@ export default function MaterialsPage() {
 									</span>
 								)}
 								{selectedCategory !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
 										Category:{" "}
 										{categories.find(
-											(category) => category.id === selectedCategory
+											(category) => category.id === selectedCategory,
 										)?.ca_name || "Unknown"}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -381,7 +380,7 @@ export default function MaterialsPage() {
 								)}
 
 								{selectedShelf !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
 										Shelf:{" "}
 										{shelves.find((shelf) => shelf.id === selectedShelf)
 											?.sh_name || "Unknown"}
@@ -393,7 +392,7 @@ export default function MaterialsPage() {
 								)}
 
 								{copyrightYearStart !== "" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
 										Year Start: {copyrightYearStart}{" "}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -403,7 +402,7 @@ export default function MaterialsPage() {
 								)}
 
 								{copyrightYearEnd !== "" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
 										Year End: {copyrightYearEnd}{" "}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -424,7 +423,7 @@ export default function MaterialsPage() {
 								/>
 								<div className="relative bg-card w-80 h-full shadow-lg transform transition-transform duration-300 translate-x-0 animate-slide-in-left">
 									<div className="flex items-center justify-between p-4 border-b border-border text-white bg-primary-custom">
-										<h2 className="font-semibold text-white text-[14px]">
+										<h2 className="font-semibold text-white text-base">
 											Filters
 										</h2>
 										<button
@@ -449,7 +448,7 @@ export default function MaterialsPage() {
 												/>
 												<label
 													htmlFor="advancedSearch"
-													className="font-medium text-foreground text-[12px]"
+													className="font-medium text-foreground text-sm"
 												>
 													Advanced Search
 												</label>
@@ -458,7 +457,7 @@ export default function MaterialsPage() {
 											{showAdvancedSearch && (
 												<div className="space-y-4 pl-6 border-l-2 border-primary-custom/20">
 													<div className="space-y-2">
-														<label className="block font-medium text-foreground text-[12px]">
+														<label className="block font-medium text-foreground text-sm">
 															Title
 														</label>
 														<Input
@@ -470,13 +469,12 @@ export default function MaterialsPage() {
 																	title: e.target.value,
 																}))
 															}
-															className="h-9 bg-card text-foreground border-border"
-															style={{ fontSize: "12px" }}
+															className="h-9 bg-card text-foreground border-border text-sm"
 														/>
 													</div>
 
 													<div className="space-y-2">
-														<label className="block font-medium text-foreground text-[12px]">
+														<label className="block font-medium text-foreground text-sm">
 															Author
 														</label>
 														<Input
@@ -488,13 +486,12 @@ export default function MaterialsPage() {
 																	author: e.target.value,
 																}))
 															}
-															className="h-9 bg-card text-foreground border-border"
-															style={{ fontSize: "12px" }}
+															className="h-9 bg-card text-foreground border-border text-sm"
 														/>
 													</div>
 
 													<div className="space-y-2">
-														<label className="block font-medium text-foreground text-[12px]">
+														<label className="block font-medium text-foreground text-sm">
 															Subject
 														</label>
 														<Input
@@ -506,13 +503,12 @@ export default function MaterialsPage() {
 																	subject: e.target.value,
 																}))
 															}
-															className="h-9 bg-card text-foreground border-border"
-															style={{ fontSize: "12px" }}
+															className="h-9 bg-card text-foreground border-border text-sm"
 														/>
 													</div>
 
 													<div className="space-y-2">
-														<label className="block font-medium text-foreground text-[12px]">
+														<label className="block font-medium text-foreground text-sm">
 															Call Number
 														</label>
 														<Input
@@ -524,13 +520,12 @@ export default function MaterialsPage() {
 																	callNumber: e.target.value,
 																}))
 															}
-															className="h-9 bg-card text-foreground border-border"
-															style={{ fontSize: "12px" }}
+															className="h-9 bg-card text-foreground border-border text-sm"
 														/>
 													</div>
 
 													<div className="space-y-2">
-														<label className="block font-medium text-foreground text-[12px]">
+														<label className="block font-medium text-foreground text-sm">
 															ISBN/ISSN
 														</label>
 														<Input
@@ -542,13 +537,12 @@ export default function MaterialsPage() {
 																	isbn: e.target.value,
 																}))
 															}
-															className="h-9 bg-card text-foreground border-border"
-															style={{ fontSize: "12px" }}
+															className="h-9 bg-card text-foreground border-border text-sm"
 														/>
 													</div>
 
 													<div className="space-y-2">
-														<label className="block font-medium text-foreground text-[12px]">
+														<label className="block font-medium text-foreground text-sm">
 															Publisher
 														</label>
 														<Input
@@ -560,13 +554,12 @@ export default function MaterialsPage() {
 																	publisher: e.target.value,
 																}))
 															}
-															className="h-9 bg-card text-foreground border-border"
-															style={{ fontSize: "12px" }}
+															className="h-9 bg-card text-foreground border-border text-sm"
 														/>
 													</div>
 
 													<div className="space-y-2">
-														<label className="block font-medium text-foreground text-[12px]">
+														<label className="block font-medium text-foreground text-sm">
 															Match Type
 														</label>
 														<div className="flex space-x-4">
@@ -579,7 +572,7 @@ export default function MaterialsPage() {
 																	onChange={(e) => setMatchType(e.target.value)}
 																	className="w-3 h-3 text-primary-custom bg-card border-border focus:ring-primary-custom focus:ring-2"
 																/>
-																<span className="text-foreground text-[12px]">
+																<span className="text-foreground text-sm">
 																	Match All (AND)
 																</span>
 															</label>
@@ -592,7 +585,7 @@ export default function MaterialsPage() {
 																	onChange={(e) => setMatchType(e.target.value)}
 																	className="w-3 h-3 text-primary-custom bg-card border-border focus:ring-primary-custom focus:ring-2"
 																/>
-																<span className="text-foreground text-[12px]">
+																<span className="text-foreground text-sm">
 																	Match Any (OR)
 																</span>
 															</label>
@@ -603,13 +596,13 @@ export default function MaterialsPage() {
 										</div>
 
 										<div className="space-y-2">
-											<label className="block font-medium text-foreground text-[12px]">
+											<label className="block font-medium text-foreground text-sm">
 												Select a Material Format
 											</label>
 											<select
 												value={selectedFormat}
 												onChange={(e) => setSelectedFormat(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 											>
 												<option value="All">All Material Formats</option>
 												{["Hard Copy", "Soft Copy", "Audio Copy"].map(
@@ -617,19 +610,19 @@ export default function MaterialsPage() {
 														<option key={index} value={format}>
 															{format}
 														</option>
-													)
+													),
 												)}
 											</select>
 										</div>
 
 										<div className="space-y-2">
-											<label className="block font-medium text-foreground text-[12px]">
+											<label className="block font-medium text-foreground text-sm">
 												Select a Material Type
 											</label>
 											<select
 												value={selectedType}
 												onChange={(e) => setSelectedType(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 											>
 												<option value="All">All Material Types</option>
 												{materialTypes.map((type, index) => (
@@ -641,13 +634,13 @@ export default function MaterialsPage() {
 										</div>
 
 										<div className="space-y-2">
-											<label className="block font-medium text-foreground text-[12px]">
+											<label className="block font-medium text-foreground text-sm">
 												Select a Category
 											</label>
 											<select
 												value={selectedCategory}
 												onChange={(e) => setSelectedCategory(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 											>
 												<option value="All">All Categories</option>
 												{categories.map((category, index) => (
@@ -658,13 +651,13 @@ export default function MaterialsPage() {
 											</select>
 										</div>
 										<div className="space-y-2">
-											<label className="block font-medium text-foreground text-[12px]">
+											<label className="block font-medium text-foreground text-sm">
 												Select a Shelf
 											</label>
 											<select
 												value={selectedShelf}
 												onChange={(e) => setSelectedShelf(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 											>
 												<option value="All">All Shelves</option>
 												{shelves.map((shelf, index) => (
@@ -678,13 +671,13 @@ export default function MaterialsPage() {
 										{userDetails &&
 											!["USR-5", "USR-6"].includes(userDetails?.us_level) && (
 												<div className="space-y-2">
-													<label className="block font-medium text-foreground text-[12px]">
+													<label className="block font-medium text-foreground text-sm">
 														Select a Status
 													</label>
 													<select
 														value={selectedStatus}
 														onChange={(e) => setSelectedStatus(e.target.value)}
-														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 													>
 														{statuses.map((status) => (
 															<option key={status} value={status}>
@@ -696,7 +689,7 @@ export default function MaterialsPage() {
 											)}
 
 										<div className="space-y-2">
-											<label className="block font-medium text-foreground text-[12px]">
+											<label className="block font-medium text-foreground text-sm">
 												Copyright Year Range
 											</label>
 											<div className="flex space-x-2">
@@ -707,8 +700,7 @@ export default function MaterialsPage() {
 														onChange={(e) =>
 															setCopyrightYearStart(e.target.value)
 														}
-														className="h-9 bg-card text-foreground border-border"
-														style={{ fontSize: "12px" }}
+														className="h-9 bg-card text-foreground border-border text-sm"
 														type="number"
 														min="1900"
 														max="2030"
@@ -721,8 +713,7 @@ export default function MaterialsPage() {
 														onChange={(e) =>
 															setCopyrightYearEnd(e.target.value)
 														}
-														className="h-9 bg-card text-foreground border-border"
-														style={{ fontSize: "12px" }}
+														className="h-9 bg-card text-foreground border-border text-sm"
 														type="number"
 														min="1900"
 														max="2030"
@@ -757,13 +748,13 @@ export default function MaterialsPage() {
 													setCopyrightYearEnd("");
 												}}
 												variant="outline"
-												className="flex-1 h-9 border-border text-[12px]"
+												className="flex-1 h-9 border-border text-sm"
 											>
 												Clear All
 											</Button>
 											<Button
 												onClick={() => setShowFilters(false)}
-												className="flex-1 text-white hover:opacity-90 h-9 bg-primary-custom text-[12px]"
+												className="flex-1 text-white hover:opacity-90 h-9 bg-primary-custom text-sm"
 											>
 												Apply Filters
 											</Button>
@@ -790,18 +781,17 @@ export default function MaterialsPage() {
 												<div key={index}>
 													<div className="flex items-start gap-6  mb-4">
 														<div className="flex flex-wrap items-center gap-2">
-															<h3 className="font-semibold text-foreground text-[16px]">
+															<h3 className="font-semibold text-foreground text-base">
 																{type}
 															</h3>
-															<span className="text-muted-foreground text-[12px]">
+															<span className="text-muted-foreground text-sm">
 																({materials.length} items)
 															</span>
 														</div>
 														<Button
 															variant="link"
 															size="sm"
-															className="ml-auto text-primary-custom h-6 p-0"
-															style={{ fontSize: "12px" }}
+															className="ml-auto text-primary-custom h-6 p-0 text-sm"
 														>
 															See All
 														</Button>
@@ -809,7 +799,7 @@ export default function MaterialsPage() {
 													{renderMaterials(materials, false, true, router)}
 												</div>
 											);
-										}
+										},
 									)}
 								</div>
 							)}

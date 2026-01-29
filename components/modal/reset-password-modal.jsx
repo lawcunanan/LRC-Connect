@@ -37,10 +37,10 @@ export function ResetPasswordAccountModal({
 				<div className="flex items-start gap-3 p-4 bg-yellow-50 border border-yellow-200 rounded-lg mb-6">
 					<FiAlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" />
 					<div>
-						<h4 className="font-medium text-yellow-800 mb-1 text-[12px]">
+						<h4 className="font-medium text-yellow-800 mb-1 text-sm">
 							Reset Password for {userData?.us_name}
 						</h4>
-						<p className="text-yellow-700 text-[11px]">
+						<p className="text-yellow-700 text-xs">
 							A password reset email will be sent to{" "}
 							<strong>{userData?.us_email}</strong>. The user can follow the
 							link in the email to set a new password.
@@ -53,14 +53,14 @@ export function ResetPasswordAccountModal({
 						type="button"
 						onClick={onClose}
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 					>
 						Cancel
 					</Button>
 					<Button
 						type="submit"
 						variant="destructive"
-						className="h-10 text-[12px] flex items-center gap-2"
+						className="h-10 text-sm flex items-center gap-2"
 						disabled={btnLoading}
 					>
 						<LoadingSpinner loading={btnLoading} />

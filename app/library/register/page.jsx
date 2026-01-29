@@ -62,7 +62,7 @@ export default function RegisterLibrary() {
 					<div className="mb-6">
 						<button
 							onClick={() => router.back()}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
 						>
 							<ArrowLeft className="w-3 h-3" />
 							Back to Library Management
@@ -70,10 +70,10 @@ export default function RegisterLibrary() {
 					</div>
 
 					<div className="mb-8 animate-slide-up">
-						<h1 className="font-semibold text-foreground text-[20px]">
+						<h1 className="font-semibold text-foreground text-xl">
 							Register Library
 						</h1>
-						<p className="text-muted-foreground text-[14px]">
+						<p className="text-muted-foreground text-base">
 							Add a new library to the system with complete institutional
 							information
 						</p>
@@ -83,17 +83,17 @@ export default function RegisterLibrary() {
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-slide-up-delay-1">
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardContent className="p-6">
-									<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+									<h2 className="font-semibold text-foreground text-base mb-[5px]">
 										Library Information
 									</h2>
-									<p className="text-muted-foreground text-[12px] mb-4">
+									<p className="text-muted-foreground text-sm mb-4">
 										Please provide complete and accurate details of the library
 										and institution to be added to the system.
 									</p>
 
 									<div className="space-y-4">
 										<div>
-											<label className="block text-foreground font-medium mb-2 text-[12px]">
+											<label className="block text-foreground font-medium mb-2 text-sm">
 												Library Name
 											</label>
 											<Input
@@ -101,15 +101,14 @@ export default function RegisterLibrary() {
 												value={formData?.li_name}
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="Riverdale Public Library"
-												className="bg-card border-border text-foreground h-9"
-												style={{ fontSize: "12px" }}
+												className="bg-card border-border text-foreground h-9 text-sm"
 												required
 											/>
 										</div>
 
 										<div className="grid grid-cols-2 gap-4">
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													School Name
 												</label>
 												<Input
@@ -117,13 +116,12 @@ export default function RegisterLibrary() {
 													value={formData?.li_schoolname}
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="Riverdale University"
-													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "12px" }}
+													className="bg-card border-border text-foreground h-9 text-sm"
 													required
 												/>
 											</div>
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													School ID
 												</label>
 												<Input
@@ -131,8 +129,7 @@ export default function RegisterLibrary() {
 													value={formData?.li_schoolID}
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="RU-00123"
-													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "12px" }}
+													className="bg-card border-border text-foreground h-9 text-sm"
 													required
 												/>
 											</div>
@@ -140,7 +137,7 @@ export default function RegisterLibrary() {
 
 										<div className="grid grid-cols-2 gap-4">
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													School Email
 												</label>
 												<Input
@@ -149,13 +146,12 @@ export default function RegisterLibrary() {
 													value={formData?.li_email}
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="library@riverdale.edu"
-													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "12px" }}
+													className="bg-card border-border text-foreground h-9 text-sm"
 													required
 												/>
 											</div>
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													Phone Number
 												</label>
 												<Input
@@ -163,8 +159,7 @@ export default function RegisterLibrary() {
 													value={formData?.li_phone}
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="+639171234567"
-													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "12px" }}
+													className="bg-card border-border text-foreground h-9 text-sm"
 													title="Format must be +639XXXXXXXXX"
 													pattern="^\+639\d{9}$"
 												/>
@@ -172,7 +167,7 @@ export default function RegisterLibrary() {
 										</div>
 
 										<div>
-											<label className="block text-foreground font-medium mb-2 text-[12px]">
+											<label className="block text-foreground font-medium mb-2 text-sm">
 												Description
 											</label>
 											<Textarea
@@ -181,14 +176,13 @@ export default function RegisterLibrary() {
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="A modern academic library serving students and faculty with digital and physical resources."
 												rows={3}
-												className="bg-card border-border text-foreground"
-												style={{ fontSize: "12px" }}
+												className="bg-card border-border text-foreground text-sm"
 												required
 											/>
 										</div>
 
 										<div>
-											<label className="block text-foreground font-medium mb-2 text-[12px]">
+											<label className="block text-foreground font-medium mb-2 text-sm">
 												Address
 											</label>
 											<Input
@@ -196,8 +190,7 @@ export default function RegisterLibrary() {
 												value={formData?.li_address || ""}
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="e.g., Purok 2, Sto. Niño, Baliwag"
-												className="bg-card border-border text-foreground h-9"
-												style={{ fontSize: "12px" }}
+												className="bg-card border-border text-foreground h-9 text-sm"
 												required
 												readOnly
 											/>
@@ -205,7 +198,7 @@ export default function RegisterLibrary() {
 
 										<div className="grid grid-cols-2 gap-4">
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													Latitude & Longitude
 												</label>
 												<Input
@@ -213,15 +206,14 @@ export default function RegisterLibrary() {
 													value={formData?.li_latlng || ""}
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="e.g., 14.9545, 120.8962"
-													className="bg-card border-border text-foreground h-9"
+													className="bg-card border-border text-foreground h-9 text-sm"
 													required
-													style={{ fontSize: "12px" }}
 												/>
 											</div>
 											<div className="flex items-end">
 												<Button
 													type="button"
-													className="w-full bg-red-600 hover:bg-red-700 text-white h-9 text-[12px] flex items-center gap-2"
+													className="w-full bg-red-600 hover:bg-red-700 text-white h-9 text-sm flex items-center gap-2"
 													required
 													onClick={() => setShowPinModal(true)}
 												>
@@ -235,11 +227,11 @@ export default function RegisterLibrary() {
 
 							<Card className="bg-card border-border transition-colors duration-300 h-fit">
 								<CardHeader className="pb-4">
-									<CardTitle className="text-foreground flex items-center gap-2 text-[16px]">
+									<CardTitle className="text-foreground flex items-center gap-2 text-base">
 										<FiImage className="w-4 h-4" />
 										Cover Image
 									</CardTitle>
-									<p className="text-muted-foreground text-[12px]">
+									<p className="text-muted-foreground text-sm">
 										Upload cover image (.jpg, .png)
 									</p>
 								</CardHeader>
@@ -283,13 +275,13 @@ export default function RegisterLibrary() {
 											type="button"
 											variant="outline"
 											onClick={handleCancel}
-											className="bg-transparent hover:bg-accent text-foreground h-10 w-fit text-[12px]"
+											className="bg-transparent hover:bg-accent text-foreground h-10 w-fit text-sm"
 										>
 											Cancel
 										</Button>
 										<Button
 											type="submit"
-											className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-[12px]"
+											className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-sm"
 										>
 											<LoadingSpinner loading={btnLoading} />
 											Register Library

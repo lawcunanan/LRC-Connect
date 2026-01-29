@@ -7,7 +7,7 @@ export const renderMaterials = (
 	materialData,
 	isBranch = false,
 	isHorizontal = false,
-	router
+	router,
 ) => {
 	if (!materialData || materialData?.length === 0) return null;
 
@@ -35,11 +35,11 @@ export const renderMaterials = (
 						/>
 						<div className="flex-1 min-w-0 space-y-2">
 							<div>
-								<h4 className="font-medium text-foreground text-[14px]">
+								<h4 className="font-medium text-foreground text-base">
 									{material.ma_title}
 								</h4>
 
-								<p className="text-primary-custom text-[12px]">
+								<p className="text-primary-custom text-sm">
 									{material.ma_copyright}
 									<span className="text-muted-foreground">
 										{" • "}
@@ -49,24 +49,24 @@ export const renderMaterials = (
 							</div>
 
 							<div>
-								<p className="text-[12px]">Author</p>
-								<p className="text-muted-foreground text-[12px]">
+								<p className="text-sm">Author</p>
+								<p className="text-muted-foreground text-sm">
 									{material.ma_author}
 								</p>
 							</div>
 
 							{isBranch && (
 								<div>
-									<p className="text-[12px]">Library Branch</p>
-									<p className="text-muted-foreground text-[12px]">
+									<p className="text-sm">Library Branch</p>
+									<p className="text-muted-foreground text-sm">
 										{material.ma_library}
 									</p>
 								</div>
 							)}
 
 							<div>
-								<p className="text-[12px]">Description</p>
-								<p className="text-muted-foreground text-[12px] line-clamp-3">
+								<p className="text-sm">Description</p>
+								<p className="text-muted-foreground text-sm line-clamp-3">
 									{material.ma_description}
 								</p>
 							</div>
@@ -74,7 +74,7 @@ export const renderMaterials = (
 							<Button
 								variant="link"
 								size="sm"
-								className="text-primary-custom hover:text-secondary-custom text-[12px] p-0"
+								className="text-primary-custom hover:text-secondary-custom text-sm p-0"
 								onClick={() =>
 									router.push(`/resources/material/details?id=${material.id}`)
 								}
@@ -92,7 +92,7 @@ export const renderMaterials = (
 export const renderMaterialsTable = (
 	materialData,
 	isBranch = false,
-	router
+	router,
 ) => {
 	if (!materialData || materialData?.length === 0) return null;
 
@@ -121,7 +121,7 @@ export const renderMaterialsTable = (
 							].map((header) => (
 								<th
 									key={header}
-									className="text-left py-4 px-6 font-semibold text-foreground text-[12px]"
+									className="text-left py-4 px-6 font-semibold text-foreground text-sm"
 								>
 									{header}
 								</th>
@@ -136,82 +136,77 @@ export const renderMaterialsTable = (
 									index % 2 === 0 ? "bg-background" : "bg-muted/10"
 								}`}
 							>
-								<td className="py-4 px-6 min-w-[150px]">
+								<td className="py-4 px-6 min-w-[150px] text-sm">
 									<img
 										src={material.ma_coverURL || "/placeholder.svg"}
 										alt="material"
 										className="h-28 w-20 object-cover rounded-lg bg-gray-100 flex-shrink-0"
 									/>
 								</td>
-								<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+								<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 									{material.ma_libraryCall}
 								</td>
-								<td className=" flex flex-col py-4 px-6 min-w-[300px]">
-									<span className="text-foreground font-medium text-[12px]">
+								<td className=" flex flex-col py-4 px-6 min-w-[300px] text-sm">
+									<span className="text-foreground font-medium text-sm">
 										{material.ma_title}
 									</span>
-									<span className="text-muted-foreground text-[12px]">
+									<span className="text-muted-foreground text-sm">
 										{material.ma_author}
 									</span>
 								</td>
-								<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+								<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 									{material.ma_copyright}
 								</td>
-								<td className="py-4 px-6 min-w-[150px]">
+								<td className="py-4 px-6 min-w-[150px] text-sm">
 									<Badge
-										className={`${getStatusColor(
-											material.ma_status
-										)} text-[12px]`}
+										className={`${getStatusColor(material.ma_status)} text-sm`}
 									>
 										{material.ma_status}
 									</Badge>
 								</td>
 
-								<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+								<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 									{material.ma_format}
 								</td>
 
-								<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+								<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 									{material.ma_type}
 								</td>
 
-								<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+								<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 									{material.ma_category}
 								</td>
 
-								<td
-									className="py-4 px-6 text-foreground min-w-[150px] text-[12px]"
-									style={{ fontSize: "11px" }}
-								>
+								<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 									{material.ma_shelf}
 								</td>
 
 								{isBranch && (
-									<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+									<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 										{material.ma_library}
 									</td>
 								)}
 
-								<td className="py-4 px-6 text-foreground min-w-[350px] text-[12px]">
+								<td className="py-4 px-6 text-foreground min-w-[350px] text-sm">
 									<div className="line-clamp-3">{material.ma_description}</div>
 								</td>
 
-								<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+								<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 									{material.ma_copies}
 								</td>
 
-								<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+								<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 									{material.ma_subjects}
 								</td>
 
-								<td className="py-4 px-6">
+								<td className="py-4 px-6 text-sm">
 									<Button
 										variant="link"
 										size="sm"
-										className="text-primary-custom hover:text-secondary-custom text-[12px] p-0"
+										className="text-primary-custom hover:text-secondary-custom text-sm p-0"
 										onClick={() =>
 											router.push(
-												`/resources/material/details?id=${material.id}`
+												`/resources/material/details?id=${material.id}`,
 											)
 										}
 									>

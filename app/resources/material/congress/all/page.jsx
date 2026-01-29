@@ -82,7 +82,7 @@ export default function CongresssPage() {
 				currentPage,
 				setCtrPage,
 				setLoading,
-				Alert
+				Alert,
 			);
 		}
 	}, [
@@ -103,7 +103,6 @@ export default function CongresssPage() {
 					<button
 						onClick={() => router.back()}
 						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit"
-						style={{ fontSize: "11px" }}
 					>
 						<FiArrowLeft className="w-4 h-4" />
 						Back to Previous page
@@ -111,30 +110,29 @@ export default function CongresssPage() {
 				</div>
 
 				<div className="w-fit mb-8 animate-slide-up">
-					<h1 className="font-semibold text-foreground text-[20px]">
+					<h1 className="font-semibold text-foreground text-xl">
 						Library Of Congress
 					</h1>
-					<p className="text-muted-foreground text-[14px]">
+					<p className="text-muted-foreground text-base">
 						Browse and manage all available library resources and congresss
 					</p>
 				</div>
 
 				<div className="mb-8 animate-slide-up-delay-1">
 					<div className="flex items-center justify-between mb-4 gap-6">
-						<div className="relative flex items-center flex-1 max-w-md">
+						<div className="relative flex items-center flex-1 max-w-lg">
 							<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 							<Input
 								placeholder="Search materials..."
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
-								className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-								style={{ fontSize: "12px" }}
+								className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
 							/>
 
 							<Button
 								onClick={() => setShowFilters(!showFilters)}
 								variant="ghost"
-								className="h-8 px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-[12px]"
+								className="h-8 px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
 							>
 								Filter
 							</Button>
@@ -172,11 +170,11 @@ export default function CongresssPage() {
 						selectedSubject !== "All" ||
 						selectedCollection !== "All") && (
 						<div className="flex items-center gap-2 mb-4 flex-wrap">
-							<span className="text-muted-foreground text-[11px]">
+							<span className="text-muted-foreground text-xs">
 								Active Filters:
 							</span>
 							{selectedLanguage !== "All" && (
-								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-[11px]">
+								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-xs">
 									Language: {selectedLanguage}
 									<FiX
 										className="w-3 h-3 cursor-pointer"
@@ -185,7 +183,7 @@ export default function CongresssPage() {
 								</span>
 							)}
 							{selectedSubject !== "All" && (
-								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-[11px]">
+								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-xs">
 									Subject: {selectedSubject}
 									<FiX
 										className="w-3 h-3 cursor-pointer"
@@ -194,7 +192,7 @@ export default function CongresssPage() {
 								</span>
 							)}
 							{selectedCollection !== "All" && (
-								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-[11px]">
+								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-xs">
 									Collection: {selectedCollection}
 									<FiX
 										className="w-3 h-3 cursor-pointer"
@@ -215,7 +213,7 @@ export default function CongresssPage() {
 							/>
 							<div className="relative bg-card w-80 h-full shadow-lg transform transition-transform duration-300 translate-x-0 animate-slide-in-left">
 								<div className="flex items-center justify-between p-4 border-b border-border text-white bg-primary">
-									<h2 className="font-semibold text-white text-[14px]">
+									<h2 className="font-semibold text-white text-base">
 										Filters
 									</h2>
 									<button
@@ -228,13 +226,13 @@ export default function CongresssPage() {
 
 								<div className="p-4 space-y-4 overflow-y-auto h-full pb-24">
 									<div className="space-y-2">
-										<label className="block font-medium text-foreground text-[12px]">
+										<label className="block font-medium text-foreground text-sm">
 											Select a Language
 										</label>
 										<select
 											value={selectedLanguage}
 											onChange={(e) => setSelectedLanguage(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 										>
 											{languages.map((language) => (
 												<option key={language} value={language}>
@@ -245,13 +243,13 @@ export default function CongresssPage() {
 									</div>
 
 									<div className="space-y-2">
-										<label className="block font-medium text-foreground text-[12px]">
+										<label className="block font-medium text-foreground text-sm">
 											Select a Subject
 										</label>
 										<select
 											value={selectedSubject}
 											onChange={(e) => setSelectedSubject(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 										>
 											{subjects.map((subject) => (
 												<option key={subject} value={subject}>
@@ -262,13 +260,13 @@ export default function CongresssPage() {
 									</div>
 
 									<div className="space-y-2">
-										<label className="block font-medium text-foreground text-[12px]">
+										<label className="block font-medium text-foreground text-sm">
 											Select a Collection
 										</label>
 										<select
 											value={selectedCollection}
 											onChange={(e) => setSelectedCollection(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 										>
 											{collections.map((collection) => (
 												<option key={collection} value={collection}>
@@ -289,13 +287,13 @@ export default function CongresssPage() {
 												setSelectedAccess("All");
 											}}
 											variant="outline"
-											className="flex-1 h-9 border-border text-[12px]"
+											className="flex-1 h-9 border-border text-sm"
 										>
 											Clear All
 										</Button>
 										<Button
 											onClick={() => setShowFilters(false)}
-											className="flex-1 text-white hover:opacity-90 h-9 bg-primary text-[12px]"
+											className="flex-1 text-white hover:opacity-90 h-9 bg-primary text-sm"
 										>
 											Apply Filters
 										</Button>
@@ -322,37 +320,37 @@ export default function CongresssPage() {
 											/>
 											<div className="flex-1 min-w-0 space-y-2 whitespace-normal break-words">
 												<div>
-													<h4 className="font-medium text-foreground text-[14px]">
+													<h4 className="font-medium text-foreground text-base">
 														{congress.co_title}
 													</h4>
-													<p className="text-muted-foreground text-[12px]">
+													<p className="text-muted-foreground text-sm">
 														{congress.co_date}
 													</p>
 												</div>
 
 												<div>
-													<p className="text-[12px]">Contributor</p>
-													<p className="text-muted-foreground text-[12px]">
+													<p className="text-sm">Contributor</p>
+													<p className="text-muted-foreground text-sm">
 														{congress.co_author}
 													</p>
 												</div>
 
 												<div>
-													<p className="text-[12px]">Subject</p>
-													<p className="text-muted-foreground text-[12px]">
+													<p className="text-sm">Subject</p>
+													<p className="text-muted-foreground text-sm">
 														{congress.co_subject}
 													</p>
 												</div>
 
 												<div>
-													<p className="text-[12px]">Format</p>
-													<p className="text-muted-foreground text-[12px]">
+													<p className="text-sm">Format</p>
+													<p className="text-muted-foreground text-sm">
 														{congress.co_format}
 													</p>
 												</div>
 												<div>
-													<p className="text-[12px]">Description</p>
-													<p className="text-muted-foreground text-[12px] line-clamp-3">
+													<p className="text-sm">Description</p>
+													<p className="text-muted-foreground text-sm line-clamp-3">
 														{congress.co_description}
 													</p>
 												</div>
@@ -360,14 +358,14 @@ export default function CongresssPage() {
 												<Button
 													variant="link"
 													size="sm"
-													className="text-primary-custom hover:text-secondary-custom text-[12px] p-0"
+													className="text-primary-custom hover:text-secondary-custom text-sm p-0"
 													onClick={() =>
 														router.push(
 															`/resources/material/congress/details?co_id=${encodeURIComponent(
-																congress.co_id
+																congress.co_id,
 															)}&co_title=${encodeURIComponent(
-																congress.co_title
-															)}`
+																congress.co_title,
+															)}`,
 														)
 													}
 												>
@@ -399,7 +397,7 @@ export default function CongresssPage() {
 												].map((header) => (
 													<th
 														key={header}
-														className="text-left py-4 px-6 font-semibold text-foreground text-[12px]"
+														className="text-left py-4 px-6 font-semibold text-foreground text-sm"
 													>
 														{header}
 													</th>
@@ -414,7 +412,7 @@ export default function CongresssPage() {
 														index % 2 === 0 ? "bg-background" : "bg-muted/10"
 													}`}
 												>
-													<td className="py-4 px-6 text-foreground break-words whitespace-normal">
+													<td className="py-4 px-6 text-foreground break-words whitespace-normal text-sm">
 														<img
 															src={congress.co_photoURL || "/placeholder.svg"}
 															alt="congress"
@@ -422,49 +420,49 @@ export default function CongresssPage() {
 														/>
 													</td>
 
-													<td className=" flex flex-col  py-4 px-6 text-foreground break-words whitespace-normal min-w-[250px]">
-														<span className="text-foreground font-medium text-[12px]">
+													<td className=" flex flex-col  py-4 px-6 text-foreground break-words whitespace-normal min-w-[250px] text-sm">
+														<span className="text-foreground font-medium text-sm">
 															{congress.co_title}
 														</span>
-														<span className="text-muted-foreground text-[12px]">
+														<span className="text-muted-foreground text-sm">
 															{congress.co_date}
 														</span>
 													</td>
 
-													<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+													<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 														{congress.co_author}
 													</td>
 
-													<td className="py-4 px-6 text-foreground min-w-[350px] text-[12px]">
+													<td className="py-4 px-6 text-foreground min-w-[350px] text-sm">
 														<div className="line-clamp-3">
 															{congress.co_description}
 														</div>
 													</td>
-													<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+													<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 														{congress.co_subject}
 													</td>
-													<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+													<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 														{congress.co_format}
 													</td>
 
-													<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+													<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 														{congress.co_language}
 													</td>
-													<td className="py-4 px-6 text-foreground min-w-[150px] text-[12px]">
+													<td className="py-4 px-6 text-foreground min-w-[150px] text-sm">
 														{congress.co_location}
 													</td>
-													<td className="py-4 px-6">
+													<td className="py-4 px-6 text-sm">
 														<Button
 															variant="link"
 															size="sm"
-															className="text-primary-custom hover:text-secondary-custom text-[12px] p-0"
+															className="text-primary-custom hover:text-secondary-custom text-sm p-0"
 															onClick={() =>
 																router.push(
 																	`/resources/material/congress/details?co_id=${encodeURIComponent(
-																		congress.co_id
+																		congress.co_id,
 																	)}&co_title=${encodeURIComponent(
-																		congress.co_title
-																	)}`
+																		congress.co_title,
+																	)}`,
 																)
 															}
 														>

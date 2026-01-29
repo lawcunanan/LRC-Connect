@@ -77,24 +77,24 @@ export default function SystemSettings() {
 		pink: colorPalettes.filter(
 			(p) =>
 				p.name.toLowerCase().includes("pink") ||
-				p.name.toLowerCase().includes("rose")
+				p.name.toLowerCase().includes("rose"),
 		),
 		green: colorPalettes.filter(
 			(p) =>
 				p.name.toLowerCase().includes("green") ||
 				p.name.toLowerCase().includes("emerald") ||
-				p.name.toLowerCase().includes("teal")
+				p.name.toLowerCase().includes("teal"),
 		),
 		purple: colorPalettes.filter((p) =>
-			p.name.toLowerCase().includes("purple")
+			p.name.toLowerCase().includes("purple"),
 		),
 		orange: colorPalettes.filter((p) =>
-			p.name.toLowerCase().includes("orange")
+			p.name.toLowerCase().includes("orange"),
 		),
 		yellow: colorPalettes.filter(
 			(p) =>
 				p.name.toLowerCase().includes("yellow") ||
-				p.name.toLowerCase().includes("gold")
+				p.name.toLowerCase().includes("gold"),
 		),
 		gray: colorPalettes.filter((p) => p.name.toLowerCase().includes("gray")),
 	};
@@ -108,10 +108,10 @@ export default function SystemSettings() {
 
 				<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 					<div className="mb-8 animate-fade-in">
-						<h1 className="font-semibold text-foreground text-[20px]">
+						<h1 className="font-semibold text-foreground text-xl">
 							Appearance Settings
 						</h1>
-						<p className="text-muted-foreground text-[14px]">
+						<p className="text-muted-foreground text-base">
 							Change the system colors and theme based on your personal
 							preference.
 						</p>
@@ -120,17 +120,17 @@ export default function SystemSettings() {
 					<div className="w-full animate-slide-up">
 						<Card className="bg-card border-border transition-colors duration-300 animate-slide-up-delay-1">
 							<CardHeader>
-								<CardTitle className="flex items-center gap-2 text-foreground text-[16px]">
+								<CardTitle className="flex items-center gap-2 text-foreground text-base">
 									<FiSettings className="w-5 h-5" />
 									Color Palette Configuration
 								</CardTitle>
-								<p className="text-muted-foreground text-[12px]">
+								<p className="text-muted-foreground text-sm">
 									Choose from different color themes for your system interface
 								</p>
 							</CardHeader>
 							<CardContent className="space-y-6">
 								<div className="p-4 border border-border rounded-lg bg-muted/30">
-									<h3 className="font-medium text-foreground mb-3 text-[12px]">
+									<h3 className="font-medium text-foreground mb-3 text-sm">
 										Current Selection: {currentPalette.name}
 									</h3>
 									<div className="flex gap-3">
@@ -147,7 +147,7 @@ export default function SystemSettings() {
 								{Object.entries(groupedPalettes).map(
 									([colorFamily, palettes]) => (
 										<div key={colorFamily} className="space-y-4">
-											<h3 className="font-medium text-foreground capitalize text-[12px]">
+											<h3 className="font-medium text-foreground capitalize text-base">
 												{colorFamily} Themes
 											</h3>
 											<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -162,10 +162,7 @@ export default function SystemSettings() {
 														onClick={() => handlePaletteChange(palette.id)}
 													>
 														<div className="flex items-center justify-between mb-3">
-															<h4
-																className="font-medium text-foreground"
-																style={{ fontSize: "11px" }}
-															>
+															<h4 className="font-medium text-foreground text-sm">
 																{palette.name}
 															</h4>
 															{selectedPalette === palette.id && (
@@ -187,27 +184,27 @@ export default function SystemSettings() {
 												))}
 											</div>
 										</div>
-									)
+									),
 								)}
 
 								<div className="border-t border-border pt-6">
-									<h3 className="font-medium text-foreground mb-3 text-[12px]">
+									<h3 className="font-medium text-foreground mb-3 text-sm">
 										Live Preview
 									</h3>
 									<div className="p-4 border border-border rounded-lg space-y-3 bg-muted/30">
 										<div className="flex gap-3">
-											<Button className="bg-primary-custom hover:bg-secondary-custom text-white h-9 text-[12px]">
+											<Button className="bg-primary-custom hover:bg-secondary-custom text-white h-9 text-sm">
 												Primary Button
 											</Button>
 											<Button
 												variant="outline"
-												className="border-primary-custom text-primary-custom hover:bg-accent h-9 text-[12px]"
+												className="border-primary-custom text-primary-custom hover:bg-accent h-9 text-sm"
 											>
 												Secondary Button
 											</Button>
 										</div>
 										<div className="p-3 bg-accent border border-primary-custom/20 rounded">
-											<p className="text-primary-custom font-medium text-[12px]">
+											<p className="text-primary-custom font-medium text-sm">
 												This is how your interface will look with the selected
 												color palette.
 											</p>
@@ -221,7 +218,7 @@ export default function SystemSettings() {
 					<div className="flex gap-3 mt-8 animate-slide-up-delay-3">
 						<Button
 							onClick={handleSaveSettings}
-							className="bg-primary-custom hover:bg-secondary-custom text-white h-10 text-[12px]"
+							className="bg-primary-custom hover:bg-secondary-custom text-white h-10 text-sm"
 							disabled={!systemActive && !deactivationReason.trim()}
 						>
 							<FiSave className="w-4 h-4 mr-2" />
@@ -230,7 +227,7 @@ export default function SystemSettings() {
 						<Button
 							variant="outline"
 							onClick={handleResetSettings}
-							className="border-primary-custom text-primary-custom hover:bg-accent h-10 text-[12px]"
+							className="border-primary-custom text-primary-custom hover:bg-accent h-10 text-sm"
 						>
 							<FiRotateCcw className="w-4 h-4 mr-2" />
 							Reset to Default

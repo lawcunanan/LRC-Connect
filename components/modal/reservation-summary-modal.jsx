@@ -110,7 +110,7 @@ export function ReservationSummaryModal({
 			<>
 				<div className="p-6 space-y-6">
 					<div className="border-b border-border pb-6">
-						<h3 className="font-medium text-foreground text-[16px] mb-4 leading-tight">
+						<h3 className="font-medium text-foreground text-base mb-4 leading-tight">
 							Patron Details
 						</h3>
 						<div className="flex items-start gap-4">
@@ -119,7 +119,7 @@ export function ReservationSummaryModal({
 					</div>
 
 					<div>
-						<h3 className="font-medium text-foreground text-[16px] mb-4">
+						<h3 className="font-medium text-foreground text-base mb-4">
 							Resouces Details
 						</h3>
 						<div className="flex items-start gap-4">
@@ -129,10 +129,10 @@ export function ReservationSummaryModal({
 
 					<div className="space-y-3">
 						<div className="flex justify-between items-center py-3 border-b border-border/50">
-							<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+							<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 								Library Call Number
 							</Label>
-							<p className="text-[12px] text-muted-foreground">
+							<p className="text-sm text-muted-foreground">
 								{getLibraryCallNumber(resourceType, resourceData)}
 							</p>
 						</div>
@@ -140,26 +140,26 @@ export function ReservationSummaryModal({
 						{resourceType === "Material" && (
 							<>
 								<div className="flex justify-between items-center py-3 border-b border-border/50">
-									<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+									<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 										Book Format
 									</Label>
-									<p className="text-[12px] text-muted-foreground">
+									<p className="text-sm text-muted-foreground">
 										{transactionDetails?.format || "--"}
 									</p>
 								</div>
 								<div className="flex justify-between items-center py-3 border-b border-border/50">
-									<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+									<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 										Material Type
 									</Label>
-									<p className="text-[12px] text-muted-foreground">
+									<p className="text-sm text-muted-foreground">
 										{resourceData?.ma_materialType}
 									</p>
 								</div>
 								<div className="flex justify-between items-center py-3 border-b border-border/50">
-									<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+									<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 										Shelf
 									</Label>
-									<p className="text-[12px] text-muted-foreground">
+									<p className="text-sm text-muted-foreground">
 										{resourceData?.ma_shelf}
 									</p>
 								</div>
@@ -168,10 +168,10 @@ export function ReservationSummaryModal({
 
 						{resourceType === "Discussion Room" && (
 							<div className="flex justify-between items-center py-3 border-b border-border/50">
-								<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+								<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 									Capacity
 								</Label>
-								<p className="text-[12px] text-muted-foreground">
+								<p className="text-sm text-muted-foreground">
 									{resourceData?.dr_capacity}
 								</p>
 							</div>
@@ -179,10 +179,10 @@ export function ReservationSummaryModal({
 
 						{resourceType === "Computer" && (
 							<div className="flex justify-between items-center py-3 border-b border-border/50">
-								<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+								<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 									Asset Tag
 								</Label>
-								<p className="text-[12px] text-muted-foreground">
+								<p className="text-sm text-muted-foreground">
 									{resourceData?.co_assetTag}
 								</p>
 							</div>
@@ -190,7 +190,7 @@ export function ReservationSummaryModal({
 					</div>
 
 					<div className="space-y-2">
-						<h3 className="font-medium text-foreground text-[16px]">
+						<h3 className="font-medium text-foreground text-base">
 							Transaction
 						</h3>
 
@@ -198,18 +198,18 @@ export function ReservationSummaryModal({
 							{resourceType === "Material" ? (
 								<>
 									<div className="flex justify-between items-center py-3 border-b border-border/50">
-										<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+										<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 											Date of Use
 										</Label>
-										<p className="text-[12px] text-muted-foreground">
+										<p className="text-sm text-muted-foreground">
 											{formatDisplayDate(transactionDetails?.date) || "--"}
 										</p>
 									</div>
 									<div className="flex justify-between items-center py-3 border-b border-border/50">
-										<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+										<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 											Due Date
 										</Label>
-										<p className="text-[12px] text-muted-foreground">
+										<p className="text-sm text-muted-foreground">
 											{formatDisplayDate(transactionDetails?.dateDue) || "--"}
 										</p>
 									</div>
@@ -217,26 +217,26 @@ export function ReservationSummaryModal({
 							) : (
 								<>
 									<div className="flex justify-between items-center py-3 border-b border-border/50">
-										<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+										<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 											Date of Use
 										</Label>
-										<p className="text-[12px] text-muted-foreground">
+										<p className="text-sm text-muted-foreground">
 											{formatDisplayDate(transactionDetails?.date) || "--"}
 										</p>
 									</div>
 									<div className="flex justify-between items-center py-3 border-b border-border/50">
-										<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+										<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 											Session Start
 										</Label>
-										<p className="text-[12px] text-muted-foreground">
+										<p className="text-sm text-muted-foreground">
 											{formatTime(transactionDetails?.sessionStart) || "--"}
 										</p>
 									</div>
 									<div className="flex justify-between items-center py-3 border-b border-border/50">
-										<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+										<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 											Session End
 										</Label>
-										<p className="text-[12px] text-muted-foreground">
+										<p className="text-sm text-muted-foreground">
 											{formatTime(transactionDetails?.sessionEnd) || "--"}
 										</p>
 									</div>
@@ -244,10 +244,10 @@ export function ReservationSummaryModal({
 							)}
 
 							<div className="flex justify-between items-center py-3 border-b border-border/50">
-								<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+								<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 									Transaction Date
 								</Label>
-								<p className="text-[12px] text-muted-foreground">
+								<p className="text-sm text-muted-foreground">
 									{new Date().toLocaleDateString("en-US", {
 										month: "short",
 										day: "numeric",
@@ -263,7 +263,7 @@ export function ReservationSummaryModal({
 					</div>
 					{transactionType == "Reserve" ? (
 						<div className="bg-red-50 border border-red-200 rounded-lg p-4">
-							<p className="text-[12px]">
+							<p className="text-sm">
 								<span className="font-semibold text-red-600">Note:</span>{" "}
 								<span className="text-red-700">
 									Reserved resource may be{" "}
@@ -280,11 +280,11 @@ export function ReservationSummaryModal({
 								available &&
 								availableHoldings.length > 0 && (
 									<div>
-										<h3 className="font-medium text-foreground text-[16px] mb-2">
+										<h3 className="font-medium text-foreground text-base mb-2">
 											Choose an accession number
 										</h3>
 										<select
-											className="w-full border border-gray-300 rounded-md p-2 text-[12px] focus:outline-none focus:ring-2 focus:ring-blue-500"
+											className="w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
 											value={selectedAccession}
 											onChange={(e) => setSelectedAccession(e.target.value)}
 										>
@@ -304,7 +304,7 @@ export function ReservationSummaryModal({
 								<div className="space-y-3">
 									<div className="flex items-center space-x-2">
 										<AlertTriangle className="w-4 h-4 text-amber-500" />
-										<p className="font-medium text-foreground text-[12px]">
+										<p className="font-medium text-foreground text-sm">
 											The following transactions will be cancelled:
 										</p>
 									</div>
@@ -316,20 +316,20 @@ export function ReservationSummaryModal({
 													<tr>
 														<th
 															scope="col"
-															className="px-4 py-3 text-left text-foreground  font-medium text-[12px]"
+															className="px-4 py-3 text-left text-foreground  font-medium text-sm"
 														>
 															Transaction ID
 														</th>
 														<th
 															scope="col"
-															className="px-4 py-3 text-left text-foreground  font-medium text-[12px]"
+															className="px-4 py-3 text-left text-foreground  font-medium text-sm"
 														>
 															Date of Use
 														</th>
 														{resourceType == "Material" && (
 															<th
 																scope="col"
-																className="px-4 py-3 text-left text-foreground font-medium text-[12px]"
+																className="px-4 py-3 text-left text-foreground font-medium text-sm"
 															>
 																Due Date
 															</th>
@@ -338,14 +338,14 @@ export function ReservationSummaryModal({
 															<>
 																<th
 																	scope="col"
-																	className="px-4 py-3 text-left text-foreground font-medium text-[12px]"
+																	className="px-4 py-3 text-left text-foreground font-medium text-sm"
 																>
 																	Session Start
 																</th>
 
 																<th
 																	scope="col"
-																	className="px-4 py-3 text-left text-foreground font-medium text-[12px]"
+																	className="px-4 py-3 text-left text-foreground font-medium text-sm"
 																>
 																	Session End
 																</th>
@@ -356,23 +356,23 @@ export function ReservationSummaryModal({
 												<tbody className="bg-white divide-y divide-gray-200">
 													{hasAffectedTransactions?.map((transaction) => (
 														<tr key={transaction?.id}>
-															<td className="px-4 py-2 whitespace-nowrap text-foreground text-[12px]">
+															<td className="px-4 py-2 whitespace-nowrap text-foreground text-sm">
 																{transaction?.tr_qr}
 															</td>
-															<td className="px-4 py-2 whitespace-nowrap text-foreground text-[12px]">
+															<td className="px-4 py-2 whitespace-nowrap text-foreground text-sm">
 																{transaction?.tr_date}
 															</td>
 															{resourceType == "Material" && (
-																<td className="px-4 py-2 whitespace-nowrap text-foreground text-[12px]">
+																<td className="px-4 py-2 whitespace-nowrap text-foreground text-sm">
 																	{transaction?.tr_dateDue}
 																</td>
 															)}
 															{resourceType !== "Material" && (
 																<>
-																	<td className="px-4 py-2 whitespace-nowrap text-foreground text-[12px]">
+																	<td className="px-4 py-2 whitespace-nowrap text-foreground text-sm">
 																		{transaction?.tr_sessionStart}
 																	</td>
-																	<td className="px-4 py-2 whitespace-nowrap text-foreground text-[12px]">
+																	<td className="px-4 py-2 whitespace-nowrap text-foreground text-sm">
 																		{transaction?.tr_sessionEnd}
 																	</td>
 																</>
@@ -387,7 +387,7 @@ export function ReservationSummaryModal({
 							)}
 
 							<div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-								<p className="text-[12px]">
+								<p className="text-sm">
 									<span className="font-semibold text-blue-600">Note:</span>{" "}
 									<span className="text-blue-700">
 										A resource marked as{" "}
@@ -406,7 +406,7 @@ export function ReservationSummaryModal({
 						<Button
 							onClick={() => onClose()}
 							variant="outline"
-							className="bg-transparent h-10 px-4 text-[12px]"
+							className="bg-transparent h-10 px-4 text-sm"
 						>
 							Cancel
 						</Button>
@@ -423,7 +423,7 @@ export function ReservationSummaryModal({
 								transactionType === "Utilize"
 									? "bg-green-600 hover:bg-green-700 text-white"
 									: "bg-primary hover:bg-secondary-custom text-white"
-							} text-white border-none disabled:opacity-50 text-[12px]`}
+							} text-white border-none disabled:opacity-50 text-sm`}
 						>
 							<LoadingSpinner loading={btnLoading} />
 							{transactionType === "Reserve"
@@ -500,16 +500,16 @@ export const renderResourceInfo = (resourceType, resourceData) => {
 			</div>
 			<div className="flex-1 space-y-3">
 				<div>
-					<h4 className="font-medium text-foreground text-[14px]">
+					<h4 className="font-medium text-foreground text-base">
 						{getTitle()}
 					</h4>
-					<p className="text-muted-foreground text-[12px] mb-2">
+					<p className="text-muted-foreground text-sm mb-2">
 						{getSubtitle()}
 					</p>
 				</div>
 
 				<div className="flex flex-wrap items-center gap-2">
-					<span className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-[11px]">
+					<span className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs">
 						{resourceType}
 					</span>
 				</div>
@@ -536,8 +536,8 @@ export const renderPatronDetails = (user) => {
 			</div>
 
 			<div>
-				<h4 className="font-medium text-foreground text-[14px]">{fullName}</h4>
-				<p className="text-primary-custom text-[12px] mb-2">
+				<h4 className="font-medium text-foreground text-base">{fullName}</h4>
+				<p className="text-primary-custom text-sm mb-2">
 					{user.us_type}
 					<span className="text-muted-foreground">
 						{" • "}
@@ -546,8 +546,8 @@ export const renderPatronDetails = (user) => {
 				</p>
 
 				<div>
-					<p className="text-foreground text-[12px]">Email</p>
-					<p className="text-muted-foreground text-[12px]">
+					<p className="text-foreground text-sm">Email</p>
+					<p className="text-muted-foreground text-sm">
 						{user.us_email || "NA"}
 					</p>
 				</div>

@@ -141,10 +141,10 @@ export default function MaterialRegistrationPage() {
 								mt_fields: section.mt_fields.map((field) =>
 									field.mt_title === fieldTitle
 										? { ...field, mt_value: formattedValue }
-										: field
+										: field,
 								),
-						  }
-						: section
+							}
+						: section,
 				),
 			};
 		});
@@ -155,7 +155,7 @@ export default function MaterialRegistrationPage() {
 		holdingData,
 		setHoldingData = null,
 		holdings,
-		setHoldings
+		setHoldings,
 	) => {
 		if (holdingData.ho_action === "Insert") {
 			let nextAccession = accessionCount;
@@ -186,8 +186,8 @@ export default function MaterialRegistrationPage() {
 							ho_volume: holdingData.ho_volume,
 							ho_copy: holdingData.ho_copy,
 							ho_status: h.ho_status || "Active",
-					  }
-					: h
+						}
+					: h,
 			);
 			setHoldings(updated);
 		} else if (holdingData.ho_action === "Status") {
@@ -197,13 +197,13 @@ export default function MaterialRegistrationPage() {
 							...h,
 							ho_status: holdingData.ho_status,
 							ho_reason: holdingData.ho_reason,
-					  }
-					: h
+						}
+					: h,
 			);
 			setHoldings(updated);
 		} else if (holdingData.ho_action === "Delete") {
 			const filtered = holdings.filter(
-				(_, idx) => idx !== holdingData.ho_index
+				(_, idx) => idx !== holdingData.ho_index,
 			);
 			setHoldings(filtered);
 		}
@@ -226,18 +226,18 @@ export default function MaterialRegistrationPage() {
 		subjectData,
 		setSubjectData,
 		subjects,
-		setSubjects
+		setSubjects,
 	) => {
 		if (subjectData.su_action === "Insert") {
 			setSubjects([...subjects, subjectData.su_subject]);
 		} else if (subjectData.su_action === "Update") {
 			const updated = subjects.map((s, idx) =>
-				idx === subjectData.su_index ? subjectData.su_subject : s
+				idx === subjectData.su_index ? subjectData.su_subject : s,
 			);
 			setSubjects(updated);
 		} else if (subjectData.su_action === "Delete") {
 			const filtered = subjects.filter(
-				(_, idx) => idx !== subjectData.su_index
+				(_, idx) => idx !== subjectData.su_index,
 			);
 			setSubjects(filtered);
 		}
@@ -260,7 +260,7 @@ export default function MaterialRegistrationPage() {
 				subjects,
 				files,
 				setBtnLoading,
-				Alert
+				Alert,
 			);
 			setAccessionCount(0);
 			handleDiscard();
@@ -275,7 +275,7 @@ export default function MaterialRegistrationPage() {
 				subjects,
 				files,
 				setBtnLoading,
-				Alert
+				Alert,
 			);
 			router.back();
 		}
@@ -310,7 +310,7 @@ export default function MaterialRegistrationPage() {
 				setHoldings,
 				setFiles,
 				setLoading,
-				Alert
+				Alert,
 			);
 		}
 	};
@@ -331,7 +331,7 @@ export default function MaterialRegistrationPage() {
 			return;
 		}
 		const selected = materialTypes.find(
-			(type) => type.mt_id === formData.ma_materialType
+			(type) => type.mt_id === formData.ma_materialType,
 		);
 
 		setSelectedMaterialType(selected);
@@ -348,7 +348,7 @@ export default function MaterialRegistrationPage() {
 					userDetails?.us_liID,
 					setMaterialTypes,
 					setLoading,
-					Alert
+					Alert,
 				);
 				unsubscribers.push(unsubscribeMaterialTypes);
 			} else if (type === "edit" && id) {
@@ -361,7 +361,7 @@ export default function MaterialRegistrationPage() {
 					setHoldings,
 					setFiles,
 					setLoading,
-					Alert
+					Alert,
 				);
 			}
 
@@ -369,7 +369,7 @@ export default function MaterialRegistrationPage() {
 				userDetails?.us_liID,
 				setCategory,
 				setLoading,
-				Alert
+				Alert,
 			);
 			unsubscribers.push(unsubscribeCategory);
 
@@ -377,7 +377,7 @@ export default function MaterialRegistrationPage() {
 				userDetails?.us_liID,
 				setShelves,
 				setLoading,
-				Alert
+				Alert,
 			);
 			unsubscribers.push(unsubscribeShelf);
 
@@ -385,7 +385,7 @@ export default function MaterialRegistrationPage() {
 				userDetails.us_liID,
 				setDonors,
 				setLoading,
-				Alert
+				Alert,
 			);
 
 			unsubscribers.push(unsubscribeDonor);
@@ -405,7 +405,7 @@ export default function MaterialRegistrationPage() {
 					<div className="mb-6 animate-fade-in">
 						<button
 							onClick={() => router.back()}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
 						>
 							<FiArrowLeft className="w-4 h-4" />
 							Back to Previous page
@@ -413,12 +413,12 @@ export default function MaterialRegistrationPage() {
 					</div>
 
 					<div className="animate-slide-up mb-8">
-						<h1 className="font-semibold text-foreground text-[20px]">
+						<h1 className="font-semibold text-foreground text-xl">
 							{type && type === "register"
 								? "Add New Material to Library"
 								: "Edit Material Information"}
 						</h1>
-						<p className="text-muted-foreground text-[14px]">
+						<p className="text-muted-foreground text-sm">
 							{type && type === "register"
 								? "Add a new material to the library collection"
 								: "Update the existing material information"}
@@ -431,7 +431,7 @@ export default function MaterialRegistrationPage() {
 								<CardContent className="p-6">
 									<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 										<div>
-											<Label className="text-foreground font-medium text-[12px] ">
+											<Label className="text-foreground font-medium text-sm ">
 												Material Type <span className="text-red-500">*</span>
 											</Label>
 											<select
@@ -440,10 +440,10 @@ export default function MaterialRegistrationPage() {
 													handleInputChange(
 														setFormData,
 														"ma_materialType",
-														e.target.value
+														e.target.value,
 													)
 												}
-												className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3 text-[12px]"
+												className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3 text-sm"
 												disabled={type && type == "edit"}
 											>
 												<option value="">Select material type</option>
@@ -455,7 +455,7 @@ export default function MaterialRegistrationPage() {
 											</select>
 										</div>
 										<div>
-											<Label className="text-foreground font-medium text-[12px]">
+											<Label className="text-foreground font-medium text-sm">
 												Material Category{" "}
 												<span className="text-red-500">*</span>
 											</Label>
@@ -465,10 +465,10 @@ export default function MaterialRegistrationPage() {
 													handleInputChange(
 														setFormData,
 														"ma_materialCategory",
-														e.target.value
+														e.target.value,
 													)
 												}
-												className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3 text-[12px]"
+												className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3 text-sm"
 											>
 												<option value="">Select material category</option>
 												{categories.map((category, index) => (
@@ -479,11 +479,11 @@ export default function MaterialRegistrationPage() {
 											</select>
 										</div>
 										<div>
-											<Label className="text-foreground font-medium text-[12px]">
+											<Label className="text-foreground font-medium text-sm">
 												Shelf <span className="text-red-500">*</span>{" "}
 												<button
 													onClick={() => setShowShelfModal(true)}
-													className="text-primary-custom hover:underline transition-colors ml-2 text-[12px]"
+													className="text-primary-custom hover:underline transition-colors ml-2 text-sm"
 												>
 													Register Shelf
 												</button>
@@ -494,10 +494,10 @@ export default function MaterialRegistrationPage() {
 													handleInputChange(
 														setFormData,
 														"ma_shelf",
-														e.target.value
+														e.target.value,
 													)
 												}
-												className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3 text-[12px]"
+												className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3 text-sm"
 											>
 												<option value="">Select shelf location</option>
 												{shelves.map((shelf, index) => (
@@ -514,7 +514,7 @@ export default function MaterialRegistrationPage() {
 							{selectedMaterialType && (
 								<Card className="bg-card border-border shadow-sm animate-slide-up-delay-2">
 									<CardHeader className="pb-2">
-										<CardTitle className="text-foreground text-[16px]">
+										<CardTitle className="text-foreground text-base">
 											{selectedMaterialType.mt_name} Details
 										</CardTitle>
 									</CardHeader>
@@ -534,7 +534,7 @@ export default function MaterialRegistrationPage() {
 													<TabsTrigger
 														key={section.mt_section + index}
 														value={section.mt_section + index}
-														className="min-w-[120px] data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary rounded-none bg-transparent hover:text-primary-600 transition-colors text-[12px] px-3 flex-shrink-0"
+														className="min-w-[120px] data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary rounded-none bg-transparent hover:text-primary-600 transition-colors text-sm px-3 flex-shrink-0"
 													>
 														{section.mt_section}
 													</TabsTrigger>
@@ -554,7 +554,7 @@ export default function MaterialRegistrationPage() {
 															<div>
 																<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pb-6 border-b border-border">
 																	<div>
-																		<Label className="text-foreground font-medium text-[12px]">
+																		<Label className="text-foreground font-medium text-sm">
 																			Type{" "}
 																			<span className="text-red-500">*</span>
 																		</Label>
@@ -564,32 +564,31 @@ export default function MaterialRegistrationPage() {
 																				handleInputChange(
 																					setFormData,
 																					"ma_acquisitionType",
-																					e.target.value
+																					e.target.value,
 																				)
 																			}
 																			className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3"
-																			style={{ fontSize: "11px" }}
 																		>
 																			{["Donated", "Purchased"].map(
 																				(type, index) => (
 																					<option key={index} value={type}>
 																						{type}
 																					</option>
-																				)
+																				),
 																			)}
 																		</select>
 																	</div>
 
 																	{formData.ma_acquisitionType === "Donated" ? (
 																		<div>
-																			<Label className="text-foreground font-medium text-[12px]">
+																			<Label className="text-foreground font-medium text-sm">
 																				Donor{" "}
 																				<span className="text-red-500">*</span>{" "}
 																				<button
 																					onClick={() =>
 																						setShowAddDonorModal(true)
 																					}
-																					className="text-primary-custom hover:underline transition-colors ml-2 text-[12px]"
+																					className="text-primary-custom hover:underline transition-colors ml-2 text-sm"
 																				>
 																					Register Donor
 																				</button>
@@ -600,11 +599,10 @@ export default function MaterialRegistrationPage() {
 																					handleInputChange(
 																						setFormData,
 																						"ma_donor",
-																						e.target.value
+																						e.target.value,
 																					)
 																				}
-																				className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3"
-																				style={{ fontSize: "12px" }}
+																				className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3 text-sm"
 																			>
 																				<option value="">Select Donor</option>
 																				{donors.map((donor, index) => (
@@ -619,7 +617,7 @@ export default function MaterialRegistrationPage() {
 																		</div>
 																	) : (
 																		<div>
-																			<Label className="text-foreground font-medium text-[12px]">
+																			<Label className="text-foreground font-medium text-sm">
 																				Price per Item
 																			</Label>
 																			<Input
@@ -630,11 +628,10 @@ export default function MaterialRegistrationPage() {
 																					handleInputChange(
 																						setFormData,
 																						"ma_pricePerItem",
-																						e.target.value
+																						e.target.value,
 																					)
 																				}
-																				className="mt-2 h-9 bg-background border-border text-foreground w-full"
-																				style={{ fontSize: "12px" }}
+																				className="mt-2 h-9 bg-background border-border text-foreground w-full text-sm"
 																				step="0.01"
 																				min="0"
 																			/>
@@ -644,13 +641,12 @@ export default function MaterialRegistrationPage() {
 
 																<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6 mb-6">
 																	<div>
-																		<Label className="text-foreground font-medium text-[12px]">
+																		<Label className="text-foreground font-medium text-sm">
 																			Soft Copy
 																		</Label>
 																		<Input
 																			placeholder="e.g., 5 copies"
-																			className="mt-2 h-9 bg-background border-border text-foreground"
-																			style={{ fontSize: "12px" }}
+																			className="mt-2 h-9 bg-background border-border text-foreground text-sm"
 																			type="number"
 																			min={1}
 																			value={files.ma_softQty || ""}
@@ -658,19 +654,18 @@ export default function MaterialRegistrationPage() {
 																				handleInputChange(
 																					setFiles,
 																					"ma_softQty",
-																					e.target.value
+																					e.target.value,
 																				)
 																			}
 																		/>
 																	</div>
 																	<div>
-																		<Label className="text-foreground font-medium text-[12px]">
+																		<Label className="text-foreground font-medium text-sm">
 																			Audio Copy
 																		</Label>
 																		<Input
 																			placeholder="e.g., 3 copies"
-																			className="mt-2 h-9 bg-background border-border text-foreground"
-																			style={{ fontSize: "12px" }}
+																			className="mt-2 h-9 bg-background border-border text-foreground text-sm"
 																			type="number"
 																			min={1}
 																			value={files.ma_audioQty || ""}
@@ -678,52 +673,49 @@ export default function MaterialRegistrationPage() {
 																				handleInputChange(
 																					setFiles,
 																					"ma_audioQty",
-																					e.target.value
+																					e.target.value,
 																				)
 																			}
 																		/>
 																	</div>
 																</div>
 
-																<h3 className="font-semibold text-[14px] mb-2">
+																<h3 className="font-semibold text-base mb-2">
 																	Accession Details
 																</h3>
 																<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full justify-items-start ">
 																	<Input
 																		placeholder="Accession No."
-																		className=" h-9 bg-background border-border text-foreground w-full"
-																		style={{ fontSize: "12px" }}
+																		className=" h-9 bg-background border-border text-foreground w-full text-sm"
 																		value={"Auto-generated"}
 																		readOnly
 																	/>
 																	<Input
 																		placeholder="Volume/Part"
-																		className=" h-9 bg-background border-border text-foreground w-full"
-																		style={{ fontSize: "12px" }}
+																		className=" h-9 bg-background border-border text-foreground w-full text-sm"
 																		value={holdingData.ho_volume || ""}
 																		onChange={(e) =>
 																			handleInputChange(
 																				setHoldingData,
 																				"ho_volume",
-																				e.target.value
+																				e.target.value,
 																			)
 																		}
 																	/>
 																	<Input
 																		placeholder="Copy#"
-																		className=" h-9 bg-background border-border text-foreground w-full"
-																		style={{ fontSize: "12px" }}
+																		className=" h-9 bg-background border-border text-foreground w-full text-sm"
 																		value={holdingData.ho_copy || ""}
 																		onChange={(e) =>
 																			handleInputChange(
 																				setHoldingData,
 																				"ho_copy",
-																				e.target.value
+																				e.target.value,
 																			)
 																		}
 																	/>
 																	<Button
-																		className="bg-primary text-white hover:opacity-90 h-9 px-4 flex items-center  w-full gap-2 text-[12px]"
+																		className="bg-primary text-white hover:opacity-90 h-9 px-4 flex items-center  w-full gap-2 text-sm"
 																		disabled={
 																			holdingData.ho_volume == "" ||
 																			holdingData.ho_copy == ""
@@ -739,7 +731,7 @@ export default function MaterialRegistrationPage() {
 																				},
 																				setHoldingData,
 																				holdings,
-																				setHoldings
+																				setHoldings,
 																			)
 																		}
 																	>
@@ -754,20 +746,20 @@ export default function MaterialRegistrationPage() {
 																		<table className="w-full">
 																			<thead>
 																				<tr className="border-b border-border">
-																					<th className="text-left py-3 text-foreground font-medium text-[12px]">
+																					<th className="text-left py-3 text-foreground font-medium text-sm">
 																						Accession No.
 																					</th>
 
-																					<th className="text-left py-3 text-foreground font-medium text-[12px]">
+																					<th className="text-left py-3 text-foreground font-medium text-sm">
 																						Volume/Part
 																					</th>
-																					<th className="text-left py-3 text-foreground font-medium text-[12px]">
+																					<th className="text-left py-3 text-foreground font-medium text-sm">
 																						Copy #
 																					</th>
-																					<th className="text-left py-3 text-foreground font-medium text-[12px]">
+																					<th className="text-left py-3 text-foreground font-medium text-sm">
 																						Status
 																					</th>
-																					<th className="text-left py-3 text-foreground font-medium text-[12px]">
+																					<th className="text-left py-3 text-foreground font-medium text-sm">
 																						Action
 																					</th>
 																				</tr>
@@ -778,18 +770,18 @@ export default function MaterialRegistrationPage() {
 																						key={idx}
 																						className="border-b border-border/50 hover:bg-muted/20 transition-colors duration-200 cursor-pointer"
 																					>
-																						<td className="py-3 text-foreground text-[12px]">
+																						<td className="py-3 text-foreground text-sm">
 																							{holding.ho_access}
 																						</td>
 
-																						<td className="py-3 text-foreground text-[12px]">
+																						<td className="py-3 text-foreground text-sm">
 																							{holding.ho_volume}
 																						</td>
 
-																						<td className="py-3 text-foreground text-[12px]">
+																						<td className="py-3 text-foreground text-sm">
 																							{holding.ho_copy}
 																						</td>
-																						<td className="py-3 text-foreground text-[12px]">
+																						<td className="py-3 text-foreground text-sm">
 																							<span
 																								className={`px-2 py-1 rounded-full text-xs font-medium ${
 																									holding.ho_status === "Active"
@@ -802,7 +794,7 @@ export default function MaterialRegistrationPage() {
 																						</td>
 
 																						<td
-																							className="py-3 text-foreground text-[12px]"
+																							className="py-3 text-foreground text-sm"
 																							style={{ width: "50px" }}
 																						>
 																							<span className="flex items-center ml-auto gap-1">
@@ -841,7 +833,7 @@ export default function MaterialRegistrationPage() {
 																											});
 
 																											setShowDeactivateAccessionModal(
-																												true
+																												true,
 																											);
 																										} else {
 																											handleHoldings(
@@ -852,7 +844,7 @@ export default function MaterialRegistrationPage() {
 																												},
 																												null,
 																												holdings,
-																												setHoldings
+																												setHoldings,
 																											);
 																										}
 																									}}
@@ -878,13 +870,12 @@ export default function MaterialRegistrationPage() {
 																		<Input
 																			placeholder="Material Subject"
 																			className=" h-9 bg-background border-border text-foreground w-full"
-																			style={{ fontSize: "12px" }}
 																			value={subjectData.su_subject || ""}
 																			onChange={(e) =>
 																				handleInputChange(
 																					setSubjectData,
 																					"su_subject",
-																					e.target.value
+																					e.target.value,
 																				)
 																			}
 																		/>
@@ -892,7 +883,7 @@ export default function MaterialRegistrationPage() {
 
 																	<div className="flex items-end">
 																		<Button
-																			className="bg-primary text-white hover:opacity-90 h-9 px-4 flex items-center gap-2 w-fit text-[12px]"
+																			className="bg-primary text-white hover:opacity-90 h-9 px-4 flex items-center gap-2 w-fit text-sm"
 																			disabled={subjectData.su_subject == ""}
 																			onClick={() =>
 																				handleSubjects(
@@ -905,7 +896,7 @@ export default function MaterialRegistrationPage() {
 																					},
 																					setSubjectData,
 																					subjects,
-																					setSubjects
+																					setSubjects,
 																				)
 																			}
 																		>
@@ -921,11 +912,11 @@ export default function MaterialRegistrationPage() {
 																		<table className="w-full">
 																			<thead>
 																				<tr className="border-b border-border">
-																					<th className="text-left py-3 text-foreground font-medium text-[12px]">
+																					<th className="text-left py-3 text-foreground font-medium text-sm">
 																						Subject
 																					</th>
 
-																					<th className="text-left py-3 text-foreground font-medium text-[12px]">
+																					<th className="text-left py-3 text-foreground font-medium text-sm">
 																						Action
 																					</th>
 																				</tr>
@@ -937,14 +928,14 @@ export default function MaterialRegistrationPage() {
 																						className="border-b border-border/50 hover:bg-muted/20 transition-colors duration-200 cursor-pointer"
 																					>
 																						<td
-																							className="py-3 text-foreground text-[12px]"
+																							className="py-3 text-foreground text-sm"
 																							style={{ width: "100%" }}
 																						>
 																							{subject}
 																						</td>
 
 																						<td
-																							className="py-3 text-foreground text-[12px]"
+																							className="py-3 text-foreground text-sm"
 																							style={{ width: "auto" }}
 																						>
 																							<span className="flex items-center ml-auto gap-1">
@@ -978,7 +969,7 @@ export default function MaterialRegistrationPage() {
 																											},
 																											setSubjectData,
 																											subjects,
-																											setSubjects
+																											setSubjects,
 																										)
 																									}
 																									title="Delete Subject"
@@ -1006,7 +997,7 @@ export default function MaterialRegistrationPage() {
 																		return (
 																			field.mt_title != "Subject" && (
 																				<div key={idx} className="space-y-1">
-																					<Label className="text-foreground font-medium text-[12px]">
+																					<Label className="text-foreground font-medium text-sm">
 																						{field.mt_title}{" "}
 																						<span className="text-muted-foreground">
 																							({field.mt_marcTag})
@@ -1020,12 +1011,11 @@ export default function MaterialRegistrationPage() {
 																								handleFieldChange(
 																									section.mt_section,
 																									field.mt_title,
-																									e.target.value
+																									e.target.value,
 																								)
 																							}
 																							placeholder={`Enter ${field.mt_title.toLowerCase()}`}
 																							className="h-9 bg-background border-border text-foreground"
-																							style={{ fontSize: "12px" }}
 																						/>
 																					)}
 
@@ -1036,12 +1026,11 @@ export default function MaterialRegistrationPage() {
 																								handleFieldChange(
 																									section.mt_section,
 																									field.mt_title,
-																									e.target.value
+																									e.target.value,
 																								)
 																							}
 																							placeholder={`Enter ${field.mt_title.toLowerCase()}`}
 																							className="h-24 bg-background border-border text-foreground resize-none"
-																							style={{ fontSize: "12px" }}
 																						/>
 																					)}
 
@@ -1055,11 +1044,10 @@ export default function MaterialRegistrationPage() {
 																								handleFieldChange(
 																									section.mt_section,
 																									field.mt_title,
-																									e.target.value
+																									e.target.value,
 																								)
 																							}
 																							className="h-9 bg-background border-border text-foreground"
-																							style={{ fontSize: "12px" }}
 																							placeholder="YYYY"
 																						/>
 																					)}
@@ -1072,11 +1060,10 @@ export default function MaterialRegistrationPage() {
 																								handleFieldChange(
 																									section.mt_section,
 																									field.mt_title,
-																									e.target.value
+																									e.target.value,
 																								);
 																							}}
 																							className="h-9 bg-background border-border text-foreground"
-																							style={{ fontSize: "12px" }}
 																						/>
 																					)}
 
@@ -1088,11 +1075,10 @@ export default function MaterialRegistrationPage() {
 																								handleFieldChange(
 																									section.mt_section,
 																									field.mt_title,
-																									e.target.value
+																									e.target.value,
 																								)
 																							}
 																							className="h-9 bg-background border-border text-foreground"
-																							style={{ fontSize: "12px" }}
 																							placeholder={`Enter ${field.mt_title.toLowerCase()}`}
 																						/>
 																					)}
@@ -1108,11 +1094,12 @@ export default function MaterialRegistrationPage() {
 																									field.mt_title,
 																									e.target.value === ""
 																										? ""
-																										: parseFloat(e.target.value)
+																										: parseFloat(
+																												e.target.value,
+																											),
 																								)
 																							}
 																							className="h-9 bg-background border-border text-foreground"
-																							style={{ fontSize: "12px" }}
 																							placeholder={`Enter ${field.mt_title.toLowerCase()}`}
 																						/>
 																					)}
@@ -1121,7 +1108,7 @@ export default function MaterialRegistrationPage() {
 																		);
 																	})
 																) : (
-																	<p className="text-muted-foreground text-[12px]">
+																	<p className="text-muted-foreground text-sm">
 																		No fields available for this section.
 																	</p>
 																)}
@@ -1138,7 +1125,7 @@ export default function MaterialRegistrationPage() {
 							<div className="flex gap-3 animate-slide-up-delay-4">
 								<Button
 									onClick={handleSave}
-									className="bg-primary-custom text-white hover:opacity-90 h-10 px-6 flex items-center gap-2 text-[12px]"
+									className="bg-primary-custom text-white hover:opacity-90 h-10 px-6 flex items-center gap-2 text-sm"
 									disabled={
 										formData?.ma_materialType.trim() === "" ||
 										formData?.ma_materialCategory.trim() === "" ||
@@ -1147,8 +1134,8 @@ export default function MaterialRegistrationPage() {
 											formData?.ma_donor?.trim() === "") ||
 										selectedMaterialType?.mt_section?.every((section) =>
 											section?.mt_fields.every(
-												(field) => (field?.mt_value ?? "").trim() === ""
-											)
+												(field) => (field?.mt_value ?? "").trim() === "",
+											),
 										) ||
 										(holdings.length < 1 &&
 											(files.ma_softQty == 0 || !files.ma_softURL) &&
@@ -1166,7 +1153,7 @@ export default function MaterialRegistrationPage() {
 								<Button
 									onClick={handleDiscard}
 									variant="outline"
-									className="h-11 px-6 border-border text-foreground hover:bg-accent flex items-center gap-2 text-[12px]"
+									className="h-11 px-6 border-border text-foreground hover:bg-accent flex items-center gap-2 text-sm"
 									disabled={
 										formData?.ma_materialType.trim() === "" &&
 										formData?.ma_materialCategory.trim() === "" &&
@@ -1186,11 +1173,11 @@ export default function MaterialRegistrationPage() {
 						<div className="space-y-8">
 							<Card className="bg-card border-border shadow-sm animate-slide-up-delay-2">
 								<CardHeader className="pb-4">
-									<CardTitle className="text-foreground flex items-center  gap-2 text-[16px]">
+									<CardTitle className="text-foreground flex items-center  gap-2 text-base">
 										<FiImage className="w-4 h-4" />
 										Book Cover
 									</CardTitle>
-									<p className="text-muted-foreground text-[12px]">
+									<p className="text-muted-foreground text-sm">
 										Upload cover image (.jpg, .png)
 									</p>
 								</CardHeader>
@@ -1207,7 +1194,7 @@ export default function MaterialRegistrationPage() {
 												handleInputChange(
 													setFiles,
 													"ma_coverURL",
-													e.target.files?.[0]
+													e.target.files?.[0],
 												)
 											}
 											id="cover-image-upload"
@@ -1252,11 +1239,11 @@ export default function MaterialRegistrationPage() {
 							{files.ma_softQty > 0 && (
 								<Card className="bg-card border-border shadow-sm animate-slide-up-delay-3">
 									<CardHeader className="pb-4">
-										<CardTitle className="text-foreground flex items-center gap-2 text-[16px]">
+										<CardTitle className="text-foreground flex items-center gap-2 text-base">
 											<FiFile className="w-4 h-4" />
 											Soft Copy <span className="text-red-500">*</span>
 										</CardTitle>
-										<p className="text-muted-foreground text-[12px]">
+										<p className="text-muted-foreground text-sm">
 											Upload PDF document (.pdf)
 										</p>
 									</CardHeader>
@@ -1274,7 +1261,7 @@ export default function MaterialRegistrationPage() {
 													handleInputChange(
 														setFiles,
 														"ma_softURL",
-														e.target.files?.[0]
+														e.target.files?.[0],
 													)
 												}
 											/>
@@ -1312,11 +1299,11 @@ export default function MaterialRegistrationPage() {
 							{files.ma_audioQty > 0 && (
 								<Card className="bg-card border-border shadow-sm animate-slide-up-delay-4">
 									<CardHeader className="pb-4">
-										<CardTitle className="text-foreground flex items-center gap-2 text-[16px]">
+										<CardTitle className="text-foreground flex items-center gap-2 text-base">
 											<FiMusic className="w-4 h-4" />
 											Audio Copy <span className="text-red-500">*</span>
 										</CardTitle>
-										<p className="text-muted-foreground text-[12px]">
+										<p className="text-muted-foreground text-sm">
 											Upload audio file (.mp3, .wav)
 										</p>
 									</CardHeader>
@@ -1334,7 +1321,7 @@ export default function MaterialRegistrationPage() {
 													handleInputChange(
 														setFiles,
 														"ma_audioURL",
-														e.target.files?.[0]
+														e.target.files?.[0],
 													)
 												}
 											/>
@@ -1388,12 +1375,12 @@ export default function MaterialRegistrationPage() {
 													)}
 												</div>
 												<div className="flex-1 space-y-1">
-													<h2 className="font-semibold text-foreground text-[16px] ">
+													<h2 className="font-semibold text-foreground text-base ">
 														{formData.ma_status === "Active"
 															? "Deactivate Material"
 															: "Activate Material"}
 													</h2>
-													<p className="text-muted-foreground leading-relaxed text-[12px]">
+													<p className="text-muted-foreground leading-relaxed text-sm">
 														{formData.ma_status === "Active"
 															? "This will remove the material from search results and circulation. The material can be reactivated later by an administrator."
 															: "This will restore the material to be available again in search results and circulation."}
@@ -1405,7 +1392,7 @@ export default function MaterialRegistrationPage() {
 												<Button
 													variant="outline"
 													onClick={() => setShowDeactivateModal(true)}
-													className={`w-full h-9 transition-colors text-[12px] ${
+													className={`w-full h-9 transition-colors text-sm ${
 														formData.ma_status === "Active"
 															? "border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300"
 															: "border-green-200 text-green-600 hover:bg-green-50 hover:border-green-300"
@@ -1456,7 +1443,7 @@ export default function MaterialRegistrationPage() {
 						resourceId={formData.id}
 						resourceTitle={
 							selectedMaterialType?.mt_section[0]?.mt_fields?.find(
-								(f) => f.mt_title === "Title"
+								(f) => f.mt_title === "Title",
 							)?.mt_value || "Untitled Material"
 						}
 						resourceStatus={formData.ma_status}

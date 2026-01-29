@@ -46,7 +46,7 @@ export function PatronSelectionModal({
 				searchQuery,
 				selectedType,
 				setLoading,
-				Alert
+				Alert,
 			);
 		}
 	}, [libraryID, searchQuery, selectedType, isGuest, isOpen]);
@@ -94,7 +94,6 @@ export function PatronSelectionModal({
 							value={searchQuery}
 							onChange={(e) => setSearchQuery(e.target.value)}
 							className="pl-10 pr-10 bg-card border-border text-foreground h-10"
-							style={{ fontSize: "12px" }}
 						/>
 						<FiCamera
 							className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5 cursor-pointer"
@@ -110,7 +109,7 @@ export function PatronSelectionModal({
 						/>
 						<label
 							htmlFor="guest-checkbox"
-							className="text-foreground text-[12px] mr-6"
+							className="text-foreground text-sm mr-6"
 						>
 							Guest Patron
 						</label>
@@ -124,7 +123,7 @@ export function PatronSelectionModal({
 								key={type}
 								onClick={() => setSelectedType(type)}
 								variant={selectedType === type ? "default" : "outline"}
-								className={`h-9 px-4 text-[12px] ${
+								className={`h-9 px-4 text-sm ${
 									selectedType === type
 										? "bg-primary-custom text-white hover:bg-secondary-custom"
 										: "border-border text-foreground hover:bg-muted"
@@ -132,12 +131,12 @@ export function PatronSelectionModal({
 							>
 								{type}
 							</Button>
-						)
+						),
 					)}
 				</div>
 
 				<div className="flex items-center justify-between mb-4">
-					<p className="text-primary text-[11px]">
+					<p className="text-primary text-xs">
 						{userData?.length} patrons found
 						{selectedPatron && ` • ${selectedPatron.us_name} selected`}
 					</p>
@@ -145,7 +144,7 @@ export function PatronSelectionModal({
 					{selectedPatron && (
 						<Button
 							onClick={handleProceedWithReservation}
-							className="bg-primary-custom hover:bg-secondary-custom text-white h-9 px-4 text-[12px]"
+							className="bg-primary-custom hover:bg-secondary-custom text-white h-9 px-4 text-sm"
 						>
 							Proceed with Reservation
 						</Button>
@@ -171,7 +170,7 @@ export function PatronSelectionModal({
 								].map((header) => (
 									<th
 										key={header}
-										className="text-left py-4 px-6 font-semibold text-foreground text-[12px]"
+										className="text-left py-4 px-6 font-semibold text-foreground text-sm"
 									>
 										{header}
 									</th>
@@ -187,49 +186,46 @@ export function PatronSelectionModal({
 									}`}
 									onClick={() => setSelectedPatron(patron)}
 								>
-									<td className="py-4 px-6">
+									<td className="py-4 px-6 text-sm">
 										<Checkbox
 											checked={selectedPatron?.us_id === patron?.us_id}
 										/>
 									</td>
-									<td className="py-4 px-6 flex">
+									<td className="py-4 px-6 flex text-sm">
 										<img
 											src={patron?.us_photoURL || "/placeholder.svg"}
 											alt="avatar"
 											className="w-12 h-12 rounded-full object-cover bg-gray-100 flex-shrink-0"
 										/>
 									</td>
-									<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 										{patron?.us_schoolID}
 									</td>
-									<td className="py-4 px-6 min-w-[130px] text-[12px] text-foreground">
-										<Badge
-											className={getTypeColor(patron?.us_type)}
-											style={{ fontSize: "10px" }}
-										>
+									<td className="py-4 px-6 min-w-[130px] text-sm text-foreground">
+										<Badge className={getTypeColor(patron?.us_type)}>
 											{patron?.us_type}
 										</Badge>
 									</td>
-									<td className="py-4 px-6 min-w-[200px] text-[12px] text-foreground font-medium">
+									<td className="py-4 px-6 min-w-[200px] text-sm text-foreground font-medium">
 										{patron?.us_name}
 									</td>
 
-									<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 										{patron?.us_email}
 									</td>
-									<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 										{patron?.us_courses}
 									</td>
-									<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 										{patron?.us_year}
 									</td>
-									<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 										{patron?.us_tracks || patron?.us_institute}
 									</td>
-									<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 										{patron?.us_strand || patron?.us_program}
 									</td>
-									<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 										{patron?.us_section}
 									</td>
 								</tr>

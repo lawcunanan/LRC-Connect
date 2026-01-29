@@ -37,7 +37,7 @@ export default function DocumentPreviewPage({
 				userDetails?.uid,
 				"Print",
 				`User '${Personnel}' generated a copy of a report on ${formattedDate}.`,
-				Alert
+				Alert,
 			);
 
 			window.print();
@@ -55,7 +55,7 @@ export default function DocumentPreviewPage({
 				<div className="no-print mb-6 animate-fade-in">
 					<button
 						onClick={() => setViewMode("table")}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 					>
 						<FiArrowLeft className="w-4 h-4" />
 						Back to Previous page
@@ -64,10 +64,10 @@ export default function DocumentPreviewPage({
 
 				<div className="flex items-start justify-between no-print mb-8 animate-slide-up gap-6">
 					<div>
-						<h1 className="font-semibold text-foreground text-[20px]">
+						<h1 className="font-semibold text-foreground text-xl">
 							Document Preview
 						</h1>
-						<p className="text-muted-foreground text-[14px]">
+						<p className="text-muted-foreground text-base">
 							Ensure all data is correct before printing the official copy
 						</p>
 					</div>
@@ -76,7 +76,7 @@ export default function DocumentPreviewPage({
 						onClick={() => handlePrint()}
 						variant="outline"
 						size="sm"
-						className="h-9 bg-primary-custom hover:bg-secondary-custom text-white hover:text-white border-none text-[12px]"
+						className="h-9 bg-primary-custom hover:bg-secondary-custom text-white hover:text-white border-none text-sm"
 					>
 						<FiPrinter className="w-4 h-4 mr-1" />
 						Print
@@ -95,20 +95,17 @@ export default function DocumentPreviewPage({
 							<div className="flex flex-col items-center  text-center mb-[70px]">
 								<img src="/logo.png" alt="logo" className="w-[90px] mb-2" />
 								<div>
-									<h1 className="text-primary-custom font-bold text-lg  text-[20px]">
+									<h1 className="text-primary-custom font-bold text-xl">
 										Dalubhasaang Politekniko ng Lungsod ng Baliwag
 									</h1>
-									<h3 className="text-[16px]">Baliwag Polytechnic College</h3>
-									<h3
-										className=" text-muted-foreground  text-[16px]"
-										style={{ fontSize: "14px" }}
-									>
+									<h3 className="text-base">Baliwag Polytechnic College</h3>
+									<h3 className="text-muted-foreground text-sm">
 										Tanggapan ng Aklatan ng Dalubhasaang
 									</h3>
 								</div>
 							</div>
 
-							<CardTitle className="text-foreground text-[18px]">
+							<CardTitle className="text-foreground text-base">
 								{title}
 							</CardTitle>
 
@@ -128,7 +125,7 @@ export default function DocumentPreviewPage({
 
 						<CardContent className="p-0 pt-[15px]">
 							<div className="print-table overflow-x-auto">{renderTable()}</div>
-							<div className="flex justify-between pt-[20px] text-muted-foreground text-[12px]">
+							<div className="flex justify-between pt-[20px] text-muted-foreground text-sm">
 								<div>Issue date: {formattedDate}</div>
 								<div>Issued by: {Personnel}</div>
 							</div>

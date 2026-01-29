@@ -36,7 +36,7 @@ export function Header({ setIsOpen: externalSetIsOpen }) {
 			userDetails?.us_liID,
 			userDetails?.uid,
 			router,
-			Alert
+			Alert,
 		);
 
 		return () => {
@@ -45,7 +45,7 @@ export function Header({ setIsOpen: externalSetIsOpen }) {
 	}, [userDetails]);
 
 	return (
-		<div className="no-print fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-6 px-6 py-4 bg-card border-b border-border transition-all duration-300 opacity-100">
+		<div className="no-print fixed top-0 left-0 right-0 z-30 flex items-center justify-between gap-6 px-6 py-3 bg-card border-b border-border transition-all duration-300 opacity-100 max-w-screen-2xl mx-auto">
 			<div className="flex items-center gap-2">
 				<Button
 					aria-label="Toggle sidebar"
@@ -64,43 +64,35 @@ export function Header({ setIsOpen: externalSetIsOpen }) {
 				</Button>
 
 				<div className="hidden md:flex items-center gap-2">
-					<div className="w-15 h-9 rounded-lg overflow-hidden flex items-center justify-center ">
+					<div className="h-14 rounded-lg overflow-hidden flex items-center justify-center ">
 						<img
 							src="/logo.png"
 							alt="BETCH"
 							className="w-full h-full object-cover"
 						/>
 					</div>
-					<span
-						className="font-semibold text-foreground"
-						style={{ fontSize: "14px" }}
-					>
+					<span className="font-semibold text-foreground text-lg select-none">
 						Dalubhasaang Politekniko ng Lungsod ng Baliwag
 					</span>
 				</div>
 			</div>
 
-			<div className="flex items-center gap-3">
+			<div className="flex items-center gap-4">
 				<Button
 					onClick={() => setIsScannerOpen(true)}
 					variant="ghost"
 					size="sm"
 					className="relative h-9 w-9 p-0 flex items-center justify-center overflow-hidden"
 				>
-					<ScanLine className="w-6 h-6 text-foreground" />
-
+					<ScanLine className="w-14 h-14 text-foreground" />
 					<span className="absolute left-2 right-2 h-[2px] bg-primary animate-scan" />
-				</Button>
-				<Button variant="ghost" size="sm" className="relative h-9 w-9 p-0">
-					<FiBell className="w-4 h-4" />
-					<span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
 				</Button>
 
 				<div
 					className="flex items-center gap-2 cursor-pointer"
 					onClick={() => router.push(`/account/details?id=${userDetails?.uid}`)}
 				>
-					<Avatar className="w-8 h-8">
+					<Avatar className="w-9 h-9">
 						<AvatarImage
 							src={userDetails?.us_photoURL || "/placeholder.svg"}
 							alt="User Photo"
@@ -113,13 +105,10 @@ export function Header({ setIsOpen: externalSetIsOpen }) {
 					</Avatar>
 
 					<div className="sm:block hidden">
-						<p
-							className="font-medium text-foreground"
-							style={{ fontSize: "13px" }}
-						>
+						<p className="font-medium text-foreground text-base">
 							{userDetails?.us_fname || ""} {userDetails?.us_lname || ""}
 						</p>
-						<p className="text-muted-foreground" style={{ fontSize: "11px" }}>
+						<p className="text-muted-foreground text-sm">
 							{userDetails?.us_type || ""} | {userDetails?.us_level || ""}
 						</p>
 					</div>

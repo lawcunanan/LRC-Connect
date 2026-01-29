@@ -76,7 +76,7 @@ export default function CoursesPage() {
 		id = null,
 		title = null,
 		parentIndex = null,
-		itemIndex = null
+		itemIndex = null,
 	) => {
 		setActionModal({
 			isOpen: true,
@@ -98,7 +98,7 @@ export default function CoursesPage() {
 			searchSHS,
 			setCoursesData,
 			setLoading,
-			Alert
+			Alert,
 		);
 
 		const unsubscribeCollege = getCoursesRealtime(
@@ -106,7 +106,7 @@ export default function CoursesPage() {
 			searchCollege,
 			setCoursesData,
 			setLoading,
-			Alert
+			Alert,
 		);
 
 		return () => {
@@ -123,12 +123,10 @@ export default function CoursesPage() {
 				<div className="flex-1 flex flex-col overflow-hidden">
 					<Header />
 
-					<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
+					<main className="flex-1 overflow-auto p-6 pt-24">
 						<div className="mb-8 animate-fade-in">
-							<h1 className="font-semibold text-foreground text-[20px]">
-								Courses
-							</h1>
-							<p className="text-muted-foreground text-[14px]">
+							<h1 className="font-semibold text-foreground text-xl">Courses</h1>
+							<p className="text-muted-foreground text-base">
 								Manage academic courses and curriculum offerings
 							</p>
 						</div>
@@ -137,14 +135,14 @@ export default function CoursesPage() {
 							<Card className="bg-card border-border transition-colors duration-300 h-fit">
 								<CardContent className="p-6">
 									<div className="flex items-start justify-between mb-4">
-										<h2 className="font-semibold text-foreground text-[16px] leading-none">
+										<h2 className="font-semibold text-foreground text-base leading-none">
 											Senior High School
 										</h2>
 										<Button
 											onClick={() =>
 												openActionModal("track", "add", null, null, null, null)
 											}
-											className="h-9 bg-primary-custom hover:bg-secondary-custom text-white border-none text-[12px]"
+											className="h-9 bg-primary-custom hover:bg-secondary-custom text-white border-none text-sm"
 										>
 											<FiPlus className="w-3.5 h-3.5" />
 											Add Track
@@ -158,7 +156,7 @@ export default function CoursesPage() {
 											onChange={(e) => setSearchSHS(e.target.value)}
 											placeholder="Search tracks..."
 											className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-											style={{ fontSize: "12px" }}
+											
 										/>
 									</div>
 
@@ -171,7 +169,7 @@ export default function CoursesPage() {
 											>
 												<AccordionTrigger className="hover:no-underline">
 													<div className="flex items-center justify-between w-full pr-4">
-														<span className="text-foreground font-medium text-[12px]">
+														<span className="text-foreground font-medium text-sm">
 															{track.cs_title}
 														</span>
 														<DropdownMenu>
@@ -183,7 +181,7 @@ export default function CoursesPage() {
 															</DropdownMenuTrigger>
 															<DropdownMenuContent align="end" className="w-40">
 																<DropdownMenuItem
-																	className="text-[12px]"
+																	className="text-sm"
 																	onClick={(e) => {
 																		e.stopPropagation();
 																		openActionModal(
@@ -192,7 +190,7 @@ export default function CoursesPage() {
 																			track.id,
 																			null,
 																			null,
-																			null
+																			null,
 																		);
 																	}}
 																>
@@ -200,7 +198,7 @@ export default function CoursesPage() {
 																	Add Strand
 																</DropdownMenuItem>
 																<DropdownMenuItem
-																	className="text-[12px]"
+																	className="text-sm"
 																	onClick={(e) => {
 																		e.stopPropagation();
 																		openActionModal(
@@ -209,7 +207,7 @@ export default function CoursesPage() {
 																			track.id,
 																			track.cs_title,
 																			null,
-																			null
+																			null,
 																		);
 																	}}
 																>
@@ -218,7 +216,7 @@ export default function CoursesPage() {
 																</DropdownMenuItem>
 
 																<DropdownMenuItem
-																	className="text-[12px]"
+																	className="text-sm"
 																	onClick={(e) => {
 																		e.stopPropagation();
 																		openActionModal(
@@ -227,7 +225,7 @@ export default function CoursesPage() {
 																			track.id,
 																			track.cs_title,
 																			trackIndex,
-																			null
+																			null,
 																		);
 																	}}
 																>
@@ -236,7 +234,7 @@ export default function CoursesPage() {
 																</DropdownMenuItem>
 
 																<DropdownMenuItem
-																	className="text-[12px]"
+																	className="text-sm"
 																	variant="destructive"
 																	onClick={(e) => {
 																		e.stopPropagation();
@@ -246,7 +244,7 @@ export default function CoursesPage() {
 																			track.id,
 																			track.cs_title,
 																			null,
-																			null
+																			null,
 																		);
 																	}}
 																>
@@ -264,7 +262,7 @@ export default function CoursesPage() {
 																key={strandIndex}
 																className="flex items-center justify-between p-2 rounded hover:bg-accent/90 transition-colors"
 															>
-																<div className="flex items-center gap-2 text-[12px]">
+																<div className="flex items-center gap-2 text-sm">
 																	<span className="text-muted-foreground">
 																		•
 																	</span>
@@ -286,7 +284,7 @@ export default function CoursesPage() {
 																		className="w-40"
 																	>
 																		<DropdownMenuItem
-																			className="text-[12px]"
+																			className="text-sm"
 																			onClick={() =>
 																				openActionModal(
 																					"strand",
@@ -294,7 +292,7 @@ export default function CoursesPage() {
 																					track.id,
 																					strand,
 																					trackIndex,
-																					strandIndex
+																					strandIndex,
 																				)
 																			}
 																		>
@@ -303,7 +301,7 @@ export default function CoursesPage() {
 																		</DropdownMenuItem>
 
 																		<DropdownMenuItem
-																			className="text-[12px]"
+																			className="text-sm"
 																			onClick={(e) => {
 																				e.stopPropagation();
 																				openActionModal(
@@ -312,7 +310,7 @@ export default function CoursesPage() {
 																					track.id,
 																					strand,
 																					trackIndex,
-																					strandIndex
+																					strandIndex,
 																				);
 																			}}
 																		>
@@ -321,7 +319,7 @@ export default function CoursesPage() {
 																		</DropdownMenuItem>
 
 																		<DropdownMenuItem
-																			className="text-[12px]"
+																			className="text-sm"
 																			variant="destructive"
 																			onClick={(e) => {
 																				e.stopPropagation();
@@ -331,7 +329,7 @@ export default function CoursesPage() {
 																					track.id,
 																					strand,
 																					trackIndex,
-																					strandIndex
+																					strandIndex,
 																				);
 																			}}
 																		>
@@ -355,7 +353,7 @@ export default function CoursesPage() {
 							<Card className="bg-card border-border transition-colors duration-300 h-fit">
 								<CardContent className="p-6">
 									<div className="flex items-start justify-between mb-4">
-										<h2 className="font-semibold text-foreground text-[16px] leading-none">
+										<h2 className="font-semibold text-foreground text-base leading-none">
 											College Courses
 										</h2>
 										<Button
@@ -366,10 +364,10 @@ export default function CoursesPage() {
 													null,
 													null,
 													null,
-													null
+													null,
 												)
 											}
-											className="h-9 bg-primary-custom hover:bg-secondary-custom text-white border-none text-[12px]"
+											className="h-9 bg-primary-custom hover:bg-secondary-custom text-white border-none text-sm"
 										>
 											<FiPlus className="w-3.5 h-3.5" />
 											Add Institute
@@ -382,8 +380,7 @@ export default function CoursesPage() {
 											value={searchCollege}
 											onChange={(e) => setSearchCollege(e.target.value)}
 											placeholder="Search institute..."
-											className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-											style={{ fontSize: "12px" }}
+											className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
 										/>
 									</div>
 
@@ -396,7 +393,7 @@ export default function CoursesPage() {
 											>
 												<AccordionTrigger className="hover:no-underline">
 													<div className="flex items-center justify-between w-full pr-4">
-														<span className="text-foreground font-medium text-[12px]">
+														<span className="text-foreground font-medium text-sm">
 															{institute.cs_title}
 														</span>
 														<DropdownMenu>
@@ -408,7 +405,7 @@ export default function CoursesPage() {
 															</DropdownMenuTrigger>
 															<DropdownMenuContent align="end" className="w-40">
 																<DropdownMenuItem
-																	className="text-[12px]"
+																	className="text-sm"
 																	onClick={(e) => {
 																		e.stopPropagation();
 																		openActionModal(
@@ -417,7 +414,7 @@ export default function CoursesPage() {
 																			institute.id,
 																			null,
 																			null,
-																			null
+																			null,
 																		);
 																	}}
 																>
@@ -425,7 +422,7 @@ export default function CoursesPage() {
 																	Add Program
 																</DropdownMenuItem>
 																<DropdownMenuItem
-																	className="text-[12px]"
+																	className="text-sm"
 																	onClick={(e) => {
 																		e.stopPropagation();
 																		openActionModal(
@@ -434,7 +431,7 @@ export default function CoursesPage() {
 																			institute.id,
 																			institute.cs_title,
 																			null,
-																			null
+																			null,
 																		);
 																	}}
 																>
@@ -443,7 +440,7 @@ export default function CoursesPage() {
 																</DropdownMenuItem>
 
 																<DropdownMenuItem
-																	className="text-[12px]"
+																	className="text-sm"
 																	onClick={(e) => {
 																		e.stopPropagation();
 																		openActionModal(
@@ -452,7 +449,7 @@ export default function CoursesPage() {
 																			institute.id,
 																			institute.cs_title,
 																			instituteIndex,
-																			null
+																			null,
 																		);
 																	}}
 																>
@@ -461,7 +458,7 @@ export default function CoursesPage() {
 																</DropdownMenuItem>
 
 																<DropdownMenuItem
-																	className="text-[12px]"
+																	className="text-sm"
 																	variant="destructive"
 																	onClick={(e) => {
 																		e.stopPropagation();
@@ -471,7 +468,7 @@ export default function CoursesPage() {
 																			institute.id,
 																			institute.cs_title,
 																			null,
-																			null
+																			null,
 																		);
 																	}}
 																>
@@ -489,7 +486,7 @@ export default function CoursesPage() {
 																key={programIndex}
 																className="flex items-center justify-between p-2 rounded hover:bg-accent/90 transition-colors"
 															>
-																<div className="flex items-center gap-2 text-[12px]">
+																<div className="flex items-center gap-2 text-sm">
 																	<span className="text-muted-foreground">
 																		•
 																	</span>
@@ -511,7 +508,7 @@ export default function CoursesPage() {
 																		className="w-40"
 																	>
 																		<DropdownMenuItem
-																			className="text-[12px]"
+																			className="text-sm"
 																			onClick={() =>
 																				openActionModal(
 																					"program",
@@ -519,7 +516,7 @@ export default function CoursesPage() {
 																					institute.id,
 																					program,
 																					instituteIndex,
-																					programIndex
+																					programIndex,
 																				)
 																			}
 																		>
@@ -528,7 +525,7 @@ export default function CoursesPage() {
 																		</DropdownMenuItem>
 
 																		<DropdownMenuItem
-																			className="text-[12px]"
+																			className="text-sm"
 																			onClick={(e) => {
 																				e.stopPropagation();
 																				openActionModal(
@@ -537,7 +534,7 @@ export default function CoursesPage() {
 																					institute.id,
 																					program,
 																					instituteIndex,
-																					programIndex
+																					programIndex,
 																				);
 																			}}
 																		>
@@ -546,7 +543,7 @@ export default function CoursesPage() {
 																		</DropdownMenuItem>
 
 																		<DropdownMenuItem
-																			className="text-[12px]"
+																			className="text-sm"
 																			variant="destructive"
 																			onClick={(e) => {
 																				e.stopPropagation();
@@ -556,7 +553,7 @@ export default function CoursesPage() {
 																					institute.id,
 																					program,
 																					instituteIndex,
-																					programIndex
+																					programIndex,
 																				);
 																			}}
 																		>

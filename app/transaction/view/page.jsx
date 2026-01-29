@@ -104,7 +104,7 @@ const ListenPage = () => {
 	const onError = (e) => {
 		console.error("Audio error:", e);
 		setAudioError(
-			"Failed to load audio file. Please check your connection and try again."
+			"Failed to load audio file. Please check your connection and try again.",
 		);
 		setIsPlaying(false);
 		setAudioLoaded(false);
@@ -125,7 +125,7 @@ const ListenPage = () => {
 		if (!audioRef.current || !audioLoaded) return;
 		const next = Math.min(
 			Math.max(0, audioRef.current.currentTime + secs),
-			duration || audioRef.current.duration || 0
+			duration || audioRef.current.duration || 0,
 		);
 		seek(next);
 	};
@@ -199,7 +199,7 @@ const ListenPage = () => {
 			};
 		},
 		[audioSrc, transactionData?.tr_format],
-		focusAI
+		focusAI,
 	);
 
 	//PDF Controll
@@ -261,7 +261,7 @@ const ListenPage = () => {
 
 	const formattedCurrent = useMemo(
 		() => formatTime(currentTime),
-		[currentTime]
+		[currentTime],
 	);
 	const formattedDuration = useMemo(() => formatTime(duration), [duration]);
 
@@ -311,7 +311,7 @@ const ListenPage = () => {
 				<div className="mb-6">
 					<button
 						onClick={() => router.back()}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 					>
 						<ArrowLeft className="w-3 h-3" />
 						Back to Previous page
@@ -319,12 +319,12 @@ const ListenPage = () => {
 				</div>
 
 				<div className="mb-8 animate-slide-up">
-					<h1 className="font-semibold text-foreground text-[20px]">
+					<h1 className="font-semibold text-foreground text-xl">
 						{transactionData?.tr_format == "Audio Copy"
 							? "Audio Player"
 							: "Reading Page"}
 					</h1>
-					<p className="text-muted-foreground text-[14px]">
+					<p className="text-muted-foreground text-base">
 						{transactionData?.tr_format == "Audio Copy"
 							? "Press play to listen to your audio."
 							: "Scroll down to start reading."}
@@ -347,19 +347,19 @@ const ListenPage = () => {
 									<div className="flex flex-col gap-1">
 										<div className="flex items-center gap-2">
 											<Hash className="w-4 h-4 text-muted-foreground" />
-											<h2 className="font-semibold text-foreground text-[16px]">
+											<h2 className="font-semibold text-foreground text-base">
 												{transactionData?.tr_qr || "Transaction ID"}
 											</h2>
 										</div>
 										<div className="flex items-center gap-2">
 											<Calendar className="w-4 h-4 text-muted-foreground" />
-											<span className="text-muted-foreground text-[12px]">
+											<span className="text-muted-foreground text-sm">
 												Due: {transactionData?.tr_dateDueFormatted}
 											</span>
 										</div>
 									</div>
 									<div className="flex items-center gap-2">
-										<div className="px-3 py-1 rounded-full  font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400 text-[12px]">
+										<div className="px-3 py-1 rounded-full  font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400 text-sm">
 											Utilized
 										</div>
 									</div>
@@ -390,11 +390,11 @@ const ListenPage = () => {
 															setCurrentPage(page);
 														}
 													}}
-													className="w-16 h-8 px-2 text-center border border-border rounded  bg-background text-[12px]"
+													className="w-16 h-8 px-2 text-center border border-border rounded  bg-background text-base"
 													min="1"
 													max={numPages}
 												/>
-												<span className="text-muted-foreground text-[12px]">
+												<span className="text-muted-foreground text-sm">
 													of {numPages}
 												</span>
 											</div>
@@ -421,7 +421,7 @@ const ListenPage = () => {
 												<ZoomOut className="w-3 h-3" />
 											</Button>
 
-											<span className=" text-muted-foreground min-w-[50px] text-center text-[12px]">
+											<span className=" text-muted-foreground min-w-[50px] text-center text-sm">
 												{zoom}%
 											</span>
 
@@ -449,7 +449,7 @@ const ListenPage = () => {
 											) : (
 												<Maximize2 className="w-4 h-4" />
 											)}
-											<span className="text-[12px]">
+											<span className="text-sm">
 												{isFullscreen ? "Collapse View" : "Fullscreen"}
 											</span>
 										</Button>
@@ -498,23 +498,23 @@ const ListenPage = () => {
 											</div>
 
 											<div className="text-center mb-8">
-												<h1 className="text-[24px] font-bold  leading-tight tracking-tight">
+												<h1 className="text-xl font-bold  leading-tight tracking-tight">
 													{transactionData?.tr_resource?.ma_title || "Title"}
 												</h1>
-												<p className="text-muted-foreground text-[16px]">
+												<p className="text-muted-foreground text-base">
 													by{" "}
 													{transactionData?.tr_resource?.ma_author || "Author"}
 												</p>
 											</div>
 
 											{audioSrc && (
-												<div className="w-full max-w-md">
+												<div className="w-full max-w-lg">
 													<div className="mb-6">
 														<div className="flex items-center justify-between mb-3">
-															<span className="text-muted-foreground text-[12px] font-medium">
+															<span className="text-muted-foreground text-sm font-medium">
 																{formattedCurrent}
 															</span>
-															<span className="text-muted-foreground  text-[12px] font-medium">
+															<span className="text-muted-foreground  text-sm font-medium">
 																{formattedDuration}
 															</span>
 														</div>
@@ -581,7 +581,7 @@ const ListenPage = () => {
 																	key={r}
 																	onClick={() => changeRate(r)}
 																	disabled={!audioLoaded || !!audioError}
-																	className={`h-8 px-3 rounded-full  font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed  text-[11px] ${
+																	className={`h-8 px-3 rounded-full  font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed  text-base ${
 																		rate === r
 																			? "bg-primary-custom text-white shadow-md"
 																			: "bg-muted text-muted-foreground border border-border hover:bg-accent"
@@ -699,7 +699,7 @@ const ListenPage = () => {
 										</div>
 									</CardContent>
 
-									<div className="flex items-center flex-wrap lg:justify-between gap-1 text-[11px] text-muted-foreground pt-4 px-6 pb-4 border-t border-border">
+									<div className="flex items-center flex-wrap lg:justify-between gap-1 text-sm text-muted-foreground pt-4 px-6 pb-4 border-t border-border">
 										<div className="flex items-center gap-4">
 											<span>Format: PDF</span>
 											<span>Size: 2.4 MB</span>

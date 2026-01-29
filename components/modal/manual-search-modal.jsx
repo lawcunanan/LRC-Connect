@@ -54,7 +54,7 @@ export function ManualSearchModal({
 				modifiedBy,
 				selectedAccounts,
 				setBtnLoading,
-				Alert
+				Alert,
 			);
 			setUserData([]);
 			setSelectedAccounts([]);
@@ -74,7 +74,7 @@ export function ManualSearchModal({
 			selectedType,
 			selectedStatus,
 			setLoading,
-			Alert
+			Alert,
 		);
 
 		return () => {
@@ -111,14 +111,13 @@ export function ManualSearchModal({
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
 								className="pl-10 pr-10 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-								style={{ fontSize: "12px" }}
 							/>
 							<div className="absolute right-0 top-0 h-full flex items-center gap-1 pr-2">
 								<div className="relative">
 									<select
 										value={selectedType}
 										onChange={(e) => setSelectedType(e.target.value)}
-										className="h-full pl-2 pr-6 text-xs border-l border-border focus:outline-none bg-background appearance-none text-[12px]"
+										className="h-full pl-2 pr-6 text-xs border-l border-border focus:outline-none bg-background appearance-none text-sm"
 									>
 										{userType === "patron" ? (
 											<>
@@ -157,7 +156,7 @@ export function ManualSearchModal({
 										<select
 											value={selectedStatus}
 											onChange={(e) => setSelectedStatus(e.target.value)}
-											className="h-full pl-2 pr-6 text-xs border-l border-border focus:outline-none bg-background appearance-none text-[12px]"
+											className="h-full pl-2 pr-6 text-xs border-l border-border focus:outline-none bg-background appearance-none text-sm"
 										>
 											<option value="All">All Account Status</option>
 											<option value="Active">Active</option>
@@ -172,7 +171,7 @@ export function ManualSearchModal({
 						<Button
 							onClick={() => setIsScannerOpen(true)}
 							variant="outline"
-							className="bg-transparent border-border hover:bg-accent text-foreground h-10 w-fit text-[12px]"
+							className="bg-transparent border-border hover:bg-accent text-foreground h-10 w-fit text-sm"
 						>
 							<FiCamera className="w-4 h-4 mr-2" />
 							Switch to Scanner
@@ -180,7 +179,7 @@ export function ManualSearchModal({
 					</div>
 
 					<div className="flex items-center justify-between mb-4">
-						<p className="text-primary text-[12px]">
+						<p className="text-primary text-sm">
 							{userData?.length} accounts found
 							{selectedAccounts.length > 0 &&
 								` • ${selectedAccounts.length} selected`}
@@ -189,7 +188,7 @@ export function ManualSearchModal({
 						{selectedAccounts.length > 0 && (
 							<Button
 								onClick={handleAddSelected}
-								className="bg-primary-custom hover:bg-secondary-custom text-white h-9 w-fit text-[12px]"
+								className="bg-primary-custom hover:bg-secondary-custom text-white h-9 w-fit text-sm"
 							>
 								{!btnLoading ? (
 									<FiUserPlus className="w-4 h-4 mr-2" />
@@ -211,8 +210,8 @@ export function ManualSearchModal({
 												selectedAccounts.length === userData?.length
 													? true
 													: selectedAccounts.length > 0
-													? "indeterminate"
-													: false
+														? "indeterminate"
+														: false
 											}
 											onCheckedChange={(checked) => {
 												if (checked === true) {
@@ -235,12 +234,12 @@ export function ManualSearchModal({
 													"Track/Institute",
 													"Strand/Program",
 													"Section",
-											  ]
+												]
 											: []),
 									].map((header) => (
 										<th
 											key={header}
-											className="text-left py-4 px-6 font-semibold text-foreground text-[12px]"
+											className="text-left py-4 px-6 font-semibold text-foreground text-sm"
 										>
 											{header}
 										</th>
@@ -255,65 +254,65 @@ export function ManualSearchModal({
 											index % 2 === 0 ? "bg-background" : "bg-muted/10"
 										}`}
 									>
-										<td className="py-4 px-6">
+										<td className="py-4 px-6 text-sm">
 											<Checkbox
 												checked={
 													!!selectedAccounts.find(
-														(a) => a.us_id === account?.us_id
+														(a) => a.us_id === account?.us_id,
 													)
 												}
 												onCheckedChange={() => handleSelectAccount(account)}
 											/>
 										</td>
-										<td className="py-4 px-6 flex">
+										<td className="py-4 px-6 flex text-sm">
 											<img
 												src={account?.us_photoURL || "/placeholder.svg"}
 												alt="avatar"
 												className="w-12 h-12 rounded-full object-cover bg-gray-100 flex-shrink-0"
 											/>
 										</td>
-										<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+										<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 											{account?.us_schoolID}
 										</td>
-										<td className="py-4 px-6 min-w-[130px] text-[12px] text-foreground">
+										<td className="py-4 px-6 min-w-[130px] text-sm text-foreground">
 											<Badge
 												className={getStatColor(account?.us_status)}
-												style={{ fontSize: "10px" }}
+												variant="secondary"
 											>
 												{account?.us_status}
 											</Badge>
 										</td>
-										<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+										<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 											<Badge
 												className={getTypeColor(account?.us_type)}
-												style={{ fontSize: "10px" }}
+												variant="secondary"
 											>
 												{account?.us_type}
 											</Badge>
 										</td>
-										<td className="py-4 px-6 min-w-[200px] text-[12px] text-foreground font-medium">
+										<td className="py-4 px-6 min-w-[200px] text-sm text-foreground font-medium">
 											{account?.us_name}
 										</td>
 
-										<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+										<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 											{account?.us_email}
 										</td>
 										{userType === "patron" && (
 											<>
-												<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+												<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 													{account?.us_courses}
 												</td>
 
-												<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+												<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 													{account?.us_year}
 												</td>
-												<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+												<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 													{account?.us_tracks || account?.us_institute}
 												</td>
-												<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+												<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 													{account?.us_strand || account?.us_program}
 												</td>
-												<td className="py-4 px-6 min-w-[150px] text-[12px] text-foreground">
+												<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
 													{account?.us_section}
 												</td>
 											</>

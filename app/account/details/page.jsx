@@ -200,7 +200,7 @@ export default function AccountDetails() {
 				<div className="mb-6 animate-fade-in">
 					<button
 						onClick={() => router.back()}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
 					>
 						<FiArrowLeft className="w-4 h-4" />
 						Back to Previous page
@@ -208,10 +208,10 @@ export default function AccountDetails() {
 				</div>
 
 				<div className="mb-8 animate-slide-up">
-					<h1 className="font-semibold text-foreground text-[20px]">
+					<h1 className="font-semibold text-foreground text-xl">
 						Account Details
 					</h1>
-					<p className="text-muted-foreground text-[14px]">
+					<p className="text-muted-foreground text-base">
 						Edit and manage user account information and settings
 					</p>
 				</div>
@@ -221,10 +221,10 @@ export default function AccountDetails() {
 					className="w-full animate-slide-up-delay-1"
 				>
 					<TabsList className="grid w-full grid-cols-2 mb-6 bg-muted">
-						<TabsTrigger value="details" className="text-[12px]">
+						<TabsTrigger value="details" className="text-sm">
 							Details
 						</TabsTrigger>
-						<TabsTrigger value="Academic & Address" className="text-[12px]">
+						<TabsTrigger value="Academic & Address" className="text-sm">
 							{["USR-6", "USR-5"].includes(formData?.us_level)
 								? "Academic & Address"
 								: "Address"}
@@ -236,16 +236,16 @@ export default function AccountDetails() {
 							<div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-slide-up-delay-2">
 								<Card className="h-fit bg-card border-border transition-colors duration-300">
 									<CardContent className="p-6">
-										<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+										<h2 className="font-semibold text-foreground text-base mb-[5px]">
 											Basic Information
 										</h2>
-										<p className="text-muted-foreground text-[12px] mb-4">
+										<p className="text-muted-foreground text-sm mb-4">
 											View the personal details associated with this account.
 										</p>
 
 										<div className="space-y-4">
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													School ID
 												</label>
 												<Input
@@ -254,14 +254,14 @@ export default function AccountDetails() {
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="Enter school ID"
 													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "12px" }}
+													
 													required
 													disabled={editMode == ""}
 												/>
 											</div>
 											<div className="grid grid-cols-2 gap-4">
 												<div>
-													<label className="block text-foreground font-medium mb-2 text-[12px]">
+													<label className="block text-foreground font-medium mb-2 text-sm">
 														First name
 													</label>
 													<Input
@@ -270,14 +270,14 @@ export default function AccountDetails() {
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="Enter your first name"
 														className="bg-card border-border text-foreground h-9"
-														style={{ fontSize: "12px" }}
+														
 														required
 														disabled={editMode == ""}
 													/>
 												</div>
 
 												<div>
-													<label className="block text-foreground font-medium mb-2 text-[12px]">
+													<label className="block text-foreground font-medium mb-2 text-sm">
 														Middle name
 													</label>
 													<Input
@@ -286,7 +286,7 @@ export default function AccountDetails() {
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="Enter your middle name"
 														className="bg-card border-border text-foreground h-9"
-														style={{ fontSize: "12px" }}
+														
 														required
 														disabled={editMode == ""}
 													/>
@@ -294,7 +294,7 @@ export default function AccountDetails() {
 											</div>
 											<div className="grid grid-cols-2 gap-4">
 												<div>
-													<label className="block text-foreground font-medium mb-2 text-[12px]">
+													<label className="block text-foreground font-medium mb-2 text-sm">
 														Last name
 													</label>
 													<Input
@@ -303,14 +303,14 @@ export default function AccountDetails() {
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="Enter your last name"
 														className="bg-card border-border text-foreground h-9"
-														style={{ fontSize: "12px" }}
+														
 														required
 														disabled={editMode == ""}
 													/>
 												</div>
 
 												<div>
-													<label className="block text-foreground font-medium mb-2 text-[12px]">
+													<label className="block text-foreground font-medium mb-2 text-sm">
 														Suffix
 													</label>
 													<Input
@@ -319,7 +319,7 @@ export default function AccountDetails() {
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="Jr., Sr., III (optional)"
 														className="bg-card border-border text-foreground h-9"
-														style={{ fontSize: "12px" }}
+														
 														disabled={editMode == ""}
 													/>
 												</div>
@@ -327,14 +327,14 @@ export default function AccountDetails() {
 
 											<div className="grid grid-cols-2 gap-4">
 												<div>
-													<label className="block text-foreground font-medium mb-2 text-[12px]">
+													<label className="block text-foreground font-medium mb-2 text-sm">
 														Sex
 													</label>
 													<select
 														name="us_sex"
 														value={formData?.us_sex || ""}
 														onChange={(e) => handleChange(e, setFormData)}
-														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 														required
 														disabled={editMode == ""}
 													>
@@ -343,7 +343,7 @@ export default function AccountDetails() {
 													</select>
 												</div>
 												<div>
-													<label className="block text-foreground font-medium mb-2 text-[12px]">
+													<label className="block text-foreground font-medium mb-2 text-sm">
 														Birthday
 													</label>
 													<Input
@@ -352,7 +352,7 @@ export default function AccountDetails() {
 														value={formData?.us_birthday || ""}
 														onChange={(e) => handleChange(e, setFormData)}
 														className="bg-card border-border text-foreground h-9"
-														style={{ fontSize: "12px" }}
+														
 														required
 														disabled={editMode == ""}
 													/>
@@ -361,7 +361,7 @@ export default function AccountDetails() {
 
 											<div className="grid grid-cols-2 gap-4">
 												<div>
-													<label className="block text-foreground font-medium mb-2 text-[12px]">
+													<label className="block text-foreground font-medium mb-2 text-sm">
 														Email
 													</label>
 													<Input
@@ -371,13 +371,13 @@ export default function AccountDetails() {
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="@gmail.com"
 														className="bg-card border-border text-foreground h-9"
-														style={{ fontSize: "12px" }}
+														
 														required
 														disabled={editMode == ""}
 													/>
 												</div>
 												<div>
-													<label className="block text-foreground font-medium mb-2 text-[12px]">
+													<label className="block text-foreground font-medium mb-2 text-sm">
 														Phone Number
 													</label>
 													<Input
@@ -386,7 +386,7 @@ export default function AccountDetails() {
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="+639xxxxxxxxx"
 														className="bg-card border-border text-foreground h-9"
-														style={{ fontSize: "12px" }}
+														
 														required
 														pattern="^\+639\d{9}$"
 														title="Enter a valid Philippine mobile number (e.g., +639123456789)"
@@ -400,11 +400,11 @@ export default function AccountDetails() {
 
 								<Card className="bg-card border-border transition-colors duration-300 h-fit">
 									<CardHeader className="pb-4">
-										<CardTitle className="text-foreground flex items-center gap-2 text-[16px] m">
+										<CardTitle className="text-foreground flex items-center gap-2 text-base m">
 											<FiImage className="w-4 h-4" />
 											Profile Picture
 										</CardTitle>
-										<p className="text-muted-foreground text-[12px] mb-4">
+										<p className="text-muted-foreground text-sm mb-4">
 											Note: Format photos SVG, PNG, or JPG Max size 2mb
 										</p>
 									</CardHeader>
@@ -448,7 +448,7 @@ export default function AccountDetails() {
 											{editMode != "basicinfo" && superadmin && (
 												<Button
 													type="button"
-													className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-[12px]"
+													className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-sm"
 													onClick={() => {
 														setEditMode("basicinfo");
 													}}
@@ -460,7 +460,7 @@ export default function AccountDetails() {
 											{editMode === "basicinfo" && (
 												<>
 													<Button
-														className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-[12px]"
+														className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-sm"
 														onClick={() => {}}
 													>
 														<LoadingSpinner loading={btnLoading} />
@@ -470,7 +470,7 @@ export default function AccountDetails() {
 													<Button
 														variant="outline"
 														onClick={() => setEditMode("")}
-														className="w-fit border-border text-foreground hover:bg-accent h-10 text-[12px]"
+														className="w-fit border-border text-foreground hover:bg-accent h-10 text-sm"
 													>
 														Cancel
 													</Button>
@@ -482,14 +482,14 @@ export default function AccountDetails() {
 											formData?.us_level != "USR-1" && (
 												<div className="mt-8">
 													<div className="flex items-center justify-between">
-														<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+														<h2 className="font-semibold text-foreground text-base mb-[5px]">
 															Associated{" "}
 															{associatedLibraries?.length === 1
 																? "Library"
 																: "Libraries"}
 														</h2>
 													</div>
-													<p className="text-muted-foreground text-[12px] mb-4">
+													<p className="text-muted-foreground text-sm mb-4">
 														{associatedLibraries?.length === 1
 															? "View the library this account is linked with, including its type."
 															: "View the list of libraries this account is linked with, including their type."}
@@ -516,10 +516,10 @@ export default function AccountDetails() {
 
 																	<div className="flex flex-col justify-between flex-1">
 																		<div>
-																			<p className="font-medium text-foreground text-[14px]">
+																			<p className="font-medium text-foreground text-base">
 																				{library?.li_name || ""}
 																			</p>
-																			<p className="text-primary-custom text-[12px]">
+																			<p className="text-primary-custom text-sm">
 																				Type: {library?.us_type || ""}
 																			</p>
 																		</div>
@@ -559,10 +559,10 @@ export default function AccountDetails() {
 								<form onSubmit={handleSubmitAcademic}>
 									<Card className="bg-card border-border transition-colors duration-300 max-w-full animate-slide-up-delay-2">
 										<CardContent className="p-6">
-											<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+											<h2 className="font-semibold text-foreground text-base mb-[5px]">
 												Academic
 											</h2>
-											<p className="text-muted-foreground text-[12px] mb-4">
+											<p className="text-muted-foreground text-sm mb-4">
 												Includes section, year level, and institute information.
 											</p>
 
@@ -570,14 +570,14 @@ export default function AccountDetails() {
 												{/* Courses & Year */}
 												<div className="grid grid-cols-2 gap-4">
 													<div>
-														<label className="block text-foreground font-medium mb-2 text-[12px]">
+														<label className="block text-foreground font-medium mb-2 text-sm">
 															Courses
 														</label>
 														<select
 															name="us_courses"
 															value={academicData?.us_courses || ""}
 															onChange={(e) => handleChange(e, setAcademicData)}
-															className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+															className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 															required
 															disabled={editMode == ""}
 														>
@@ -592,14 +592,14 @@ export default function AccountDetails() {
 														</select>
 													</div>
 													<div>
-														<label className="block text-foreground font-medium mb-2 text-[12px]">
+														<label className="block text-foreground font-medium mb-2 text-sm">
 															Year
 														</label>
 														<select
 															name="us_year"
 															value={academicData?.us_year || ""}
 															onChange={(e) => handleChange(e, setAcademicData)}
-															className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+															className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 															required
 															disabled={editMode == ""}
 														>
@@ -625,7 +625,7 @@ export default function AccountDetails() {
 													<div className="grid grid-cols-2 gap-4">
 														{/* Tracks / Institute */}
 														<div>
-															<label className="block text-foreground font-medium mb-2 text-[12px]">
+															<label className="block text-foreground font-medium mb-2 text-sm">
 																{academicData.us_courses ===
 																"Senior High School"
 																	? "Tracks"
@@ -656,7 +656,7 @@ export default function AccountDetails() {
 
 																	setSelectedCourseID(selectedID);
 																}}
-																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 																required
 																disabled={editMode === ""}
 															>
@@ -676,7 +676,7 @@ export default function AccountDetails() {
 
 														{/* Strand / Program */}
 														<div>
-															<label className="block text-foreground font-medium mb-2 text-[12px]">
+															<label className="block text-foreground font-medium mb-2 text-sm">
 																{academicData.us_courses ===
 																"Senior High School"
 																	? "Strand"
@@ -698,7 +698,7 @@ export default function AccountDetails() {
 																onChange={(e) =>
 																	handleChange(e, setAcademicData)
 																}
-																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 																required
 																disabled={editMode === ""}
 															>
@@ -719,7 +719,7 @@ export default function AccountDetails() {
 												)}
 
 												<div>
-													<label className="block text-foreground font-medium mb-2 text-[12px]">
+													<label className="block text-foreground font-medium mb-2 text-sm">
 														Section
 													</label>
 													<Input
@@ -728,7 +728,7 @@ export default function AccountDetails() {
 														onChange={(e) => handleChange(e, setAcademicData)}
 														placeholder="Enter section"
 														className="bg-card border-border text-foreground h-9"
-														style={{ fontSize: "12px" }}
+														
 														required
 														disabled={editMode == ""}
 													/>
@@ -740,7 +740,7 @@ export default function AccountDetails() {
 													{editMode != "academic" && (
 														<Button
 															type="button"
-															className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-[12px]"
+															className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-sm"
 															onClick={() => {
 																setEditMode("academic");
 															}}
@@ -752,7 +752,7 @@ export default function AccountDetails() {
 													{editMode === "academic" && (
 														<>
 															<Button
-																className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-[12px]"
+																className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-sm"
 																onClick={() => {}}
 															>
 																<LoadingSpinner loading={btnLoading} />
@@ -762,7 +762,7 @@ export default function AccountDetails() {
 															<Button
 																variant="outline"
 																onClick={() => setEditMode("")}
-																className="w-fit border-border text-foreground hover:bg-accent h-10 text-[12px]"
+																className="w-fit border-border text-foreground hover:bg-accent h-10 text-sm"
 															>
 																Cancel
 															</Button>
@@ -778,16 +778,16 @@ export default function AccountDetails() {
 							<form onSubmit={handleSubmitAddress}>
 								<Card className="bg-card border-border transition-colors duration-300 max-w-full animate-slide-up-delay-2">
 									<CardContent className="p-6">
-										<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+										<h2 className="font-semibold text-foreground text-base mb-[5px]">
 											Address
 										</h2>
-										<p className="text-muted-foreground text-[12px] mb-4">
+										<p className="text-muted-foreground text-sm mb-4">
 											Details such as street, barangay, municipal, and province.
 										</p>
 
 										<div className="grid grid-cols-2 gap-4">
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													Street
 												</label>
 												<Input
@@ -796,7 +796,7 @@ export default function AccountDetails() {
 													onChange={(e) => handleChange(e, setAddressData)}
 													placeholder="Purok 2"
 													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "12px" }}
+													
 													required
 													disabled={editMode == ""}
 												/>
@@ -805,7 +805,7 @@ export default function AccountDetails() {
 												name="us_province"
 												value={addressData?.us_province || ""}
 												onChange={(e) => handleChange(e, setAddressData)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2  h-9 mt-6 text-[12px]"
+												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2  h-9 mt-6 text-sm"
 												required
 												disabled={editMode == ""}
 											>
@@ -823,7 +823,7 @@ export default function AccountDetails() {
 												name="us_municipal"
 												value={addressData?.us_municipal || ""}
 												onChange={(e) => handleChange(e, setAddressData)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 												required
 												disabled={editMode == ""}
 											>
@@ -840,7 +840,7 @@ export default function AccountDetails() {
 												name="us_barangay"
 												value={addressData?.us_barangay || ""}
 												onChange={(e) => handleChange(e, setAddressData)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 												required
 												disabled={editMode == ""}
 											>
@@ -860,7 +860,7 @@ export default function AccountDetails() {
 												{editMode != "address" && (
 													<Button
 														type="button"
-														className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-[12px]"
+														className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-sm"
 														onClick={() => {
 															setEditMode("address");
 														}}
@@ -872,7 +872,7 @@ export default function AccountDetails() {
 												{editMode === "address" && (
 													<>
 														<Button
-															className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-[12px]"
+															className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-sm"
 															onClick={() => {}}
 														>
 															<LoadingSpinner loading={btnLoading} />
@@ -882,7 +882,7 @@ export default function AccountDetails() {
 														<Button
 															variant="outline"
 															onClick={() => setEditMode("")}
-															className="w-fit border-border text-foreground hover:bg-accent h-9 text-[12px]"
+															className="w-fit border-border text-foreground hover:bg-accent h-9 text-sm"
 														>
 															Cancel
 														</Button>

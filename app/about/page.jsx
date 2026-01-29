@@ -296,10 +296,10 @@ export default function About() {
 
 				<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 					<div className="mb-8 animate-fade-in">
-						<h1 className="font-semibold text-foreground text-[20px]">
+						<h1 className="font-semibold text-foreground text-xl">
 							About & Settings
 						</h1>
-						<p className="text-muted-foreground text-[14px]">
+						<p className="text-muted-foreground text-base">
 							Library information, resource settings, and operational
 							configuration
 						</p>
@@ -313,10 +313,10 @@ export default function About() {
 							/>
 							<div className="absolute inset-0 bg-black/50"></div>
 							<div className="absolute top-6 left-6">
-								<h2 className="font-semibold text-white text-[18px]">
+								<h2 className="font-semibold text-white text-lg">
 									{libraryData?.li_name || ""}
 								</h2>
-								<p className="text-white text-[14px]">
+								<p className="text-white text-base">
 									{libraryData?.li_schoolname || ""}
 								</p>
 							</div>
@@ -325,21 +325,21 @@ export default function About() {
 						<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardHeader className="!pb-4">
-									<CardTitle className="flex items-center gap-2 text-foreground text-[16px]">
+									<CardTitle className="flex items-center gap-2 text-foreground text-base">
 										<FiInfo className="w-4 h-4" />
 										Basic Information
 									</CardTitle>
 								</CardHeader>
 								<CardContent className="space-y-4">
 									<div>
-										<p className="text-foreground text-[12px]">School ID</p>
-										<p className="text-muted-foreground font-medium break-words text-[12px]">
+										<p className="text-foreground text-sm">School ID</p>
+										<p className="text-muted-foreground font-medium break-words text-sm">
 											{libraryData?.li_schoolID}
 										</p>
 									</div>
 									<div>
-										<p className="text-foreground text-[12px]">Description</p>
-										<p className="text-muted-foreground break-words text-[12px]">
+										<p className="text-foreground text-sm">Description</p>
+										<p className="text-muted-foreground break-words text-sm">
 											{libraryData?.li_description}
 										</p>
 									</div>
@@ -348,21 +348,21 @@ export default function About() {
 
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardHeader className="!pb-4">
-									<CardTitle className="flex items-center gap-2 text-foreground text-[16px]">
+									<CardTitle className="flex items-center gap-2 text-foreground text-base">
 										<FiPhone className="w-4 h-4" />
 										Contact Information
 									</CardTitle>
 								</CardHeader>
 								<CardContent className="space-y-4">
 									<div>
-										<p className="text-foreground text-[12px]">Phone</p>
-										<p className="text-muted-foreground  break-words text-[12px]">
+										<p className="text-foreground text-sm">Phone</p>
+										<p className="text-muted-foreground  break-words text-sm">
 											{libraryData?.li_phone}
 										</p>
 									</div>
 									<div>
-										<p className="text-foreground text-[12px]">Email</p>
-										<p className="text-muted-foreground  break-words text-[12px]">
+										<p className="text-foreground text-sm">Email</p>
+										<p className="text-muted-foreground  break-words text-sm">
 											{libraryData?.li_email}
 										</p>
 									</div>
@@ -371,14 +371,14 @@ export default function About() {
 
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardHeader className="!pb-4">
-									<CardTitle className="flex items-center gap-2 text-foreground text-[16px]">
+									<CardTitle className="flex items-center gap-2 text-foreground text-base">
 										<FiMapPin className="w-4 h-4" />
 										Address
 									</CardTitle>
 								</CardHeader>
 								<CardContent>
 									<div>
-										<p className="text-foreground text-[12px]">
+										<p className="text-foreground text-sm">
 											{libraryData?.li_address}
 										</p>
 									</div>
@@ -390,24 +390,24 @@ export default function About() {
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 						<Card className="bg-card border-border transition-colors duration-300 animate-slide-up-delay-1">
 							<CardHeader className="!pb-4">
-								<CardTitle className="flex items-center gap-2 text-foreground text-[16px]">
+								<CardTitle className="flex items-center gap-2 text-foreground text-base">
 									<FiClock className="w-4 h-4" />
 									Operating Hours
 								</CardTitle>
-								<p className="text-muted-foreground text-[12px]">
+								<p className="text-muted-foreground text-sm">
 									Configure library operating hours for each day
 								</p>
 							</CardHeader>
 							<CardContent className="space-y-6">
 								{isPersonnel && (
 									<div className="p-4 border border-border rounded-lg bg-muted/30">
-										<h4 className="font-medium text-foreground mb-4 text-[13px]">
+										<h4 className="font-medium text-foreground mb-4 text-sm">
 											Apply to All Days
 										</h4>
 										<div className="space-y-3">
 											<div className="grid grid-cols-2 gap-2">
 												<div>
-													<label className="block text-foreground font-medium mb-2 text-[12px]">
+													<label className="block text-foreground font-medium mb-2 text-sm">
 														Open Time
 													</label>
 													<Input
@@ -417,11 +417,11 @@ export default function About() {
 															handleSetToAllChange("open", e.target.value)
 														}
 														className="bg-card border-border text-foreground h-9"
-														style={{ fontSize: "12px" }}
+														
 													/>
 												</div>
 												<div>
-													<label className="block text-foreground font-medium mb-2  text-[12px]">
+													<label className="block text-foreground font-medium mb-2  text-sm">
 														Close Time
 													</label>
 													<Input
@@ -431,7 +431,7 @@ export default function About() {
 															handleSetToAllChange("close", e.target.value)
 														}
 														className="bg-card border-border text-foreground h-9 "
-														style={{ fontSize: "12px" }}
+														
 													/>
 												</div>
 											</div>
@@ -439,13 +439,13 @@ export default function About() {
 												<Button
 													onClick={applyToAllDays}
 													variant="outline"
-													className="flex-1 h-9 border border-border text-primary-custom bg-transparent hover:bg-transparent text-[12px]"
+													className="flex-1 h-9 border border-border text-primary-custom bg-transparent hover:bg-transparent text-sm"
 												>
 													Apply to All Days
 												</Button>
 												<Button
 													onClick={handleSave}
-													className="bg-primary-custom hover:bg-secondary-custom text-white h-9 w-[100px] text-[12px]"
+													className="bg-primary-custom hover:bg-secondary-custom text-white h-9 w-[100px] text-sm"
 												>
 													<LoadingSpinner loading={btnLoading} />
 													Save
@@ -456,18 +456,18 @@ export default function About() {
 								)}
 
 								<div className="space-y-4">
-									<h4 className="font-medium text-foreground text-[13px]">
+									<h4 className="font-medium text-foreground text-sm">
 										Individual Day Settings
 									</h4>
 									{daysOfWeek.map((day) => (
 										<div key={day.key} className="space-y-2">
 											<div className="flex items-center justify-between">
 												<div className="flex items-center gap-2">
-													<label className="text-foreground font-medium text-[12px]">
+													<label className="text-foreground font-medium text-sm">
 														{day.label}
 													</label>
 													<div
-														className={`ml-2 text-[12px] ${
+														className={`ml-2 text-sm ${
 															openHours[day.key].enabled
 																? "text-muted-foreground"
 																: "text-red-500"
@@ -503,7 +503,7 @@ export default function About() {
 																? "bg-muted cursor-not-allowed"
 																: "bg-card"
 														}`}
-														style={{ fontSize: "12px" }}
+														
 													/>
 													<Input
 														type="time"
@@ -521,7 +521,7 @@ export default function About() {
 																? "bg-muted cursor-not-allowed"
 																: "bg-card"
 														}`}
-														style={{ fontSize: "12px" }}
+														
 													/>
 												</div>
 											)}
@@ -533,11 +533,11 @@ export default function About() {
 
 						<Card className="bg-card border-border h-fit transition-colors duration-300 animate-slide-up-delay-2">
 							<CardHeader className="!pb-4">
-								<CardTitle className="flex items-center gap-2 text-foreground text-[16px]">
+								<CardTitle className="flex items-center gap-2 text-foreground text-base">
 									<FiSettings className="w-4 h-4" />
 									Resource Settings
 								</CardTitle>
-								<p className="text-muted-foreground text-[12px]">
+								<p className="text-muted-foreground text-sm">
 									Enable or disable library resources and services
 								</p>
 							</CardHeader>
@@ -559,10 +559,10 @@ export default function About() {
 															<IconComponent className="w-4 h-4" />
 														</div>
 														<div>
-															<p className="font-medium text-foreground text-[12px]">
+															<p className="font-medium text-foreground text-sm">
 																{resource.name}
 															</p>
-															<p className="text-muted-foreground text-[12px]">
+															<p className="text-muted-foreground text-sm">
 																{resource.description}
 															</p>
 														</div>
@@ -587,25 +587,25 @@ export default function About() {
 								</div>
 
 								<div className="mt-6 p-4 bg-muted/30 rounded-lg border border-border">
-									<h4 className="font-medium text-foreground text-[13px] mb-2">
+									<h4 className="font-medium text-foreground text-sm mb-2">
 										Resource Status Summary
 									</h4>
 									<div className="grid grid-cols-1 gap-1">
 										<div className="flex justify-between items-center">
-											<span className="text-muted-foreground text-[12px]">
+											<span className="text-muted-foreground text-sm">
 												Active Resources:
 											</span>
-											<span className="font-medium text-foreground text-[12px]">
+											<span className="font-medium text-foreground text-sm">
 												{Object.values(resourceSettings).filter(Boolean).length}{" "}
 												of {Object.keys(resourceSettings).length}
 											</span>
 										</div>
 										<div className="flex justify-between items-center">
-											<span className="text-muted-foreground text-[12px]">
+											<span className="text-muted-foreground text-sm">
 												System Status:
 											</span>
 											<span
-												className={`font-medium text-[12px] ${
+												className={`font-medium text-sm ${
 													Object.values(resourceSettings).some(Boolean)
 														? "text-green-600"
 														: "text-red-600"

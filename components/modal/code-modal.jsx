@@ -32,7 +32,7 @@ export function CodeModal({
 							type={showQR ? "qr" : "barcode"}
 						/>
 					</div>
-					<p className="text-muted-foreground text-[14px] mt-3">
+					<p className="text-muted-foreground text-base mt-3">
 						Scan this {showQR ? "QR code" : "barcode"}
 					</p>
 				</div>
@@ -41,7 +41,7 @@ export function CodeModal({
 					<Button
 						variant={showQR ? "default" : "outline"}
 						size="sm"
-						className="text-[12px] px-4 h-10"
+						className="text-sm px-4 h-10"
 						onClick={() => setShowQR(true)}
 					>
 						QR Code
@@ -49,7 +49,7 @@ export function CodeModal({
 					<Button
 						variant={!showQR ? "default" : "outline"}
 						size="sm"
-						className="text-[12px] px-4 h-10"
+						className="text-sm px-4 h-10"
 						onClick={() => setShowQR(false)}
 					>
 						Barcode
@@ -57,7 +57,7 @@ export function CodeModal({
 					<Button
 						variant="outline"
 						size="sm"
-						className="h-10 border-border text-foreground hover:bg-accent text-[12px] px-4"
+						className="h-10 border-border text-foreground hover:bg-accent text-sm px-4"
 						onClick={handleDownload}
 					>
 						<Download className="w-3 h-3 mr-1" />

@@ -43,7 +43,7 @@ export function RemoveAccountModal({
 					userData?.us_type,
 					userData?.us_library,
 					setBtnLoading,
-					Alert
+					Alert,
 				);
 			} else {
 				if (!userDetails?.uid) return;
@@ -57,7 +57,7 @@ export function RemoveAccountModal({
 					"Inactive",
 					reason,
 					setBtnLoading,
-					Alert
+					Alert,
 				);
 			}
 		}
@@ -95,11 +95,11 @@ export function RemoveAccountModal({
 				<div className="flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-lg mb-6">
 					<FiAlertTriangle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
 					<div>
-						<h4 className="font-medium text-red-800 mb-1 text-[12px]">
+						<h4 className="font-medium text-red-800 mb-1 text-sm">
 							Deactivate{" "}
 							{["USR-6"].includes(userData?.us_level) ? "Patron" : "Personnel"}
 						</h4>
-						<p className="text-red-700 text-[11px]">
+						<p className="text-red-700 text-xs">
 							You are about to deactivate <strong>{userData?.us_name}</strong>{" "}
 							from this library.
 							{!transferToOtherLibrary &&
@@ -110,7 +110,7 @@ export function RemoveAccountModal({
 
 				{!transferToOtherLibrary && (
 					<div className="mb-6">
-						<label className="block text-foreground font-medium mb-2 text-[12px]">
+						<label className="block text-foreground font-medium mb-2 text-sm">
 							Reason for Deactivating <span className="text-red-500">*</span>
 						</label>
 						<Textarea
@@ -119,7 +119,7 @@ export function RemoveAccountModal({
 							placeholder="Please provide a reason for removing this account..."
 							rows={3}
 							className="bg-card border-border text-foreground"
-							style={{ fontSize: "12px" }}
+							
 							required
 						/>
 					</div>
@@ -137,7 +137,7 @@ export function RemoveAccountModal({
 						/>
 						<label
 							htmlFor="transfer-library"
-							className="text-foreground font-medium cursor-pointer text-[12px]"
+							className="text-foreground font-medium cursor-pointer text-sm"
 						>
 							Transfer to another library
 						</label>
@@ -145,13 +145,13 @@ export function RemoveAccountModal({
 
 					{transferToOtherLibrary && (
 						<div className="ml-6">
-							<label className="block text-foreground font-medium mb-2 text-[12px]">
+							<label className="block text-foreground font-medium mb-2 text-sm">
 								Select Library <span className="text-red-500">*</span>
 							</label>
 							<select
 								value={selectedLibrary}
 								onChange={(e) => setSelectedLibrary(e.target.value)}
-								className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+								className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 								required={transferToOtherLibrary}
 							>
 								<option value="">Choose a library...</option>
@@ -166,7 +166,7 @@ export function RemoveAccountModal({
 									</option>
 								))}
 							</select>
-							<p className="text-muted-foreground mt-1 text-[11px]">
+							<p className="text-muted-foreground mt-1 text-xs">
 								The account will be transferred to the selected library and
 								maintain access there.
 							</p>
@@ -179,14 +179,14 @@ export function RemoveAccountModal({
 						type="button"
 						onClick={handleCancel}
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 					>
 						Cancel
 					</Button>
 					<Button
 						type="submit"
 						variant="destructive"
-						className="h-10 text-[12px]"
+						className="h-10 text-sm"
 					>
 						<LoadingSpinner loading={btnLoading} />
 						{transferToOtherLibrary ? "Transfer Account" : "Deactivate Account"}

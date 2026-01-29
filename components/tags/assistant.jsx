@@ -95,7 +95,7 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 			setMessages,
 			`${quickAction.userdetails || ""}  ${quickAction.pdfText || ""}`,
 			setIsAiThinking,
-			"reading"
+			"reading",
 		);
 	};
 
@@ -109,7 +109,7 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 			setMessages,
 			`${quickAction.userdetails || ""}  ${quickAction.pdfText || ""}`,
 			setIsAiThinking,
-			"reading"
+			"reading",
 		);
 	};
 
@@ -124,7 +124,7 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 			transactionData,
 			transactionData.tr_resource.ma_softURL,
 			setQuickAction,
-			setIsFetch
+			setIsFetch,
 		);
 	}, [transactionData]);
 
@@ -188,12 +188,12 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 				<div>
 					<div className="flex items-start justify-between gap-6">
 						<div>
-							<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+							<h2 className="font-semibold text-foreground text-base mb-[5px]">
 								{transactionData?.tr_format === "Audio Copy"
 									? "Audio Assistant"
 									: "Reading Assistant"}
 							</h2>
-							<p className="text-muted-foreground text-[12px]">
+							<p className="text-muted-foreground text-sm">
 								{transactionData?.tr_format === "Audio Copy"
 									? "Ask questions about this audio. Get summaries, key ideas, or clarifications."
 									: "Ask questions about this text. Get summaries, key ideas, or clarifications."}
@@ -233,11 +233,11 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 							if (message.role === "user") {
 								return (
 									<div key={index} className="flex flex-col items-end">
-										<div className="text-[14px] text-muted-foreground mb-1 mr-1">
+										<div className="text-sm text-muted-foreground mb-1 mr-1">
 											You
 										</div>
 										<div className="max-w-[80%] bg-muted/70 rounded-2xl rounded-tr-sm px-4 py-2.5">
-											<div className="whitespace-pre-line text-[13px]">
+											<div className="whitespace-pre-line text-sm">
 												{message.parts[0].text}
 											</div>
 										</div>
@@ -257,31 +257,31 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 														className="w-full h-full object-cover"
 													/>
 												</div>
-												<div className="font-medium text-[14px]">Butch AI</div>
+												<div className="font-medium text-base">Butch AI</div>
 											</div>
 										</div>
 
-										<div className="text-[13px] ml-8">
+										<div className="text-sm ml-8">
 											<ReactMarkdown
 												remarkPlugins={[remarkGfm]}
 												components={{
 													p: ({ node, ...props }) => (
-														<p className="mb-2 text-[13px]" {...props} />
+														<p className="mb-2 text-sm" {...props} />
 													),
 													ul: ({ node, ...props }) => (
 														<ul
-															className="list-disc list-inside ml-4 mb-2 text-[13px]"
+															className="list-disc list-inside ml-4 mb-2 text-sm"
 															{...props}
 														/>
 													),
 													ol: ({ node, ...props }) => (
 														<ol
-															className="list-decimal list-inside ml-4 mb-2 text-[13px]"
+															className="list-decimal list-inside ml-4 mb-2 text-sm"
 															{...props}
 														/>
 													),
 													table: ({ node, ...props }) => (
-														<div className="overflow-x-auto my-4  text-[13px]">
+														<div className="overflow-x-auto my-4  text-sm">
 															<table
 																className="border border-gray-300 text-sm text-left w-full "
 																{...props}
@@ -290,13 +290,13 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 													),
 													th: ({ node, ...props }) => (
 														<th
-															className="border border-gray-300 bg-green-100 px-2 py-1 text-[13px] min-w-[120px]"
+															className="border border-gray-300 bg-green-100 px-2 py-1 text-sm min-w-[120px]"
 															{...props}
 														/>
 													),
 													td: ({ node, ...props }) => (
 														<td
-															className="border border-gray-300 px-2 py-1 text-[13px]"
+															className="border border-gray-300 px-2 py-1 text-sm"
 															{...props}
 														/>
 													),
@@ -321,7 +321,7 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 
 										<div className="flex items-center gap-3 mt-2   ml-8">
 											<button
-												className={`text-[12px] flex items-center gap-1 text-muted-foreground hover:text-foreground ${
+												className={`text-sm flex items-center gap-1 text-muted-foreground hover:text-foreground ${
 													message.isSpeaking ? "text-primary-custom" : ""
 												}`}
 												onClick={() =>
@@ -332,7 +332,7 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 												{message.isSpeaking ? "Stop" : "Listen"}
 											</button>
 											<button
-												className="text-[12px] flex items-center gap-1 text-muted-foreground hover:text-foreground"
+												className="text-sm flex items-center gap-1 text-muted-foreground hover:text-foreground"
 												onClick={() =>
 													copyMessageToClipboard(message.parts[0].text)
 												}
@@ -341,7 +341,7 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 												Copy
 											</button>
 											<button
-												className="text-[12px] flex items-center gap-1 text-muted-foreground hover:text-foreground"
+												className="text-sm flex items-center gap-1 text-muted-foreground hover:text-foreground"
 												onClick={() => regenerateResponse(index)}
 											>
 												<FiRefreshCw className="w-3 h-3" />
@@ -365,7 +365,7 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 											/>
 										</div>
 									</div>
-									<span className="text-[13px]">
+									<span className="text-sm">
 										{isFetching != null ? isFetching : "Butch AI is thinking"}
 									</span>
 								</div>
@@ -386,8 +386,7 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 							value={inputValue}
 							onChange={(e) => setInputValue(e.target.value)}
 							placeholder="Ask about this audio…"
-							className="h-9  pr-20"
-							style={{ fontSize: "12px" }}
+							className="h-9 pr-20 text-sm"
 						/>
 						<div className="absolute right-2 flex items-center ">
 							<Button
@@ -404,7 +403,7 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 										speechSupported,
 										isListening,
 										setIsListening,
-										recognitionRef
+										recognitionRef,
 									)
 								}
 								disabled={!speechSupported}
@@ -412,8 +411,8 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 									!speechSupported
 										? "Speech recognition not supported"
 										: isListening
-										? "Stop listening"
-										: "Start voice input"
+											? "Stop listening"
+											: "Start voice input"
 								}
 							>
 								{isListening ? (
@@ -436,14 +435,14 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 					</form>
 					{isListening && (
 						<div className="mt-3 pt-3 border-t border-border">
-							<div className="flex items-center gap-2  text-muted-foreground text-[12px]">
+							<div className="flex items-center gap-2  text-muted-foreground text-sm">
 								<div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
 								Listening... Click the microphone again to stop
 							</div>
 						</div>
 					)}
 
-					<div className="mt-2 text-muted-foreground text-[12px]">
+					<div className="mt-2 text-muted-foreground text-sm">
 						Tip: Try "Summarize the last minute," "Define telemetry," or "List 3
 						key points from this chapter."
 					</div>
@@ -451,7 +450,7 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 					<div className="mt-6">
 						<div className="flex items-center gap-2 mb-2">
 							<Lightbulb className="w-4 h-4 text-muted-foreground" />
-							<span className="text-[12px] font-medium text-muted-foreground">
+							<span className="text-sm font-medium text-muted-foreground">
 								Quick suggestions
 							</span>
 						</div>
@@ -460,7 +459,7 @@ const AssistantPage = ({ transactionData, handleFocusAI }) => {
 								<button
 									key={index}
 									onClick={() => handleRecommendationClick(rec)}
-									className="px-2 py-1 text-[12px] bg-muted hover:bg-accent text-muted-foreground hover:text-foreground rounded-md border border-border transition-colors"
+									className="px-2 py-1 text-sm bg-muted hover:bg-accent text-muted-foreground hover:text-foreground rounded-md border border-border transition-colors"
 								>
 									{rec}
 								</button>

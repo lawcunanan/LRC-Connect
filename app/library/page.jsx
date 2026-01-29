@@ -52,7 +52,7 @@ export default function LibraryList() {
 				pageLimit,
 				pageCursors,
 				setPageCursors,
-				currentPage
+				currentPage,
 			);
 		}
 	}, [userDetails, currentPage, selectedStatus, searchQuery]);
@@ -67,24 +67,23 @@ export default function LibraryList() {
 
 					<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 						<div className="mb-8 animate-fade-in">
-							<h1 className="font-semibold text-foreground text-[20px]">
+							<h1 className="font-semibold text-foreground text-xl">
 								Library Management
 							</h1>
-							<p className="text-muted-foreground text-[14px]">
+							<p className="text-muted-foreground text-base">
 								Manage library registrations, locations, and institutional
 								details
 							</p>
 						</div>
 
 						<div className="flex items-left justify-between flex-col sm:flex-row gap-4 mb-8 animate-slide-up">
-							<div className="relative flex items-center flex-1 max-w-md">
+							<div className="relative flex items-center flex-1 max-w-lg">
 								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 								<Input
 									placeholder="Search library..."
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
-									className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-									style={{ fontSize: "12px" }}
+									className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
 								/>
 
 								<div className="absolute right-[87px] top-1/2 transform -translate-y-1/2">
@@ -98,7 +97,7 @@ export default function LibraryList() {
 									<select
 										value={selectedStatus}
 										onChange={(e) => setSelectedStatus(e.target.value)}
-										className="h-full pl-2 pr-6 text-xs rounded-l-none border-l border-border focus:outline-none bg-background appearance-none text-[12px]"
+										className="h-full pl-2 pr-6 text-xs rounded-l-none border-l border-border focus:outline-none bg-background appearance-none text-sm"
 									>
 										<option disabled>Filter</option>
 										<option value="Active">Active</option>
@@ -111,7 +110,7 @@ export default function LibraryList() {
 
 							<Button
 								onClick={() => router.push(`/library/register`)}
-								className="bg-primary-custom hover:bg-secondary-custom text-white h-9 px-4 w-fit text-[12px]"
+								className="bg-primary-custom hover:bg-secondary-custom text-white h-9 px-4 w-fit text-sm"
 							>
 								<FiPlus className="w-4 h-4 mr-1" />
 								Register Library
@@ -134,17 +133,17 @@ export default function LibraryList() {
 											/>
 										</div>
 										<div className="p-4">
-											<h4 className="font-medium text-foreground text-[14px]">
+											<h4 className="font-medium text-foreground text-base">
 												{library.li_name}
 											</h4>
-											<p className="text-muted-foreground mb-2 text-[12px]">
+											<p className="text-muted-foreground mb-2 text-sm">
 												{library.li_address}
 											</p>
 
 											<Button
 												variant="link"
 												size="sm"
-												className="text-primary-custom hover:text-secondary-custom text-[12px] p-0 h-0"
+												className="text-primary-custom hover:text-secondary-custom text-sm p-0 h-0"
 												onClick={() =>
 													router.push(`/library/details?id=${library.id}`)
 												}

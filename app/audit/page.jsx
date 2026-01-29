@@ -283,10 +283,10 @@ export default function AuditPage() {
 			<div className="flex items-center justify-center h-64 bg-muted/20 rounded-lg border-2 border-dashed border-muted-foreground/30">
 				<div className="text-center">
 					<FiBarChart2 className="w-12 h-12 text-muted-foreground/50 mx-auto mb-4" />
-					<p className="text-muted-foreground text-[14px]">
+					<p className="text-muted-foreground text-base">
 						Chart view coming soon
 					</p>
-					<p className="text-muted-foreground/70 mt-1 text-[12px]">
+					<p className="text-muted-foreground/70 mt-1 text-sm">
 						Visual representation will be available in future updates
 					</p>
 				</div>
@@ -313,7 +313,7 @@ export default function AuditPage() {
 						].map((header) => (
 							<th
 								key={header}
-								className="text-left py-4 px-6 font-semibold text-foreground text-[12px]"
+								className="text-left py-4 px-6 font-semibold text-foreground text-sm"
 							>
 								{header}
 							</th>
@@ -327,39 +327,39 @@ export default function AuditPage() {
 							key={index}
 							className={`border-b border-border hover:bg-accent/30 transition-colors `}
 						>
-							<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[150px]">
+							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[150px]">
 								{audit?.au_createdAtFormatted}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[120px]">
+							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[120px]">
 								{audit?.au_schoolId}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[100px]">
+							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[100px]">
 								{audit?.au_userType}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[180px]">
+							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[180px]">
 								{audit?.au_fullname}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[150px]">
+							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[150px]">
 								{audit?.au_library}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[130px]">
+							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[130px]">
 								{audit?.au_actionType}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[350px] max-w-[600px]">
+							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[350px] max-w-[600px]">
 								{audit?.au_description}
 							</td>
-							<td className="py-4 px-6 text-left text-[12px] min-w-[80px]">
+							<td className="py-4 px-6 text-left text-sm min-w-[80px]">
 								<Badge
 									className={getStatusColor(audit?.au_status)}
-									style={{ fontSize: "11px" }}
+									
 								>
 									{audit?.au_status}
 								</Badge>
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[120px]">
+							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[120px]">
 								{audit?.au_ipAddress}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[140px]">
+							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[140px]">
 								{audit?.au_device}
 							</td>
 						</tr>
@@ -389,10 +389,10 @@ export default function AuditPage() {
 
 						<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 							<div className="mb-8 animate-fade-in">
-								<h1 className="font-semibold text-foreground text-[20px]">
+								<h1 className="font-semibold text-foreground text-xl">
 									Audit Trail
 								</h1>
-								<p className="text-muted-foreground text-[14px]">
+								<p className="text-muted-foreground text-base">
 									Track and monitor all system activities, user actions, and
 									security events
 								</p>
@@ -400,18 +400,18 @@ export default function AuditPage() {
 
 							<Card className="p-6 bg-card border-border transition-colors duration-300 animate-slide-up animation-delay-400 ">
 								<CardHeader className="p-0">
-									<CardTitle className="font-semibold text-foreground text-[18px] mb-6">
+									<CardTitle className="font-semibold text-foreground text-lg mb-6">
 										{`System Activity Log (${auditData?.length} events)`}
 									</CardTitle>
 									<div className="flex items-left justify-between flex-col sm:flex-row gap-4">
-										<div className="relative flex-1 max-w-md">
+										<div className="relative flex-1 max-w-lg">
 											<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 											<Input
 												placeholder="Search user..."
 												value={searchQuery}
 												onChange={(e) => setSearchQuery(e.target.value)}
 												className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-												style={{ fontSize: "12px" }}
+												
 											/>
 											<div className="absolute right-16 top-1/2 transform -translate-y-1/2">
 												<FiCamera
@@ -422,7 +422,7 @@ export default function AuditPage() {
 											<Button
 												onClick={() => setShowFilters(!showFilters)}
 												variant="ghost"
-												className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-[12px]"
+												className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
 											>
 												Filter
 											</Button>
@@ -434,7 +434,7 @@ export default function AuditPage() {
 													variant={viewMode === "table" ? "default" : "ghost"}
 													size="sm"
 													onClick={() => setViewMode("table")}
-													className={`text-[12px] h-9 px-3 rounded-r-none ${
+													className={`text-sm h-9 px-3 rounded-r-none ${
 														viewMode === "table"
 															? "bg-primary-custom text-white hover:bg-primary-custom/90"
 															: "hover:bg-accent"
@@ -447,7 +447,7 @@ export default function AuditPage() {
 													variant={viewMode === "chart" ? "default" : "ghost"}
 													size="sm"
 													onClick={() => setViewMode("chart")}
-													className={`text-[12px] h-9 px-3 rounded-l-none ${
+													className={`text-sm h-9 px-3 rounded-l-none ${
 														viewMode === "chart"
 															? "bg-primary-custom text-white hover:bg-primary-custom/90"
 															: "hover:bg-accent"
@@ -462,7 +462,7 @@ export default function AuditPage() {
 												onClick={() => setViewMode("export")}
 												variant="outline"
 												size="sm"
-												className="h-9 bg-transparent border-border hover:bg-accent text-[12px]"
+												className="h-9 bg-transparent border-border hover:bg-accent text-sm"
 											>
 												<FiFileText className="w-4 h-4 mr-1" />
 												Preview
@@ -476,14 +476,14 @@ export default function AuditPage() {
 											className="flex items-center gap-2 mb-8 flex-wrap"
 											style={{ marginTop: "15px" }}
 										>
-											<span className="text-muted-foreground text-[12px]">
+											<span className="text-muted-foreground text-sm">
 												Active Filters:
 											</span>
 
 											{getActiveFilters().map((filter, index) => (
 												<span
 													key={index}
-													className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]"
+													className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm"
 												>
 													{filter.label}: {filter.value}
 													<FiX
@@ -522,7 +522,7 @@ export default function AuditPage() {
 									/>
 									<div className="relative bg-card w-80 h-full shadow-lg transform transition-transform duration-300 translate-x-0 animate-slide-in-left">
 										<div className="flex items-center justify-between p-4 border-b border-border text-white bg-primary-custom">
-											<h2 className="font-semibold text-white text-[14px]">
+											<h2 className="font-semibold text-white text-base">
 												Filters
 											</h2>
 											<button
@@ -536,13 +536,13 @@ export default function AuditPage() {
 										<div className="p-4 space-y-4 overflow-y-auto h-full pb-24">
 											{userDetails?.us_level == "USR-1" && (
 												<div className="space-y-2">
-													<label className="block font-medium text-foreground text-[12px]">
+													<label className="block font-medium text-foreground text-sm">
 														Select a Library
 													</label>
 													<select
 														value={selectedLibrary}
 														onChange={(e) => setSelectedLibrary(e.target.value)}
-														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-[12px]"
+														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-sm"
 													>
 														{libraries.map((library) => (
 															<option key={library.id} value={library.id}>
@@ -554,7 +554,7 @@ export default function AuditPage() {
 											)}
 
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground text-[12px]">
+												<label className="block font-medium text-foreground text-sm">
 													Select a Student Library
 												</label>
 												<select
@@ -562,7 +562,7 @@ export default function AuditPage() {
 													onChange={(e) =>
 														setSelectedStudLibrary(e.target.value)
 													}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-sm"
 												>
 													<option value="All">All Libraries</option>
 													{libraries.map((library) => (
@@ -574,14 +574,14 @@ export default function AuditPage() {
 											</div>
 
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground text-[12px]">
+												<label className="block font-medium text-foreground text-sm">
 													Select a User Type
 												</label>
 												<select
 													value={selectedusType}
 													onChange={(e) => setSelectedUsType(e.target.value)}
 													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9"
-													style={{ fontSize: "12px" }}
+													
 													required
 												>
 													<option value="All">All User Types</option>
@@ -598,14 +598,14 @@ export default function AuditPage() {
 											</div>
 
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground text-[12px]">
+												<label className="block font-medium text-foreground text-sm">
 													Select an Action Type
 												</label>
 												<select
 													value={selectedAction}
 													onChange={(e) => setSelectedAction(e.target.value)}
 													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9"
-													style={{ fontSize: "12px" }}
+													
 													required
 												>
 													<option value="All">All Action Types</option>
@@ -622,13 +622,13 @@ export default function AuditPage() {
 											</div>
 
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground  text-[12px]">
+												<label className="block font-medium text-foreground  text-sm">
 													Select Severity Level Status
 												</label>
 												<select
 													value={selectedStatus}
 													onChange={(e) => setSelectedStatus(e.target.value)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-sm"
 												>
 													<option value="Low">Low</option>
 													<option value="Medium">Medium</option>
@@ -637,26 +637,26 @@ export default function AuditPage() {
 											</div>
 
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground text-[12px]">
+												<label className="block font-medium text-foreground text-sm">
 													Start Date
 												</label>
 												<input
 													type="date"
 													value={selectedStartDate}
 													onChange={(e) => setSelectedStartDate(e.target.value)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 												/>
 											</div>
 
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground text-[12px]">
+												<label className="block font-medium text-foreground text-sm">
 													End Date
 												</label>
 												<input
 													type="date"
 													value={selectedEndDate}
 													onChange={(e) => setSelectedEndDate(e.target.value)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 												/>
 											</div>
 										</div>
@@ -677,13 +677,13 @@ export default function AuditPage() {
 														setShowFilters(false);
 													}}
 													variant="outline"
-													className="flex-1 h-9 border-border  text-[12px]"
+													className="flex-1 h-9 border-border  text-sm"
 												>
 													Clear All
 												</Button>
 												<Button
 													onClick={() => setShowFilters(false)}
-													className="flex-1 text-white hover:opacity-90 h-9 bg-primary-custom  text-[12px]"
+													className="flex-1 text-white hover:opacity-90 h-9 bg-primary-custom  text-sm"
 												>
 													Apply Filters
 												</Button>

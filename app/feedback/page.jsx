@@ -70,7 +70,7 @@ export default function FeedbackAndFAQs() {
 			type,
 			checked,
 			userDetails?.uid,
-			Alert
+			Alert,
 		);
 	};
 
@@ -88,7 +88,7 @@ export default function FeedbackAndFAQs() {
 				Alert,
 				pageLimit,
 				pagination,
-				setPagination
+				setPagination,
 			);
 		}
 
@@ -113,7 +113,7 @@ export default function FeedbackAndFAQs() {
 				Alert,
 				pageLimit,
 				pagination,
-				setPagination
+				setPagination,
 			);
 		}
 
@@ -131,10 +131,10 @@ export default function FeedbackAndFAQs() {
 
 					<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 						<div className="mb-8 animate-slide-up">
-							<h1 className="font-semibold text-foreground text-[20px]">
+							<h1 className="font-semibold text-foreground text-xl">
 								Feedback & FAQs
 							</h1>
-							<p className="text-muted-foreground text-[14px]">
+							<p className="text-muted-foreground text-base">
 								Manage user feedback and frequently asked questions
 							</p>
 						</div>
@@ -142,10 +142,10 @@ export default function FeedbackAndFAQs() {
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-slide-up-delay-1">
 							<Card className="bg-card border-border transition-colors duration-300 h-fit max-h-[1200px] flex flex-col">
 								<CardContent className="p-6 overflow-auto">
-									<h3 className="text-foreground font-semibold text-[16px]">
+									<h3 className="text-foreground font-semibold text-base">
 										User Feedback
 									</h3>
-									<p className="text-muted-foreground mb-4 text-[12px]">
+									<p className="text-muted-foreground mb-4 text-sm">
 										View and manage feedback from users about the system
 										application.
 									</p>
@@ -158,15 +158,14 @@ export default function FeedbackAndFAQs() {
 												placeholder="Search feedback..."
 												value={searchQuery}
 												onChange={(e) => setSearchQuery(e.target.value)}
-												className="pl-10 bg-card border-border text-foreground h-9"
-												style={{ fontSize: "12px" }}
+												className="pl-10 bg-card border-border text-foreground h-9 text-sm"
 											/>
 										</div>
 
 										<select
 											value={selectedStatus}
 											onChange={(e) => setSelectedStatus(e.target.value)}
-											className="border border-border bg-card text-foreground rounded-md px-3 py-1.5 h-9 text-[12px]"
+											className="border border-border bg-card text-foreground rounded-md px-3 py-1.5 h-9 text-sm"
 										>
 											<option value="All">All Status</option>
 											<option value="unread">Unread</option>
@@ -186,7 +185,7 @@ export default function FeedbackAndFAQs() {
 											>
 												{userDetails &&
 													["USR-2", "USR-3"].includes(
-														userDetails?.us_level
+														userDetails?.us_level,
 													) && (
 														<Checkbox
 															id={`feedback-${feedback?.id}`}
@@ -195,7 +194,7 @@ export default function FeedbackAndFAQs() {
 																handleCheckboxChange(
 																	feedback?.id,
 																	feedback?.fe_type,
-																	feedback?.fe_isRead
+																	feedback?.fe_isRead,
 																)
 															}
 															className="mt-1"
@@ -214,11 +213,11 @@ export default function FeedbackAndFAQs() {
 												<div className="flex-1 space-y-2">
 													<div className="flex items-start justify-between ">
 														<div>
-															<p className="text-foreground font-medium text-[14px]">
+															<p className="text-foreground font-medium text-base">
 																{feedback?.fe_sender}
 															</p>
 
-															<p className="text-primary-custom text-[12px]">
+															<p className="text-primary-custom text-sm">
 																{feedback?.fe_ustype}
 																<span className="text-muted-foreground">
 																	{" • "}
@@ -226,22 +225,22 @@ export default function FeedbackAndFAQs() {
 																</span>
 															</p>
 														</div>
-														<span className="text-muted-foreground text-[11px]">
+														<span className="text-muted-foreground text-xs">
 															{feedback?.fe_createdAtFormatted}
 														</span>
 													</div>
 
-													<span className="inline-block px-2 py-0.5 bg-primary/10 text-primary rounded-full text-[11px]">
+													<span className="inline-block px-2 py-0.5 bg-primary/10 text-primary rounded-full text-xs">
 														{feedback?.fe_type}
 													</span>
 
-													<p className="text-muted-foreground text-[12px]">
+													<p className="text-muted-foreground text-sm">
 														{feedback?.fe_content}
 													</p>
 
 													{feedback?.fe_screenshot && (
 														<div>
-															<p className="text-foreground font-medium mt-4 mb-2 text-[12px]">
+															<p className="text-foreground font-medium mt-4 mb-2 text-sm">
 																Screenshot:
 															</p>
 															<img
@@ -283,17 +282,17 @@ export default function FeedbackAndFAQs() {
 								<CardContent className="p-6 overflow-auto">
 									<div className="flex items-start justify-between mb-1  gap-6">
 										<div>
-											<h3 className="text-foreground font-semibold text-[16px]">
+											<h3 className="text-foreground font-semibold text-base">
 												Frequently Asked Questions
 											</h3>
-											<p className="text-muted-foreground mb-4 text-[12px]">
+											<p className="text-muted-foreground mb-4 text-sm">
 												Manage common questions and their answers.
 											</p>
 										</div>
 										{userDetails &&
 											["USR-2", "USR-3"].includes(userDetails?.us_level) && (
 												<Button
-													className="bg-primary-custom hover:bg-secondary-custom text-white h-9 px-3 text-[12px]"
+													className="bg-primary-custom hover:bg-secondary-custom text-white h-9 px-3 text-sm"
 													onClick={() => {
 														setSelectedFaq({});
 														setIsAddFaqModalOpen(true);
@@ -312,16 +311,16 @@ export default function FeedbackAndFAQs() {
 												value={faq?.id}
 												className="border-b border-border"
 											>
-												<AccordionTrigger className="text-left text-foreground hover:no-underline py-3 relative text-[12px]">
+												<AccordionTrigger className="text-left text-foreground hover:no-underline py-3 relative text-sm">
 													<span>{faq?.fa_question}</span>
 												</AccordionTrigger>
 
-												<AccordionContent className="text-muted-foreground pb-4 text-[12px]">
+												<AccordionContent className="text-muted-foreground pb-4 text-sm">
 													<div className="flex justify-between items-start gap-2">
 														<div className="flex-1">{faq?.fa_answer}</div>
 														{userDetails &&
 															["USR-2", "USR-3"].includes(
-																userDetails?.us_level
+																userDetails?.us_level,
 															) && (
 																<div className="flex gap-2">
 																	<Button

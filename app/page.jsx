@@ -16,7 +16,7 @@ export default function HomePage() {
 			window.open(
 				"https://drive.google.com/file/d/1qBdwk49ESFCO6wM05cksMW8NV7hsS8Rd/view?usp=sharing",
 				"_blank",
-				"noopener,noreferrer"
+				"noopener,noreferrer",
 			);
 		}
 	};
@@ -38,7 +38,7 @@ export default function HomePage() {
 							<Link
 								key={item}
 								href={`#${item.toLowerCase().replace(" ", "")}`}
-								className="relative text-white text-[14px] transition-colors duration-300 hover:text-yellow-400 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full"
+								className="relative text-white text-sm transition-colors duration-300 hover:text-yellow-400 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full"
 							>
 								{item}
 							</Link>
@@ -60,12 +60,12 @@ export default function HomePage() {
 								<Link
 									key={item}
 									href={`#${item.toLowerCase().replace(" ", "")}`}
-									className="block text-white text-[14px] transition-colors duration-300 hover:text-yellow-400"
+									className="block text-white text-sm transition-colors duration-300 hover:text-yellow-400"
 									onClick={() => setMenuOpen(false)}
 								>
 									{item}
 								</Link>
-							)
+							),
 						)}
 					</div>
 				)}
@@ -93,9 +93,8 @@ export default function HomePage() {
 							transition={{ duration: 0.6 }}
 							className="space-y-6"
 						>
-							<h1 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
-								Best way to manage your{" "}
-								<span className="text-accent">library resources</span>
+							<h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+								Best way to manage your library resources
 							</h1>
 							<p className="text-base text-white opacity-90">
 								Access library materials, reserve resources, and utilize AI

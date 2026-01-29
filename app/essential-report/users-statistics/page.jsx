@@ -171,7 +171,7 @@ export default function UserStatsEssential() {
 					filters.a_dateRangeEnd,
 					filters.a_orderBy,
 					setLoading,
-					Alert
+					Alert,
 				);
 			} else if (section.key == "libraryUsers") {
 				getUserList(
@@ -197,7 +197,7 @@ export default function UserStatsEssential() {
 					pageCursors,
 					setPageCursors,
 					currentPage,
-					true
+					true,
 				);
 			} else if (section.key == "usersWithMostTransaction") {
 				getUserSummary(
@@ -229,7 +229,7 @@ export default function UserStatsEssential() {
 					setCtrPage,
 					pageCursors,
 					setPageCursors,
-					currentPage
+					currentPage,
 				);
 			} else if (section.key == "usersWithMostReports") {
 				getUserReport(
@@ -256,7 +256,7 @@ export default function UserStatsEssential() {
 					setCtrPage,
 					pageCursors,
 					setPageCursors,
-					currentPage
+					currentPage,
 				);
 			}
 		}
@@ -333,7 +333,7 @@ export default function UserStatsEssential() {
 				setMaterialList,
 				setDiscussionRoomList,
 				setComputerList,
-				Alert
+				Alert,
 			);
 		}
 	}, [userDetails, filters.c_resourceType]);
@@ -360,7 +360,7 @@ export default function UserStatsEssential() {
 			getFilterCourses(
 				filters[`${prefix}_courses`],
 				setFilterCoursesData,
-				Alert
+				Alert,
 			);
 		}
 	}, [
@@ -377,7 +377,7 @@ export default function UserStatsEssential() {
 				selectedCourseID,
 				filterCoursesData,
 				setSubCoursesData,
-				Alert
+				Alert,
 			);
 		} else {
 			setSubCoursesData([]);
@@ -405,9 +405,8 @@ export default function UserStatsEssential() {
 		}
 
 		const commonHeaderStyle =
-			"text-left py-3 px-6 font-semibold text-foreground text-[12px]";
-		const commonCellStyle =
-			"py-3 px-6 text-foreground text-[12px] min-w-[170px]";
+			"text-left py-3 px-6 font-semibold text-foreground text-sm";
+		const commonCellStyle = "py-3 px-6 text-foreground text-sm min-w-[170px]";
 
 		const renderHeaders = () => {
 			switch (section.id) {
@@ -518,7 +517,7 @@ export default function UserStatsEssential() {
 									{item.es_total}
 								</td>
 								<td className={commonCellStyle}>
-									<Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 text-[11px]">
+									<Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 text-xs">
 										{item.es_percentage}%
 									</Badge>
 								</td>
@@ -536,7 +535,7 @@ export default function UserStatsEssential() {
 								</td>
 								<td className={commonCellStyle}>
 									<Badge
-										className={`${getStatusColor(item.us_status)} text-[12px]`}
+										className={`${getStatusColor(item.us_status)} text-sm`}
 									>
 										{item.us_status}
 									</Badge>
@@ -545,7 +544,7 @@ export default function UserStatsEssential() {
 									{item.us_name}
 								</td>
 								<td className={`${commonCellStyle}`}>
-									<Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 text-[11px]">
+									<Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 text-xs">
 										{item.us_type}
 									</Badge>
 								</td>
@@ -586,7 +585,7 @@ export default function UserStatsEssential() {
 									{item.es_name}
 								</td>
 								<td className={commonCellStyle}>
-									<Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 text-[11px]">
+									<Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 text-xs">
 										{item.es_type}
 									</Badge>
 								</td>
@@ -596,12 +595,12 @@ export default function UserStatsEssential() {
 								<td className={commonCellStyle}>{item.es_completed}</td>
 								<td className={commonCellStyle}>{item.es_lateReturn}</td>
 								<td className={commonCellStyle}>
-									<Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 text-[11px]">
+									<Badge className="bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 text-xs">
 										{item.es_usageRate}%
 									</Badge>
 								</td>
 								<td className={commonCellStyle}>
-									<Badge className="bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 text-[11px]">
+									<Badge className="bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 text-xs">
 										{item.es_cancelRate}%
 									</Badge>
 								</td>
@@ -618,7 +617,7 @@ export default function UserStatsEssential() {
 								<td className={commonCellStyle}>{item.es_schoolID}</td>
 								<td className={commonCellStyle}>{item.es_name}</td>
 								<td className={commonCellStyle}>
-									<Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 text-[11px]">
+									<Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 text-xs">
 										{item.es_type}
 									</Badge>
 								</td>
@@ -648,10 +647,10 @@ export default function UserStatsEssential() {
 			<div className="flex items-center justify-center h-64 bg-muted/20 rounded-lg border-2 border-dashed border-muted-foreground/30">
 				<div className="text-center">
 					<FiBarChart2 className="w-12 h-12 text-muted-foreground/50 mx-auto mb-4" />
-					<p className="text-muted-foreground text-[14px]">
+					<p className="text-muted-foreground text-base">
 						Chart view coming soon
 					</p>
-					<p className="text-muted-foreground/70 mt-1 text-[12px]">
+					<p className="text-muted-foreground/70 mt-1 text-sm">
 						Visual representation will be available in future updates
 					</p>
 				</div>
@@ -665,7 +664,7 @@ export default function UserStatsEssential() {
 		libraryList,
 		materialList,
 		discussionRoomList,
-		computerList
+		computerList,
 	);
 	const count = getActiveData().length;
 	const title = `${
@@ -692,10 +691,10 @@ export default function UserStatsEssential() {
 
 						<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 							<div className="mb-8 animate-fade-in">
-								<h1 className="font-semibold text-foreground text-[20px]">
+								<h1 className="font-semibold text-foreground text-xl">
 									Essential Reports - User Statistics
 								</h1>
-								<p className="text-muted-foreground text-[14px]">
+								<p className="text-muted-foreground text-base">
 									Comprehensive user analytics, activity tracking, and
 									engagement metrics
 								</p>
@@ -713,7 +712,7 @@ export default function UserStatsEssential() {
 											onClick={() => {
 												setActiveSection(section.id);
 											}}
-											className={`h-9 text-[12px] ${
+											className={`h-9 text-sm ${
 												activeSection === section.id
 													? "bg-primary-custom text-white hover:bg-primary-custom/90"
 													: "border-border hover:bg-accent"
@@ -733,7 +732,7 @@ export default function UserStatsEssential() {
 									/>
 									<div className="relative bg-card w-80 h-full shadow-lg transform transition-transform duration-300 translate-x-0 animate-slide-in-left">
 										<div className="flex items-center justify-between p-4 border-b border-border text-white bg-primary-custom">
-											<h2 className="font-semibold text-white text-[14px]">
+											<h2 className="font-semibold text-white text-base">
 												Filters
 											</h2>
 											<button
@@ -757,7 +756,7 @@ export default function UserStatsEssential() {
 												filterCoursesData,
 												subCoursesData,
 												selectedCourseID,
-												setSelectedCourseID
+												setSelectedCourseID,
 											)}
 										</div>
 
@@ -766,13 +765,13 @@ export default function UserStatsEssential() {
 												<Button
 													onClick={() => setFilters(defaultFilterValues)}
 													variant="outline"
-													className="flex-1 h-9 border-border bg-transparent text-[12px]"
+													className="flex-1 h-9 border-border bg-transparent text-sm"
 												>
 													Clear All
 												</Button>
 												<Button
 													onClick={() => setShowFilters(false)}
-													className="flex-1 text-white hover:opacity-90 h-9 bg-primary-custom text-[12px]"
+													className="flex-1 text-white hover:opacity-90 h-9 bg-primary-custom text-sm"
 												>
 													Apply Filters
 												</Button>
@@ -784,19 +783,18 @@ export default function UserStatsEssential() {
 
 							<Card className="p-6 bg-card border-border transition-colors duration-300 animate-slide-up animation-delay-400">
 								<CardHeader className="p-0">
-									<CardTitle className="font-semibold text-foreground text-[18px] mb-6">
+									<CardTitle className="font-semibold text-foreground text-lg mb-6">
 										{title}
 									</CardTitle>
 
 									<div className="flex items-left justify-between flex-col sm:flex-row gap-4">
-										<div className="relative flex items-center flex-1 max-w-md">
+										<div className="relative flex items-center flex-1 max-w-lg">
 											<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 											<Input
 												placeholder="Search users..."
 												value={searchQuery}
 												onChange={(e) => setSearchQuery(e.target.value)}
-												className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-												style={{ fontSize: "12px" }}
+												className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
 											/>
 											<div className="absolute right-16 top-1/2 transform -translate-y-1/2">
 												<FiCamera className="w-4 h-4 text-muted-foreground" />
@@ -804,7 +802,7 @@ export default function UserStatsEssential() {
 											<Button
 												onClick={() => setShowFilters(!showFilters)}
 												variant="ghost"
-												className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-[12px]"
+												className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
 											>
 												Filter
 											</Button>
@@ -816,7 +814,7 @@ export default function UserStatsEssential() {
 													variant={viewMode === "table" ? "default" : "ghost"}
 													size="sm"
 													onClick={() => setViewMode("table")}
-													className={`h-9 px-3 rounded-r-none text-[12px] ${
+													className={`h-9 px-3 rounded-r-none text-sm ${
 														viewMode === "table"
 															? "bg-primary-custom text-white hover:bg-primary-custom/90"
 															: "hover:bg-accent"
@@ -829,7 +827,7 @@ export default function UserStatsEssential() {
 													variant={viewMode === "chart" ? "default" : "ghost"}
 													size="sm"
 													onClick={() => setViewMode("chart")}
-													className={`h-9 px-3 rounded-l-none text-[12px] ${
+													className={`h-9 px-3 rounded-l-none text-sm ${
 														viewMode === "chart"
 															? "bg-primary-custom text-white hover:bg-primary-custom/90"
 															: "hover:bg-accent"
@@ -845,7 +843,7 @@ export default function UserStatsEssential() {
 													onClick={() => setViewMode("export")}
 													variant="outline"
 													size="sm"
-													className="h-9 bg-transparent border-border hover:bg-accent text-[12px]"
+													className="h-9 bg-transparent border-border hover:bg-accent text-sm"
 												>
 													<FiFileText className="w-4 h-4 mr-1" />
 													Preview
@@ -859,13 +857,13 @@ export default function UserStatsEssential() {
 											className="flex items-center gap-2  flex-wrap"
 											style={{ marginTop: "15px" }}
 										>
-											<span className="text-muted-foreground text-[11px]">
+											<span className="text-muted-foreground text-xs">
 												Active Filters:
 											</span>
 											{activeFilters.map((filter) => (
 												<span
 													key={filter.key}
-													className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-[11px]"
+													className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-xs"
 												>
 													{filter.label}: {filter.value}
 													<FiX

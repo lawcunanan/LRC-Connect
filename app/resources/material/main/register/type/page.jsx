@@ -148,7 +148,7 @@ export default function MaterialTypeRegistrationPage() {
 				materialTypeName,
 				materialTypeData,
 				setBtnLoading,
-				Alert
+				Alert,
 			);
 		} else if (mt_id) {
 			updateMaterialtype(
@@ -158,7 +158,7 @@ export default function MaterialTypeRegistrationPage() {
 				materialTypeName,
 				materialTypeData,
 				setBtnLoading,
-				Alert
+				Alert,
 			);
 		}
 		setMt_id(null);
@@ -175,7 +175,7 @@ export default function MaterialTypeRegistrationPage() {
 			userDetails?.uid,
 			materialTypeName,
 			"Inactive",
-			Alert
+			Alert,
 		);
 	};
 
@@ -195,7 +195,7 @@ export default function MaterialTypeRegistrationPage() {
 
 			if (actionType == "InsertSection") {
 				const existingSectionIndex = newData.findIndex(
-					(sec) => sec.mt_section === mt_section
+					(sec) => sec.mt_section === mt_section,
 				);
 
 				if (existingSectionIndex === -1 && mt_section?.trim()) {
@@ -206,12 +206,12 @@ export default function MaterialTypeRegistrationPage() {
 				}
 			} else if (actionType == "InsertField") {
 				const existingSectionIndex = newData.findIndex(
-					(sec) => sec.mt_section === mt_section
+					(sec) => sec.mt_section === mt_section,
 				);
 
 				if (existingSectionIndex !== -1) {
 					const isDuplicate = newData[existingSectionIndex].mt_fields.some(
-						(f) => f.mt_marcTag === mt_marcTag || f.mt_title === mt_title
+						(f) => f.mt_marcTag === mt_marcTag || f.mt_title === mt_title,
 					);
 
 					if (!isDuplicate) {
@@ -261,7 +261,7 @@ export default function MaterialTypeRegistrationPage() {
 						]?.mt_fields?.some(
 							(f) =>
 								f.mt_marcTag === field.mt_marcTag &&
-								f.mt_title === field.mt_title
+								f.mt_title === field.mt_title,
 						);
 
 						if (!alreadyExists) {
@@ -290,7 +290,7 @@ export default function MaterialTypeRegistrationPage() {
 					]?.mt_fields?.some(
 						(f) =>
 							f.mt_marcTag === fieldToMove.mt_marcTag &&
-							f.mt_title === fieldToMove.mt_title
+							f.mt_title === fieldToMove.mt_title,
 					);
 
 					if (!alreadyExists) {
@@ -327,7 +327,7 @@ export default function MaterialTypeRegistrationPage() {
 				userDetails?.uid,
 				newCategory.ca_name,
 				setBtnCategory,
-				Alert
+				Alert,
 			);
 		} else {
 			updateCategory(
@@ -336,7 +336,7 @@ export default function MaterialTypeRegistrationPage() {
 				userDetails?.uid,
 				newCategory.ca_name,
 				setBtnCategory,
-				Alert
+				Alert,
 			);
 		}
 
@@ -352,7 +352,7 @@ export default function MaterialTypeRegistrationPage() {
 			ca_name,
 			"Inactive",
 			setBtnCategory,
-			Alert
+			Alert,
 		);
 	};
 
@@ -363,7 +363,7 @@ export default function MaterialTypeRegistrationPage() {
 				userDetails?.us_liID,
 				setRegisteredMaterialTypes,
 				setLoading,
-				Alert
+				Alert,
 			);
 
 			return () => unsubscribe && unsubscribe();
@@ -377,7 +377,7 @@ export default function MaterialTypeRegistrationPage() {
 				userDetails?.us_liID,
 				setCategory,
 				setLoading,
-				Alert
+				Alert,
 			);
 
 			return () => unsubscribe && unsubscribe();
@@ -393,7 +393,7 @@ export default function MaterialTypeRegistrationPage() {
 					<div className="mb-6 animate-fade-in">
 						<button
 							onClick={() => router.back()}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 						>
 							<FiArrowLeft className="w-4 h-4" />
 							Back to Previous page
@@ -403,10 +403,10 @@ export default function MaterialTypeRegistrationPage() {
 					<div className="grid grid-cols-1 lg:grid-cols-3 gap-20">
 						<div className="lg:col-span-2 space-y-8">
 							<div className="animate-slide-up">
-								<h1 className="font-semibold text-foreground text-[20px]">
+								<h1 className="font-semibold text-foreground text-xl">
 									Register New Materdial Type
 								</h1>
-								<p className="text-muted-foreground text-[14px]">
+								<p className="text-muted-foreground text-base">
 									Create a new material type with custom fields and sections
 								</p>
 							</div>
@@ -416,10 +416,10 @@ export default function MaterialTypeRegistrationPage() {
 									<div className="flex items-start gap-3">
 										<FiInfo className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
 										<div>
-											<p className="text-blue-800 font-medium text-[14px]">
+											<p className="text-blue-800 font-medium text-base">
 												Call Number Information
 											</p>
-											<p className="text-blue-700 text-[12px]">
+											<p className="text-blue-700 text-sm">
 												The Call Number is already included by default for all
 												material types.
 											</p>
@@ -434,7 +434,7 @@ export default function MaterialTypeRegistrationPage() {
 										<div>
 											<Label
 												htmlFor="materialTypeName"
-												className="text-foreground font-medium text-[12px]"
+												className="text-foreground font-medium text-sm"
 											>
 												Material Type Name
 											</Label>
@@ -443,17 +443,16 @@ export default function MaterialTypeRegistrationPage() {
 												value={materialTypeName}
 												onChange={(e) => setMaterialTypeName(e.target.value)}
 												placeholder="Enter material type name (e.g., Book, Journal, Thesis)"
-												className="mt-2 h-9 bg-background border-border text-foreground"
-												style={{ fontSize: "12px" }}
+												className="mt-2 h-9 bg-background border-border text-foreground text-sm"
 											/>
 										</div>
 
 										<div>
 											<div className="mb-2">
-												<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+												<h2 className="font-semibold text-foreground text-base mb-[5px]">
 													Add Section
 												</h2>
-												<p className="text-muted-foreground text-[12px]">
+												<p className="text-muted-foreground text-sm">
 													Define the fields for this material type. Fields with
 													the same section will be grouped together.
 												</p>
@@ -461,7 +460,7 @@ export default function MaterialTypeRegistrationPage() {
 
 											<div className="flex gap-4">
 												<div className="flex-1">
-													<Label className="text-foreground font-medium text-[12px]">
+													<Label className="text-foreground font-medium text-sm">
 														Section
 													</Label>
 													<Input
@@ -473,8 +472,7 @@ export default function MaterialTypeRegistrationPage() {
 															})
 														}
 														placeholder="e.g., Book, Journal"
-														className="mt-1 h-9 bg-background border-border text-foreground w-full"
-														style={{ fontSize: "12px" }}
+														className="mt-1 h-9 bg-background border-border text-foreground w-full text-sm"
 													/>
 												</div>
 
@@ -486,11 +484,11 @@ export default function MaterialTypeRegistrationPage() {
 																	mt_section: materialField.mt_section,
 																},
 																setMaterialTypeData,
-																"InsertSection"
+																"InsertSection",
 															);
 														}}
 														disabled={!materialField.mt_section}
-														className="bg-primary text-white hover:opacity-90 h-9 px-4 flex items-center gap-2 w-fit text-[12px]"
+														className="bg-primary text-white hover:opacity-90 h-9 px-4 flex items-center gap-2 w-fit text-sm"
 													>
 														<FiPlus className="w-3 h-3" />
 														Add Section
@@ -511,7 +509,7 @@ export default function MaterialTypeRegistrationPage() {
 											id={section.mt_section + sectionIndex}
 										>
 											<CardHeader className="pb-4">
-												<CardTitle className="text-foreground text-[16px] flex items-start justify-between leading-none">
+												<CardTitle className="text-foreground text-base flex items-start justify-between leading-none">
 													<span>
 														{section.mt_section.charAt(0).toUpperCase() +
 															section.mt_section.slice(1)}
@@ -568,7 +566,7 @@ export default function MaterialTypeRegistrationPage() {
 																				mt_sectionIndex: sectionIndex,
 																			},
 																			setMaterialTypeData,
-																			"DeleteSection"
+																			"DeleteSection",
 																		);
 																	}}
 																	title="Delete material type section"
@@ -586,16 +584,16 @@ export default function MaterialTypeRegistrationPage() {
 														<table className="w-full">
 															<thead>
 																<tr className="border-b border-border">
-																	<th className="text-left py-3 text-foreground font-medium text-[12px]">
+																	<th className="text-left py-3 text-foreground font-medium text-sm">
 																		MARC Tag
 																	</th>
-																	<th className="text-left py-3 text-foreground font-medium text-[12px]">
+																	<th className="text-left py-3 text-foreground font-medium text-sm">
 																		Title
 																	</th>
-																	<th className="text-left py-3 text-foreground font-medium text-[12px]">
+																	<th className="text-left py-3 text-foreground font-medium text-sm">
 																		Type
 																	</th>
-																	<th className="text-left py-3 text-foreground font-medium text-[12px]">
+																	<th className="text-left py-3 text-foreground font-medium text-sm">
 																		Action
 																	</th>
 																</tr>
@@ -608,19 +606,19 @@ export default function MaterialTypeRegistrationPage() {
 																		id={field.mt_title + fieldIndex}
 																	>
 																		<td
-																			className="py-3 text-foreground text-[12px]"
+																			className="py-3 text-foreground text-sm"
 																			style={{ width: "20%" }}
 																		>
 																			{field.mt_marcTag}
 																		</td>
 																		<td
-																			className="py-3 text-foreground text-[12px]"
+																			className="py-3 text-foreground text-sm"
 																			style={{ width: "30%" }}
 																		>
 																			{field.mt_title}
 																		</td>
 																		<td
-																			className="py-3 text-foreground text-[12px]"
+																			className="py-3 text-foreground text-sm"
 																			style={{
 																				width: "auto",
 																			}}
@@ -628,7 +626,7 @@ export default function MaterialTypeRegistrationPage() {
 																			{field.mt_type}
 																		</td>
 																		<td
-																			className="py-3  text-right"
+																			className="py-3 text-right text-sm"
 																			style={{
 																				width: "50px",
 																			}}
@@ -673,7 +671,7 @@ export default function MaterialTypeRegistrationPage() {
 																								},
 
 																								setMaterialTypeData,
-																								"DeleteField"
+																								"DeleteField",
 																							);
 																						}}
 																						title="Delete material type field"
@@ -699,7 +697,7 @@ export default function MaterialTypeRegistrationPage() {
 							<div className="flex gap-3 animate-slide-up-delay-4">
 								<Button
 									onClick={() => handleSave()}
-									className="bg-primary-custom text-white hover:opacity-90 h-10 px-6 flex items-center gap-2 text-[12px]"
+									className="bg-primary-custom text-white hover:opacity-90 h-10 px-6 flex items-center gap-2 text-sm"
 									disabled={
 										materialTypeData.length === 0 || materialTypeName == ""
 									}
@@ -709,7 +707,7 @@ export default function MaterialTypeRegistrationPage() {
 								</Button>
 								<Button
 									variant="outline"
-									className="h-11 px-6 border-border text-foreground hover:bg-accent flex items-center gap-2 text-[12px]"
+									className="h-11 px-6 border-border text-foreground hover:bg-accent flex items-center gap-2 text-sm"
 									disabled={
 										materialTypeData.length === 0 || materialTypeName == ""
 									}
@@ -730,16 +728,16 @@ export default function MaterialTypeRegistrationPage() {
 						<div className="space-y-8">
 							<Card className="bg-card border-border shadow-sm animate-slide-up-delay-2">
 								<CardHeader className="pb-4">
-									<CardTitle className="text-foreground flex items-center justify-between text-[16px]">
+									<CardTitle className="text-foreground flex items-center justify-between text-base">
 										List of Registered Material Types
 										<Badge
 											variant="secondary"
-											className="bg-muted text-foreground text-[11px]"
+											className="bg-muted text-foreground text-xs"
 										>
 											{registeredMaterialTypes.length}
 										</Badge>
 									</CardTitle>
-									<p className="text-muted-foreground text-[12px]">
+									<p className="text-muted-foreground text-sm">
 										These material types will be used during material
 										registration
 									</p>
@@ -751,7 +749,7 @@ export default function MaterialTypeRegistrationPage() {
 												key={index}
 												className="flex items-center justify-between p-3 bg-muted/50 rounded-lg hover:bg-muted/50 transition-colors duration-200 cursor-pointer"
 											>
-												<span className="text-foreground font-medium text-[12px]">
+												<span className="text-foreground font-medium text-sm">
 													{item.mt_name}
 												</span>
 												<span>
@@ -788,17 +786,17 @@ export default function MaterialTypeRegistrationPage() {
 
 							<Card className="bg-card border-border shadow-sm animate-slide-up-delay-3">
 								<CardHeader className="pb-4">
-									<CardTitle className="text-foreground text-[16px]">
+									<CardTitle className="text-foreground text-base">
 										Material Category Registration
 									</CardTitle>
-									<p className="text-muted-foreground text-[12px]">
+									<p className="text-muted-foreground text-sm">
 										Register new categories for better material organization
 									</p>
 								</CardHeader>
 								<CardContent className="pt-0">
 									<div className="space-y-4">
 										<div>
-											<Label className="text-foreground font-medium text-[12px]">
+											<Label className="text-foreground font-medium text-sm">
 												Category Name
 											</Label>
 											<div className="flex gap-2 mt-1">
@@ -811,12 +809,11 @@ export default function MaterialTypeRegistrationPage() {
 														}))
 													}
 													placeholder="Enter category name"
-													className="h-9 bg-background border-border text-foreground flex-1"
-													style={{ fontSize: "12px" }}
+													className="h-9 bg-background border-border text-foreground flex-1 text-sm"
 												/>
 												<Button
 													onClick={() => handleCategory()}
-													className="bg-primary-custom text-white hover:opacity-90 h-9 px-3 text-[12px]"
+													className="bg-primary-custom text-white hover:opacity-90 h-9 px-3 text-sm"
 													disabled={newCategory.ca_name == ""}
 												>
 													<LoadingSpinner loading={btnCategory} />
@@ -826,7 +823,7 @@ export default function MaterialTypeRegistrationPage() {
 										</div>
 
 										<div className="space-y-2">
-											<Label className="text-foreground font-medium text-[12px]">
+											<Label className="text-foreground font-medium text-sm">
 												Existing Categories
 											</Label>
 											{categories.map((category, index) => (
@@ -834,7 +831,7 @@ export default function MaterialTypeRegistrationPage() {
 													key={index}
 													className="flex items-center justify-between p-2 bg-muted/50 rounded hover:bg-muted/50 transition-colors duration-200 cursor-pointer"
 												>
-													<span className="text-foreground text-[12px]">
+													<span className="text-foreground text-sm">
 														{category.ca_name}
 													</span>
 													<span>
@@ -860,7 +857,7 @@ export default function MaterialTypeRegistrationPage() {
 															onClick={() =>
 																handleInactiveCategory(
 																	category.ca_id,
-																	category.ca_name
+																	category.ca_name,
 																)
 															}
 															title="Delete category"

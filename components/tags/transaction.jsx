@@ -10,10 +10,10 @@ export const renderResource = (transaction, isTable = false) => {
 					transaction?.tr_type === "Material"
 						? transaction?.tr_resource.ma_coverURL
 						: transaction?.tr_type === "Discussion Room"
-						? transaction?.tr_resource.dr_photoURL
-						: transaction?.tr_type === "Computer"
-						? transaction?.tr_resource.co_photoURL
-						: "/placeholder.svg?height=112&width=80"
+							? transaction?.tr_resource.dr_photoURL
+							: transaction?.tr_type === "Computer"
+								? transaction?.tr_resource.co_photoURL
+								: "/placeholder.svg?height=112&width=80"
 				}
 				alt={transaction?.tr_qr}
 				className={`h-28 object-cover rounded-lg bg-gray-100 flex-shrink-0 ${
@@ -24,41 +24,41 @@ export const renderResource = (transaction, isTable = false) => {
 			<div className="min-w-0">
 				<h4
 					className={`font-medium text-foreground ${
-						isTable ? "text-[12px]" : "text-[14px]"
+						isTable ? "text-sm" : "text-base"
 					}`}
 				>
 					{transaction?.tr_type === "Material"
 						? transaction?.tr_resource.ma_title
 						: transaction?.tr_type === "Discussion Room"
-						? transaction?.tr_resource.dr_name
-						: transaction?.tr_type === "Computer"
-						? transaction?.tr_resource.co_name
-						: "NA"}
+							? transaction?.tr_resource.dr_name
+							: transaction?.tr_type === "Computer"
+								? transaction?.tr_resource.co_name
+								: "NA"}
 				</h4>
 
-				<p className="text-muted-foreground text-[12px] mb-2">
+				<p className="text-muted-foreground text-sm mb-2">
 					{transaction?.tr_type === "Material"
 						? "by " + transaction?.tr_resource.ma_author
 						: transaction?.tr_type === "Discussion Room"
-						? transaction?.tr_resource.dr_createdAt
-						: transaction?.tr_type === "Computer"
-						? transaction?.tr_resource.co_createdAt
-						: "NA"}
+							? transaction?.tr_resource.dr_createdAt
+							: transaction?.tr_type === "Computer"
+								? transaction?.tr_resource.co_createdAt
+								: "NA"}
 				</p>
 
 				<div className="flex flex-wrap items-center gap-2">
-					<span className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-[11px]">
+					<span className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-sm">
 						{transaction?.tr_type}
 					</span>
 					{transaction?.tr_type === "Material" && (
 						<>
 							{transaction?.tr_format == "Hard Copy" &&
 								transaction?.tr_accession && (
-									<span className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-[11px]">
+									<span className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-sm">
 										{transaction?.tr_accession}
 									</span>
 								)}
-							<span className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-[11px]">
+							<span className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-sm">
 								{transaction?.tr_format}
 							</span>
 						</>
@@ -67,8 +67,8 @@ export const renderResource = (transaction, isTable = false) => {
 
 				{transaction?.tr_resource?.reportLibrary && (
 					<div className="mt-2">
-						<p className="text-foreground text-[12px]">Library</p>
-						<p className="text-muted-foreground text-[12px]">
+						<p className="text-foreground text-sm">Library</p>
+						<p className="text-muted-foreground text-sm">
 							{transaction?.tr_resource.reportLibrary}
 						</p>
 					</div>
@@ -91,13 +91,13 @@ export const renderPatron = (transaction, isTable) => {
 			<div>
 				<h4
 					className={`font-medium text-foreground ${
-						isTable ? "text-[12px]" : "text-[14px]"
+						isTable ? "text-sm" : "text-base"
 					}`}
 				>
 					{transaction?.us_name}
 				</h4>
 
-				<p className="text-primary-custom text-[12px] mb-2">
+				<p className="text-primary-custom text-sm mb-2">
 					{transaction?.us_type}
 					<span className="text-muted-foreground">
 						{" • "}
@@ -106,15 +106,15 @@ export const renderPatron = (transaction, isTable) => {
 				</p>
 
 				<div className="mb-2">
-					<p className="text-foreground text-[12px]">Email</p>
-					<p className="text-muted-foreground text-[12px]">
+					<p className="text-foreground text-sm">Email</p>
+					<p className="text-muted-foreground text-sm">
 						{transaction?.us_email}
 					</p>
 				</div>
 
 				<div>
-					<p className="text-foreground text-[12px]">Library</p>
-					<p className="text-muted-foreground text-[12px]">
+					<p className="text-foreground text-sm">Library</p>
+					<p className="text-muted-foreground text-sm">
 						{transaction?.us_library}
 					</p>
 				</div>
@@ -129,23 +129,23 @@ export const renderSchedule = (transaction) => {
 		<>
 			<div className="grid grid-cols-2 gap-4">
 				<div className="flex items-start gap-3">
-					<FaRegCalendarAlt className="text-foreground text-[15px]  mt-[2px" />
+					<FaRegCalendarAlt className="text-foreground text-base mt-[2px]" />
 					<div>
-						<p className="text-foreground  text-[12px]">
+						<p className="text-foreground  text-sm">
 							{transaction?.tr_dateFormatted}
 						</p>
-						<p className="text-muted-foreground text-[12px]">Date of Use</p>
+						<p className="text-muted-foreground text-sm">Date of Use</p>
 					</div>
 				</div>
 
 				{transaction?.tr_type === "Material" && (
 					<div className="flex items-start gap-3">
-						<FaRegCalendarAlt className="text-foreground text-[15px]  mt-[2px]" />
+						<FaRegCalendarAlt className="text-foreground text-base mt-[2px]" />
 						<div>
-							<p className="text-foreground  text-[12px]">
+							<p className="text-foreground  text-sm">
 								{transaction?.tr_dateDueFormatted}
 							</p>
-							<p className="text-muted-foreground text-[12px]">Due Date</p>
+							<p className="text-muted-foreground text-sm">Due Date</p>
 						</div>
 					</div>
 				)}
@@ -154,22 +154,22 @@ export const renderSchedule = (transaction) => {
 			{transaction?.tr_type !== "Material" && (
 				<div className="grid grid-cols-2 gap-4 mt-4">
 					<div className="flex items-start gap-3">
-						<FaRegClock className="text-foreground text-[15px] mt-[2px]" />
+						<FaRegClock className="text-foreground text-base mt-[2px]" />
 						<div>
-							<p className="text-foreground text-[12px]">
+							<p className="text-foreground text-sm">
 								{transaction?.tr_sessionStartFormatted}
 							</p>
-							<p className="text-muted-foreground text-[12px]">Session Start</p>
+							<p className="text-muted-foreground text-sm">Session Start</p>
 						</div>
 					</div>
 
 					<div className="flex items-start gap-3">
-						<FaRegClock className="text-foreground text-[15px] mt-[2px]" />
+						<FaRegClock className="text-foreground text-base mt-[2px]" />
 						<div>
-							<p className="text-foreground text-[12px]">
+							<p className="text-foreground text-sm">
 								{transaction?.tr_sessionEndFormatted}
 							</p>
-							<p className="text-muted-foreground text-[12px]">Session End</p>
+							<p className="text-muted-foreground text-sm">Session End</p>
 						</div>
 					</div>
 				</div>
@@ -183,12 +183,12 @@ export const renderLibrary = (transaction) => {
 	return (
 		<>
 			<div className="flex items-start gap-3 border border-border p-3 rounded-md">
-				<FaMapPin className="text-destructive text-[15px] mt-[2px]" />
+				<FaMapPin className="text-destructive text-base mt-[2px]" />
 				<div>
-					<p className="text-foreground  text-[12px]">
+					<p className="text-foreground  text-sm">
 						{transaction?.tr_library || "NA"}
 					</p>
-					<p className="text-muted-foreground text-[12px]">Library Branch</p>
+					<p className="text-muted-foreground text-sm">Library Branch</p>
 				</div>
 			</div>
 		</>
@@ -270,23 +270,23 @@ export const renderStatusBadge = (transaction, tooltipAlign = "right") => {
 				tooltipTitle = daysBetween(now, dateUse);
 				tooltipText = `This material reservation will start in ${daysBetween(
 					now,
-					dateUse
+					dateUse,
 				)}. It is scheduled for use on ${formatDateOnly(
-					dateUse
+					dateUse,
 				)}. Please make sure it is ready before then.`;
 			} else if (isSameDay(now, dateUse)) {
 				badgeColor = "warning";
 				tooltipTitle = daysBetween(now, dateUse);
 				tooltipText = `Today is the start date for this reservation (${formatDateOnly(
-					dateUse
+					dateUse,
 				)}). The material should be in use or picked up soon.`;
 			} else if (now > dateUse) {
 				badgeColor = "error";
 				tooltipTitle = "Pending Start";
 				tooltipText = `This reservation was supposed to start on ${formatDateOnly(
-					dateUse
+					dateUse,
 				)}, but it hasn't started yet. It should be used before ${formatDateOnly(
-					dateDue
+					dateDue,
 				)} to avoid automatic cancellation.`;
 			}
 		} else {
@@ -295,23 +295,23 @@ export const renderStatusBadge = (transaction, tooltipAlign = "right") => {
 				tooltipTitle = daysBetween(now, sessionStart);
 				tooltipText = `This session will start in ${daysBetween(
 					now,
-					sessionStart
+					sessionStart,
 				)}. Make sure everything is ready by ${formatFullDateTime(
-					sessionStart
+					sessionStart,
 				)}.`;
 			} else if (isSameDateTime(now, sessionStart)) {
 				badgeColor = "warning";
 				tooltipTitle = daysBetween(now, sessionStart);
 				tooltipText = `This session is scheduled to start now (${formatFullDateTime(
-					sessionStart
+					sessionStart,
 				)}). Please proceed accordingly.`;
 			} else if (now > sessionStart) {
 				badgeColor = "error";
 				tooltipTitle = "Pending Start";
 				tooltipText = `This session was supposed to start on ${formatFullDateTime(
-					sessionStart
+					sessionStart,
 				)}, but it hasn’t been marked as started. If not updated by ${formatFullDateTime(
-					sessionEnd
+					sessionEnd,
 				)}, it may be cancelled.`;
 			}
 		}
@@ -322,19 +322,19 @@ export const renderStatusBadge = (transaction, tooltipAlign = "right") => {
 				tooltipTitle = daysBetween(now, dateDue);
 				tooltipText = `This material is currently in use and should be returned in ${daysBetween(
 					now,
-					dateDue
+					dateDue,
 				)}. Please return it on time and in good condition.`;
 			} else if (isSameDay(now, dateDue)) {
 				badgeColor = "warning";
 				tooltipTitle = "Due Today";
 				tooltipText = `This material is due for return today (${formatDateOnly(
-					dateDue
+					dateDue,
 				)}). Please return it before the day ends.`;
 			} else {
 				badgeColor = "error";
 				tooltipTitle = "Overdue";
 				tooltipText = `This material was due on ${formatDateOnly(
-					dateDue
+					dateDue,
 				)} and is now overdue. Please return it immediately to avoid penalties.`;
 			}
 		} else {
@@ -343,13 +343,13 @@ export const renderStatusBadge = (transaction, tooltipAlign = "right") => {
 				tooltipTitle = daysBetween(now, sessionEnd);
 				tooltipText = `This session is currently ongoing. It is expected to end in ${daysBetween(
 					now,
-					sessionEnd
+					sessionEnd,
 				)}. Make sure it ends on time.`;
 			} else {
 				badgeColor = "error";
 				tooltipTitle = "Overdue";
 				tooltipText = `This session should have ended on ${formatFullDateTime(
-					sessionEnd
+					sessionEnd,
 				)}. Please confirm if it was completed or needs to be closed.`;
 			}
 		}
@@ -357,7 +357,7 @@ export const renderStatusBadge = (transaction, tooltipAlign = "right") => {
 		badgeColor = "error";
 		tooltipTitle = "Cancelled";
 		tooltipText = `This transaction has been cancelled. No further actions are needed unless it will be rebooked or rescheduled. Last updated: ${formatFullDateTime(
-			updateAt
+			updateAt,
 		)}.`;
 	} else if (status === "Completed") {
 		if (type === "Material") {
@@ -365,24 +365,24 @@ export const renderStatusBadge = (transaction, tooltipAlign = "right") => {
 				badgeColor = "success";
 				tooltipTitle = "Completed Early";
 				tooltipText = `The material was returned before the due date. No issues were reported. Good job! Returned at ${formatFullDateTime(
-					actualEnd
+					actualEnd,
 				)}.`;
 			} else if (isSameDay(actualEnd, dateDue)) {
 				badgeColor = "success";
 				tooltipTitle = "Completed On Time";
 				tooltipText = `The material was returned on the scheduled due date (${formatFullDateTime(
-					actualEnd
+					actualEnd,
 				)}). No further action is needed.`;
 			} else {
 				badgeColor = "error";
 				tooltipTitle = `${daysBetween(dateDue, actualEnd)} Late`;
 				tooltipText = `The material was returned ${daysBetween(
 					dateDue,
-					actualEnd
+					actualEnd,
 				)} late on ${formatFullDateTime(
-					actualEnd
+					actualEnd,
 				)}. It was supposed to be returned on ${formatDateOnly(
-					dateDue
+					dateDue,
 				)}. Please check if any penalty applies.`;
 			}
 		} else {
@@ -390,24 +390,24 @@ export const renderStatusBadge = (transaction, tooltipAlign = "right") => {
 				badgeColor = "success";
 				tooltipTitle = "Completed Early";
 				tooltipText = `The session ended earlier than scheduled. All activities were completed ahead of time. Ended at ${formatFullDateTime(
-					actualEnd
+					actualEnd,
 				)}.`;
 			} else if (isSameDateTime(actualEnd, sessionEnd)) {
 				badgeColor = "success";
 				tooltipTitle = "Completed On Time";
 				tooltipText = `The session ended on its scheduled date (${formatFullDateTime(
-					actualEnd
+					actualEnd,
 				)}). All tasks were completed as planned.`;
 			} else {
 				badgeColor = "error";
 				tooltipTitle = `${daysBetween(sessionEnd, actualEnd)} Late`;
 				tooltipText = `This session ended ${daysBetween(
 					sessionEnd,
-					actualEnd
+					actualEnd,
 				)} after the scheduled date. It was supposed to end on ${formatFullDateTime(
-					sessionEnd
+					sessionEnd,
 				)}, but was actually completed on ${formatFullDateTime(
-					actualEnd
+					actualEnd,
 				)}. Review if delay needs to be recorded.`;
 			}
 		}
@@ -433,8 +433,8 @@ export const renderStatusBadge = (transaction, tooltipAlign = "right") => {
 		<div className="relative group inline-block">
 			<Badge
 				className={`${getStatusBadge(
-					badgeColor
-				)} text-[12px] transition-none hover:bg-inherit hover:text-inherit`}
+					badgeColor,
+				)} text-sm transition-none hover:bg-inherit hover:text-inherit`}
 			>
 				{tooltipTitle}
 			</Badge>
@@ -443,7 +443,7 @@ export const renderStatusBadge = (transaction, tooltipAlign = "right") => {
 				className={`absolute top-full ${alignmentClass} mt-2 px-3 py-2 bg-white dark:bg-[#1e1e1e] text-gray-700 dark:text-gray-200 text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10 w-64 shadow-md border border-border`}
 			>
 				<div className="font-semibold mb-1">{tooltipTitle}</div>
-				<div className="text-[11px]">{tooltipText}</div>
+				<div className="text-sm">{tooltipText}</div>
 				<div
 					className={`absolute -top-2 ${arrowPosition} transform border-4 border-transparent border-b-white dark:border-b-[#1e1e1e]`}
 				></div>

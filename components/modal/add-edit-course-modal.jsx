@@ -67,7 +67,7 @@ export function AddEditCourseModal({
 		<Modal isOpen={isOpen} onClose={onClose} title={getTitle()} size="sm">
 			<form onSubmit={handleSubmit}>
 				<div className="p-6  space-y-1">
-					<Label className="font-medium text-foreground text-[12px]">
+					<Label className="font-medium text-foreground text-sm">
 						Name
 					</Label>
 					<Input
@@ -75,7 +75,7 @@ export function AddEditCourseModal({
 						onChange={(e) => setName(e.target.value)}
 						placeholder={getPlaceholder()}
 						className="h-9 bg-background border-border text-foreground"
-						style={{ fontSize: "12px" }}
+						
 						autoFocus
 					/>
 				</div>
@@ -85,14 +85,14 @@ export function AddEditCourseModal({
 						type="button"
 						onClick={onClose}
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 					>
 						Cancel
 					</Button>
 					<Button
 						type="submit"
 						disabled={!name.trim()}
-						className="bg-primary-custom hover:bg-secondary-custom text-white text-[12px] h-10 px-4"
+						className="bg-primary-custom hover:bg-secondary-custom text-white text-sm h-10 px-4"
 					>
 						<LoadingSpinner loading={btnLoading} />
 						{mode === "add" ? "Add" : "Save"}

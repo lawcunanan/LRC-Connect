@@ -63,7 +63,7 @@ export function ExcelImportModal({
 				modifiedBy,
 				selectedAccounts,
 				setBtnloading,
-				Alert
+				Alert,
 			);
 			handleClose();
 		}
@@ -78,7 +78,7 @@ export function ExcelImportModal({
 			setSelectedAccounts,
 			setStep,
 			setBtnloading,
-			Alert
+			Alert,
 		);
 	};
 
@@ -106,7 +106,7 @@ export function ExcelImportModal({
 	const isAllSelected =
 		userData.length > 0 &&
 		userData.every((acc) =>
-			selectedAccounts.some((sel) => sel.us_schoolID === acc.us_schoolID)
+			selectedAccounts.some((sel) => sel.us_schoolID === acc.us_schoolID),
 		);
 
 	const toggleSelectAll = (checked) => {
@@ -135,14 +135,14 @@ export function ExcelImportModal({
 							<div className="mx-auto w-16 h-16 bg-primary-custom/10 rounded-full flex items-center justify-center mb-4">
 								<FiFileText className="w-8 h-8 text-primary-custom" />
 							</div>
-							<h3 className="font-semibold text-foreground mb-2 text-[16px]">
+							<h3 className="font-semibold text-foreground mb-2 text-base">
 								Upload Excel File
 							</h3>
-							<p className="text-muted-foreground text-[12px]">
+							<p className="text-muted-foreground text-sm">
 								Select an Excel file (.xlsx, .xls) containing account
 								information
 							</p>
-							<p className="text-muted-foreground text-[11px]">
+							<p className="text-muted-foreground text-xs">
 								Excel files only (Max 10MB)
 							</p>
 							<Input
@@ -150,7 +150,6 @@ export function ExcelImportModal({
 								accept=".xlsx,.xls"
 								onChange={handleFileSelect}
 								className="mt-4 cursor-pointer"
-								style={{ fontSize: "12px" }}
 							/>
 						</div>
 
@@ -159,10 +158,10 @@ export function ExcelImportModal({
 								<div className="flex items-center gap-3">
 									<FiFileText className="w-5 h-5 text-primary-custom" />
 									<div className="flex-1">
-										<p className="font-medium text-foreground text-[12px]">
+										<p className="font-medium text-foreground text-sm">
 											{selectedFile.name}
 										</p>
-										<p className="text-muted-foreground text-[11px]">
+										<p className="text-muted-foreground text-xs">
 											{(selectedFile.size / 1024 / 1024).toFixed(2)} MB
 										</p>
 									</div>
@@ -174,14 +173,14 @@ export function ExcelImportModal({
 							<Button
 								onClick={handleClose}
 								variant="outline"
-								className="h-10 w-fit text-[12px]"
+								className="h-10 w-fit text-sm"
 							>
 								Cancel
 							</Button>
 							<Button
 								onClick={handleProcessFile}
 								disabled={!selectedFile || btnLoading}
-								className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-[12px]"
+								className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-sm"
 							>
 								{btnLoading ? (
 									<>
@@ -205,7 +204,7 @@ export function ExcelImportModal({
 							<EmptyState data={userData} loading={btnLoading} />
 						) : (
 							<>
-								<span className="text-foreground font-medium text-[12px]">
+								<span className="text-foreground font-medium text-sm">
 									{selectedAccounts.length} of {userData.length} valid accounts
 									selected
 								</span>
@@ -223,7 +222,7 @@ export function ExcelImportModal({
 												{excelHeader.map((header) => (
 													<th
 														key={header}
-														className="text-left py-4 px-6 font-semibold text-[12px] text-foreground"
+														className="text-left py-4 px-6 font-semibold text-sm text-foreground"
 													>
 														{header}
 													</th>
@@ -233,7 +232,7 @@ export function ExcelImportModal({
 										<tbody>
 											{userData.map((user, index) => {
 												const isChecked = selectedAccounts.some(
-													(sel) => sel.us_schoolID === user.us_schoolID
+													(sel) => sel.us_schoolID === user.us_schoolID,
 												);
 												return (
 													<tr
@@ -242,7 +241,7 @@ export function ExcelImportModal({
 															index % 2 === 0 ? "bg-background" : "bg-muted/20"
 														}`}
 													>
-														<td className="py-3 px-4">
+														<td className="py-3 px-4 text-sm">
 															<Checkbox
 																checked={isChecked}
 																onCheckedChange={() =>
@@ -253,7 +252,7 @@ export function ExcelImportModal({
 														{allHeaders.map((key) => (
 															<td
 																key={key}
-																className="py-4 px-6 text-[12px] min-w-[100px]"
+																className="py-4 px-6 text-sm min-w-[100px]"
 															>
 																{key === "us_status" ? (
 																	<Badge
@@ -269,7 +268,7 @@ export function ExcelImportModal({
 																			const excelEpoch = new Date(1899, 11, 30);
 																			const dateObj = new Date(
 																				excelEpoch.getTime() +
-																					user[key] * 86400000
+																					user[key] * 86400000,
 																			);
 
 																			formattedDate =
@@ -297,13 +296,13 @@ export function ExcelImportModal({
 								<div className="flex justify-end gap-3">
 									<Button
 										variant="outline"
-										className="bg-transparent h-10 px-4 text-[12px]"
+										className="bg-transparent h-10 px-4 text-sm"
 										onClick={() => setStep("upload")}
 									>
 										Back
 									</Button>
 									<Button
-										className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-[12px]"
+										className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-sm"
 										onClick={handleImport}
 										disabled={selectedAccounts.length === 0}
 									>

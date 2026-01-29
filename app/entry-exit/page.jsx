@@ -131,7 +131,7 @@ export default function EntryExitPage() {
 				setCtrPage,
 				pageCursors,
 				setPageCursors,
-				currentPage
+				currentPage,
 			);
 		}
 
@@ -165,7 +165,7 @@ export default function EntryExitPage() {
 				userDetails?.us_liID,
 				setLibraryQR,
 				setLibraryData,
-				Alert
+				Alert,
 			);
 		}
 	}, [userDetails]);
@@ -182,7 +182,7 @@ export default function EntryExitPage() {
 				selectedCourseID,
 				filterCoursesData,
 				setSubCoursesData,
-				Alert
+				Alert,
 			);
 		} else {
 			setSubCoursesData([]);
@@ -200,7 +200,7 @@ export default function EntryExitPage() {
 					<div className="mb-6 animate-fade-in">
 						<button
 							onClick={() => router.back()}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 						>
 							<FiArrowLeft className="w-4 h-4" />
 							Back to Previous page
@@ -209,23 +209,23 @@ export default function EntryExitPage() {
 
 					<div className="flex flex-col gap-4 md:gap-6  md:flex-col lg:flex-row sm:items-left justify-between mb-8 animate-slide-up">
 						<div className="w-fit">
-							<h1 className="font-semibold text-foreground text-[20px]">
+							<h1 className="font-semibold text-foreground text-xl">
 								{isPersonnel
 									? showLoggedIn
 										? "Users Currently OnSite"
 										: "Users Currently OnApp"
 									: showLoggedIn
-									? "Currently OnSite"
-									: "Currently OnApp"}
+										? "Currently OnSite"
+										: "Currently OnApp"}
 							</h1>
-							<p className="text-muted-foreground text-[14px]">
+							<p className="text-muted-foreground text-base">
 								{isPersonnel
 									? showLoggedIn
 										? "View and manage all users present in the library"
 										: "View and manage all users logged into the system"
 									: showLoggedIn
-									? "View and access your records while present in the library"
-									: "View and access your records while logged into the system"}
+										? "View and access your records while present in the library"
+										: "View and access your records while logged into the system"}
 							</p>
 						</div>
 
@@ -234,7 +234,7 @@ export default function EntryExitPage() {
 								variant={!showLoggedIn ? "default" : "ghost"}
 								size="sm"
 								onClick={() => setShowLoggedIn(false)}
-								className={`h-9 px-3 rounded-r-none  text-[12px] ${
+								className={`h-9 px-3 rounded-r-none  text-base ${
 									!showLoggedIn
 										? "bg-primary-custom text-white hover:text-white hover:bg-primary-custom/90"
 										: "hover:bg-accent"
@@ -247,7 +247,7 @@ export default function EntryExitPage() {
 								variant={showLoggedIn ? "default" : "ghost"}
 								size="sm"
 								onClick={() => setShowLoggedIn(true)}
-								className={`h-9 px-3 rounded-l-none text-[12px] ${
+								className={`h-9 px-3 rounded-l-none text-base ${
 									showLoggedIn
 										? "bg-primary-custom text-white hover:text-white hover:bg-primary-custom/90"
 										: "hover:bg-accent"
@@ -261,14 +261,13 @@ export default function EntryExitPage() {
 
 					<div className="mb-8 animate-slide-up-delay-1">
 						<div className="flex items-left justify-between flex-col sm:flex-row gap-4 mb-4">
-							<div className="relative flex items-center flex-1 max-w-md">
+							<div className="relative flex items-center flex-1 max-w-lg">
 								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 								<Input
 									placeholder={`Search ${isPersonnel ? "user" : "library"}...`}
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
-									className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-									style={{ fontSize: "12px" }}
+									className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
 								/>
 								<div className="absolute right-16 top-1/2 transform -translate-y-1/2">
 									<FiCamera
@@ -279,7 +278,7 @@ export default function EntryExitPage() {
 								<Button
 									onClick={() => setShowFilters(!showFilters)}
 									variant="ghost"
-									className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-[12px]"
+									className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
 								>
 									Filter
 								</Button>
@@ -292,7 +291,7 @@ export default function EntryExitPage() {
 											onClick={() => setCodeOpen(true)}
 											variant="outline"
 											size="sm"
-											className="h-9 border-border text-foreground hover:bg-accent shadow-sm text-[12px]"
+											className="h-9 border-border text-foreground hover:bg-accent shadow-sm text-base"
 										>
 											<IoQrCodeOutline className="w-4 h-4" />
 										</Button>
@@ -300,7 +299,7 @@ export default function EntryExitPage() {
 											onClick={() => setShowEnterExitModal(true)}
 											variant="outline"
 											size="sm"
-											className="h-9 border-border text-foreground hover:bg-accent shadow-sm text-[12px]"
+											className="h-9 border-border text-foreground hover:bg-accent shadow-sm text-base"
 										>
 											<FiUserPlus className="w-4 h-4 mr-2" />
 											Entry / Exit user
@@ -311,7 +310,7 @@ export default function EntryExitPage() {
 									onClick={() => setIsRankModalOpen(true)}
 									variant="outline"
 									size="sm"
-									className="h-9 border-border text-foreground hover:bg-accent shadow-sm text-[12px]"
+									className="h-9 border-border text-foreground hover:bg-accent shadow-sm text-base"
 								>
 									<Trophy className="w-4 h-4 mr-2" />
 									Rank Board
@@ -354,12 +353,12 @@ export default function EntryExitPage() {
 							selectedProgram !== "All" ||
 							selectedInstitute !== "All") && (
 							<div className="flex items-center gap-2 mb-4 flex-wrap">
-								<span className="text-muted-foreground text-[11px]">
+								<span className="text-muted-foreground text-sm">
 									Active Filters:
 								</span>
 
 								{selectedLibrary !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1  text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1  text-sm">
 										Library:{" "}
 										{library.find((lib) => lib.id === selectedLibrary)
 											?.li_name || "Unknown"}
@@ -371,7 +370,7 @@ export default function EntryExitPage() {
 								)}
 
 								{selectedUsType !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Type: {selectedUsType}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -380,7 +379,7 @@ export default function EntryExitPage() {
 									</span>
 								)}
 
-								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[11px]">
+								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 									Status: {selectedStatus ? "Active" : "Inactive"}
 									<FiX
 										className="w-3 h-3 cursor-pointer"
@@ -389,7 +388,7 @@ export default function EntryExitPage() {
 								</span>
 
 								{selectedCourses !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Course: {selectedCourses}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -399,7 +398,7 @@ export default function EntryExitPage() {
 								)}
 
 								{selectedYear !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Year: {selectedYear}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -409,7 +408,7 @@ export default function EntryExitPage() {
 								)}
 
 								{selectedTracks !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-[12px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-sm">
 										Track: {selectedTracks}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -419,7 +418,7 @@ export default function EntryExitPage() {
 								)}
 
 								{selectedStrand !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Strand: {selectedStrand}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -429,7 +428,7 @@ export default function EntryExitPage() {
 								)}
 
 								{selectedInstitute !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Institute: {selectedInstitute}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -439,7 +438,7 @@ export default function EntryExitPage() {
 								)}
 
 								{selectedProgram !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-[12px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-sm">
 										Program: {selectedProgram}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -449,7 +448,7 @@ export default function EntryExitPage() {
 								)}
 
 								{selectedSection !== "" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Section: {selectedSection}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -470,7 +469,7 @@ export default function EntryExitPage() {
 								/>
 								<div className="relative bg-card w-80 h-full shadow-lg transform transition-transform duration-300 translate-x-0 animate-slide-in-left">
 									<div className="flex items-center justify-between p-4 border-b border-border text-white bg-primary-custom">
-										<h2 className="font-semibold text-white text-[14px]">
+										<h2 className="font-semibold text-white text-base">
 											Filters
 										</h2>
 										<button
@@ -483,13 +482,13 @@ export default function EntryExitPage() {
 
 									<div className="p-4 space-y-4 overflow-y-auto h-full pb-24">
 										<div className="space-y-2">
-											<label className="block font-medium text-foreground text-[11px]">
+											<label className="block font-medium text-foreground text-sm">
 												Select a Library
 											</label>
 											<select
 												value={selectedLibrary}
 												onChange={(e) => setSelectedLibrary(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[11px]"
+												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 											>
 												<option value="All">All Libraries</option>
 												{library.map((lib) => (
@@ -502,13 +501,13 @@ export default function EntryExitPage() {
 										{isPersonnel && (
 											<>
 												<div className="space-y-2">
-													<label className="block font-medium text-foreground text-[11px]">
+													<label className="block font-medium text-foreground text-sm">
 														Select a User Type
 													</label>
 													<select
 														value={selectedUsType}
 														onChange={(e) => setSelectedUsType(e.target.value)}
-														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[11px]"
+														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 													>
 														<option value="All">All User Types</option>
 
@@ -542,7 +541,7 @@ export default function EntryExitPage() {
 										)}
 
 										<div className="space-y-3">
-											<label className="block font-medium text-foreground text-[11px]">
+											<label className="block font-medium text-foreground text-sm">
 												Status Filters
 											</label>
 											<div className="space-y-2">
@@ -553,7 +552,7 @@ export default function EntryExitPage() {
 															setSelectedStatus(checked)
 														}
 													/>
-													<span className="text-foreground text-[11px]">
+													<span className="text-foreground text-sm">
 														Show only Active
 													</span>
 												</label>
@@ -562,7 +561,7 @@ export default function EntryExitPage() {
 										{isPersonnel && (
 											<>
 												<div className="space-y-2">
-													<label className="block font-medium text-foreground text-[12px]">
+													<label className="block font-medium text-foreground text-sm">
 														Select a Course
 													</label>
 													<select
@@ -574,7 +573,7 @@ export default function EntryExitPage() {
 															setSelectedTracks("All");
 															setSelectedCourses(e.target.value);
 														}}
-														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 													>
 														<option value="All">All Courses</option>
 														{["Senior High School", "College Courses"].map(
@@ -582,19 +581,19 @@ export default function EntryExitPage() {
 																<option key={courses} value={courses}>
 																	{courses}
 																</option>
-															)
+															),
 														)}
 													</select>
 												</div>
 
 												<div className="space-y-2">
-													<label className="block font-medium text-foreground text-[12px]">
+													<label className="block font-medium text-foreground text-sm">
 														Select a Year
 													</label>
 													<select
 														value={selectedYear}
 														onChange={(e) => setSelectedYear(e.target.value)}
-														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 													>
 														<option value="All">All Years</option>
 														{(selectedCourses == "Senior High School"
@@ -612,7 +611,7 @@ export default function EntryExitPage() {
 													<>
 														{/* TRACKS / INSTITUTE */}
 														<div className="space-y-2">
-															<label className="block font-medium text-foreground text-[12px]">
+															<label className="block font-medium text-foreground text-sm">
 																Select a{" "}
 																{selectedCourses === "Senior High School"
 																	? "Track"
@@ -624,7 +623,7 @@ export default function EntryExitPage() {
 																	const selectedID = e.target.value;
 
 																	const selectedCourse = filterCoursesData.find(
-																		(course) => course.id === selectedID
+																		(course) => course.id === selectedID,
 																	);
 
 																	if (
@@ -634,13 +633,13 @@ export default function EntryExitPage() {
 																		setSelectedTracks(selectedCourse.cs_title);
 																	} else {
 																		setSelectedInstitute(
-																			selectedCourse.cs_title
+																			selectedCourse.cs_title,
 																		);
 																	}
 
 																	setSelectedCourseID(selectedID);
 																}}
-																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 															>
 																<option value="All">
 																	{selectedCourses === "Senior High School"
@@ -657,7 +656,7 @@ export default function EntryExitPage() {
 
 														{/* STRAND / PROGRAM */}
 														<div className="space-y-2">
-															<label className="block font-medium text-foreground text-[12px]">
+															<label className="block font-medium text-foreground text-sm">
 																Select a{" "}
 																{selectedCourses === "Senior High School"
 																	? "Strand"
@@ -674,7 +673,7 @@ export default function EntryExitPage() {
 																		setSelectedProgram(e.target.value);
 																	}
 																}}
-																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 															>
 																<option value="All">
 																	{selectedCourses === "Senior High School"
@@ -692,7 +691,7 @@ export default function EntryExitPage() {
 												)}
 
 												<div className="space-y-2">
-													<label className="block font-medium text-foreground  text-[12px]">
+													<label className="block font-medium text-foreground  text-sm">
 														Section Name
 													</label>
 
@@ -700,8 +699,7 @@ export default function EntryExitPage() {
 														placeholder="Enter Section..."
 														value={selectedSection}
 														onChange={(e) => setSelectedSection(e.target.value)}
-														className="h-9 bg-card text-foreground border-border"
-														style={{ fontSize: "12px" }}
+														className="h-9 bg-card text-foreground border-border text-sm"
 													/>
 												</div>
 											</>
@@ -725,13 +723,13 @@ export default function EntryExitPage() {
 													setSelectedSection("");
 												}}
 												variant="outline"
-												className="flex-1 h-9 border-border text-[12px]"
+												className="flex-1 h-9 border-border text-sm"
 											>
 												Clear All
 											</Button>
 											<Button
 												onClick={() => setShowFilters(false)}
-												className="flex-1 text-white hover:opacity-90 h-9 bg-primary-custom text-[12px]"
+												className="flex-1 text-white hover:opacity-90 h-9 bg-primary-custom text-sm"
 											>
 												Apply Filters
 											</Button>
@@ -756,7 +754,7 @@ export default function EntryExitPage() {
 													: renderlibraryDetails(user)}
 
 												<div>
-													<h5 className="font-medium text-foreground mb-4 text-[13px]">
+													<h5 className="font-medium text-foreground mb-4 text-base">
 														In & Out Details
 													</h5>
 													{renderuserLog(user)}
@@ -768,11 +766,11 @@ export default function EntryExitPage() {
 															router.push(
 																isPersonnel
 																	? `/account/details?id=${user?.lo_user?.id}`
-																	: `/library/details?id=${user?.lo_library?.id}`
+																	: `/library/details?id=${user?.lo_library?.id}`,
 															)
 														}
 														size="sm"
-														className=" bg-primary-custom hover:bg-secondary-custom text-white h-9 text-[12px]"
+														className=" bg-primary-custom hover:bg-secondary-custom text-white h-9 text-sm"
 													>
 														<ExternalLink className="w-3 h-3 mr-1.5" />
 														{isPersonnel ? "View Profile" : "View Library"}
@@ -798,7 +796,7 @@ export default function EntryExitPage() {
 													].map((header) => (
 														<th
 															key={header}
-															className="text-left py-4 px-6 font-semibold text-foreground text-[12px]"
+															className="text-left py-4 px-6 font-semibold text-foreground text-sm"
 														>
 															{header}
 														</th>
@@ -813,35 +811,34 @@ export default function EntryExitPage() {
 															index % 2 === 0 ? "bg-background" : "bg-muted/10"
 														}`}
 													>
-														<td className="py-4 px-6 text-left text-foreground text-[12px]">
+														<td className="py-4 px-6 text-left text-foreground text-sm">
 															<Badge
-																className={getStatusColor(user?.lo_status)}
-																style={{ fontSize: "11px" }}
+																className={`${getStatusColor(user?.lo_status)} text-xs`}
 															>
 																{user?.lo_status}
 															</Badge>
 														</td>
 
-														<td className="py-4 px-6 text-left text-foreground text-[12px]">
+														<td className="py-4 px-6 text-left text-foreground text-sm">
 															{isPersonnel
 																? renderuserDetails(user, true)
 																: renderlibraryDetails(user, true)}
 														</td>
-														<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[350px]">
+														<td className="py-4 px-6 text-left text-foreground text-sm min-w-[350px]">
 															{renderuserLog(user)}
 														</td>
 
-														<td className="py-4 px-6 text-left text-foreground text-[12px]">
+														<td className="py-4 px-6 text-left text-foreground text-sm">
 															<Button
 																onClick={() =>
 																	router.push(
 																		isPersonnel
 																			? `/account/details?id=${user?.lo_user.id}`
-																			: `/library/details?id=${user?.lo_library.id}`
+																			: `/library/details?id=${user?.lo_library.id}`,
 																	)
 																}
 																size="sm"
-																className="bg-primary-custom hover:bg-secondary-custom text-white h-9 text-[12px]"
+																className="bg-primary-custom hover:bg-secondary-custom text-white h-9 text-sm"
 															>
 																<ExternalLink className="w-3 h-3 mr-1.5" />
 																{isPersonnel ? "View Profile" : "View Library"}

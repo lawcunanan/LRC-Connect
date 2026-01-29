@@ -78,7 +78,7 @@ export function VisitRankModal({
 							variant={!showLoggedIn ? "default" : "ghost"}
 							size="sm"
 							onClick={() => setShowLoggedIn(false)}
-							className={`h-9 px-3 rounded-r-none  text-[12px] ${
+							className={`h-9 px-3 rounded-r-none  text-sm ${
 								!showLoggedIn
 									? "bg-primary-custom text-white hover:text-white hover:bg-primary-custom/90"
 									: "hover:bg-accent"
@@ -91,7 +91,7 @@ export function VisitRankModal({
 							variant={showLoggedIn ? "default" : "ghost"}
 							size="sm"
 							onClick={() => setShowLoggedIn(true)}
-							className={`h-9 px-3 rounded-l-none text-[12px] ${
+							className={`h-9 px-3 rounded-l-none text-sm ${
 								showLoggedIn
 									? "bg-primary-custom text-white hover:text-white hover:bg-primary-custom/90"
 									: "hover:bg-accent"
@@ -113,7 +113,7 @@ export function VisitRankModal({
 				<EmptyState data={userData} loading={loading} />
 
 				<div className="flex flex-col items-start gap-2 sm:pt-6">
-					<label className="font-medium text-foreground text-[12px]">
+					<label className="font-medium text-foreground text-sm">
 						View rankings for:
 					</label>
 					{libraryData && libraryData?.length > 0 && (
@@ -123,7 +123,7 @@ export function VisitRankModal({
 									key={lib.id}
 									onClick={() => setSelectedLibrary(lib.id)}
 									className={cn(
-										"text-[12px] px-4 py-2 rounded-full transition-colors duration-200",
+										"text-sm px-4 py-2 rounded-full transition-colors duration-200",
 										selectedLibrary === lib.id
 											? "bg-primary-custom text-white shadow-md"
 											: "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -135,21 +135,21 @@ export function VisitRankModal({
 						</div>
 					)}
 					<div className="flex  gap-4 ">
-						<label className="flex items-center gap-2 text-[12px]">
+						<label className="flex items-center gap-2 text-sm">
 							<Checkbox
 								checked={selectedRole == "All"}
 								onCheckedChange={() => setSelectedRole("All")}
 							/>
 							All User
 						</label>
-						<label className="flex items-center gap-2 text-[12px]">
+						<label className="flex items-center gap-2 text-sm">
 							<Checkbox
 								checked={selectedRole == "Patron"}
 								onCheckedChange={() => setSelectedRole("Patron")}
 							/>
 							Patron
 						</label>
-						<label className="flex items-center gap-2 text-[12px]">
+						<label className="flex items-center gap-2 text-sm">
 							<Checkbox
 								checked={selectedRole == "Personnel"}
 								onCheckedChange={() => setSelectedRole("Personnel")}
@@ -176,7 +176,7 @@ export function VisitRankModal({
 												: "hover:bg-accent/20"
 										)}
 									>
-										<span className="font-medium text-foreground w-8 text-center text-[14px]">
+										<span className="font-medium text-foreground w-8 text-center text-base">
 											{actualIndex}
 										</span>
 
@@ -189,10 +189,10 @@ export function VisitRankModal({
 												/>
 											</div>
 											<div>
-												<h3 className="font-medium text-foreground text-[14px]">
+												<h3 className="font-medium text-foreground text-base">
 													{user.us_name}
 												</h3>
-												<p className="text-primary-custom text-[12px]">
+												<p className="text-primary-custom text-sm">
 													{user.us_type}
 													<span className="text-muted-foreground">
 														{" • "}
@@ -202,7 +202,7 @@ export function VisitRankModal({
 											</div>
 										</div>
 
-										<span className="font-medium text-foreground text-[14px] ml-auto text-center">
+										<span className="font-medium text-foreground text-base ml-auto text-center">
 											{user.us_visits} visits
 										</span>
 									</div>
@@ -276,18 +276,18 @@ const renderRankCard = (user, rank, isTop3 = false) => {
 				/>
 			</div>
 
-			<h2 className="font-medium text-primary-custom text-[18px]">
+			<h2 className="font-medium text-primary-custom text-lg">
 				{rankBadge} Rank {rank}
 			</h2>
 
-			<p className="text-muted-foreground  mb-2 text-[12px]">
+			<p className="text-muted-foreground  mb-2 text-sm">
 				{user?.us_visits || 0} visits
 			</p>
 
-			<h3 className="font-medium text-foreground text-[14px]">
+			<h3 className="font-medium text-foreground text-base">
 				{user?.us_name || "No ranking yet"}
 			</h3>
-			<p className="text-primary-custom text-[12px]">
+			<p className="text-primary-custom text-sm">
 				{user?.us_type || "Type"}
 				<span className="text-muted-foreground">
 					{" • "}

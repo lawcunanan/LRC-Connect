@@ -116,7 +116,7 @@ export function AddNewsAnnouncementModal({
 		>
 			<form onSubmit={handleSubmit}>
 				<div className="flex-1 overflow-y-auto p-6 space-y-4">
-					<p className="text-muted-foreground mb-4 text-[12px]">
+					<p className="text-muted-foreground mb-4 text-sm">
 						Fill in the details for the {!isEmpty ? "selected" : "new"}{" "}
 						{entryType}.
 					</p>
@@ -124,7 +124,7 @@ export function AddNewsAnnouncementModal({
 					<div className="space-y-1">
 						<Label
 							htmlFor="title"
-							className="text-[12px] font-medium text-foreground"
+							className="text-sm font-medium text-foreground"
 						>
 							Title
 						</Label>
@@ -134,7 +134,7 @@ export function AddNewsAnnouncementModal({
 							value={formData.na_title}
 							onChange={(e) => handleChange(e, setFormData)}
 							className="h-9 bg-background border-border text-foreground"
-							style={{ fontSize: "12px" }}
+							
 							required
 						/>
 					</div>
@@ -142,7 +142,7 @@ export function AddNewsAnnouncementModal({
 					<div className="space-y-1">
 						<Label
 							htmlFor="content"
-							className="text-[12px] font-medium text-foreground"
+							className="text-sm font-medium text-foreground"
 						>
 							Content
 						</Label>
@@ -152,7 +152,7 @@ export function AddNewsAnnouncementModal({
 							value={formData.na_content}
 							onChange={(e) => handleChange(e, setFormData)}
 							className="h-24 bg-background border-border text-foreground"
-							style={{ fontSize: "12px" }}
+							
 							required
 						/>
 					</div>
@@ -160,7 +160,7 @@ export function AddNewsAnnouncementModal({
 					<div className="space-y-1">
 						<Label
 							htmlFor="category"
-							className="text-[12px] font-medium text-foreground"
+							className="text-sm font-medium text-foreground"
 						>
 							Category
 						</Label>
@@ -174,7 +174,7 @@ export function AddNewsAnnouncementModal({
 							}
 							required
 						>
-							<SelectTrigger className="h-9 bg-background border-border text-foreground text-[12px]">
+							<SelectTrigger className="h-9 bg-background border-border text-foreground text-sm">
 								<SelectValue placeholder="Select category" />
 							</SelectTrigger>
 							<SelectContent>
@@ -185,7 +185,7 @@ export function AddNewsAnnouncementModal({
 									"Policy Update",
 									"Holiday",
 								].map((item) => (
-									<SelectItem key={item} value={item} className="text-[12px]">
+									<SelectItem key={item} value={item} className="text-sm">
 										{item}
 									</SelectItem>
 								))}
@@ -194,7 +194,7 @@ export function AddNewsAnnouncementModal({
 					</div>
 
 					<div className="space-y-1">
-						<Label className="text-[12px] font-medium text-foreground">
+						<Label className="text-sm font-medium text-foreground">
 							Visibility
 						</Label>
 						<RadioGroup
@@ -211,7 +211,7 @@ export function AddNewsAnnouncementModal({
 							{["General", "Patron", "Personnel"].map((value, i) => (
 								<div key={value} className="flex items-center gap-2">
 									<RadioGroupItem value={value} id={`r${i}`} />
-									<Label htmlFor={`r${i}`} style={{ fontSize: "12px" }}>
+									<Label htmlFor={`r${i}`} >
 										{value}
 									</Label>
 								</div>
@@ -222,7 +222,7 @@ export function AddNewsAnnouncementModal({
 					<div className="space-y-1">
 						<Label
 							htmlFor="image-upload"
-							className="text-[12px] font-medium text-foreground"
+							className="text-sm font-medium text-foreground"
 						>
 							Featured Image
 						</Label>
@@ -250,17 +250,17 @@ export function AddNewsAnnouncementModal({
 									>
 										<FiX className="w-4 h-4" />
 									</Button>
-									<p className="text-center text-muted-foreground mt-2 text-[10px]">
+									<p className="text-center text-muted-foreground mt-2 text-xs">
 										{formData.na_photoURL.name ?? "Uploaded image"}
 									</p>
 								</div>
 							) : (
 								<div className="border-2 border-dashed border-border rounded-lg p-8 text-center bg-muted/30 hover:bg-muted/50 transition-colors h-64 flex flex-col items-center justify-center">
 									<FiImage className="w-8 h-8 text-muted-foreground mb-2" />
-									<p className="text-muted-foreground text-[12px]">
+									<p className="text-muted-foreground text-sm">
 										Click or drag to upload image
 									</p>
-									<p className="text-muted-foreground text-[11px]">
+									<p className="text-muted-foreground text-xs">
 										JPG, PNG, Max: 2MB
 									</p>
 								</div>
@@ -289,7 +289,7 @@ export function AddNewsAnnouncementModal({
 									)
 								}
 							/>
-							<Label htmlFor="urgent" className="text-[12px]">
+							<Label htmlFor="urgent" className="text-sm">
 								Mark as Urgent
 							</Label>
 						</div>
@@ -301,13 +301,13 @@ export function AddNewsAnnouncementModal({
 						type="button"
 						onClick={() => onClose()}
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 					>
 						Cancel
 					</Button>
 					<Button
 						type="submit"
-						className="bg-primary-custom hover:bg-secondary-custom text-white text-[11px] h-10 px-4 text-[12px]"
+						className="bg-primary-custom hover:bg-secondary-custom text-white text-xs h-10 px-4 text-sm"
 						disabled={btnLoading || formData.na_photoURL == null}
 					>
 						<LoadingSpinner loading={btnLoading} />

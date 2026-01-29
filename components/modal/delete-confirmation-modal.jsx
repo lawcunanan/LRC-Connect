@@ -51,22 +51,22 @@ const DeleteConfirmationModal = ({
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} title={title} size="sm">
 			<div className="p-6 space-y-6">
-				<p className="text-muted-foreground text-[12px]">{description}</p>
+				<p className="text-muted-foreground text-sm">{description}</p>
 
 				<div className="flex justify-end gap-3 pt-4 border-t border-border">
 					<Button
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 						onClick={() => onClose()}
 					>
 						Cancel
 					</Button>
 					<Button
 						onClick={handleConfirm}
-						className="bg-red-600 hover:bg-red-700 text-white flex items-center gap-1 h-10 text-[12px]"
+						className="bg-red-600 hover:bg-red-700 text-white flex items-center gap-1 h-10 text-sm"
 					>
 						<LoadingSpinner loading={btnLoading} />
-						{!btnLoading && <FiTrash2 className="text-[14px]" />}
+						{!btnLoading && <FiTrash2 className="text-base" />}
 						Delete
 					</Button>
 				</div>

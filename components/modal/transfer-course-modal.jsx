@@ -58,13 +58,13 @@ export function TransferCourseModal({
 			size="sm"
 		>
 			<div className="p-6  space-y-1">
-				<Label className="font-medium text-foreground text-[12px]">
+				<Label className="font-medium text-foreground text-sm">
 					Transfer <span className="font-semibold">{actionData?.title}</span>{" "}
 					to:
 				</Label>
 
 				<Select value={selectedTarget} onValueChange={setSelectedTarget}>
-					<SelectTrigger className="h-9 bg-background border-border text-foreground text-[12px]">
+					<SelectTrigger className="h-9 bg-background border-border text-foreground text-sm">
 						<SelectValue placeholder="Select destination" />
 					</SelectTrigger>
 
@@ -75,7 +75,7 @@ export function TransferCourseModal({
 								<SelectItem
 									key={index}
 									value={target.id}
-									className="text-[12px]"
+									className="text-sm"
 								>
 									{target.cs_title}
 								</SelectItem>
@@ -89,7 +89,7 @@ export function TransferCourseModal({
 					type="button"
 					onClick={onClose}
 					variant="outline"
-					className="bg-transparent h-10 px-4 text-[12px]"
+					className="bg-transparent h-10 px-4 text-sm"
 				>
 					Cancel
 				</Button>
@@ -98,7 +98,7 @@ export function TransferCourseModal({
 					type="button"
 					onClick={handleTransfer}
 					disabled={!selectedTarget || btnLoading}
-					className="bg-primary-custom hover:bg-secondary-custom text-white text-[12px] h-10 px-4"
+					className="bg-primary-custom hover:bg-secondary-custom text-white text-sm h-10 px-4"
 				>
 					<LoadingSpinner loading={btnLoading} />
 					Transfer

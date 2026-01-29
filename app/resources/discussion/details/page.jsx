@@ -53,7 +53,7 @@ export default function DiscussionRoomDetailsPage() {
 				<div className="mb-6 animate-fade-in">
 					<button
 						onClick={() => router.back()}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
 					>
 						<FiArrowLeft className="w-3 h-3" />
 						Back to Previous page
@@ -61,10 +61,10 @@ export default function DiscussionRoomDetailsPage() {
 				</div>
 
 				<div className="mb-8 animate-slide-up">
-					<h1 className="font-semibold text-foreground text-[20px]">
+					<h1 className="font-semibold text-foreground text-xl">
 						Discussion Room Details
 					</h1>
-					<p className="text-muted-foreground text-[14px]">
+					<p className="text-muted-foreground text-base">
 						View detailed information about this discussion room resource
 					</p>
 				</div>
@@ -89,7 +89,7 @@ export default function DiscussionRoomDetailsPage() {
 
 									<Badge
 										className={`absolute -top-2 -right-2 px-3 py-1 text-xs ${getStatusColor(
-											formData?.dr_status
+											formData?.dr_status,
 										)}`}
 									>
 										{formData?.dr_status}
@@ -101,13 +101,13 @@ export default function DiscussionRoomDetailsPage() {
 
 					<div className="lg:col-span-3 space-y-8">
 						<div className="space-y-2">
-							<h1 className="text-[28px] font-bold  leading-tight tracking-tight">
+							<h1 className="text-2xl font-bold  leading-tight tracking-tight">
 								{formData?.dr_name}
 							</h1>
-							<p className="text-[16px] text-foreground-700 font-medium">
+							<p className="text-base text-foreground-700 font-medium">
 								{formData?.dr_createdAtDATE}
 							</p>
-							<p className="text-muted-foreground leading-relaxed text-[14px]">
+							<p className="text-muted-foreground leading-relaxed text-sm">
 								{formData?.dr_description}
 							</p>
 
@@ -118,7 +118,7 @@ export default function DiscussionRoomDetailsPage() {
 									formData?.dr_status == "Active" &&
 									userDetails?.us_status == "Active" && (
 										<Button
-											className="bg-primary-custom text-white hover:bg-secondary-custom  text-[12px] h-10 px-6 transition-colors duration-200 flex items-center gap-2 shimmer"
+											className="bg-primary-custom text-white hover:bg-secondary-custom  text-sm h-10 px-6 transition-colors duration-200 flex items-center gap-2 shimmer"
 											onClick={() => {
 												!["USR-5", "USR-6"].includes(userDetails?.us_level)
 													? setPatronSelectionOpen(true)
@@ -126,8 +126,8 @@ export default function DiscussionRoomDetailsPage() {
 															router,
 															"Discussion Room",
 															formData?.id,
-															userDetails?.uid
-													  );
+															userDetails?.uid,
+														);
 											}}
 										>
 											Reserve
@@ -135,7 +135,7 @@ export default function DiscussionRoomDetailsPage() {
 									)}
 								<Button
 									variant="outline"
-									className="text-[12px] h-10 w-fit "
+									className="text-sm h-10 w-fit "
 									onClick={() => setCodeOpen(true)}
 								>
 									<QrCode className="w-5 h-5" />
@@ -145,31 +145,31 @@ export default function DiscussionRoomDetailsPage() {
 
 						<div className="space-y-6">
 							<div className="p-6  rounded-lg shadow-sm border border-border">
-								<h3 className="font-medium text-foreground text-[16px] mb-3 leading-none">
+								<h3 className="font-medium text-foreground text-base mb-3 leading-none">
 									Discussion Room Details
 								</h3>
 								<div className="space-y-4">
 									<div className="flex flex-col sm:flex-row sm:items-start gap-2">
-										<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+										<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 											Capacity
 										</Label>
-										<p className="text-[12px] text-muted-foreground sm:flex-1">
+										<p className="text-sm text-muted-foreground sm:flex-1">
 											{formData?.dr_capacity}
 										</p>
 									</div>
 									<div className="flex flex-col sm:flex-row sm:items-start gap-2">
-										<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+										<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 											Min Duration
 										</Label>
-										<p className="text-[12px] text-muted-foreground sm:flex-1">
+										<p className="text-sm text-muted-foreground sm:flex-1">
 											{formData?.dr_minDurationFormatted}
 										</p>
 									</div>
 									<div className="flex flex-col sm:flex-row sm:items-start gap-2">
-										<Label className="text-[12px] font-medium text-foreground sm:w-1/3 shrink-0">
+										<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
 											Max Duration
 										</Label>
-										<p className="text-[12px] text-muted-foreground sm:flex-1">
+										<p className="text-sm text-muted-foreground sm:flex-1">
 											{formData?.dr_maxDurationFormatted}
 										</p>
 									</div>
@@ -177,7 +177,7 @@ export default function DiscussionRoomDetailsPage() {
 							</div>
 
 							<div className="rounded-lg p-6 shadow-sm border border-border">
-								<h3 className="font-medium text-foreground text-[16px]  mb-3">
+								<h3 className="font-medium text-foreground text-base  mb-3">
 									Location & Details
 								</h3>
 
@@ -186,10 +186,10 @@ export default function DiscussionRoomDetailsPage() {
 										<GraduationCap className="w-4 h-4 text-foreground mt-[2px] flex-shrink-0" />
 										<span className="text-muted-foreground">|</span>
 										<div className="leading-none space-y-2">
-											<label className="text-[12px] font-medium text-foreground">
+											<label className="text-sm font-medium text-foreground">
 												School Name
 											</label>
-											<p className="text-[12px] text-muted-foreground leading-4">
+											<p className="text-sm text-muted-foreground leading-4">
 												{formData?.dr_school}
 											</p>
 										</div>
@@ -199,10 +199,10 @@ export default function DiscussionRoomDetailsPage() {
 										<Building2 className="w-4 h-4 text-foreground mt-[2px] flex-shrink-0" />
 										<span className="text-muted-foreground">|</span>
 										<div className="leading-none space-y-2">
-											<label className="text-[12px] font-medium text-foreground">
+											<label className="text-sm font-medium text-foreground">
 												Library Name
 											</label>
-											<p className="text-[12px] text-muted-foreground leading-4">
+											<p className="text-sm text-muted-foreground leading-4">
 												{formData?.dr_library}
 											</p>
 										</div>
@@ -212,23 +212,23 @@ export default function DiscussionRoomDetailsPage() {
 								<div className="flex gap-3 mt-6 justify-end border-t  pt-4">
 									<Button
 										onClick={() => setAiModalOpen(true)}
-										className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700  shadow-sm text-[12px] h-9 shimmer"
+										className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700  shadow-sm text-sm h-9 shimmer"
 									>
 										<Sparkles className="w-4 h-4 mr-1" />
 										AI Assistant
 									</Button>
 									{userDetails &&
 										["USR-2", "USR-3", "USR-4"].includes(
-											userDetails?.us_level
+											userDetails?.us_level,
 										) && (
 											<Button
 												onClick={() =>
 													router.push(
-														`/resources/discussion/register?type=edit&id=${id}`
+														`/resources/discussion/register?type=edit&id=${id}`,
 													)
 												}
 												variant="outline"
-												className="hover:bg-secondary bg-transparent text-[12px] h-9"
+												className="hover:bg-secondary bg-transparent text-sm h-9"
 											>
 												<FiEdit3 className="w-3 h-3 mr-1" />
 												Edit

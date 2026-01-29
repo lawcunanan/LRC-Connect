@@ -30,7 +30,7 @@ export function UserTypeModal({
 			userType,
 			userData.us_library,
 			setBtnLoading,
-			Alert
+			Alert,
 		);
 		resetForm();
 	};
@@ -57,14 +57,14 @@ export function UserTypeModal({
 				className="p-6 space-y-4 max-h-[80vh] overflow-y-auto"
 			>
 				<div>
-					<label className="block text-foreground font-medium mb-2 text-[12px]">
+					<label className="block text-foreground font-medium mb-2 text-sm">
 						Select New User Type
 					</label>
 					<select
 						name="us_type"
 						value={userType}
 						onChange={(e) => setUserType(e.target.value)}
-						className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+						className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 						required
 					>
 						<option value="">Select User Type</option>
@@ -126,14 +126,14 @@ export function UserTypeModal({
 						type="button"
 						onClick={resetForm}
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 					>
 						Cancel
 					</Button>
 					<Button
 						type="submit"
 						disabled={btnLoading || userType === userData?.us_type}
-						className="bg-primary-custom text-white hover:opacity-90 h-10 px-4 text-[12px] disabled:opacity-50 disabled:cursor-not-allowed"
+						className="bg-primary-custom text-white hover:opacity-90 h-10 px-4 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
 					>
 						<LoadingSpinner loading={btnLoading} />
 						Save Changes

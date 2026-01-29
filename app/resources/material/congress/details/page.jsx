@@ -31,7 +31,7 @@ export default function CongressDetailsPage() {
 							<Button
 								onClick={() => router.back()}
 								className="bg-primary-custom text-white"
-								style={{ fontSize: "11px" }}
+								
 							>
 								Go Back
 							</Button>
@@ -58,7 +58,7 @@ export default function CongressDetailsPage() {
 						<button
 							onClick={() => router.back()}
 							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit"
-							style={{ fontSize: "11px" }}
+							
 						>
 							<FiArrowLeft className="w-4 h-4" />
 							Back to Previous page
@@ -70,13 +70,13 @@ export default function CongressDetailsPage() {
 							<div>
 								<h1
 									className="font-semibold text-foreground"
-									style={{ fontSize: "20px" }}
+									
 								>
 									Library of Congress Details
 								</h1>
 								<p
 									className="text-muted-foreground "
-									style={{ fontSize: "11px" }}
+									
 								>
 									Access official Library of Congress resources and archives
 								</p>
@@ -89,13 +89,13 @@ export default function CongressDetailsPage() {
 							<div>
 								<h2
 									className="font-semibold text-foreground mb-2"
-									style={{ fontSize: "16px" }}
+									
 								>
 									{co_title}
 								</h2>
 								<p
 									className="text-muted-foreground"
-									style={{ fontSize: "11px" }}
+									
 								>
 									Click below to access this resource on the official Library of
 									Congress website
@@ -104,7 +104,7 @@ export default function CongressDetailsPage() {
 							<Button
 								onClick={() => window.open(co_url, "_blank")}
 								className="bg-primary-custom text-white hover:opacity-90 transition-all duration-200"
-								style={{ fontSize: "11px" }}
+								
 							>
 								<FiExternalLink className="w-4 h-4 mr-2" />
 								View on LOC Website
@@ -118,13 +118,13 @@ export default function CongressDetailsPage() {
 							<div className="p-4 bg-muted/30 border-b border-border">
 								<h3
 									className="font-medium text-foreground"
-									style={{ fontSize: "14px" }}
+									
 								>
 									Library of Congress Resource
 								</h3>
 								<p
 									className="text-muted-foreground mt-1"
-									style={{ fontSize: "10px" }}
+									
 								>
 									Content provided by the Library of Congress
 								</p>

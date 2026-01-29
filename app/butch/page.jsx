@@ -96,7 +96,7 @@ export default function ButchPage() {
 			materialDetails = await getMaterialList(
 				userDetails?.us_liID,
 				setIsFetch,
-				Alert
+				Alert,
 			);
 			setQuickAction((prev) => ({ ...prev, getMaterial: materialDetails }));
 		}
@@ -108,7 +108,7 @@ export default function ButchPage() {
 				quickAction.getMaterial || materialDetails
 			}`,
 			setIsAiThinking,
-			"service"
+			"service",
 		);
 	};
 
@@ -129,7 +129,7 @@ export default function ButchPage() {
 			setMessages,
 			`${quickAction.userdetails || ""}  ${quickAction.getMaterial || ""}`,
 			setIsAiThinking,
-			"service"
+			"service",
 		);
 	};
 
@@ -174,7 +174,7 @@ export default function ButchPage() {
 						liID,
 						"Material",
 						setIsFetch,
-						Alert
+						Alert,
 					);
 					setQuickAction((prev) => ({
 						...prev,
@@ -190,7 +190,7 @@ export default function ButchPage() {
 						liID,
 						"Discussion Room",
 						setIsFetch,
-						Alert
+						Alert,
 					);
 					setQuickAction((prev) => ({
 						...prev,
@@ -206,7 +206,7 @@ export default function ButchPage() {
 						liID,
 						"Computer",
 						setIsFetch,
-						Alert
+						Alert,
 					);
 					setQuickAction((prev) => ({
 						...prev,
@@ -244,7 +244,7 @@ export default function ButchPage() {
 						"Active",
 						"onSite",
 						setIsFetch,
-						Alert
+						Alert,
 					);
 					setQuickAction((prev) => ({ ...prev, getActiveOnsite: data }));
 				}
@@ -258,7 +258,7 @@ export default function ButchPage() {
 						"Inactive",
 						"onSite",
 						setIsFetch,
-						Alert
+						Alert,
 					);
 					setQuickAction((prev) => ({ ...prev, getInactiveOnsite: data }));
 				}
@@ -272,7 +272,7 @@ export default function ButchPage() {
 						"Active",
 						"onApp",
 						setIsFetch,
-						Alert
+						Alert,
 					);
 					setQuickAction((prev) => ({ ...prev, getActiveOnapp: data }));
 				}
@@ -286,7 +286,7 @@ export default function ButchPage() {
 						"Inactive",
 						"onApp",
 						setIsFetch,
-						Alert
+						Alert,
 					);
 					setQuickAction((prev) => ({ ...prev, getInactiveOnapp: data }));
 				}
@@ -320,7 +320,7 @@ export default function ButchPage() {
 				quickAction?.[action] || data
 			}`,
 			setIsAiThinking,
-			"service"
+			"service",
 		);
 	};
 
@@ -595,16 +595,13 @@ export default function ButchPage() {
 							{!inChatMode ? (
 								<>
 									<div className="text-center pt-8 md:pt-16  pb-8 animate-fade-in">
-										<h1 className="font-bold mb-3" style={{ fontSize: "32px" }}>
+										<h1 className="font-bold mb-3 text-3xl md:text-4xl">
 											<span className="text-foreground">How can I </span>
 											<span className="text-primary-custom">
 												help you today?
 											</span>
 										</h1>
-										<p
-											className="text-muted-foreground"
-											style={{ fontSize: "16px" }}
-										>
+										<p className="text-muted-foreground text-lg md:text-xl">
 											Ask me anything or choose a task below
 										</p>
 									</div>
@@ -628,10 +625,10 @@ export default function ButchPage() {
 
 									<div className="animate-slide-up-delay-1">
 										<div className="mb-6">
-											<h1 className="font-semibold text-foreground text-[20px]">
+											<h1 className="font-semibold text-foreground text-xl">
 												Quick Actions
 											</h1>
-											<p className="text-muted-foreground text-[14px]">
+											<p className="text-muted-foreground text-base">
 												Get started instantly with common library management
 												tasks.
 											</p>
@@ -645,7 +642,7 @@ export default function ButchPage() {
 														onClick={() =>
 															handleQuickActionMessage(
 																query.prompt,
-																query.action
+																query.action,
 															)
 														}
 														className="bg-card border border-border cursor-pointer hover:shadow-md hover:border-primary-custom/20 transition-all duration-200 group"
@@ -659,10 +656,10 @@ export default function ButchPage() {
 																		className={`w-5 h-5 transition-colors duration-200 ${query.textColor}`}
 																	/>
 																</div>
-																<h4 className="font-medium text-[14px]">
+																<h4 className="font-medium text-base">
 																	{query.title}
 																</h4>
-																<p className="text-muted-foreground text-[12px]">
+																<p className="text-muted-foreground text-sm">
 																	{query.subtext}
 																</p>
 															</div>
@@ -676,12 +673,12 @@ export default function ButchPage() {
 							) : (
 								<div className="flex flex-col h-full animate-fade-in">
 									<div className="flex justify-between items-center">
-										<h2 className="text-[18px] font-semibold">Butch AI</h2>
+										<h2 className="text-xl font-semibold">Butch AI</h2>
 
 										<Button
 											variant="ghost"
 											size="sm"
-											className="text-[12px] flex items-center gap-1 hover:bg-muted"
+											className="text-sm flex items-center gap-1 hover:bg-muted"
 											onClick={handleClearChat}
 										>
 											<FiTrash2 className="w-3 h-3" />
@@ -691,17 +688,20 @@ export default function ButchPage() {
 
 									<div
 										ref={chatContainerRef}
-										className="flex-1 overflow-y-auto pr-2 space-y-6  pb-6"
+										className="flex-1 overflow-y-auto space-y-8"
 									>
 										{messages.map((message, index) => {
 											if (message.role === "user") {
 												return (
-													<div key={index} className="flex flex-col items-end">
-														<div className="text-[14px] text-muted-foreground mb-1 mr-1">
+													<div
+														key={index}
+														className="flex flex-col items-end mt-4 "
+													>
+														<div className="text-base text-muted-foreground mb-3">
 															You
 														</div>
-														<div className="max-w-[80%] bg-muted/70 rounded-2xl rounded-tr-sm px-4 py-2.5">
-															<div className="text-[13px] whitespace-pre-line">
+														<div className="max-w-[80%] bg-muted rounded-2xl rounded-tr-sm px-4 py-2.5">
+															<div className="text-sm whitespace-pre-line">
 																{message.parts[0].text}
 															</div>
 														</div>
@@ -712,7 +712,7 @@ export default function ButchPage() {
 											return (
 												<div key={index} className="flex justify-start">
 													<div className="max-w-[90%] bg-primary-custom/10 rounded-2xl rounded-tl-sm ">
-														<div className="flex items-center gap-2 mb-4">
+														<div className="flex items-center gap-2 mb-3">
 															<div className="flex items-center gap-2">
 																<div className="w-6 h-6 rounded-full  overflow-hidden flex items-center justify-center">
 																	<img
@@ -721,36 +721,36 @@ export default function ButchPage() {
 																		className="w-full h-full object-cover"
 																	/>
 																</div>
-																<div className="text-[14px] font-medium">
+																<div className="text-base font-medium">
 																	Butch AI
 																</div>
 															</div>
 														</div>
 
-														<div className="text-[13px] ml-8">
+														<div className="text-sm ml-8">
 															<ReactMarkdown
 																remarkPlugins={[remarkGfm]}
 																components={{
 																	p: ({ node, ...props }) => (
 																		<p
-																			className="mb-2 text-[13px]"
+																			className="mb-2 text-sm leading-6"
 																			{...props}
 																		/>
 																	),
 																	ul: ({ node, ...props }) => (
 																		<ul
-																			className="list-disc list-inside ml-4 mb-2 text-[13px]"
+																			className="list-disc list-inside ml-4 mb-2 text-sm"
 																			{...props}
 																		/>
 																	),
 																	ol: ({ node, ...props }) => (
 																		<ol
-																			className="list-decimal list-inside ml-4 mb-2 text-[13px]"
+																			className="list-decimal list-inside ml-4 mb-2 text-sm"
 																			{...props}
 																		/>
 																	),
 																	table: ({ node, ...props }) => (
-																		<div className="overflow-x-auto my-4  text-[13px]">
+																		<div className="overflow-x-auto my-4  text-sm">
 																			<table
 																				className="border border-gray-300 text-sm text-left w-full "
 																				{...props}
@@ -759,13 +759,13 @@ export default function ButchPage() {
 																	),
 																	th: ({ node, ...props }) => (
 																		<th
-																			className="border border-gray-300 bg-green-100 px-2 py-1 text-[13px] min-w-[120px]"
+																			className="border border-gray-300 bg-green-100 px-2 py-1 text-sm min-w-[120px]"
 																			{...props}
 																		/>
 																	),
 																	td: ({ node, ...props }) => (
 																		<td
-																			className="border border-gray-300 px-2 py-1 text-[13px]"
+																			className="border border-gray-300 px-2 py-1 text-sm"
 																			{...props}
 																		/>
 																	),
@@ -799,7 +799,7 @@ export default function ButchPage() {
 
 														<div className="flex items-center gap-3 mt-2  ml-8">
 															<button
-																className={`text-[12px] flex items-center gap-1 text-muted-foreground hover:text-foreground ${
+																className={`text-xs flex items-center gap-1 text-muted-foreground hover:text-foreground ${
 																	message.isSpeaking
 																		? "text-primary-custom"
 																		: ""
@@ -808,7 +808,7 @@ export default function ButchPage() {
 																	toggleTextToSpeech(
 																		index,
 																		messages,
-																		setMessages
+																		setMessages,
 																	)
 																}
 															>
@@ -816,7 +816,7 @@ export default function ButchPage() {
 																{message.isSpeaking ? "Stop" : "Listen"}
 															</button>
 															<button
-																className="text-[12px] flex items-center gap-1 text-muted-foreground hover:text-foreground"
+																className="text-xs flex items-center gap-1 text-muted-foreground hover:text-foreground"
 																onClick={() =>
 																	copyMessageToClipboard(message.parts[0].text)
 																}
@@ -825,10 +825,10 @@ export default function ButchPage() {
 																Copy
 															</button>
 															<button
-																className="text-[12px] flex items-center gap-1 text-muted-foreground hover:text-foreground"
+																className="text-xs flex items-center gap-1 text-muted-foreground hover:text-foreground"
 																onClick={() => regenerateResponse(index)}
 															>
-																<FiRefreshCw className="w-3 h-3" />
+																<FiRefreshCw className="w-3 h3" />
 																Regenerate
 															</button>
 														</div>
@@ -849,7 +849,7 @@ export default function ButchPage() {
 															/>
 														</div>
 													</div>
-													<span className="text-[13px]">
+													<span className="text-sm">
 														{isFetching != null
 															? isFetching
 															: "Butch AI is thinking"}
@@ -916,10 +916,10 @@ const InputField = ({
 						isListening
 							? "Listening... Speak now"
 							: findBookMode
-							? "Describe the book you're looking for..."
-							: "Type your message here..."
+								? "Describe the book you're looking for..."
+								: "Type your message here..."
 					}
-					className="w-full bg-transparent border-none outline-none resize-none text-foreground placeholder:text-muted-foreground text-[14px] min-h-[24px]"
+					className="w-full bg-transparent border-none outline-none resize-none text-foreground placeholder:text-muted-foreground text-sm min-h-[24px]"
 					rows={1}
 				/>
 			</div>
@@ -938,7 +938,7 @@ const InputField = ({
 							speechSupported,
 							isListening,
 							setIsListening,
-							recognitionRef
+							recognitionRef,
 						)
 					}
 					disabled={!speechSupported}
@@ -946,14 +946,14 @@ const InputField = ({
 						!speechSupported
 							? "Speech recognition not supported"
 							: isListening
-							? "Stop listening"
-							: "Start voice input"
+								? "Stop listening"
+								: "Start voice input"
 					}
 				>
 					{isListening ? (
-						<FiMicOff className="w-4 h-4" />
+						<FiMicOff className="w-5 h-5" />
 					) : (
-						<FiMic className="w-4 h-4 text-muted-foreground" />
+						<FiMic className="w-5 h-5 text-muted-foreground" />
 					)}
 				</Button>
 				<Button
@@ -963,7 +963,7 @@ const InputField = ({
 					disabled={!inputValue.trim()}
 					onClick={handleSendMessage}
 				>
-					<FiSend className="w-4 h-4" />
+					<FiSend className="w-5 h-5" />
 				</Button>
 			</div>
 		</div>
@@ -977,13 +977,13 @@ const InputField = ({
 				/>
 				<label
 					htmlFor="find-book"
-					className="text-foreground cursor-pointer text-[12px]"
+					className="text-foreground cursor-pointer text-sm"
 				>
 					I want to find a book
 				</label>
 			</div>
 			{findBookMode && (
-				<p className="text-muted-foreground mt-2 ml-6 text-[12px]">
+				<p className="text-muted-foreground mt-2 ml-6 text-sm">
 					Describe the book by title, author, genre, or any details you
 					remember.
 				</p>
@@ -992,7 +992,7 @@ const InputField = ({
 
 		{isListening && (
 			<div className="mt-3 pt-3 border-t border-border">
-				<div className="flex items-center gap-2 text-muted-foreground text-[12px]">
+				<div className="flex items-center gap-2 text-muted-foreground text-sm">
 					<div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
 					Listening... Click the microphone again to stop
 				</div>

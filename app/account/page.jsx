@@ -205,10 +205,10 @@ export default function AccountList() {
 
 				<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 					<div className="mb-8 animate-fade-in">
-						<h1 className="font-semibold text-foreground text-[20px]">
+						<h1 className="font-semibold text-foreground text-xl">
 							{type && type === "patron" ? "Patrons" : "Personnel"}
 						</h1>
-						<p className="text-muted-foreground text-[14px]">
+						<p className="text-muted-foreground text-base">
 							{type === "patron"
 								? "Manage students, faculty, and administrator access"
 								: "Manage library assistants and librarians"}
@@ -223,14 +223,14 @@ export default function AccountList() {
 											lg:flex-row gap-4`}
 							>
 								<div className="flex items-center flex-1">
-									<div className="relative flex-1 max-w-md">
+									<div className="relative flex-1 max-w-lg">
 										<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 										<Input
 											placeholder="Search user..."
 											value={searchQuery}
 											onChange={(e) => setSearchQuery(e.target.value)}
 											className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-											style={{ fontSize: "12px" }}
+											
 										/>
 										<div className="absolute right-16 top-1/2 transform -translate-y-1/2">
 											<FiCamera
@@ -241,7 +241,7 @@ export default function AccountList() {
 										<Button
 											onClick={() => setShowFilters(!showFilters)}
 											variant="ghost"
-											className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-[12px]"
+											className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
 										>
 											Filter
 										</Button>
@@ -252,7 +252,7 @@ export default function AccountList() {
 									["USR-2", "USR-3"].includes(userDetails?.us_level) && (
 										<Button
 											onClick={() => setShowBorrowingLimitsModal(true)}
-											className="h-9 bg-primary-custom hover:bg-secondary-custom text-white border-none text-[12px]"
+											className="h-9 bg-primary-custom hover:bg-secondary-custom text-white border-none text-sm"
 										>
 											Limit
 										</Button>
@@ -263,7 +263,7 @@ export default function AccountList() {
 										<Button
 											onClick={() => setShowManualSearchModal(true)}
 											variant="outline"
-											className="flex items-center gap-2 border-border text-foreground hover:bg-accent h-9 px-4 text-[12px]"
+											className="flex items-center gap-2 border-border text-foreground hover:bg-accent h-9 px-4 text-sm"
 										>
 											<FiSearch className="w-4 h-4" />
 											Existing Account
@@ -271,7 +271,7 @@ export default function AccountList() {
 										{type && type == "patron" && (
 											<DropdownMenu>
 												<DropdownMenuTrigger asChild>
-													<Button className="bg-primary-custom hover:bg-secondary-custom text-white h-9 w-fit text-[12px]">
+													<Button className="bg-primary-custom hover:bg-secondary-custom text-white h-9 w-fit text-sm">
 														<FiPlus className="w-4 h-4 mr-2" />
 														Register Patron
 														<FiChevronDown className="w-4 h-4 ml-2" />
@@ -279,7 +279,7 @@ export default function AccountList() {
 												</DropdownMenuTrigger>
 												<DropdownMenuContent align="start" className="w-full">
 													<DropdownMenuItem
-														className="text-[12px]"
+														className="text-sm"
 														onClick={() =>
 															router.push(
 																`account/register?id=${selectedLibrary}&type=patron`
@@ -290,14 +290,14 @@ export default function AccountList() {
 														Manual Registration
 													</DropdownMenuItem>
 													<DropdownMenuItem
-														className="text-[12px]"
+														className="text-sm"
 														onClick={() => setShowExcelImportModal(true)}
 													>
 														<FiFileText className="w-4 h-4" />
 														Import Account from Excel
 													</DropdownMenuItem>
 													<DropdownMenuItem
-														className="text-[12px]"
+														className="text-sm"
 														onClick={() =>
 															handleDownload(
 																"/template/Patron Template.xlsx",
@@ -313,7 +313,7 @@ export default function AccountList() {
 										)}
 										{type && type == "personnel" && (
 											<Button
-												className="bg-primary-custom hover:bg-secondary-custom text-white h-9 w-fit text-[12px]"
+												className="bg-primary-custom hover:bg-secondary-custom text-white h-9 w-fit text-sm"
 												onClick={() =>
 													router.push(
 														`account/register?id=${selectedLibrary}&type=personnel`
@@ -336,12 +336,12 @@ export default function AccountList() {
 								selectedProgram !== "All" ||
 								selectedInstitute !== "All") && (
 								<div className="flex items-center gap-2 mb-8 flex-wrap">
-									<span className="text-muted-foreground text-[12px]">
+									<span className="text-muted-foreground text-sm">
 										Active Filters:
 									</span>
 
 									{selectedLibrary !== "All" && (
-										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 											Library:{" "}
 											{libraries.find((lib) => lib.id === selectedLibrary)
 												?.li_name || "Unknown"}
@@ -349,7 +349,7 @@ export default function AccountList() {
 									)}
 
 									{selectedStatus !== "All" && (
-										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 											Status: {selectedStatus}
 											<FiX
 												className="w-3 h-3 cursor-pointer"
@@ -359,7 +359,7 @@ export default function AccountList() {
 									)}
 
 									{selectedType !== "All" && (
-										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 											Type: {selectedType}
 											<FiX
 												className="w-3 h-3 cursor-pointer"
@@ -369,7 +369,7 @@ export default function AccountList() {
 									)}
 
 									{selectedCourses !== "All" && (
-										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 											Course: {selectedCourses}
 											<FiX
 												className="w-3 h-3 cursor-pointer"
@@ -379,7 +379,7 @@ export default function AccountList() {
 									)}
 
 									{selectedYear !== "All" && (
-										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 											Year: {selectedYear}
 											<FiX
 												className="w-3 h-3 cursor-pointer"
@@ -389,7 +389,7 @@ export default function AccountList() {
 									)}
 
 									{selectedTracks !== "All" && (
-										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-[12px]">
+										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-sm">
 											Track: {selectedTracks}
 											<FiX
 												className="w-3 h-3 cursor-pointer"
@@ -399,7 +399,7 @@ export default function AccountList() {
 									)}
 
 									{selectedStrand !== "All" && (
-										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 											Strand: {selectedStrand}
 											<FiX
 												className="w-3 h-3 cursor-pointer"
@@ -409,7 +409,7 @@ export default function AccountList() {
 									)}
 
 									{selectedInstitute !== "All" && (
-										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 											Institute: {selectedInstitute}
 											<FiX
 												className="w-3 h-3 cursor-pointer"
@@ -419,7 +419,7 @@ export default function AccountList() {
 									)}
 
 									{selectedProgram !== "All" && (
-										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-[12px]">
+										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-sm">
 											Program: {selectedProgram}
 											<FiX
 												className="w-3 h-3 cursor-pointer"
@@ -429,7 +429,7 @@ export default function AccountList() {
 									)}
 
 									{selectedSection !== "" && (
-										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-[12px]">
+										<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 											Section: {selectedSection}
 											<FiX
 												className="w-3 h-3 cursor-pointer"
@@ -467,7 +467,7 @@ export default function AccountList() {
 											].map((header) => (
 												<th
 													key={header}
-													className="text-left py-4 px-6 font-semibold text-foreground text-[12px]"
+													className="text-left py-4 px-6 font-semibold text-foreground text-sm"
 												>
 													{header}
 												</th>
@@ -482,45 +482,45 @@ export default function AccountList() {
 													index % 2 === 0 ? "bg-background" : "bg-muted/10"
 												}`}
 											>
-												<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[150px]">
+												<td className="py-4 px-6 text-left text-foreground text-sm min-w-[150px]">
 													{user?.us_schoolID}
 												</td>
-												<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[150px]">
+												<td className="py-4 px-6 text-left text-foreground text-sm min-w-[150px]">
 													<Badge
 														className={`${getStatusColor(
 															user?.us_status
-														)} text-[12px]`}
+														)} text-sm`}
 													>
 														{user?.us_status}
 													</Badge>
 												</td>
-												<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[150px]">
+												<td className="py-4 px-6 text-left text-foreground text-sm min-w-[150px]">
 													{user?.us_type}
 												</td>
-												<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[250px]">
+												<td className="py-4 px-6 text-left text-foreground text-sm min-w-[250px]">
 													{user?.us_name}
 												</td>
-												<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[200px]">
+												<td className="py-4 px-6 text-left text-foreground text-sm min-w-[200px]">
 													{user?.us_email}
 												</td>
 
 												{type === "patron" && (
 													<>
-														<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[200px]">
+														<td className="py-4 px-6 text-left text-foreground text-sm min-w-[200px]">
 															{user?.us_courses || "NA"}
 														</td>
 
-														<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[200px]">
+														<td className="py-4 px-6 text-left text-foreground text-sm min-w-[200px]">
 															{user?.us_year || "NA"}
 														</td>
 														{selectedCourses !== "All" && (
 															<>
-																<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[250px]">
+																<td className="py-4 px-6 text-left text-foreground text-sm min-w-[250px]">
 																	{selectedCourses === "Senior High School"
 																		? user?.us_tracks || "NA"
 																		: user?.us_institute || "NA"}
 																</td>
-																<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[250px]">
+																<td className="py-4 px-6 text-left text-foreground text-sm min-w-[250px]">
 																	{selectedCourses === "Senior High School"
 																		? user?.us_strand || "NA"
 																		: user?.us_program || "NA"}
@@ -528,7 +528,7 @@ export default function AccountList() {
 															</>
 														)}
 
-														<td className="py-4 px-6 text-left text-foreground text-[12px] min-w-[250px]">
+														<td className="py-4 px-6 text-left text-foreground text-sm min-w-[250px]">
 															{user?.us_section || "NA"}
 														</td>
 													</>
@@ -619,7 +619,7 @@ export default function AccountList() {
 							/>
 							<div className="relative bg-card w-80 h-full shadow-lg transform transition-transform duration-300 translate-x-0 animate-slide-in-left">
 								<div className="flex items-center justify-between p-4 border-b border-border text-white bg-primary-custom">
-									<h2 className="font-semibold text-white text-[14px]">
+									<h2 className="font-semibold text-white text-base">
 										Filters
 									</h2>
 									<button
@@ -633,13 +633,13 @@ export default function AccountList() {
 								<div className="p-4 space-y-4 overflow-y-auto h-full pb-24">
 									{userDetails?.us_level == "USR-1" && (
 										<div className="space-y-2">
-											<label className="block font-medium text-foreground text-[12px]">
+											<label className="block font-medium text-foreground text-sm">
 												Select a Library
 											</label>
 											<select
 												value={selectedLibrary}
 												onChange={(e) => setSelectedLibrary(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-[12px]"
+												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-sm"
 											>
 												{libraries.map((library) => (
 													<option key={library.id} value={library.id}>
@@ -652,13 +652,13 @@ export default function AccountList() {
 
 									{!["USR-6", "USR-5"].includes(userDetails?.us_level) && (
 										<div className="space-y-2">
-											<label className="block font-medium text-foreground  text-[12px]">
+											<label className="block font-medium text-foreground  text-sm">
 												Select an Account Status
 											</label>
 											<select
 												value={selectedStatus}
 												onChange={(e) => setSelectedStatus(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-[12px]"
+												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-sm"
 											>
 												<option value="Active">Active</option>
 												<option value="Inactive">Inactive</option>
@@ -667,13 +667,13 @@ export default function AccountList() {
 									)}
 
 									<div className="space-y-2">
-										<label className="block font-medium text-foreground  text-[12px]">
+										<label className="block font-medium text-foreground  text-sm">
 											Select a User Type
 										</label>
 										<select
 											value={selectedType}
 											onChange={(e) => setSelectedType(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 										>
 											<option value="All">All User Types</option>
 											{typeData.map((group, i) => (
@@ -689,7 +689,7 @@ export default function AccountList() {
 									</div>
 
 									<div className="space-y-2">
-										<label className="block font-medium text-foreground text-[12px]">
+										<label className="block font-medium text-foreground text-sm">
 											Select a Course
 										</label>
 										<select
@@ -701,7 +701,7 @@ export default function AccountList() {
 												setSelectedTracks("All");
 												setSelectedCourses(e.target.value);
 											}}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 										>
 											<option value="All">All Courses</option>
 											{["Senior High School", "College Courses"].map(
@@ -715,13 +715,13 @@ export default function AccountList() {
 									</div>
 
 									<div className="space-y-2">
-										<label className="block font-medium text-foreground text-[12px]">
+										<label className="block font-medium text-foreground text-sm">
 											Select a Year
 										</label>
 										<select
 											value={selectedYear}
 											onChange={(e) => setSelectedYear(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 										>
 											<option value="All">All Years</option>
 											{(selectedCourses == "Senior High School"
@@ -739,7 +739,7 @@ export default function AccountList() {
 										<>
 											{/* TRACKS / INSTITUTE */}
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground text-[12px]">
+												<label className="block font-medium text-foreground text-sm">
 													Select a{" "}
 													{selectedCourses === "Senior High School"
 														? "Track"
@@ -765,7 +765,7 @@ export default function AccountList() {
 
 														setSelectedCourseID(selectedID);
 													}}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 												>
 													<option value="All">
 														{selectedCourses === "Senior High School"
@@ -782,7 +782,7 @@ export default function AccountList() {
 
 											{/* STRAND / PROGRAM */}
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground text-[12px]">
+												<label className="block font-medium text-foreground text-sm">
 													Select a{" "}
 													{selectedCourses === "Senior High School"
 														? "Strand"
@@ -797,7 +797,7 @@ export default function AccountList() {
 															setSelectedProgram(e.target.value);
 														}
 													}}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 												>
 													<option value="All">
 														{selectedCourses === "Senior High School"
@@ -815,7 +815,7 @@ export default function AccountList() {
 									)}
 
 									<div className="space-y-2">
-										<label className="block font-medium text-foreground  text-[12px]">
+										<label className="block font-medium text-foreground  text-sm">
 											Section Name
 										</label>
 
@@ -824,7 +824,7 @@ export default function AccountList() {
 											value={selectedSection}
 											onChange={(e) => setSelectedSection(e.target.value)}
 											className="h-9 bg-card text-foreground border-border"
-											style={{ fontSize: "12px" }}
+											
 										/>
 									</div>
 								</div>
@@ -847,13 +847,13 @@ export default function AccountList() {
 												setShowFilters(false);
 											}}
 											variant="outline"
-											className="flex-1 h-9 border-border  text-[12px]"
+											className="flex-1 h-9 border-border  text-sm"
 										>
 											Clear All
 										</Button>
 										<Button
 											onClick={() => setShowFilters(false)}
-											className="flex-1 text-white hover:opacity-90 h-9 bg-primary-custom  text-[12px]"
+											className="flex-1 text-white hover:opacity-90 h-9 bg-primary-custom  text-sm"
 										>
 											Apply Filters
 										</Button>

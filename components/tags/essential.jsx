@@ -13,14 +13,14 @@ export const toggleFilterOrderBy = (key, setFilters) => {
 export const TypeSelect = ({ value, onChange, name }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Type
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
 				name={name}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				{["User Type", "Section", "Year", "Program", "School"].map((type) => (
 					<option key={type} value={type}>
@@ -39,14 +39,14 @@ export const RoleSelect = ({ value, onChange, name }) => {
 
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Role
 			</label>
 			<select
 				value={value}
 				onChange={handleChange}
 				name={name}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="Patron">Patron</option>
 				<option value="Personnel">Personnel</option>
@@ -64,25 +64,25 @@ export const UserTypeSelect = ({ value, onChange, name, role = "Patron" }) => {
 						options: ["Student", "Faculty", "Administrator"],
 					},
 					{ label: "Assistants", options: ["Student Assistant"] },
-			  ]
+				]
 			: [
 					{ label: "Assistants", options: ["Administrative Assistant"] },
 					{
 						label: "Librarians",
 						options: ["Chief Librarian", "Head Librarian"],
 					},
-			  ];
+				];
 
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a User Type
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
 				name={name}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All User Types</option>
 				{options.map(({ label, options }) => (
@@ -102,14 +102,14 @@ export const UserTypeSelect = ({ value, onChange, name, role = "Patron" }) => {
 export const MaTypeSelect = ({ value, onChange, name }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Material Type
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
 				name={name}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				{["Material", "Format"].map((type) => (
 					<option key={type} value={type}>
@@ -123,9 +123,7 @@ export const MaTypeSelect = ({ value, onChange, name }) => {
 
 export const YearInput = ({ label, value, onChange }) => (
 	<div className="space-y-2">
-		<label className="block font-medium text-foreground text-[12px]">
-			{label}
-		</label>
+		<label className="block font-medium text-foreground text-sm">{label}</label>
 		<input
 			type="number"
 			value={value}
@@ -133,21 +131,19 @@ export const YearInput = ({ label, value, onChange }) => (
 			min="1900"
 			max="2100"
 			placeholder="YYYY"
-			className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+			className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
 		/>
 	</div>
 );
 
 export const DateInput = ({ label, value, onChange }) => (
 	<div className="space-y-2">
-		<label className="block font-medium text-foreground text-[12px]">
-			{label}
-		</label>
+		<label className="block font-medium text-foreground text-sm">{label}</label>
 		<input
 			type="date"
 			value={value}
 			onChange={onChange}
-			className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+			className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 		/>
 	</div>
 );
@@ -155,13 +151,13 @@ export const DateInput = ({ label, value, onChange }) => (
 export const FilterFormatSelect = ({ value, onChange }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Format
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All Formats</option>
 				<option value="Hard Copy">Hard Copy</option>
@@ -175,13 +171,13 @@ export const FilterFormatSelect = ({ value, onChange }) => {
 export const FilterAcquisitionTypeSelect = ({ value, onChange }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select an Acquisition Type
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All Acquisition Types</option>
 				<option value="Donated">Donated</option>
@@ -194,13 +190,13 @@ export const FilterAcquisitionTypeSelect = ({ value, onChange }) => {
 export const FilterMaterialSelect = ({ value, onChange, materialList }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Material
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All Materials</option>
 				{materialList.map((material) => (
@@ -216,13 +212,13 @@ export const FilterMaterialSelect = ({ value, onChange, materialList }) => {
 export const FilterDRSelect = ({ value, onChange, discussionRoomList }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Discussion Room
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All Discussion Rooms</option>
 				{discussionRoomList.map((room) => (
@@ -238,13 +234,13 @@ export const FilterDRSelect = ({ value, onChange, discussionRoomList }) => {
 export const FilterComputerSelect = ({ value, onChange, computerList }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Computer
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All Computers</option>
 				{computerList.map((computer) => (
@@ -260,13 +256,13 @@ export const FilterComputerSelect = ({ value, onChange, computerList }) => {
 export const FilterLibrarySelect = ({ value, onChange, libraryList }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Library
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All Libraries</option>
 				{libraryList.map((library) => (
@@ -282,13 +278,13 @@ export const FilterLibrarySelect = ({ value, onChange, libraryList }) => {
 export const FilterMaterialTypeSelect = ({ value, onChange, mtList }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Material Type
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All Material Types</option>
 				{mtList.map((mt) => (
@@ -304,13 +300,13 @@ export const FilterMaterialTypeSelect = ({ value, onChange, mtList }) => {
 export const FilterCategorySelect = ({ value, onChange, caList }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Category
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All Categories</option>
 				{caList.map((ca) => (
@@ -326,13 +322,13 @@ export const FilterCategorySelect = ({ value, onChange, caList }) => {
 export const FilterShelfSelect = ({ value, onChange, shList }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Shelf
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All Shelves</option>
 				{shList.map((sh) => (
@@ -348,13 +344,13 @@ export const FilterShelfSelect = ({ value, onChange, shList }) => {
 export const FilterDonorSelect = ({ value, onChange, doList }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Donor
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All Donors</option>
 				{doList.map((dn) => (
@@ -389,13 +385,13 @@ export const FilterCoursesSelect = ({
 
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Course
 			</label>
 			<select
 				value={value}
 				onChange={handleCourseChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All Courses</option>
 				{["Senior High School", "College Courses"].map((courses, index) => (
@@ -411,13 +407,13 @@ export const FilterCoursesSelect = ({
 export const FilterYearSelect = ({ value, onChange, selectedCourses }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select a Year
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				<option value="All">All Years</option>
 				{(selectedCourses == "Senior High School"
@@ -459,7 +455,7 @@ export const FilterCourseSelects = ({
 		<>
 			{/* TRACK / INSTITUTE */}
 			<div className="space-y-2">
-				<label className="block font-medium text-foreground text-[12px]">
+				<label className="block font-medium text-foreground text-sm">
 					Select a{" "}
 					{selectedCourse === "Senior High School" ? "Track" : "Institute"}
 				</label>
@@ -470,7 +466,7 @@ export const FilterCourseSelects = ({
 						setSelectedCourseID(selectedID);
 
 						const selectedItem = mainList.find(
-							(item) => item.id === selectedID
+							(item) => item.id === selectedID,
 						);
 
 						if (selectedItem) {
@@ -489,7 +485,7 @@ export const FilterCourseSelects = ({
 							}
 						}
 					}}
-					className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+					className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 				>
 					<option value="All">
 						{selectedCourse === "Senior High School"
@@ -505,7 +501,7 @@ export const FilterCourseSelects = ({
 			</div>
 
 			<div className="space-y-2">
-				<label className="block font-medium text-foreground text-[12px]">
+				<label className="block font-medium text-foreground text-sm">
 					Select a{" "}
 					{selectedCourse === "Senior High School" ? "Strand" : "Program"}
 				</label>
@@ -523,7 +519,7 @@ export const FilterCourseSelects = ({
 							setFilters({ ...filters, [subKey]: val });
 						}
 					}}
-					className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+					className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 				>
 					<option value="All">
 						{selectedCourse === "Senior High School"
@@ -544,7 +540,7 @@ export const FilterCourseSelects = ({
 export const FilterSectionInput = ({ value, onChange }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Section Name
 			</label>
 			<Input
@@ -552,7 +548,7 @@ export const FilterSectionInput = ({ value, onChange }) => {
 				value={value}
 				onChange={onChange}
 				className="h-9 bg-card text-foreground border-border"
-				style={{ fontSize: "12px" }}
+				
 			/>
 		</div>
 	);
@@ -561,13 +557,13 @@ export const FilterSectionInput = ({ value, onChange }) => {
 export const StatusSelect = ({ label, value, onChange, all = false }) => {
 	return (
 		<div className="space-y-2">
-			<label className="block font-medium text-foreground text-[12px]">
+			<label className="block font-medium text-foreground text-sm">
 				Select {label}
 			</label>
 			<select
 				value={value}
 				onChange={onChange}
-				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+				className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 			>
 				{all && <option value="All">All Status</option>}
 				<option value="Active">Active</option>
@@ -602,7 +598,7 @@ export const getActiveFiltersMA = (
 	materialTypes,
 	categories,
 	shelves,
-	donors
+	donors,
 ) => {
 	const activeFilters = [];
 
@@ -694,7 +690,7 @@ export const renderFiltersMA = (
 	materialTypes,
 	categories,
 	shelves,
-	donors
+	donors,
 ) => {
 	const section = sections.find((s) => s.id === activeSection);
 
@@ -708,14 +704,14 @@ export const renderFiltersMA = (
 					/>
 
 					<div className="space-y-2">
-						<label className="flex items-center gap-2 cursor-pointer text-[11px]">
+						<label className="flex items-center gap-2 cursor-pointer text-xs">
 							<Checkbox
 								checked={filters.a_roomOnly}
 								onCheckedChange={(checked) =>
 									setFilters({ ...filters, a_roomOnly: checked })
 								}
 							/>
-							<span className="text-foreground text-[11px]">
+							<span className="text-foreground text-xs">
 								Show only materials used in Library
 							</span>
 						</label>
@@ -870,7 +866,7 @@ export const renderFiltersDR = (
 	setFilters,
 	filters,
 	sections,
-	activeSection
+	activeSection,
 ) => {
 	const section = sections.find((s) => s.id === activeSection);
 
@@ -978,7 +974,7 @@ export const renderFiltersCO = (
 	setFilters,
 	filters,
 	sections,
-	activeSection
+	activeSection,
 ) => {
 	const section = sections.find((s) => s.id === activeSection);
 
@@ -1048,7 +1044,7 @@ export const getActiveFiltersUS = (
 	libraryList,
 	materialList,
 	discussionRoomList,
-	computerList
+	computerList,
 ) => {
 	const activeFilters = [];
 
@@ -1188,7 +1184,7 @@ export const renderFiltersUS = (
 	filterCoursesData,
 	subCoursesData,
 	selectedCourseID,
-	setSelectedCourseID
+	setSelectedCourseID,
 ) => {
 	const section = sections.find((s) => s.id === activeSection);
 
@@ -1379,7 +1375,7 @@ export const renderFiltersUS = (
 					/>
 
 					<div className="space-y-2">
-						<label className="block font-medium text-foreground text-[12px]">
+						<label className="block font-medium text-foreground text-sm">
 							Resource Type
 						</label>
 						<select
@@ -1387,7 +1383,7 @@ export const renderFiltersUS = (
 							onChange={(e) =>
 								setFilters({ ...filters, c_resourceType: e.target.value })
 							}
-							className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+							className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 						>
 							<option value="All">All</option>
 							<option value="Material">Material</option>
@@ -1553,7 +1549,7 @@ export const getActiveFiltersEE = (
 	filters,
 	sections,
 	activeSection,
-	libraryList
+	libraryList,
 ) => {
 	const section = sections.find((s) => s.id === activeSection);
 	if (!section) return [];
@@ -1613,7 +1609,7 @@ export const getActiveFiltersEE = (
 			}
 			return acc;
 		},
-		[]
+		[],
 	);
 };
 
@@ -1626,7 +1622,7 @@ export const renderFiltersEE = (
 	filterCoursesData,
 	subCoursesData,
 	selectedCourseID,
-	setSelectedCourseID
+	setSelectedCourseID,
 ) => {
 	const section = sections.find((s) => s.id === activeSection);
 	if (!section) return null;

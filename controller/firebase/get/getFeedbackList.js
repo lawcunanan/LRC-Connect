@@ -22,7 +22,7 @@ export function getFeedbackList(
 	Alert,
 	pageLimit,
 	pagination,
-	setPagination
+	setPagination,
 ) {
 	setLoading(true);
 
@@ -39,7 +39,7 @@ export function getFeedbackList(
 				"==",
 				typeof li_id === "object" && li_id.id
 					? li_id
-					: doc(db, "library", li_id)
+					: doc(db, "library", li_id),
 			),
 			where("fe_status", "==", "Active"),
 			orderBy("fe_createdAt", "desc"),
@@ -47,7 +47,7 @@ export function getFeedbackList(
 
 		if (selectedStatus !== "All") {
 			conditions.push(
-				where("fe_isRead", "==", selectedStatus === "unread" ? false : true)
+				where("fe_isRead", "==", selectedStatus === "unread" ? false : true),
 			);
 		}
 
@@ -58,10 +58,10 @@ export function getFeedbackList(
 						feRef,
 						...conditions,
 						startAfter(pageCursors[currentPage - 2]),
-						limit(pageLimit)
-				  )
+						limit(pageLimit),
+					)
 				: query(feRef, ...conditions, limit(pageLimit))
-			: query(feRef, ...conditions);
+			: query(feRef, ...conditions, limit(100)); // Limit search results to 100
 
 		const unsubscribe = onSnapshot(
 			finalQuery,
@@ -87,7 +87,15 @@ export function getFeedbackList(
 
 						if (
 							!isSearchEmpty &&
-							!raw.fe_content?.toLowerCase().includes(searchQuery.toLowerCase())
+							!raw.fe_content
+								?.toLowerCase()
+								.includes(searchQuery.toLowerCase()) &&
+							!`${userData.us_fname ?? ""} ${
+								userData.us_mname ?? ""
+							} ${userData.us_lname ?? ""} ${userData.us_suffix ?? ""}`
+								.trim()
+								.toLowerCase()
+								.includes(searchQuery.toLowerCase())
 						) {
 							return null;
 						}
@@ -111,14 +119,14 @@ export function getFeedbackList(
 								? getRelativeTime(raw.fe_createdAt)
 								: "",
 						};
-					})
+					}),
 				);
 
 				setData(data.filter(Boolean));
 
 				if (isSearchEmpty) {
 					const countSnap = await getCountFromServer(
-						query(feRef, ...conditions)
+						query(feRef, ...conditions),
 					);
 					const totalPages = Math.ceil(countSnap.data().count / pageLimit);
 
@@ -145,7 +153,7 @@ export function getFeedbackList(
 				Alert.showDanger(error.message);
 				console.error("Error in onSnapshot for feedback:", error.message);
 				setLoading(false);
-			}
+			},
 		);
 
 		return unsubscribe;

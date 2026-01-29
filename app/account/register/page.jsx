@@ -140,7 +140,7 @@ export default function RegisterAccount() {
 					<div className="mb-6 animate-fade-in">
 						<button
 							onClick={() => router.back()}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
 						>
 							<FiArrowLeft className="w-4 h-4" />
 							Back to Previous page
@@ -148,10 +148,10 @@ export default function RegisterAccount() {
 					</div>
 
 					<div className="mb-8 animate-slide-up">
-						<h1 className="font-semibold text-foreground text-[20px]">
+						<h1 className="font-semibold text-foreground text-xl">
 							Register Account
 						</h1>
-						<p className="text-muted-foreground text-[14px]">
+						<p className="text-muted-foreground text-base">
 							Add a new user account to the system with complete personal
 							information
 						</p>
@@ -161,17 +161,17 @@ export default function RegisterAccount() {
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-slide-up-delay-1">
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardContent className="p-6">
-									<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+									<h2 className="font-semibold text-foreground text-base mb-[5px]">
 										Account Information
 									</h2>
-									<p className="text-muted-foreground text-[12px] mb-4">
+									<p className="text-muted-foreground text-sm mb-4">
 										Complete the form below to add a new user account.
 									</p>
 
 									<div className="space-y-4">
 										<div className="grid grid-cols-2 gap-4">
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													User Type
 												</label>
 												<select
@@ -179,7 +179,7 @@ export default function RegisterAccount() {
 													value={formData?.us_type || ""}
 													onChange={(e) => handleChange(e, setFormData)}
 													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9"
-													style={{ fontSize: "12px" }}
+													
 													required
 												>
 													<option value="">Select User Type</option>
@@ -215,7 +215,7 @@ export default function RegisterAccount() {
 												</select>
 											</div>
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													School ID
 												</label>
 												<Input
@@ -224,14 +224,14 @@ export default function RegisterAccount() {
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="Enter school ID"
 													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "12px" }}
+													
 													required
 												/>
 											</div>
 										</div>
 
 										<div>
-											<label className="block text-foreground font-medium mb-2 text-[12px]">
+											<label className="block text-foreground font-medium mb-2 text-sm">
 												First name
 											</label>
 											<Input
@@ -240,13 +240,13 @@ export default function RegisterAccount() {
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="Enter your first name"
 												className="bg-card border-border text-foreground h-9"
-												style={{ fontSize: "12px" }}
+												
 												required
 											/>
 										</div>
 
 										<div>
-											<label className="block text-foreground font-medium mb-2 text-[12px]">
+											<label className="block text-foreground font-medium mb-2 text-sm">
 												Middle name
 											</label>
 											<Input
@@ -255,12 +255,12 @@ export default function RegisterAccount() {
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="Enter your middle name"
 												className="bg-card border-border text-foreground h-9"
-												style={{ fontSize: "12px" }}
+												
 											/>
 										</div>
 
 										<div>
-											<label className="block text-foreground font-medium mb-2 text-[12px]">
+											<label className="block text-foreground font-medium mb-2 text-sm">
 												Last name
 											</label>
 											<Input
@@ -269,13 +269,13 @@ export default function RegisterAccount() {
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="Enter your last name"
 												className="bg-card border-border text-foreground h-9"
-												style={{ fontSize: "12px" }}
+												
 												required
 											/>
 										</div>
 
 										<div>
-											<label className="block text-foreground font-medium mb-2 text-[12px]">
+											<label className="block text-foreground font-medium mb-2 text-sm">
 												Suffix
 											</label>
 											<Input
@@ -284,20 +284,20 @@ export default function RegisterAccount() {
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="Jr., Sr., III (optional)"
 												className="bg-card border-border text-foreground h-9"
-												style={{ fontSize: "12px" }}
+												
 											/>
 										</div>
 
 										<div className="grid grid-cols-2 gap-4">
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													Sex
 												</label>
 												<select
 													name="us_sex"
 													value={formData?.us_sex || ""}
 													onChange={(e) => handleChange(e, setFormData)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 													required
 												>
 													<option value="">Select</option>
@@ -306,7 +306,7 @@ export default function RegisterAccount() {
 												</select>
 											</div>
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													Birthday
 												</label>
 												<Input
@@ -315,7 +315,7 @@ export default function RegisterAccount() {
 													value={formData?.us_birthday || ""}
 													onChange={(e) => handleChange(e, setFormData)}
 													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "12px" }}
+													
 													required
 													max={
 														new Date(
@@ -332,7 +332,7 @@ export default function RegisterAccount() {
 
 										<div className="grid grid-cols-2 gap-4 ">
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													Phone Number
 												</label>
 												<Input
@@ -341,13 +341,13 @@ export default function RegisterAccount() {
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="+639xxxxxxxxx"
 													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "12px" }}
+													
 													pattern="^\+639\d{9}$"
 													title="Enter a valid Philippine mobile number (e.g., +639123456789)"
 												/>
 											</div>
 											<div>
-												<label className="block text-foreground font-medium mb-2 text-[12px]">
+												<label className="block text-foreground font-medium mb-2 text-sm">
 													Email
 												</label>
 												<Input
@@ -357,7 +357,7 @@ export default function RegisterAccount() {
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="@gmail.com"
 													className="bg-card border-border text-foreground h-9"
-													style={{ fontSize: "12px" }}
+													
 													required
 												/>
 											</div>
@@ -365,10 +365,10 @@ export default function RegisterAccount() {
 
 										{type && type == "patron" && (
 											<div className="pt-8">
-												<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+												<h2 className="font-semibold text-foreground text-base mb-[5px]">
 													Academic
 												</h2>
-												<p className="text-muted-foreground text-[12px] mb-4">
+												<p className="text-muted-foreground text-sm mb-4">
 													Provide province, municipality, and barangay for
 													accurate location data.
 												</p>
@@ -376,14 +376,14 @@ export default function RegisterAccount() {
 												<div className="space-y-4">
 													<div className="grid grid-cols-2 gap-4">
 														<div>
-															<label className="block text-foreground font-medium mb-2 text-[12px]">
+															<label className="block text-foreground font-medium mb-2 text-sm">
 																Courses
 															</label>
 															<select
 																name="us_courses"
 																value={formData?.us_courses}
 																onChange={(e) => handleChange(e, setFormData)}
-																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 																required
 															>
 																<option value="All">Select Courses</option>
@@ -397,14 +397,14 @@ export default function RegisterAccount() {
 															</select>
 														</div>
 														<div>
-															<label className="block text-foreground font-medium mb-2 text-[12px]">
+															<label className="block text-foreground font-medium mb-2 text-sm">
 																Year
 															</label>
 															<select
 																name="us_year"
 																value={formData?.us_year}
 																onChange={(e) => handleChange(e, setFormData)}
-																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 																required
 															>
 																<option value="">Select Year</option>
@@ -428,7 +428,7 @@ export default function RegisterAccount() {
 													{formData?.us_courses && (
 														<div className="grid grid-cols-2 gap-4">
 															<div>
-																<label className="block text-foreground font-medium mb-2 text-[12px]">
+																<label className="block text-foreground font-medium mb-2 text-sm">
 																	{formData.us_courses === "Senior High School"
 																		? "Tracks"
 																		: "Institute"}
@@ -459,7 +459,7 @@ export default function RegisterAccount() {
 
 																		setSelectedCourseID(selectedID);
 																	}}
-																	className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+																	className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 																	required
 																>
 																	<option value="">
@@ -477,7 +477,7 @@ export default function RegisterAccount() {
 															</div>
 
 															<div>
-																<label className="block text-foreground font-medium mb-2 text-[12px]">
+																<label className="block text-foreground font-medium mb-2 text-sm">
 																	{formData.us_courses === "Senior High School"
 																		? "Strand"
 																		: "Program"}
@@ -494,7 +494,7 @@ export default function RegisterAccount() {
 																			: formData?.us_program
 																	}
 																	onChange={(e) => handleChange(e, setFormData)}
-																	className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+																	className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 																	required
 																>
 																	<option value="">
@@ -514,7 +514,7 @@ export default function RegisterAccount() {
 													)}
 
 													<div>
-														<label className="block text-foreground font-medium mb-2 text-[12px]">
+														<label className="block text-foreground font-medium mb-2 text-sm">
 															Section
 														</label>
 														<Input
@@ -523,7 +523,7 @@ export default function RegisterAccount() {
 															onChange={(e) => handleChange(e, setFormData)}
 															placeholder="Enter section"
 															className="bg-card border-border text-foreground h-9"
-															style={{ fontSize: "12px" }}
+															
 															required
 														/>
 													</div>
@@ -536,11 +536,11 @@ export default function RegisterAccount() {
 
 							<Card className="bg-card border-border transition-colors duration-300 h-fit">
 								<CardHeader className="pb-4">
-									<CardTitle className="text-foreground flex items-center gap-2 text-[16px]">
+									<CardTitle className="text-foreground flex items-center gap-2 text-base">
 										<FiImage className="w-4 h-4" />
 										Profile Picture
 									</CardTitle>
-									<p className="text-muted-foreground text-[12px]">
+									<p className="text-muted-foreground text-sm">
 										Note: Format photos PNG, or JPG Max size 2mb
 									</p>
 								</CardHeader>
@@ -571,7 +571,7 @@ export default function RegisterAccount() {
 										) : (
 											<div className="space-y-1 text-center">
 												<FiUpload className="w-5 h-5 mx-auto text-muted-foreground" />
-												<p className="text-muted-foreground text-[11px]">
+												<p className="text-muted-foreground text-xs">
 													Click to upload
 												</p>
 											</div>
@@ -579,10 +579,10 @@ export default function RegisterAccount() {
 									</label>
 
 									<div className="mb-6">
-										<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+										<h2 className="font-semibold text-foreground text-base mb-[5px]">
 											Address
 										</h2>
-										<p className="text-muted-foreground text-[12px] mb-4">
+										<p className="text-muted-foreground text-sm mb-4">
 											Provide province, municipality, and barangay for accurate
 											location data.
 										</p>
@@ -590,7 +590,7 @@ export default function RegisterAccount() {
 										<div className="space-y-4">
 											<div className="grid grid-cols-2 gap-4">
 												<div>
-													<label className="block text-foreground font-medium mb-2 text-[12px]">
+													<label className="block text-foreground font-medium mb-2 text-sm">
 														Street
 													</label>
 													<Input
@@ -599,7 +599,7 @@ export default function RegisterAccount() {
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="e.g., 123 Sampaguita St."
 														className="bg-card border-border text-foreground h-9"
-														style={{ fontSize: "12px" }}
+														
 														required
 													/>
 												</div>
@@ -608,7 +608,7 @@ export default function RegisterAccount() {
 													name="us_province"
 													value={formData?.us_province}
 													onChange={(e) => handleChange(e, setFormData)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2  h-9 mt-6 text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2  h-9 mt-6 text-sm"
 													required
 												>
 													<option value="">Select Province</option>
@@ -623,7 +623,7 @@ export default function RegisterAccount() {
 													name="us_municipal"
 													value={formData?.us_municipal}
 													onChange={(e) => handleChange(e, setFormData)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 													required
 												>
 													<option value="">Select Municipality</option>
@@ -637,7 +637,7 @@ export default function RegisterAccount() {
 													name="us_barangay"
 													value={formData?.us_barangay}
 													onChange={(e) => handleChange(e, setFormData)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 													required
 												>
 													<option value="">Select Barangay</option>
@@ -654,7 +654,7 @@ export default function RegisterAccount() {
 									<div className="flex gap-3 justify-end">
 										<Button
 											type="submit"
-											className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-[12px]"
+											className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-sm"
 										>
 											<LoadingSpinner loading={btnLoading} />
 											Register Account
@@ -663,7 +663,7 @@ export default function RegisterAccount() {
 											type="button"
 											variant="outline"
 											onClick={handleCancel}
-											className="bg-transparent hover:bg-accent text-foreground h-10 w-fit text-[12px]"
+											className="bg-transparent hover:bg-accent text-foreground h-10 w-fit text-sm"
 										>
 											Cancel
 										</Button>

@@ -86,7 +86,7 @@ export default function ReservationPage() {
 			null,
 			null,
 			setLoading,
-			Alert
+			Alert,
 		);
 
 		return () => {
@@ -103,7 +103,7 @@ export default function ReservationPage() {
 				setResourceDetails,
 				setLoading,
 				Alert,
-				false
+				false,
 			);
 		} else if (resourceType === "Discussion Room") {
 			getDiscussionroom(resourceID, setResourceDetails, setLoading, Alert);
@@ -131,7 +131,7 @@ export default function ReservationPage() {
 			setLoading,
 			Alert,
 			null,
-			setOpenHours
+			setOpenHours,
 		);
 
 		return () => {
@@ -149,8 +149,8 @@ export default function ReservationPage() {
 			setSessionLimits(
 				getBorrowDaysByType(
 					libraryDetails?.li_borrowing,
-					patronDetails?.us_type
-				) || 0
+					patronDetails?.us_type,
+				) || 0,
 			);
 
 			getActiveTransactionCount(
@@ -159,7 +159,7 @@ export default function ReservationPage() {
 				patronDetails?.us_type,
 				libraryDetails?.li_borrowing,
 				setTrnCount,
-				Alert
+				Alert,
 			);
 		}
 	}, [patronDetails, libraryDetails]);
@@ -193,7 +193,7 @@ export default function ReservationPage() {
 		const selected = new Date(
 			currentMonth.getFullYear(),
 			currentMonth.getMonth(),
-			day
+			day,
 		);
 
 		setSelectedDate(selected);
@@ -289,23 +289,23 @@ export default function ReservationPage() {
 					key={day}
 					onClick={() => !isPastDate && handleDateSelect(day, borrowDays)}
 					disabled={isPastDate}
-					className={`w-10 h-10 rounded-lg text-[12px] font-medium transition-all duration-200 ${
+					className={`w-10 h-10 rounded-lg text-sm font-medium transition-all duration-200 ${
 						isSelected || isselectedEndDate
 							? "bg-primary-custom text-white shadow-md scale-105"
 							: isPastDate
-							? "text-muted-foreground/40 cursor-not-allowed"
-							: "text-foreground hover:bg-accent hover:scale-105 hover:shadow-sm"
+								? "text-muted-foreground/40 cursor-not-allowed"
+								: "text-foreground hover:bg-accent hover:scale-105 hover:shadow-sm"
 					}`}
 				>
 					{day}
-				</button>
+				</button>,
 			);
 		}
 
 		return (
 			<div className="space-y-6">
 				<div className="flex items-center justify-between">
-					<h2 className="text-lg font-semibold text-primary-custom flex items-center gap-2 text-[18px]">
+					<h2 className="text-lg font-semibold text-primary-custom flex items-center gap-2">
 						<FiCalendar className="w-5 h-5" />
 						{currentMonth.toLocaleDateString("en-US", {
 							month: "long",
@@ -359,7 +359,7 @@ export default function ReservationPage() {
 					<div className="mb-6 animate-fade-in">
 						<button
 							onClick={() => router.back()}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit group text-[11px]"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit group text-xs"
 						>
 							<FiArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
 							Back to Previous page
@@ -367,10 +367,10 @@ export default function ReservationPage() {
 					</div>
 
 					<div className="mb-10 animate-slide-up">
-						<h1 className="font-semibold text-foreground text-[20px]">
+						<h1 className="font-semibold text-foreground text-xl">
 							{libraryDetails?.li_name || "Library Name"}
 						</h1>
-						<p className="text-muted-foreground text-[14px]">
+						<p className="text-muted-foreground text-base">
 							{libraryDetails?.li_schoolname || "School Name"}
 						</p>
 					</div>
@@ -390,16 +390,13 @@ export default function ReservationPage() {
 										<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
 											<div className="flex items-center gap-3 flex-1">
 												<div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-													<FiCalendar
-														className=" text-white"
-														style={{ fontSize: "17px" }}
-													/>
+													<FiCalendar className=" text-white text-lg" />
 												</div>
 												<div>
-													<p className="text-muted-foreground text-[12px] mb-1">
+													<p className="text-muted-foreground text-sm mb-1">
 														Date of Use
 													</p>
-													<h4 className="font-medium text-foreground text-[14px]">
+													<h4 className="font-medium text-foreground text-base">
 														{formatDisplayDate(selectedDate)}
 													</h4>
 												</div>
@@ -408,16 +405,13 @@ export default function ReservationPage() {
 											{resourceType === "Material" && selectedEndDate && (
 												<div className="flex items-center gap-3 flex-1">
 													<div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-														<FiCalendar
-															className="text-white"
-															style={{ fontSize: "17px" }}
-														/>
+														<FiCalendar className="text-white text-lg" />
 													</div>
 													<div>
-														<p className="text-muted-foreground text-[12px] mb-1">
+														<p className="text-muted-foreground text-sm mb-1">
 															Due Date
 														</p>
-														<h4 className="font-medium text-foreground text-[14px]">
+														<h4 className="font-medium text-foreground text-base">
 															{formatDisplayDate(selectedEndDate)}
 														</h4>
 													</div>
@@ -426,22 +420,19 @@ export default function ReservationPage() {
 
 											<div className="flex items-center gap-3 flex-1">
 												<div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-													<FiClock
-														className=" text-white"
-														style={{ fontSize: "17px" }}
-													/>
+													<FiClock className=" text-white text-lg" />
 												</div>
 												<div>
-													<p className="text-muted-foreground text-[12px] mb-1">
+													<p className="text-muted-foreground text-sm mb-1">
 														Duration
 													</p>
-													<h4 className="font-medium text-foreground text-[14px]">
+													<h4 className="font-medium text-foreground text-base">
 														{calculateDuration(
 															libraryDetails?.li_operating || [],
 															selectedDate,
 															selectedEndDate,
 															sessionStart,
-															sessionEnd
+															sessionEnd,
 														) || "--"}
 													</h4>
 												</div>
@@ -453,7 +444,7 @@ export default function ReservationPage() {
 
 							<Card className="bg-card border-border animate-slide-up-delay-3 shadow-sm">
 								<CardHeader className="pb-2">
-									<CardTitle className="text-[16px] leading-none">
+									<CardTitle className="text-base leading-none">
 										Configure Reservation
 									</CardTitle>
 								</CardHeader>
@@ -461,14 +452,14 @@ export default function ReservationPage() {
 									{resourceType === "Material" && (
 										<>
 											{["USR-2", "USR-3", "USR-4"].includes(
-												userDetails?.us_level
+												userDetails?.us_level,
 											) &&
 												selectedDate &&
 												selectedFormat == "Hard Copy" &&
 												isToday(selectedDate) && (
 													<div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border border-blue-200 mt-2">
 														<div className="flex-1">
-															<Label className="text-gray-900 font-medium block mb-1 text-[14px]">
+															<Label className="text-gray-900 font-medium block mb-1 text-sm">
 																Room Use
 															</Label>
 															<p className="text-xs text-gray-600">
@@ -488,7 +479,7 @@ export default function ReservationPage() {
 													</div>
 												)}
 											<div>
-												<Label className="text-foreground font-medium block mb-2 text-[12px]">
+												<Label className="text-foreground font-medium block mb-2 text-sm">
 													Choose a Material Format
 												</Label>
 												<div className="grid  grid-cols-3 gap-3">
@@ -513,8 +504,8 @@ export default function ReservationPage() {
 																	isDisabled
 																		? "border-border bg-muted cursor-not-allowed opacity-50"
 																		: selectedFormat === format
-																		? "border-primary-custom bg-primary-custom/5"
-																		: "border-border cursor-pointer hover:border-primary-custom/50 hover:bg-accent/50"
+																			? "border-primary-custom bg-primary-custom/5"
+																			: "border-border cursor-pointer hover:border-primary-custom/50 hover:bg-accent/50"
 																}`}
 																>
 																	<input
@@ -528,24 +519,24 @@ export default function ReservationPage() {
 																		className="w-4 h-4 text-primary border-gray-400 checked:bg-primary checked:border-primary focus:ring-primary"
 																		disabled={isDisabled}
 																	/>
-																	<span className="text-foreground font-medium text-[12px]">
+																	<span className="text-foreground font-medium text-sm">
 																		{format}
 																	</span>
 																</label>
 															);
-														}
+														},
 													)}
 												</div>
 											</div>
 
 											{["USR-2", "USR-3", "USR-4"].includes(
-												userDetails?.us_level
+												userDetails?.us_level,
 											) &&
 												selectedDate &&
 												selectedFormat == "Hard Copy" &&
 												!roomUse && (
 													<div>
-														<Label className="text-foreground font-medium block mb-2 text-[12px]">
+														<Label className="text-foreground font-medium block mb-2 text-sm">
 															End Date (Editable)
 														</Label>
 														<Input
@@ -559,11 +550,10 @@ export default function ReservationPage() {
 															max={toPHDate(
 																new Date(
 																	selectedDate.getTime() +
-																		(sessionLimits - 1) * 24 * 60 * 60 * 1000
-																)
+																		(sessionLimits - 1) * 24 * 60 * 60 * 1000,
+																),
 															)}
-															className="h-11 border-border text-foreground"
-															style={{ fontSize: "12px" }}
+															className="h-11 border-border text-foreground text-sm"
 														/>
 														<p className="text-xs text-gray-500 mt-1">
 															You can adjust the return date within{" "}
@@ -578,28 +568,26 @@ export default function ReservationPage() {
 										resourceType === "Computer") && (
 										<div className="grid grid-cols-2 gap-4">
 											<div>
-												<Label className="text-foreground font-medium text-[12px]">
+												<Label className="text-foreground font-medium text-sm">
 													Start Time
 												</Label>
 												<Input
 													type="time"
 													value={sessionStart || ""}
 													onChange={(e) => setSessionStart(e.target.value)}
-													className="h-11 bg-background border-border text-foreground mt-2 focus:border-primary-custom"
-													style={{ fontSize: "12px" }}
+													className="h-11 bg-background border-border text-foreground mt-2 focus:border-primary-custom text-sm"
 													disabled={!selectedDate}
 												/>
 											</div>
 											<div>
-												<Label className="text-foreground font-medium text-[12px]">
+												<Label className="text-foreground font-medium text-sm">
 													End Time
 												</Label>
 												<Input
 													type="time"
 													value={sessionEnd || ""}
 													onChange={(e) => setSessionEnd(e.target.value)}
-													className="h-11 bg-background border-border text-foreground mt-2 focus:border-primary-custom"
-													style={{ fontSize: "12px" }}
+													className="h-11 bg-background border-border text-foreground mt-2 focus:border-primary-custom text-sm"
 													disabled={!selectedDate || !sessionStart}
 												/>
 											</div>
@@ -622,7 +610,7 @@ export default function ReservationPage() {
 											getButtonText() === "Utilize"
 												? "bg-green-600 hover:bg-green-700 text-white"
 												: "bg-primary hover:bg-secondary-custom text-white"
-										} text-white border-none disabled:opacity-50 text-[12px]`}
+										} text-white border-none disabled:opacity-50 text-sm`}
 									>
 										{getButtonText()} {resourceType}
 									</Button>
@@ -633,7 +621,7 @@ export default function ReservationPage() {
 						<div className="space-y-6">
 							<Card className="bg-card border-border animate-slide-up-delay-1 shadow-sm">
 								<CardHeader className="pb-4">
-									<CardTitle className="flex items-center gap-2 text-[16px]">
+									<CardTitle className="flex items-center gap-2 text-base">
 										<FiInfo className="w-5 h-5 text-primary-custom" />
 										{resourceType === "Material"
 											? "Borrowing Information (Days)"
@@ -643,36 +631,36 @@ export default function ReservationPage() {
 								<CardContent>
 									<div className="space-y-3">
 										<div className="flex justify-between items-center py-2 border-b border-border/50">
-											<span className="text-muted-foreground text-[12px]">
+											<span className="text-muted-foreground text-sm">
 												Minimum Duration
 											</span>
-											<span className="text-foreground  text-[12px]">
+											<span className="text-foreground  text-sm">
 												{resourceType === "Material"
 													? "1 Day"
 													: resourceType === "Discussion Room"
-													? resourceDetails?.dr_minDurationFormatted
-													: resourceDetails?.co_minDurationFormatted}
+														? resourceDetails?.dr_minDurationFormatted
+														: resourceDetails?.co_minDurationFormatted}
 											</span>
 										</div>
 										<div className="flex justify-between items-center py-2 border-b border-border/50">
-											<span className="text-muted-foreground text-[12px]">
+											<span className="text-muted-foreground text-sm">
 												Maximum Duration
 											</span>
-											<span className="text-foreground  text-[12px]">
+											<span className="text-foreground  text-sm">
 												{getFormattedBorrowDuration(
 													resourceType,
 													patronDetails?.us_type,
 													libraryDetails?.li_borrowing,
-													resourceDetails
+													resourceDetails,
 												)}
 											</span>
 										</div>
 
 										<div className="flex justify-between items-center py-2">
-											<span className="text-muted-foreground text-[12px]">
+											<span className="text-muted-foreground text-sm">
 												Reservations Left
 											</span>
-											<span className="text-primary-custom font-semibold text-[12px]">
+											<span className="text-primary-custom font-semibold text-sm">
 												{trnCount?.remaining} of {trnCount?.max} available (
 												{trnCount?.total} used)
 											</span>
@@ -683,7 +671,7 @@ export default function ReservationPage() {
 
 							<Card className="bg-card border-border animate-slide-up-delay-2 shadow-sm">
 								<CardHeader className="pb-4">
-									<CardTitle className="flex items-center gap-2 text-[16px]">
+									<CardTitle className="flex items-center gap-2 text-base">
 										<FiClock className="w-5 h-5 text-primary-custom" />
 										Operating Hours
 									</CardTitle>
@@ -716,21 +704,20 @@ export default function ReservationPage() {
 																: ""
 														}`}
 													>
-														<span className="text-foreground text-[12px]">
+														<span className="text-foreground text-sm">
 															{capitalizedDay}
 														</span>
 														<span
 															className={
 																value.enabled
-																	? "text-muted-foreground"
-																	: "text-red-500"
+																	? "text-muted-foreground text-sm"
+																	: "text-red-500 text-sm"
 															}
-															style={{ fontSize: "12px" }}
 														>
 															{value.enabled
 																? `${formatTime(openTime)} - ${formatTime(
-																		closeTime
-																  )}`
+																		closeTime,
+																	)}`
 																: "Closed"}
 														</span>
 													</div>

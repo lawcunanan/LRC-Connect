@@ -78,7 +78,7 @@ export default function TransactionPage() {
 
 	const [selectedLibrary, setSelectedLibrary] = useState("All");
 	const [selectedResourceType, setSelectedResourceType] = useState(
-		getFirstSelectedResourceType(maID, drID, coID)
+		getFirstSelectedResourceType(maID, drID, coID),
 	);
 	const [selectedMaterialList, setSelectedMaterialList] = useState(maID);
 	const [selectedMaterialFormat, setSelectedMaterialFormat] = useState("All");
@@ -159,7 +159,7 @@ export default function TransactionPage() {
 				setCtrPage,
 				pageCursors,
 				setPageCursors,
-				currentPage
+				currentPage,
 			);
 		}
 
@@ -197,7 +197,7 @@ export default function TransactionPage() {
 				setMaterialList,
 				setDiscussionRoomList,
 				setComputerList,
-				Alert
+				Alert,
 			);
 		}
 	}, [userDetails, selectedResourceType]);
@@ -211,7 +211,7 @@ export default function TransactionPage() {
 						<Button
 							variant="destructive"
 							size="sm"
-							className="h-9 text-[12px]"
+							className="h-9 text-sm"
 							onClick={() => {
 								setTransactionDetails(transaction);
 								setShowCancelModal(true);
@@ -222,7 +222,7 @@ export default function TransactionPage() {
 
 						{isPersonnel && (
 							<Button
-								className="bg-[#02CA79] hover:bg-[#029E61] text-white h-9 text-[12px]"
+								className="bg-[#02CA79] hover:bg-[#029E61] text-white h-9 text-sm"
 								size="sm"
 								onClick={() => {
 									setTransactionDetails(transaction);
@@ -241,7 +241,7 @@ export default function TransactionPage() {
 							<Button
 								variant="outline"
 								size="sm"
-								className="h-9 text-[12px]"
+								className="h-9 text-sm"
 								onClick={() => {
 									setTransactionDetails(transaction);
 									setShowDamageReportModal(true);
@@ -257,7 +257,7 @@ export default function TransactionPage() {
 								transaction?.tr_pastDueDate?.length < 2) && (
 								<Button
 									size="sm"
-									className="bg-orange-500 hover:bg-orange-600 text-white h-9 text-[12px]"
+									className="bg-orange-500 hover:bg-orange-600 text-white h-9 text-sm"
 									onClick={() => {
 										setTransactionDetails(transaction);
 										setShowRenewModal(true);
@@ -271,7 +271,7 @@ export default function TransactionPage() {
 							(transaction?.tr_type == "Material" &&
 								transaction?.tr_format != "Hard Copy")) && (
 							<Button
-								className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white h-9 text-[12px]"
+								className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white h-9 text-sm"
 								size="sm"
 								onClick={() => {
 									setTransactionDetails(transaction);
@@ -287,7 +287,7 @@ export default function TransactionPage() {
 				return (
 					<Button
 						size="sm"
-						className="h-9 text-[12px] bg-[#FF9A00] hover:bg-[#e68900] text-white"
+						className="h-9 text-sm bg-[#FF9A00] hover:bg-[#e68900] text-white"
 						onClick={() => {
 							setTransactionDetails(transaction);
 							setShowViewReasonModal(true);
@@ -313,7 +313,7 @@ export default function TransactionPage() {
 					<div className="mb-6 animate-fade-in">
 						<button
 							onClick={() => router.push(`/butch`)}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
 						>
 							<FiArrowLeft className="w-4 h-4" />
 							Back to Previous page
@@ -321,10 +321,10 @@ export default function TransactionPage() {
 					</div>
 
 					<div className="mb-8 animate-slide-up">
-						<h1 className="font-semibold text-foreground text-[20px]">
+						<h1 className="font-semibold text-foreground text-xl">
 							Transaction Management
 						</h1>
-						<p className="text-muted-foreground text-[14px]">
+						<p className="text-muted-foreground text-base">
 							Monitor and manage all library resource transactions and
 							reservations
 						</p>
@@ -332,14 +332,13 @@ export default function TransactionPage() {
 
 					<div className="mb-8 animate-slide-up-delay-1">
 						<div className="flex items-left justify-between flex-col sm:flex-row gap-4 mb-4">
-							<div className="relative flex items-center flex-1 max-w-md">
+							<div className="relative flex items-center flex-1 max-w-lg">
 								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 								<Input
 									placeholder="Search transactions by QR..."
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
-									className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-									style={{ fontSize: "12px" }}
+									className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
 								/>
 								<div className="absolute right-16 top-1/2 transform -translate-y-1/2">
 									<FiCamera
@@ -350,7 +349,7 @@ export default function TransactionPage() {
 								<Button
 									onClick={() => setShowFilters(!showFilters)}
 									variant="ghost"
-									className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-[12px]"
+									className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
 								>
 									Filter
 								</Button>
@@ -360,7 +359,7 @@ export default function TransactionPage() {
 								{isPersonnel ? (
 									<Button
 										onClick={() => router.push("/transaction/patron-summary")}
-										className="h-9 bg-primary-custom hover:bg-secondary-custom text-white border-none text-[12px]"
+										className="h-9 bg-primary-custom hover:bg-secondary-custom text-white border-none text-sm"
 									>
 										View Patron Summary
 									</Button>
@@ -368,7 +367,7 @@ export default function TransactionPage() {
 									<Button
 										onClick={() => setShowPenaltyModal(true)}
 										variant="destructive"
-										className="h-9 text-white border-none shimmer text-[12px]"
+										className="h-9 text-white border-none shimmer text-sm"
 									>
 										View Penalties
 									</Button>
@@ -411,11 +410,11 @@ export default function TransactionPage() {
 							showOverdueOnly ||
 							showLateOnly) && (
 							<div className="flex items-center gap-2 mb-4 flex-wrap">
-								<span className="text-muted-foreground text-[11px]">
+								<span className="text-muted-foreground text-xs">
 									Active Filters:
 								</span>
 								{selectedLibrary !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
 										Library:{" "}
 										{libraries.find((lib) => lib.id === selectedLibrary)
 											?.li_name || "Unknown"}
@@ -427,7 +426,7 @@ export default function TransactionPage() {
 								)}
 
 								{selectedResourceType !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
 										Resource: {selectedResourceType}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -436,7 +435,7 @@ export default function TransactionPage() {
 									</span>
 								)}
 								{selectedMaterialList !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
 										Material:{" "}
 										{materialList.find((m) => m.id === selectedMaterialList)
 											?.ma_qr || "Unknown"}
@@ -448,7 +447,7 @@ export default function TransactionPage() {
 								)}
 
 								{selectedMaterialFormat !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
 										Format: {selectedMaterialFormat}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -457,7 +456,7 @@ export default function TransactionPage() {
 									</span>
 								)}
 								{selectedMaterialType !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
 										Type:{" "}
 										{materialTypes.find((t) => t.id === selectedMaterialType)
 											?.mt_name || "Unknown"}
@@ -469,10 +468,10 @@ export default function TransactionPage() {
 								)}
 
 								{selectedMaterialCategory !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
 										Category:{" "}
 										{materialCategories.find(
-											(c) => c.id === selectedMaterialCategory
+											(c) => c.id === selectedMaterialCategory,
 										)?.ca_name || "Unknown"}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -482,10 +481,10 @@ export default function TransactionPage() {
 								)}
 
 								{selectedDiscussionRoomList !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
 										Room:{" "}
 										{discussionRoomList.find(
-											(r) => r.id === selectedDiscussionRoomList
+											(r) => r.id === selectedDiscussionRoomList,
 										)?.dr_qr || "Unknown"}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -495,7 +494,7 @@ export default function TransactionPage() {
 								)}
 
 								{selectedComputerList !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
 										Computer:{" "}
 										{computerList.find((c) => c.id === selectedComputerList)
 											?.co_qr || "Unknown"}
@@ -506,7 +505,7 @@ export default function TransactionPage() {
 									</span>
 								)}
 								{showOverdueOnly && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
 										Overdue Only
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -516,7 +515,7 @@ export default function TransactionPage() {
 								)}
 
 								{showLateOnly && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-[11px]">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
 										Late Return Only
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -536,7 +535,7 @@ export default function TransactionPage() {
 							/>
 							<div className="relative bg-card w-80 h-full shadow-lg transform transition-transform duration-300 translate-x-0 animate-slide-in-left flex flex-col">
 								<div className="flex items-center justify-between p-4 border-b border-border text-white bg-primary-custom">
-									<h2 className="font-semibold text-white text-[14px]">
+									<h2 className="font-semibold text-white text-base">
 										Filters
 									</h2>
 									<button
@@ -549,13 +548,13 @@ export default function TransactionPage() {
 
 								<div className="p-4 space-y-4 overflow-y-auto flex-1 pb-4">
 									<div className="space-y-2">
-										<label className="block font-medium text-foreground text-[12px]">
+										<label className="block font-medium text-foreground text-sm">
 											Select a Library
 										</label>
 										<select
 											value={selectedLibrary}
 											onChange={(e) => setSelectedLibrary(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 										>
 											<option value="All">All Libraries</option>
 											{libraries.map((library) => (
@@ -567,7 +566,7 @@ export default function TransactionPage() {
 									</div>
 
 									<div className="space-y-2">
-										<label className="block font-medium text-foreground text-[12px]">
+										<label className="block font-medium text-foreground text-sm">
 											Select a Resource Type
 										</label>
 										<select
@@ -581,7 +580,7 @@ export default function TransactionPage() {
 												setSelectedDiscussionRoomList("All");
 												setSelectedComputerList("All");
 											}}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 										>
 											<option value="All">All Resource Types</option>
 											{resourceTypes.map((type) => (
@@ -595,7 +594,7 @@ export default function TransactionPage() {
 									{selectedResourceType == "Material" && (
 										<>
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground text-[12px]">
+												<label className="block font-medium text-foreground text-sm">
 													Select a Material
 												</label>
 												<select
@@ -603,7 +602,7 @@ export default function TransactionPage() {
 													onChange={(e) =>
 														setSelectedMaterialList(e.target.value)
 													}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 												>
 													<option value="All">All Materials</option>
 													{materialList.map((material) => (
@@ -615,7 +614,7 @@ export default function TransactionPage() {
 											</div>
 
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground text-[12px]">
+												<label className="block font-medium text-foreground text-sm">
 													Select a Material Format
 												</label>
 												<select
@@ -623,7 +622,7 @@ export default function TransactionPage() {
 													onChange={(e) =>
 														setSelectedMaterialFormat(e.target.value)
 													}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 												>
 													<option value="All">All Formats</option>
 													{materialFormats.map((format) => (
@@ -635,7 +634,7 @@ export default function TransactionPage() {
 											</div>
 
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground text-[12px]">
+												<label className="block font-medium text-foreground text-sm">
 													Select a Material Type
 												</label>
 												<select
@@ -643,7 +642,7 @@ export default function TransactionPage() {
 													onChange={(e) =>
 														setSelectedMaterialType(e.target.value)
 													}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 												>
 													<option value="All">All Material Types</option>
 													{materialTypes.map((type) => (
@@ -655,7 +654,7 @@ export default function TransactionPage() {
 											</div>
 
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground text-[12px]">
+												<label className="block font-medium text-foreground text-sm">
 													Select Category
 												</label>
 												<select
@@ -663,7 +662,7 @@ export default function TransactionPage() {
 													onChange={(e) =>
 														setSelectedMaterialCategory(e.target.value)
 													}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 												>
 													<option value="All">All Categories</option>
 													{materialCategories.map((category) => (
@@ -679,7 +678,7 @@ export default function TransactionPage() {
 									{selectedResourceType == "Discussion Room" && (
 										<>
 											<div className="space-y-2">
-												<label className="block font-medium text-foreground text-[12px]">
+												<label className="block font-medium text-foreground text-sm">
 													Select a Discussion Room
 												</label>
 												<select
@@ -687,7 +686,7 @@ export default function TransactionPage() {
 													onChange={(e) =>
 														setSelectedDiscussionRoomList(e.target.value)
 													}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 												>
 													<option value="All">All Discussion Rooms</option>
 													{discussionRoomList.map((room) => (
@@ -702,7 +701,7 @@ export default function TransactionPage() {
 
 									{selectedResourceType == "Computer" && (
 										<div className="space-y-2">
-											<label className="block font-medium text-foreground text-[12px]">
+											<label className="block font-medium text-foreground text-sm">
 												Select a Computer
 											</label>
 											<select
@@ -710,7 +709,7 @@ export default function TransactionPage() {
 												onChange={(e) =>
 													setSelectedComputerList(e.target.value)
 												}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-[12px]"
+												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 											>
 												<option value="All">All Computers</option>
 												{computerList.map((computer) => (
@@ -723,7 +722,7 @@ export default function TransactionPage() {
 									)}
 
 									<div className="space-y-3">
-										<label className="block font-medium text-foreground text-[12px]">
+										<label className="block font-medium text-foreground text-sm">
 											Status Filters
 										</label>
 										<div className="space-y-2">
@@ -732,7 +731,7 @@ export default function TransactionPage() {
 													checked={showOverdueOnly}
 													onCheckedChange={setShowOverdueOnly}
 												/>
-												<span className="text-foreground text-[12px]">
+												<span className="text-foreground text-sm">
 													Show only transactions that are currently overdue
 												</span>
 											</label>
@@ -742,7 +741,7 @@ export default function TransactionPage() {
 													checked={showLateOnly}
 													onCheckedChange={setShowLateOnly}
 												/>
-												<span className="text-foreground text-[12px]">
+												<span className="text-foreground text-sm">
 													Show only transactions with late returns
 												</span>
 											</label>
@@ -768,13 +767,13 @@ export default function TransactionPage() {
 												setShowLateOnly(false);
 											}}
 											variant="outline"
-											className="flex-1 h-9 border-border text-[12px]"
+											className="flex-1 h-9 border-border text-sm"
 										>
 											Clear All
 										</Button>
 										<Button
 											onClick={() => setShowFilters(false)}
-											className="flex-1 text-white hover:opacity-90 h-9 bg-primary-custom text-[12px]"
+											className="flex-1 text-white hover:opacity-90 h-9 bg-primary-custom text-sm"
 										>
 											Apply Filters
 										</Button>
@@ -790,16 +789,16 @@ export default function TransactionPage() {
 						className="w-full animate-slide-up-delay-2"
 					>
 						<TabsList className="grid w-full grid-cols-4 mb-6 bg-muted">
-							<TabsTrigger value="Reserved" className="text-[12px]">
+							<TabsTrigger value="Reserved" className="text-sm">
 								Reserved
 							</TabsTrigger>
-							<TabsTrigger value="Utilized" className="text-[12px]">
+							<TabsTrigger value="Utilized" className="text-sm">
 								Utilized
 							</TabsTrigger>
-							<TabsTrigger value="Cancelled" className="text-[12px]">
+							<TabsTrigger value="Cancelled" className="text-sm">
 								Cancelled
 							</TabsTrigger>
-							<TabsTrigger value="Completed" className="text-[12px]">
+							<TabsTrigger value="Completed" className="text-sm">
 								Completed
 							</TabsTrigger>
 						</TabsList>
@@ -816,10 +815,10 @@ export default function TransactionPage() {
 												<CardContent className="p-4 space-y-6">
 													<div className="flex items-start justify-between pb-4 border-b border-border">
 														<div>
-															<h4 className="font-medium text-foreground text-[14px]">
+															<h4 className="font-medium text-foreground text-base">
 																{transaction?.tr_qr}
 															</h4>
-															<p className="text-muted-foreground text-[12px]">
+															<p className="text-muted-foreground text-sm">
 																{transaction?.tr_createdAt}
 															</p>
 														</div>
@@ -830,7 +829,7 @@ export default function TransactionPage() {
 																className="hover:bg-accent h-8 w-8 p-0 rounded-full"
 																onClick={() =>
 																	router.push(
-																		`/transaction/details?id=${transaction?.id}`
+																		`/transaction/details?id=${transaction?.id}`,
 																	)
 																}
 																title="View Transaction Details"
@@ -842,7 +841,7 @@ export default function TransactionPage() {
 													</div>
 
 													<div>
-														<h5 className="font-medium text-foreground mb-4 text-[13px]">
+														<h5 className="font-medium text-foreground mb-4 text-base">
 															Resources Details
 														</h5>
 														{renderResource(transaction)}
@@ -850,7 +849,7 @@ export default function TransactionPage() {
 
 													{isPersonnel && (
 														<div>
-															<h5 className="font-medium text-foreground mb-4 text-[13px]">
+															<h5 className="font-medium text-foreground mb-4 text-base">
 																Patron Details
 															</h5>
 															{renderPatron(transaction?.tr_patron)}
@@ -858,7 +857,7 @@ export default function TransactionPage() {
 													)}
 
 													<div>
-														<h5 className="font-medium text-foreground mb-4 text-[13px]">
+														<h5 className="font-medium text-foreground mb-4 text-base">
 															Schedule
 														</h5>
 														{renderSchedule(transaction)}
@@ -892,7 +891,7 @@ export default function TransactionPage() {
 															].map((header) => (
 																<th
 																	key={header}
-																	className="text-left py-4 px-6 font-semibold text-foreground text-[12px]"
+																	className="text-left py-4 px-6 font-semibold text-foreground text-sm"
 																>
 																	{header}
 																</th>
@@ -909,40 +908,37 @@ export default function TransactionPage() {
 																	: "bg-muted/10"
 															}`}
 														>
-															<td className="py-4 px-6 min-w-[250px]">
-																<p className="font-medium text-foreground text-[12px]">
+															<td className="py-4 px-6 min-w-[250px] text-sm">
+																<p className="font-medium text-foreground text-sm">
 																	{transaction?.tr_qr}
 																</p>
-																<p
-																	className="text-muted-foreground mb-2"
-																	style={{ fontSize: "11px" }}
-																>
+																<p className="text-muted-foreground mb-2 text-xs">
 																	{transaction?.tr_createdAt}
 																</p>
 																{renderStatusBadge(transaction, "left")}
 															</td>
 
-															<td className="py-4 px-6 min-w-[310px]">
+															<td className="py-4 px-6 min-w-[310px] text-sm">
 																{renderResource(transaction, true)}
 															</td>
 
 															{isPersonnel && (
-																<td className="py-4 px-6 min-w-[250px]">
+																<td className="py-4 px-6 min-w-[250px] text-sm">
 																	{renderPatron(transaction?.tr_patron, true)}
 																</td>
 															)}
 
-															<td className="py-4 px-6 min-w-[300px]">
+															<td className="py-4 px-6 min-w-[300px] text-sm">
 																{renderSchedule(transaction)}
 															</td>
 
 															{!isPersonnel && (
-																<td className="py-4 px-6 min-w-[300px]">
+																<td className="py-4 px-6 min-w-[300px] text-sm">
 																	{renderLibrary(transaction)}
 																</td>
 															)}
 
-															<td className="py-4 px-6">
+															<td className="py-4 px-6 text-sm">
 																<div className="flex items-center gap-2">
 																	<Button
 																		variant="ghost"
@@ -950,7 +946,7 @@ export default function TransactionPage() {
 																		className="hover:bg-accent h-7 w-7 p-0"
 																		onClick={() =>
 																			router.push(
-																				`/transaction/details?id=${transaction?.id}`
+																				`/transaction/details?id=${transaction?.id}`,
 																			)
 																		}
 																		title="View Trasanction Details"
@@ -1058,7 +1054,7 @@ const getFirstSelectedResourceType = (m, d, c) =>
 	m && m !== "All"
 		? "Material"
 		: d && d !== "All"
-		? "Discussion Room"
-		: c && c !== "All"
-		? "Computer"
-		: "All";
+			? "Discussion Room"
+			: c && c !== "All"
+				? "Computer"
+				: "All";

@@ -121,7 +121,7 @@ export function RenewTransactionModal({
 					key={day}
 					onClick={() => !isPastDate && handleDateSelect(day)}
 					disabled={isPastDate}
-					className={`w-10 h-10 rounded-lg text-[12px] font-medium transition-all duration-200 ${
+					className={`w-10 h-10 rounded-lg text-sm font-medium transition-all duration-200 ${
 						isSelected
 							? "bg-primary-custom text-white shadow-md scale-105"
 							: isPastDate
@@ -137,7 +137,7 @@ export function RenewTransactionModal({
 		return (
 			<div className="space-y-6">
 				<div className="flex items-center justify-between">
-					<h2 className="text-lg font-semibold text-primary-custom flex items-center gap-2 text-[18px]">
+					<h2 className="text-lg font-semibold text-primary-custom flex items-center gap-2 text-lg">
 						<FiCalendar className="w-5 h-5" />
 						{currentMonth.toLocaleDateString("en-US", {
 							month: "long",
@@ -251,14 +251,14 @@ export function RenewTransactionModal({
 										<div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
 											<FiCalendar
 												className=" text-white"
-												style={{ fontSize: "17px" }}
+												
 											/>
 										</div>
 										<div>
-											<p className="text-muted-foreground text-[12px]">
+											<p className="text-muted-foreground text-sm">
 												Date of Use
 											</p>
-											<h4 className="font-medium text-foreground text-[14px]">
+											<h4 className="font-medium text-foreground text-base">
 												{formatDisplayDate(transaction?.tr_date)}
 											</h4>
 										</div>
@@ -268,14 +268,14 @@ export function RenewTransactionModal({
 										<div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
 											<FiCalendar
 												className="text-white"
-												style={{ fontSize: "17px" }}
+												
 											/>
 										</div>
 										<div>
-											<p className="text-muted-foreground text-[12px]">
+											<p className="text-muted-foreground text-sm">
 												Due Date
 											</p>
-											<h4 className="font-medium text-foreground text-[14px]">
+											<h4 className="font-medium text-foreground text-base">
 												{formatDisplayDate(selectedDate)}
 											</h4>
 										</div>
@@ -285,14 +285,14 @@ export function RenewTransactionModal({
 										<div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
 											<FiClock
 												className=" text-white"
-												style={{ fontSize: "17px" }}
+												
 											/>
 										</div>
 										<div>
-											<p className="text-muted-foreground text-[12px]">
+											<p className="text-muted-foreground text-sm">
 												Duration
 											</p>
-											<h4 className="font-medium text-foreground text-[14px]">
+											<h4 className="font-medium text-foreground text-base">
 												{calculateDuration(
 													[],
 													transaction?.tr_date,
@@ -310,7 +310,7 @@ export function RenewTransactionModal({
 
 					{transaction && (
 						<div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-							<p className="text-blue-800 text-[12px]">
+							<p className="text-blue-800 text-sm">
 								<strong>Current Status:</strong> This resource is active. It is
 								due on <strong>{transaction.tr_dateDueFormatted}</strong>
 								{transaction?.tr_pastDueDate?.length > 0 && (
@@ -332,13 +332,13 @@ export function RenewTransactionModal({
 						type="button"
 						onClick={() => onClose()}
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 					>
 						Cancel
 					</Button>
 					<Button
 						onClick={handleConfirm}
-						className="bg-primary-custom hover:bg-secondary-custom text-white text-[11px] h-10 px-4 text-[12px]"
+						className="bg-primary-custom hover:bg-secondary-custom text-white text-xs h-10 px-4 text-sm"
 					>
 						<LoadingSpinner loading={btnLoading} />
 						Confirm Renewal

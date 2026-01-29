@@ -136,11 +136,11 @@ export function AIResourcesModal({ open, close, resourceDetails }) {
 						if (message.role === "user") {
 							return (
 								<div key={index} className="flex flex-col items-end p-6">
-									<div className="text-[14px] text-muted-foreground mb-1 mr-1">
+									<div className="text-base text-muted-foreground mb-1 mr-1">
 										You
 									</div>
 									<div className="max-w-[80%] bg-muted/70 rounded-2xl rounded-tr-sm px-4 py-2.5">
-										<div className="whitespace-pre-line text-[13px]">
+										<div className="whitespace-pre-line text-sm">
 											{message.parts[0].text}
 										</div>
 									</div>
@@ -160,31 +160,31 @@ export function AIResourcesModal({ open, close, resourceDetails }) {
 													className="w-full h-full object-cover"
 												/>
 											</div>
-											<div className="font-medium text-[14px]">Butch AI</div>
+											<div className="font-medium text-base">Butch AI</div>
 										</div>
 									</div>
 
-									<div className="text-[13px] ml-8">
+									<div className="text-sm ml-8">
 										<ReactMarkdown
 											remarkPlugins={[remarkGfm]}
 											components={{
 												p: ({ node, ...props }) => (
-													<p className="mb-2 text-[13px]" {...props} />
+													<p className="mb-2 text-sm" {...props} />
 												),
 												ul: ({ node, ...props }) => (
 													<ul
-														className="list-disc list-inside ml-4 mb-2 text-[13px]"
+														className="list-disc list-inside ml-4 mb-2 text-sm"
 														{...props}
 													/>
 												),
 												ol: ({ node, ...props }) => (
 													<ol
-														className="list-decimal list-inside ml-4 mb-2 text-[13px]"
+														className="list-decimal list-inside ml-4 mb-2 text-sm"
 														{...props}
 													/>
 												),
 												table: ({ node, ...props }) => (
-													<div className="overflow-x-auto my-4  text-[13px]">
+													<div className="overflow-x-auto my-4  text-sm">
 														<table
 															className="border border-gray-300 text-sm text-left w-full "
 															{...props}
@@ -193,13 +193,13 @@ export function AIResourcesModal({ open, close, resourceDetails }) {
 												),
 												th: ({ node, ...props }) => (
 													<th
-														className="border border-gray-300 bg-green-100 px-2 py-1 text-[13px] min-w-[120px]"
+														className="border border-gray-300 bg-green-100 px-2 py-1 text-sm min-w-[120px]"
 														{...props}
 													/>
 												),
 												td: ({ node, ...props }) => (
 													<td
-														className="border border-gray-300 px-2 py-1 text-[13px]"
+														className="border border-gray-300 px-2 py-1 text-sm"
 														{...props}
 													/>
 												),
@@ -224,7 +224,7 @@ export function AIResourcesModal({ open, close, resourceDetails }) {
 
 									<div className="flex items-center gap-3 mt-2   ml-8">
 										<button
-											className={`text-[12px] flex items-center gap-1 text-muted-foreground hover:text-foreground ${
+											className={`text-sm flex items-center gap-1 text-muted-foreground hover:text-foreground ${
 												message.isSpeaking ? "text-primary-custom" : ""
 											}`}
 											onClick={() =>
@@ -235,7 +235,7 @@ export function AIResourcesModal({ open, close, resourceDetails }) {
 											{message.isSpeaking ? "Stop" : "Listen"}
 										</button>
 										<button
-											className="text-[12px] flex items-center gap-1 text-muted-foreground hover:text-foreground"
+											className="text-sm flex items-center gap-1 text-muted-foreground hover:text-foreground"
 											onClick={() =>
 												copyMessageToClipboard(message.parts[0].text)
 											}
@@ -244,7 +244,7 @@ export function AIResourcesModal({ open, close, resourceDetails }) {
 											Copy
 										</button>
 										<button
-											className="text-[12px] flex items-center gap-1 text-muted-foreground hover:text-foreground"
+											className="text-sm flex items-center gap-1 text-muted-foreground hover:text-foreground"
 											onClick={() => regenerateResponse(index)}
 										>
 											<FiRefreshCw className="w-3 h-3" />
@@ -268,7 +268,7 @@ export function AIResourcesModal({ open, close, resourceDetails }) {
 										/>
 									</div>
 								</div>
-								<span className="text-[13px]">Butch AI is thinking</span>
+								<span className="text-sm">Butch AI is thinking</span>
 							</div>
 							<div className="flex text-2xl leading-none">
 								<span className="animate-bounce">.</span>
@@ -289,7 +289,7 @@ export function AIResourcesModal({ open, close, resourceDetails }) {
 							onChange={(e) => setInputValue(e.target.value)}
 							placeholder="Ask AI about this resource..."
 							className="h-10 pr-12 "
-							style={{ fontSize: "12px" }}
+							
 							disabled={isAiThinking}
 						/>
 						<Button

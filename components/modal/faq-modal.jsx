@@ -46,7 +46,7 @@ export function AddFaqModal({
 				userDetails?.uid,
 				formData,
 				setBtnLoading,
-				Alert
+				Alert,
 			);
 		} else {
 			await updateFaqs(
@@ -55,7 +55,7 @@ export function AddFaqModal({
 				formData,
 				userDetails?.uid,
 				setBtnLoading,
-				Alert
+				Alert,
 			);
 		}
 
@@ -81,14 +81,14 @@ export function AddFaqModal({
 		>
 			<form onSubmit={handleSubmit}>
 				<div className="flex-1 overflow-y-auto p-6 space-y-4">
-					<p className="text-muted-foreground mb-4 text-[12px]">
+					<p className="text-muted-foreground mb-4 text-sm">
 						Enter the question and answer for the FAQ.
 					</p>
 
 					<div className="space-y-1">
 						<Label
 							htmlFor="faq-question"
-							className="text-[12px] font-medium text-foreground"
+							className="text-sm font-medium text-foreground"
 						>
 							Question
 						</Label>
@@ -97,8 +97,7 @@ export function AddFaqModal({
 							name="fa_question"
 							value={formData.fa_question}
 							onChange={(e) => handleChange(e, setFormData)}
-							className="h-9 bg-background border-border text-foreground"
-							style={{ fontSize: "12px" }}
+							className="h-9 bg-background border-border text-foreground text-sm"
 							placeholder="e.g., How do I borrow a book?"
 							required
 						/>
@@ -107,7 +106,7 @@ export function AddFaqModal({
 					<div className="space-y-1">
 						<Label
 							htmlFor="faq-answer"
-							className="text-[12px] font-medium text-foreground"
+							className="text-sm font-medium text-foreground"
 						>
 							Answer
 						</Label>
@@ -116,8 +115,7 @@ export function AddFaqModal({
 							name="fa_answer"
 							value={formData.fa_answer}
 							onChange={(e) => handleChange(e, setFormData)}
-							className="h-24 bg-background border-border text-foreground"
-							style={{ fontSize: "12px" }}
+							className="h-24 bg-background border-border text-foreground text-sm"
 							placeholder="Provide a detailed answer here..."
 							required
 						/>
@@ -129,13 +127,13 @@ export function AddFaqModal({
 						type="button"
 						onClick={() => onClose()}
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 					>
 						Cancel
 					</Button>
 					<Button
 						type="submit"
-						className="bg-primary-custom hover:bg-secondary-custom text-white text-[12px] h-10 px-4"
+						className="bg-primary-custom hover:bg-secondary-custom text-white text-sm h-10 px-4"
 						disabled={btnLoading}
 					>
 						<LoadingSpinner loading={btnLoading} />

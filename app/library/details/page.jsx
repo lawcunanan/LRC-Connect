@@ -75,7 +75,7 @@ export default function LibraryDetails() {
 				<div className="mb-6 animate-fade-in">
 					<button
 						onClick={() => router.back()}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
 					>
 						<FiArrowLeft className="w-4 h-4" />
 						Back to Previous page
@@ -83,10 +83,10 @@ export default function LibraryDetails() {
 				</div>
 
 				<div className="w-fit mb-8 animate-slide-up">
-					<h1 className="font-semibold text-foreground text-[20px]">
+					<h1 className="font-semibold text-foreground text-xl">
 						Library Details
 					</h1>
-					<p className="text-muted-foreground text-[14px]">
+					<p className="text-muted-foreground text-base">
 						View and edit detailed library information and settings
 					</p>
 				</div>
@@ -94,16 +94,16 @@ export default function LibraryDetails() {
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-slide-up-delay-2">
 					<Card className="h-fit bg-card border-border transition-colors duration-300">
 						<CardContent className="p-6">
-							<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+							<h2 className="font-semibold text-foreground text-base mb-[5px]">
 								Library Information
 							</h2>
-							<p className="text-muted-foreground text-[12px] mb-4">
+							<p className="text-muted-foreground text-sm mb-4">
 								Here’s everything you need to know about this library.
 							</p>
 
 							<div className="space-y-4">
 								<div>
-									<label className="block text-foreground font-medium mb-2 text-[12px]">
+									<label className="block text-foreground font-medium mb-2 text-sm">
 										Library Name
 									</label>
 									<Input
@@ -111,8 +111,7 @@ export default function LibraryDetails() {
 										value={formData?.li_name || ""}
 										onChange={(e) => handleChange(e, setFormData)}
 										placeholder="e.g., NU Baliwag Learning Hub"
-										className="bg-card border-border text-foreground h-9"
-										style={{ fontSize: "12px" }}
+										className="bg-card border-border text-foreground h-9 text-sm"
 										disabled={!isEditing}
 										required
 									/>
@@ -120,7 +119,7 @@ export default function LibraryDetails() {
 
 								<div className="grid grid-cols-2 gap-4">
 									<div>
-										<label className="block text-foreground font-medium mb-2 text-[12px]">
+										<label className="block text-foreground font-medium mb-2 text-sm">
 											School Name
 										</label>
 										<Input
@@ -128,14 +127,13 @@ export default function LibraryDetails() {
 											value={formData?.li_schoolname || ""}
 											onChange={(e) => handleChange(e, setFormData)}
 											placeholder="e.g., National University Baliwag"
-											className="bg-card border-border text-foreground h-9"
-											style={{ fontSize: "12px" }}
+											className="bg-card border-border text-foreground h-9 text-sm"
 											disabled={!isEditing}
 											required
 										/>
 									</div>
 									<div>
-										<label className="block text-foreground font-medium mb-2 text-[12px]">
+										<label className="block text-foreground font-medium mb-2 text-sm">
 											School ID
 										</label>
 										<Input
@@ -143,8 +141,7 @@ export default function LibraryDetails() {
 											value={formData?.li_schoolID || ""}
 											onChange={(e) => handleChange(e, setFormData)}
 											placeholder="e.g., 2022-001234"
-											className="bg-card border-border text-foreground h-9"
-											style={{ fontSize: "12px" }}
+											className="bg-card border-border text-foreground h-9 text-sm"
 											disabled={!isEditing}
 											required
 										/>
@@ -153,7 +150,7 @@ export default function LibraryDetails() {
 
 								<div className="grid grid-cols-2 gap-4">
 									<div>
-										<label className="block text-foreground font-medium mb-2 text-[12px]">
+										<label className="block text-foreground font-medium mb-2 text-sm">
 											School Email
 										</label>
 										<Input
@@ -162,14 +159,13 @@ export default function LibraryDetails() {
 											value={formData?.li_email || ""}
 											onChange={(e) => handleChange(e, setFormData)}
 											placeholder="e.g., library@nubal.edu.ph"
-											className="bg-card border-border text-foreground h-9"
-											style={{ fontSize: "12px" }}
+											className="bg-card border-border text-foreground h-9 text-sm"
 											disabled={!isEditing}
 											required
 										/>
 									</div>
 									<div>
-										<label className="block text-foreground font-medium mb-2 text-[12px]">
+										<label className="block text-foreground font-medium mb-2 text-sm">
 											Phone Number
 										</label>
 										<Input
@@ -177,8 +173,7 @@ export default function LibraryDetails() {
 											value={formData?.li_phone || ""}
 											onChange={(e) => handleChange(e, setFormData)}
 											placeholder="e.g., +639123456789"
-											className="bg-card border-border text-foreground h-9"
-											style={{ fontSize: "12px" }}
+											className="bg-card border-border text-foreground h-9 text-sm"
 											pattern="^\+639\d{9}$"
 											title="Format must be +639 followed by 9 digits (e.g., +639123456789)"
 											disabled={!isEditing}
@@ -188,7 +183,7 @@ export default function LibraryDetails() {
 								</div>
 
 								<div>
-									<label className="block text-foreground font-medium mb-2 text-[12px]">
+									<label className="block text-foreground font-medium mb-2 text-sm">
 										Description
 									</label>
 									<Textarea
@@ -197,14 +192,13 @@ export default function LibraryDetails() {
 										onChange={(e) => handleChange(e, setFormData)}
 										placeholder="Brief description of the library’s services, facilities, or location."
 										rows={3}
-										className="bg-card border-border text-foreground"
+										className="bg-card border-border text-foreground text-sm"
 										disabled={!isEditing}
-										style={{ fontSize: "12px" }}
 									/>
 								</div>
 
 								<div>
-									<label className="block text-foreground font-medium mb-2 text-[12px]">
+									<label className="block text-foreground font-medium mb-2 text-sm">
 										Address
 									</label>
 									<Input
@@ -212,8 +206,7 @@ export default function LibraryDetails() {
 										value={formData?.li_address || ""}
 										onChange={(e) => handleChange(e, setFormData)}
 										placeholder="e.g., Purok 2, Sto. Niño, Baliwag"
-										className="bg-card border-border text-foreground h-9"
-										style={{ fontSize: "12px" }}
+										className="bg-card border-border text-foreground h-9 text-sm"
 										disabled={!isEditing}
 										required
 										readOnly
@@ -222,7 +215,7 @@ export default function LibraryDetails() {
 
 								<div className="grid grid-cols-2 gap-4">
 									<div>
-										<label className="block text-foreground font-medium mb-2 text-[12px]">
+										<label className="block text-foreground font-medium mb-2 text-sm">
 											Latitude & Longitude
 										</label>
 										<Input
@@ -230,8 +223,7 @@ export default function LibraryDetails() {
 											value={formData?.li_latlng || ""}
 											onChange={(e) => handleChange(e, setFormData)}
 											placeholder="e.g., 14.9545, 120.8962"
-											className="bg-card border-border text-foreground h-9"
-											style={{ fontSize: "12px" }}
+											className="bg-card border-border text-foreground h-9 text-sm"
 											disabled={!isEditing}
 										/>
 									</div>
@@ -239,7 +231,7 @@ export default function LibraryDetails() {
 										<div className="flex items-end">
 											<Button
 												type="button"
-												className="w-full bg-red-600 hover:bg-red-700 text-white h-9 text-[12px] flex items-center gap-2"
+												className="w-full bg-red-600 hover:bg-red-700 text-white h-9 text-sm flex items-center gap-2"
 												onClick={() => setShowPinModal(true)}
 												disabled={!isEditing}
 											>
@@ -254,11 +246,11 @@ export default function LibraryDetails() {
 
 					<Card className="bg-card border-border transition-colors duration-300 h-fit">
 						<CardHeader className="pb-4">
-							<CardTitle className="text-foreground flex items-center gap-2 text-[16px]">
+							<CardTitle className="text-foreground flex items-center gap-2 text-base">
 								<FiImage className="w-4 h-4" />
 								Cover Image
 							</CardTitle>
-							<p className="text-muted-foreground text-[12px]">
+							<p className="text-muted-foreground text-sm">
 								Take a look at the library’s cover image.
 							</p>
 						</CardHeader>
@@ -304,7 +296,7 @@ export default function LibraryDetails() {
 											<>
 												<Button
 													type="submit"
-													className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-[12px]"
+													className="bg-primary-custom hover:bg-secondary-custom text-white h-10 w-fit text-sm"
 													onClick={handleSave}
 												>
 													<LoadingSpinner loading={btnLoading} />
@@ -313,7 +305,7 @@ export default function LibraryDetails() {
 												<Button
 													type="button"
 													variant="outline"
-													className="bg-transparent hover:bg-accent text-foreground h-10 w-fit text-[12px]"
+													className="bg-transparent hover:bg-accent text-foreground h-10 w-fit text-sm"
 													onClick={() => setIsEditing(false)}
 												>
 													Cancel
@@ -322,7 +314,7 @@ export default function LibraryDetails() {
 										) : (
 											<Button
 												type="button"
-												className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-[12px]"
+												className="w-fit bg-primary-custom hover:bg-secondary-custom text-white h-10 text-sm"
 												onClick={() => setIsEditing(true)}
 											>
 												Edit Details
@@ -349,12 +341,12 @@ export default function LibraryDetails() {
 												)}
 											</div>
 											<div className="flex-1">
-												<h2 className="font-semibold text-foreground text-[16px] mb-[5px]">
+												<h2 className="font-semibold text-foreground text-base mb-[5px]">
 													{formData?.li_status === "Active"
 														? "Deactivate Library"
 														: "Activate Library"}
 												</h2>
-												<p className="text-muted-foreground leading-relaxed text-[12px]">
+												<p className="text-muted-foreground leading-relaxed text-sm">
 													{formData?.li_status === "Active"
 														? "This will temporarily disable access to the library and its resources. The library can be reactivated later by an Super Admin."
 														: "This will restore access to the library and make its resources available again to users."}
@@ -367,7 +359,7 @@ export default function LibraryDetails() {
 												type="button"
 												variant="outline"
 												onClick={() => setShowDeactivateModal(true)}
-												className={`w-full h-9 transition-colors text-[12px] ${
+												className={`w-full h-9 transition-colors text-sm ${
 													formData?.li_status === "Active"
 														? "border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300"
 														: "border-green-200 text-green-600 hover:bg-green-50 hover:border-green-300"

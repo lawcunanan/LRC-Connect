@@ -105,7 +105,7 @@ export function ScannerModal({
 							className="flex items-start gap-3 p-4 border border-primary rounded-lg shadow-sm"
 						>
 							<FiCamera className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-							<p className="text-primary/90 text-[12px] leading-relaxed">
+							<p className="text-primary/90 text-sm leading-relaxed">
 								Point your camera at a QR code or barcode with allowed prefixes:
 								{allowedPrefix.split("|").map((prefix, i) => (
 									<strong key={i} className="ml-1 text-primary">

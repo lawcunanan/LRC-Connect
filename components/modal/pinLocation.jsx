@@ -92,13 +92,13 @@ export function PinLocation({ isOpen, onClose, setFormData, Alert }) {
 						type="button"
 						onClick={() => onClose()}
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 					>
 						Cancel
 					</Button>
 					<Button
 						type="submit"
-						className="bg-primary-custom hover:bg-secondary-custom text-white text-[11px] h-10 px-4 text-[12px]"
+						className="bg-primary-custom hover:bg-secondary-custom text-white text-xs h-10 px-4 text-sm"
 					>
 						<LoadingSpinner loading={btnLoading} />
 						Save Pin

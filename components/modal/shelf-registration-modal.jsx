@@ -105,7 +105,7 @@ export function ShelfRegistrationModal({
 		>
 			<form onSubmit={handleSubmit} className="p-6 space-y-4">
 				<div>
-					<Label className="text-foreground font-medium text-[12px]">
+					<Label className="text-foreground font-medium text-sm">
 						Shelf Name/Code
 					</Label>
 					<Input
@@ -114,13 +114,13 @@ export function ShelfRegistrationModal({
 						onKeyDown={handleKeyDown}
 						placeholder="Enter shelf name or code"
 						className="mt-1 h-9 bg-background border-border text-foreground"
-						style={{ fontSize: "12px" }}
+						
 						autoFocus
 					/>
 				</div>
 
 				<div className="space-y-2">
-					<Label className="text-foreground font-medium text-[12px]">
+					<Label className="text-foreground font-medium text-sm">
 						Existing Shelves
 					</Label>
 					{shelves?.length > 0 &&
@@ -129,7 +129,7 @@ export function ShelfRegistrationModal({
 								key={index}
 								className="flex items-center justify-between p-2 bg-muted/30 rounded hover:bg-muted/50 transition-colors duration-200"
 							>
-								<span className="text-foreground text-[12px]">
+								<span className="text-foreground text-sm">
 									{item.sh_name}
 								</span>
 								<span>
@@ -167,14 +167,14 @@ export function ShelfRegistrationModal({
 							onClose();
 						}}
 						variant="outline"
-						className="bg-transparent h-10 px-4 text-[12px]"
+						className="bg-transparent h-10 px-4 text-sm"
 					>
 						Cancel
 					</Button>
 					<Button
 						type="submit"
 						disabled={!newShelf.trim()}
-						className="bg-primary-custom text-white hover:opacity-90 h-10 px-4 disabled:opacity-50 disabled:cursor-not-allowed text-[12px]"
+						className="bg-primary-custom text-white hover:opacity-90 h-10 px-4 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
 					>
 						<LoadingSpinner loading={btnLoading} />
 						{editingShelfId ? "Update" : "Add Shelf"}

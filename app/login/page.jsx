@@ -47,7 +47,7 @@ export default function LoginPage() {
 				<div className="mb-8">
 					<button
 						onClick={() => router.push("/")}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[12px]"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 					>
 						<ArrowLeft className="w-3 h-3" />
 						Back to Welcome Page
@@ -59,10 +59,10 @@ export default function LoginPage() {
 						<div className="flex items-center justify-center  w-full max-w-[380px] p-0">
 							<div className="w-full">
 								<div className="text-center mb-8 ">
-									<h1 className=" text-[32px] font-bold text-foreground ">
+									<h1 className=" text-2xl font-bold text-foreground ">
 										Welcome back
 									</h1>
-									<p className="text-muted-foreground text-[15px]">
+									<p className="text-muted-foreground text-base">
 										Please enter your details to sign in
 									</p>
 								</div>
@@ -71,7 +71,7 @@ export default function LoginPage() {
 									<div className="space-y-2">
 										<Label
 											htmlFor="email"
-											className="text-sm font-medium text-foreground text-[13px]"
+											className="text-sm font-medium text-foreground "
 										>
 											Email
 										</Label>
@@ -85,8 +85,7 @@ export default function LoginPage() {
 												onChange={(e) =>
 													handleInputChange("email", e.target.value)
 												}
-												className="pl-10 pr-5 h-11 border-border focus:border-primary-custom"
-												style={{ fontSize: "13px" }}
+												className="pl-10 pr-5 h-11 border-border focus:border-primary-custom text-sm"
 											/>
 										</div>
 									</div>
@@ -94,7 +93,7 @@ export default function LoginPage() {
 									<div className="space-y-2">
 										<Label
 											htmlFor="password"
-											className="text-sm font-medium text-foreground  text-[14px]"
+											className="text-sm font-medium text-foreground"
 										>
 											Password
 										</Label>
@@ -108,15 +107,14 @@ export default function LoginPage() {
 												onChange={(e) =>
 													handleInputChange("password", e.target.value)
 												}
-												className="pl-10 pr-5 h-11 border-border focus:border-primary-custom"
-												style={{ fontSize: "13px" }}
+												className="pl-10 pr-5 h-11 border-border focus:border-primary-custom text-sm"
 											/>
 										</div>
 									</div>
 
 									<Button
 										type="submit"
-										className="w-full h-11 text-white  bg-primary-custom hover:bg-secondary-custom transition-colors  text-[13px]"
+										className="w-full h-11 text-white  bg-primary-custom hover:bg-secondary-custom transition-colors  text-sm"
 									>
 										<LoadingSpinner loading={btnLoading} />
 										Sign In

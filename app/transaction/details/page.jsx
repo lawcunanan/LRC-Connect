@@ -55,7 +55,7 @@ export default function TransactionDetailsPage() {
 				<div className="mb-6">
 					<button
 						onClick={() => router.push(`/transaction`)}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-[11px]"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
 					>
 						<ArrowLeft className="w-3 h-3" />
 						Back to Transaction
@@ -64,10 +64,10 @@ export default function TransactionDetailsPage() {
 
 				<div className="animate-slide-up flex items-start justify-between mb-8">
 					<div>
-						<h1 className="font-semibold text-foreground text-[20px]">
+						<h1 className="font-semibold text-foreground text-xl">
 							Transaction Details
 						</h1>
-						<p className="text-muted-foreground text-[14px]">
+						<p className="text-muted-foreground text-base">
 							Complete information about transaction {transactionData?.tr_qr}
 						</p>
 					</div>
@@ -95,7 +95,7 @@ export default function TransactionDetailsPage() {
 									<Button
 										onClick={() => router.push(`/transaction/view?id=${id}`)}
 										key={text}
-										className={`h-9 ${color} text-white border-none flex items-center gap-1 text-[12px] ${
+										className={`h-9 ${color} text-white border-none flex items-center gap-1 text-sm ${
 											enabled ? "shimmer" : ""
 										}`}
 										disabled={!enabled}
@@ -134,7 +134,7 @@ export default function TransactionDetailsPage() {
 					<div className="space-y-6">
 						<Card className="bg-card border-border overflow-hidden">
 							<CardHeader className="pb-4">
-								<h2 className="font-semibold text-foreground text-[16px] flex items-center gap-2">
+								<h2 className="font-semibold text-foreground text-base flex items-center gap-2">
 									Transaction QR Code
 								</h2>
 							</CardHeader>
@@ -147,13 +147,13 @@ export default function TransactionDetailsPage() {
 											type="qr"
 										/>
 									</div>
-									<p className="text-muted-foreground mb-4 text-[12px]">
+									<p className="text-muted-foreground mb-4 text-sm">
 										Scan this QR code to quickly access transaction details
 									</p>
 									<Button
 										variant="outline"
 										size="sm"
-										className="w-full h-9 border-border text-foreground hover:bg-accent bg-transparent text-[12px]"
+										className="w-full h-9 border-border text-foreground hover:bg-accent bg-transparent text-sm"
 										onClick={() => qrRef.current?.download()}
 									>
 										<FiDownload className="w-3 h-3 mr-1" />
@@ -228,7 +228,7 @@ export function TransactionStatusBar(status) {
 
 	return (
 		<div className="p-6">
-			<h2 className="font-semibold text-foreground text-[16px] flex items-center gap-2 mb-4">
+			<h2 className="font-semibold text-foreground text-base flex items-center gap-2 mb-4">
 				<FiBarChart className="w-4 h-4" />
 				Transaction Status
 			</h2>
@@ -250,12 +250,8 @@ export function TransactionStatusBar(status) {
 								<IconComponent className={`w-4 h-4 ${color.iconColor}`} />
 							</div>
 							<div className="text-left">
-								<p className={`font-medium text-[14px] ${color.label}`}>
-									{key}
-								</p>
-								<p className={` text-[12px] ${color.desc}`}>
-									{config.description}
-								</p>
+								<p className={`font-medium text-base ${color.label}`}>{key}</p>
+								<p className={` text-sm ${color.desc}`}>{config.description}</p>
 							</div>
 							{isActive && (
 								<div className="w-2 h-2 bg-foreground rounded-full animate-pulse ml-1"></div>
@@ -271,7 +267,7 @@ export function TransactionStatusBar(status) {
 export function TransactionDetailsCard(transaction) {
 	return (
 		<div className="p-6">
-			<h2 className="font-semibold text-foreground text-[16px] flex items-center gap-2 mb-3">
+			<h2 className="font-semibold text-foreground text-base flex items-center gap-2 mb-3">
 				<div className="flex items-start gap-2">
 					<FiBookOpen className="w-4 h-4 flex-shrink-0 mt-1" />
 					{transaction?.tr_library || "Library"}
@@ -283,27 +279,25 @@ export function TransactionDetailsCard(transaction) {
 					transaction?.tr_format === "Hard Copy" &&
 					transaction?.tr_accession && (
 						<div className="flex flex-col">
-							<Label className="text-foreground text-[14px]">
+							<Label className="text-foreground text-base">
 								{transaction?.tr_accession || "NA"}
 							</Label>
-							<p className="text-muted-foreground text-[12px]">
-								Accession Number
-							</p>
+							<p className="text-muted-foreground text-sm">Accession Number</p>
 						</div>
 					)}
 				<div className="flex flex-col">
-					<Label className="text-foreground text-[14px]">
+					<Label className="text-foreground text-base">
 						{transaction?.tr_dateFormatted || "NA"}
 					</Label>
-					<p className="text-muted-foreground text-[12px]">Date of Use</p>
+					<p className="text-muted-foreground text-sm">Date of Use</p>
 				</div>
 
 				{transaction?.tr_type === "Material" && (
 					<div className="flex flex-col">
-						<Label className="text-foreground text-[14px]">
+						<Label className="text-foreground text-base">
 							{transaction?.tr_dateDueFormatted || "NA"}
 						</Label>
-						<p className="text-muted-foreground text-[12px]">
+						<p className="text-muted-foreground text-sm">
 							{transaction?.tr_pastDueDate?.length > 0
 								? "Renewed Due Date"
 								: "Due Date"}
@@ -315,13 +309,13 @@ export function TransactionDetailsCard(transaction) {
 					transaction?.tr_pastDueDate?.length > 0 && (
 						<div className="relative group inline-block">
 							<div className="flex flex-col">
-								<Label className="text-foreground text-[14px]">
+								<Label className="text-foreground text-base">
 									{transaction?.tr_pastDueDate?.length || "0"}
 									{transaction?.tr_pastDueDate?.length === 1
 										? " Count"
 										: " Counts"}
 								</Label>
-								<p className="text-muted-foreground text-[12px]">
+								<p className="text-muted-foreground text-sm">
 									Previous Due Date
 									{transaction?.tr_pastDueDate?.length > 1 && "s"}
 								</p>
@@ -334,7 +328,7 @@ export function TransactionDetailsCard(transaction) {
 									Previous Due Date
 									{transaction?.tr_pastDueDate.length > 1 && "s"}
 								</div>
-								<div className="text-[11px] space-y-1">
+								<div className="text-xs space-y-1">
 									{transaction?.tr_pastDueDate.map((label, idx) => (
 										<p key={idx}>• {label}</p>
 									))}
@@ -347,38 +341,36 @@ export function TransactionDetailsCard(transaction) {
 
 				{["Computer", "Discussion Room"].includes(transaction?.tr_type) && (
 					<div className="flex flex-col">
-						<Label className="text-foreground text-[14px]">
+						<Label className="text-foreground text-base">
 							{transaction?.tr_sessionStartFormatted || "NA"} {" - "}
 							{transaction?.tr_sessionEndFormatted || "NA"}
 						</Label>
-						<p className="text-muted-foreground text-[12px]">
-							Session Start - End
-						</p>
+						<p className="text-muted-foreground text-sm">Session Start - End</p>
 					</div>
 				)}
 
 				<div className="flex flex-col">
-					<Label className="text-foreground text-[14px]">
+					<Label className="text-foreground text-base">
 						{transaction?.tr_createdAt || "NA"}
 					</Label>
-					<p className="text-muted-foreground text-[12px]">Transaction Date</p>
+					<p className="text-muted-foreground text-sm">Transaction Date</p>
 				</div>
 
 				{transaction?.tr_status == "Cancelled" && (
 					<div className="flex flex-col">
-						<Label className="text-foreground text-[14px]">
+						<Label className="text-foreground text-base">
 							{transaction?.tr_updatedAtFormmated}
 						</Label>
-						<p className="text-muted-foreground text-[12px]">Cancelled Date</p>
+						<p className="text-muted-foreground text-sm">Cancelled Date</p>
 					</div>
 				)}
 
 				{transaction?.tr_status == "Completed" && (
 					<div className="flex flex-col">
-						<Label className="text-foreground text-[14px]">
+						<Label className="text-foreground text-base">
 							{transaction?.tr_actualEndFormmated}
 						</Label>
-						<p className="text-muted-foreground text-[12px]">Actual End Date</p>
+						<p className="text-muted-foreground text-sm">Actual End Date</p>
 					</div>
 				)}
 			</div>
@@ -390,20 +382,19 @@ const renderResourceDetails = (transaction, router) => {
 	return (
 		<div className="p-6">
 			<div className="flex items-center justify-between mb-3">
-				<h2 className="font-semibold text-foreground text-[16px] flex items-center gap-2 ">
+				<h2 className="font-semibold text-foreground text-base flex items-center gap-2 ">
 					<FiBookOpen className="w-4 h-4" />
 					{transaction?.tr_type || "Type"} Resource Details
 				</h2>
 				<Button
 					onClick={() =>
 						router.push(
-							`/resources/material/details/?id=${transaction?.tr_resource.id}`
+							`/resources/material/details/?id=${transaction?.tr_resource.id}`,
 						)
 					}
 					variant="ghost"
 					size="sm"
-					className="h-8 px-3 text-muted-foreground hover:text-foreground hover:bg-accent"
-					style={{ fontSize: "10px" }}
+					className="h-8 px-3 text-muted-foreground hover:text-foreground hover:bg-accent text-xs"
 				>
 					<ExternalLink className="w-3 h-3 mr-1" />
 					View Resource
@@ -416,10 +407,10 @@ const renderResourceDetails = (transaction, router) => {
 						transaction?.tr_type === "Material"
 							? transaction?.tr_resource.ma_coverURL
 							: transaction?.tr_type === "Discussion Room"
-							? transaction?.tr_resource.dr_photoURL
-							: transaction?.tr_type === "Computer"
-							? transaction?.tr_resource.co_photoURL
-							: "/placeholder.svg?height=112&width=80"
+								? transaction?.tr_resource.dr_photoURL
+								: transaction?.tr_type === "Computer"
+									? transaction?.tr_resource.co_photoURL
+									: "/placeholder.svg?height=112&width=80"
 					}
 					alt={transaction?.tr_qr}
 					className={`h-28 object-cover rounded-lg bg-gray-100 ${
@@ -428,70 +419,70 @@ const renderResourceDetails = (transaction, router) => {
 				/>
 
 				<div className="flex-1">
-					<h4 className="font-medium text-foreground text-[14px]">
+					<h4 className="font-medium text-foreground text-base">
 						{transaction?.tr_type === "Material"
 							? transaction?.tr_resource.ma_title
 							: transaction?.tr_type === "Discussion Room"
-							? transaction?.tr_resource.dr_name
-							: transaction?.tr_type === "Computer"
-							? transaction?.tr_resource.co_name
-							: "NA"}
+								? transaction?.tr_resource.dr_name
+								: transaction?.tr_type === "Computer"
+									? transaction?.tr_resource.co_name
+									: "NA"}
 					</h4>
-					<p className="text-muted-foreground text-[12px] mb-4">
+					<p className="text-muted-foreground text-sm mb-4">
 						{transaction?.tr_type === "Material"
 							? "by " + transaction?.tr_resource.ma_author
 							: transaction?.tr_type === "Discussion Room"
-							? transaction?.tr_resource.dr_createdAt
-							: transaction?.tr_type === "Computer"
-							? transaction?.tr_resource.co_createdAt
-							: "NA"}
+								? transaction?.tr_resource.dr_createdAt
+								: transaction?.tr_type === "Computer"
+									? transaction?.tr_resource.co_createdAt
+									: "NA"}
 					</p>
 
 					<div className="flex flex-wrap gap-x-8 gap-y-2">
 						<div>
-							<Label className="text-foreground text-[12px]">Call Number</Label>
-							<p className="text-muted-foreground text-[12px]">
+							<Label className="text-foreground text-sm">Call Number</Label>
+							<p className="text-muted-foreground text-sm">
 								{transaction?.tr_type === "Material"
 									? transaction?.tr_resource.ma_callNumber
 									: transaction?.tr_type === "Discussion Room"
-									? transaction?.tr_resource.dr_qr
-									: transaction?.tr_type === "Computer"
-									? transaction?.tr_resource.co_qr
-									: "NA"}
+										? transaction?.tr_resource.dr_qr
+										: transaction?.tr_type === "Computer"
+											? transaction?.tr_resource.co_qr
+											: "NA"}
 							</p>
 						</div>
 
 						<div>
-							<Label className="text-foreground text-[12px]">
+							<Label className="text-foreground text-sm">
 								{transaction?.tr_type === "Material"
 									? "Format"
 									: transaction?.tr_type === "Discussion Room"
-									? "Capacity"
-									: transaction?.tr_type === "Computer"
-									? "Asset Tag"
-									: "NA"}
+										? "Capacity"
+										: transaction?.tr_type === "Computer"
+											? "Asset Tag"
+											: "NA"}
 							</Label>
-							<p className="text-muted-foreground text-[12px]">
+							<p className="text-muted-foreground text-sm">
 								{transaction?.tr_type === "Material"
 									? transaction?.tr_format
 									: transaction?.tr_type === "Discussion Room"
-									? transaction?.tr_resource.dr_capacity
-									: transaction?.tr_type === "Computer"
-									? transaction?.tr_resource.co_assetTag
-									: "NA"}
+										? transaction?.tr_resource.dr_capacity
+										: transaction?.tr_type === "Computer"
+											? transaction?.tr_resource.co_assetTag
+											: "NA"}
 							</p>
 						</div>
 
 						<div>
-							<Label className="text-foreground text-[12px]">Description</Label>
-							<p className="text-muted-foreground text-[12px]">
+							<Label className="text-foreground text-sm">Description</Label>
+							<p className="text-muted-foreground text-sm">
 								{transaction?.tr_type === "Material"
 									? transaction?.tr_resource.ma_description
 									: transaction?.tr_type === "Discussion Room"
-									? transaction?.tr_resource.dr_description
-									: transaction?.tr_type === "Computer"
-									? transaction?.tr_resource.co_description
-									: "NA"}
+										? transaction?.tr_resource.dr_description
+										: transaction?.tr_type === "Computer"
+											? transaction?.tr_resource.co_description
+											: "NA"}
 							</p>
 						</div>
 					</div>
@@ -509,7 +500,7 @@ export const renderPatronDetails = (transaction, router) => {
 	return (
 		<div className="p-6">
 			<div className="flex items-center justify-between mb-3">
-				<h2 className="font-semibold text-foreground text-[16px] flex items-center gap-2">
+				<h2 className="font-semibold text-foreground text-base flex items-center gap-2">
 					<FiUser className="w-4 h-4" />
 					Patron Details
 				</h2>
@@ -519,8 +510,7 @@ export const renderPatronDetails = (transaction, router) => {
 					}
 					variant="ghost"
 					size="sm"
-					className="h-8 px-3 text-muted-foreground hover:text-foreground hover:bg-accent"
-					style={{ fontSize: "10px" }}
+					className="h-8 px-3 text-muted-foreground hover:text-foreground hover:bg-accent text-xs"
 				>
 					<ExternalLink className="w-3 h-3 mr-1" />
 					View Profile
@@ -536,29 +526,29 @@ export const renderPatronDetails = (transaction, router) => {
 					/>
 				</div>
 				<div className="flex-1">
-					<h4 className="font-medium text-foreground text-[14px]">
+					<h4 className="font-medium text-foreground text-base">
 						{patron?.us_name}
 					</h4>
-					<p className="text-primary-custom text-[12px] mb-4">
+					<p className="text-primary-custom text-sm mb-4">
 						{patron?.us_type} • {patron?.us_schoolID}
 					</p>
 
 					<div className="flex flex-wrap gap-x-8 gap-y-2">
 						<div>
-							<Label className="text-foreground text-[12px]">Email</Label>
-							<p className="text-muted-foreground text-[12px]">
+							<Label className="text-foreground text-sm">Email</Label>
+							<p className="text-muted-foreground text-sm">
 								{patron?.us_email || "NA"}
 							</p>
 						</div>
 
 						<div>
-							<Label className="text-foreground text-[12px]">
+							<Label className="text-foreground text-sm">
 								Academic{" "}
 								{["Student", "Student Assistant"].includes(patron.us_type)
 									? `(${patron?.us_courses})`
 									: ""}
 							</Label>
-							<p className="text-muted-foreground text-[12px]">
+							<p className="text-muted-foreground text-sm">
 								{[
 									patron?.us_year,
 									...[
@@ -572,10 +562,10 @@ export const renderPatronDetails = (transaction, router) => {
 							</p>
 						</div>
 						<div>
-							<Label className="text-foreground text-[12px]">
+							<Label className="text-foreground text-sm">
 								Associated Library
 							</Label>
-							<p className="text-muted-foreground text-[12px]">
+							<p className="text-muted-foreground text-sm">
 								{patron?.us_library || "NA"}
 							</p>
 						</div>
@@ -593,7 +583,7 @@ export const renderCancellationDetails = (transaction) => {
 		<>
 			<div className="border-t border-border"></div>
 			<div className="p-6">
-				<h2 className="font-semibold text-foreground text-[16px] flex items-center gap-2 mb-2">
+				<h2 className="font-semibold text-foreground text-base flex items-center gap-2 mb-2">
 					<FiX className="w-4 h-4" />
 					Cancellation Reason(s)
 				</h2>
@@ -602,7 +592,7 @@ export const renderCancellationDetails = (transaction) => {
 					{transaction?.tr_remarks.map((reason, index) => (
 						<span
 							key={index}
-							className="bg-muted text-foreground px-3 py-2 rounded-md text-[12px]"
+							className="bg-muted text-foreground px-3 py-2 rounded-md text-sm"
 						>
 							{reason}
 						</span>
