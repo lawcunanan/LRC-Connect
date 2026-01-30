@@ -54,12 +54,7 @@ export function Modal({ isOpen, onClose, title, children, size = "md" }) {
 				className={`relative bg-card border border-border rounded-lg shadow-lg w-full mx-4 ${sizeClasses[size]} max-h-[90vh] overflow-hidden transition-colors duration-300`}
 			>
 				<div className="flex items-center justify-between p-4 border-b border-border">
-					<h2
-						className="font-semibold text-foreground"
-						
-					>
-						{title}
-					</h2>
+					<h2 className="text-base font-semibold text-foreground">{title}</h2>
 					<Button
 						variant="ghost"
 						size="sm"

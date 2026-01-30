@@ -158,13 +158,13 @@ export default function NewsAnnouncementPage() {
 				<div className="flex-1 flex flex-col overflow-hidden">
 					<Header />
 
-					<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
+					<main className="flex-1 overflow-auto p-6 pt-24">
 						<div className="flex flex-col gap-4 md:gap-6  md:flex-col lg:flex-row sm:items-left justify-between mb-8 animate-slide-up">
 							<div>
-								<h1 className="font-semibold text-foreground text-xl">
+								<h1 className="font-semibold text-foreground text-2xl mb-1">
 									News & Announcements
 								</h1>
-								<p className="text-muted-foreground text-base">
+								<p className="text-muted-foreground text-sm">
 									Stay updated with the latest library news and important
 									announcements
 								</p>
@@ -176,7 +176,7 @@ export default function NewsAnnouncementPage() {
 										variant={focusMode === "News" ? "default" : "ghost"}
 										size="sm"
 										onClick={() => setFocusMode("News")}
-										className={`h-9 px-3 rounded-r-none  text-base ${
+										className={`h-9 px-3 rounded-r-none  text-sm ${
 											focusMode === "News"
 												? "bg-primary-custom text-white hover:text-white hover:bg-primary-custom/90"
 												: "hover:bg-accent"
@@ -191,7 +191,7 @@ export default function NewsAnnouncementPage() {
 										}
 										size="sm"
 										onClick={() => setFocusMode("Announcements")}
-										className={`h-9 px-3 rounded-l-none text-base ${
+										className={`h-9 px-3 rounded-l-none text-sm ${
 											focusMode === "Announcements"
 												? "bg-primary-custom text-white hover:text-white hover:bg-primary-custom/90"
 												: "hover:bg-accent"
@@ -211,7 +211,7 @@ export default function NewsAnnouncementPage() {
 												setSelectedNewsAnnouncements({});
 												setIsModalOpen(true);
 											}}
-											className="bg-primary-custom hover:bg-secondary-custom text-white h-9 px-4 text-base"
+											className="bg-primary-custom hover:bg-secondary-custom text-white h-9 px-4 text-sm"
 										>
 											<FiPlus className="mr-1 h-4 w-4" />
 											Add New {focusMode}
@@ -239,14 +239,15 @@ export default function NewsAnnouncementPage() {
 								</div>
 
 								<div className="relative mb-6">
-									<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-									<Input
-										placeholder={`Search ${focusMode}...`}
-										value={searchQuery}
-										onChange={(e) => setSearchQuery(e.target.value)}
-										className="pl-10 h-9 bg-background border-border"
-										
-									/>
+									<div className="relative flex items-center flex-1  border border-input rounded-md bg-background shadow-sm">
+										<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5" />
+										<Input
+											placeholder={`Search ${focusMode}...`}
+											value={searchQuery}
+											onChange={(e) => setSearchQuery(e.target.value)}
+											className="pl-10 pr-4 h-9 bg-transparent border-0 focus:ring-0 text-foreground rounded-md text-sm flex-1"
+										/>
+									</div>
 								</div>
 
 								<div className="space-y-6">
@@ -295,7 +296,7 @@ export default function NewsAnnouncementPage() {
 													</div>
 												</div>
 
-												<h3 className="font-semibold text-foreground mb-1 text-base">
+												<h3 className="font-semibold text-foreground mb-1 text-lg">
 													{item.na_title}
 												</h3>
 
@@ -395,7 +396,7 @@ export default function NewsAnnouncementPage() {
 
 							<div className="lg:col-span-1">
 								<div className="flex items-center justify-between mb-3">
-									<h2 className="font-semibold text-foreground leading-none m-0 p-0 align-baseline text-base">
+									<h2 className="font-semibold text-foreground leading-none m-0 p-0 align-baseline text-lg">
 										{focusMode === "News"
 											? "Recent Announcements"
 											: "Recent News"}
@@ -448,7 +449,7 @@ export default function NewsAnnouncementPage() {
 													)}
 												</div>
 
-												<h3 className="font-semibold text-foreground mb-1 text-base lg:text-sm">
+												<h3 className="font-semibold text-foreground mb-1 text-lg lg:text-base">
 													{item.na_title}
 												</h3>
 

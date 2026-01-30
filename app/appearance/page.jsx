@@ -106,9 +106,9 @@ export default function SystemSettings() {
 			<div className="flex-1 flex flex-col overflow-hidden">
 				<Header />
 
-				<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
+				<main className="flex-1 overflow-auto p-6 pt-24 ">
 					<div className="mb-8 animate-fade-in">
-						<h1 className="font-semibold text-foreground text-xl">
+						<h1 className="font-semibold text-foreground text-2xl mb-1">
 							Appearance Settings
 						</h1>
 						<p className="text-muted-foreground text-base">
@@ -120,7 +120,7 @@ export default function SystemSettings() {
 					<div className="w-full animate-slide-up">
 						<Card className="bg-card border-border transition-colors duration-300 animate-slide-up-delay-1">
 							<CardHeader>
-								<CardTitle className="flex items-center gap-2 text-foreground text-base">
+								<CardTitle className="flex items-center gap-2 text-foreground text-xl mb-1">
 									<FiSettings className="w-5 h-5" />
 									Color Palette Configuration
 								</CardTitle>

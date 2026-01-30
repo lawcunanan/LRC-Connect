@@ -625,7 +625,7 @@ export default function ButchPage() {
 
 									<div className="animate-slide-up-delay-1">
 										<div className="mb-6">
-											<h1 className="font-semibold text-foreground text-xl">
+											<h1 className="font-semibold text-foreground text-2xl mb-1">
 												Quick Actions
 											</h1>
 											<p className="text-muted-foreground text-base">

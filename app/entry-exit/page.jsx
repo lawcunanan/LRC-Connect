@@ -8,6 +8,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+	SelectGroup,
+	SelectLabel,
+} from "@/components/ui/select";
 import EmptyState from "@/components/tags/empty";
 import {
 	FiArrowLeft,
@@ -202,14 +211,14 @@ export default function EntryExitPage() {
 							onClick={() => router.back()}
 							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 						>
-							<FiArrowLeft className="w-4 h-4" />
+							<FiArrowLeft className="h-5" />
 							Back to Previous page
 						</button>
 					</div>
 
 					<div className="flex flex-col gap-4 md:gap-6  md:flex-col lg:flex-row sm:items-left justify-between mb-8 animate-slide-up">
 						<div className="w-fit">
-							<h1 className="font-semibold text-foreground text-xl">
+							<h1 className="font-semibold text-foreground text-2xl mb-1">
 								{isPersonnel
 									? showLoggedIn
 										? "Users Currently OnSite"
@@ -234,7 +243,7 @@ export default function EntryExitPage() {
 								variant={!showLoggedIn ? "default" : "ghost"}
 								size="sm"
 								onClick={() => setShowLoggedIn(false)}
-								className={`h-9 px-3 rounded-r-none  text-base ${
+								className={`h-9 px-3 rounded-r-none  text-sm ${
 									!showLoggedIn
 										? "bg-primary-custom text-white hover:text-white hover:bg-primary-custom/90"
 										: "hover:bg-accent"
@@ -247,7 +256,7 @@ export default function EntryExitPage() {
 								variant={showLoggedIn ? "default" : "ghost"}
 								size="sm"
 								onClick={() => setShowLoggedIn(true)}
-								className={`h-9 px-3 rounded-l-none text-base ${
+								className={`h-9 px-3 rounded-l-none text-sm ${
 									showLoggedIn
 										? "bg-primary-custom text-white hover:text-white hover:bg-primary-custom/90"
 										: "hover:bg-accent"
@@ -261,24 +270,23 @@ export default function EntryExitPage() {
 
 					<div className="mb-8 animate-slide-up-delay-1">
 						<div className="flex items-left justify-between flex-col sm:flex-row gap-4 mb-4">
-							<div className="relative flex items-center flex-1 max-w-lg">
-								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+							<div className="relative flex items-center flex-1 max-w-lg border border-input rounded-md bg-background shadow-sm">
+								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5" />
 								<Input
 									placeholder={`Search ${isPersonnel ? "user" : "library"}...`}
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
-									className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
+									className="pl-10 pr-4 h-9 bg-transparent border-0 focus:ring-0 text-foreground rounded-md text-sm flex-1"
 								/>
-								<div className="absolute right-16 top-1/2 transform -translate-y-1/2">
-									<FiCamera
-										onClick={() => setIsScannerOpen(true)}
-										className="w-4 h-4 text-muted-foreground"
-									/>
-								</div>
+								<FiCamera
+									onClick={() => setIsScannerOpen(true)}
+									className="h-5 text-muted-foreground mx-2 cursor-pointer"
+								/>
+								<div className="h-6 w-px bg-border mx-2"></div>
 								<Button
 									onClick={() => setShowFilters(!showFilters)}
 									variant="ghost"
-									className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
+									className="h-full px-3 text-foreground hover:bg-accent rounded-l-none text-sm mr-2"
 								>
 									Filter
 								</Button>
@@ -291,7 +299,7 @@ export default function EntryExitPage() {
 											onClick={() => setCodeOpen(true)}
 											variant="outline"
 											size="sm"
-											className="h-9 border-border text-foreground hover:bg-accent shadow-sm text-base"
+											className="h-9 border-border text-foreground hover:bg-accent shadow-sm text-sm"
 										>
 											<IoQrCodeOutline className="w-4 h-4" />
 										</Button>
@@ -299,7 +307,7 @@ export default function EntryExitPage() {
 											onClick={() => setShowEnterExitModal(true)}
 											variant="outline"
 											size="sm"
-											className="h-9 border-border text-foreground hover:bg-accent shadow-sm text-base"
+											className="h-9 border-border text-foreground hover:bg-accent shadow-sm text-sm"
 										>
 											<FiUserPlus className="w-4 h-4 mr-2" />
 											Entry / Exit user
@@ -310,7 +318,7 @@ export default function EntryExitPage() {
 									onClick={() => setIsRankModalOpen(true)}
 									variant="outline"
 									size="sm"
-									className="h-9 border-border text-foreground hover:bg-accent shadow-sm text-base"
+									className="h-9 border-border text-foreground hover:bg-accent shadow-sm text-sm"
 								>
 									<Trophy className="w-4 h-4 mr-2" />
 									Rank Board
@@ -469,7 +477,7 @@ export default function EntryExitPage() {
 								/>
 								<div className="relative bg-card w-80 h-full shadow-lg transform transition-transform duration-300 translate-x-0 animate-slide-in-left">
 									<div className="flex items-center justify-between p-4 border-b border-border text-white bg-primary-custom">
-										<h2 className="font-semibold text-white text-base">
+										<h2 className="font-semibold text-white text-sm">
 											Filters
 										</h2>
 										<button
@@ -485,18 +493,22 @@ export default function EntryExitPage() {
 											<label className="block font-medium text-foreground text-sm">
 												Select a Library
 											</label>
-											<select
+											<Select
 												value={selectedLibrary}
-												onChange={(e) => setSelectedLibrary(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+												onValueChange={setSelectedLibrary}
 											>
-												<option value="All">All Libraries</option>
-												{library.map((lib) => (
-													<option key={lib.id} value={lib.id}>
-														{lib.li_name}
-													</option>
-												))}
-											</select>
+												<SelectTrigger className="text-sm">
+													<SelectValue placeholder="Select a Library" />
+												</SelectTrigger>
+												<SelectContent>
+													<SelectItem value="All">All Libraries</SelectItem>
+													{library.map((lib) => (
+														<SelectItem key={lib.id} value={lib.id}>
+															{lib.li_name}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
 										</div>
 										{isPersonnel && (
 											<>
@@ -504,38 +516,45 @@ export default function EntryExitPage() {
 													<label className="block font-medium text-foreground text-sm">
 														Select a User Type
 													</label>
-													<select
+													<Select
 														value={selectedUsType}
-														onChange={(e) => setSelectedUsType(e.target.value)}
-														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+														onValueChange={setSelectedUsType}
 													>
-														<option value="All">All User Types</option>
-
-														<optgroup label="Patrons">
-															<option value="Student">Student</option>
-															<option value="Faculty">Faculty</option>
-															<option value="Administrator">
-																Administrator
-															</option>
-														</optgroup>
-
-														<optgroup label="Assistants">
-															<option value="Student Assistant">
-																Student Assistant
-															</option>
-															<option value="Administrative Assistant">
-																Administrative Assistant
-															</option>
-														</optgroup>
-														<optgroup label="Librarians">
-															<option value="Chief Librarian">
-																Chief Librarian
-															</option>
-															<option value="Head Librarian">
-																Head Librarian
-															</option>
-														</optgroup>
-													</select>
+														<SelectTrigger className="text-sm">
+															<SelectValue placeholder="Select a User Type" />
+														</SelectTrigger>
+														<SelectContent>
+															<SelectItem value="All">
+																All User Types
+															</SelectItem>
+															<SelectGroup>
+																<SelectLabel>Patrons</SelectLabel>
+																<SelectItem value="Student">Student</SelectItem>
+																<SelectItem value="Faculty">Faculty</SelectItem>
+																<SelectItem value="Administrator">
+																	Administrator
+																</SelectItem>
+															</SelectGroup>
+															<SelectGroup>
+																<SelectLabel>Assistants</SelectLabel>
+																<SelectItem value="Student Assistant">
+																	Student Assistant
+																</SelectItem>
+																<SelectItem value="Administrative Assistant">
+																	Administrative Assistant
+																</SelectItem>
+															</SelectGroup>
+															<SelectGroup>
+																<SelectLabel>Librarians</SelectLabel>
+																<SelectItem value="Chief Librarian">
+																	Chief Librarian
+																</SelectItem>
+																<SelectItem value="Head Librarian">
+																	Head Librarian
+																</SelectItem>
+															</SelectGroup>
+														</SelectContent>
+													</Select>
 												</div>
 											</>
 										)}
@@ -564,47 +583,60 @@ export default function EntryExitPage() {
 													<label className="block font-medium text-foreground text-sm">
 														Select a Course
 													</label>
-													<select
+													<Select
 														value={selectedCourses}
-														onChange={(e) => {
+														onValueChange={(value) => {
 															setSelectedInstitute("All");
 															setSelectedProgram("All");
 															setSelectedStrand("All");
 															setSelectedTracks("All");
-															setSelectedCourses(e.target.value);
+															setSelectedCourses(value);
 														}}
-														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 													>
-														<option value="All">All Courses</option>
-														{["Senior High School", "College Courses"].map(
-															(courses) => (
-																<option key={courses} value={courses}>
-																	{courses}
-																</option>
-															),
-														)}
-													</select>
+														<SelectTrigger className="text-sm">
+															<SelectValue placeholder="Select a Course" />
+														</SelectTrigger>
+														<SelectContent>
+															<SelectItem value="All">All Courses</SelectItem>
+															{["Senior High School", "College Courses"].map(
+																(courses) => (
+																	<SelectItem key={courses} value={courses}>
+																		{courses}
+																	</SelectItem>
+																),
+															)}
+														</SelectContent>
+													</Select>
 												</div>
 
 												<div className="space-y-2">
 													<label className="block font-medium text-foreground text-sm">
 														Select a Year
 													</label>
-													<select
+													<Select
 														value={selectedYear}
-														onChange={(e) => setSelectedYear(e.target.value)}
-														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+														onValueChange={setSelectedYear}
 													>
-														<option value="All">All Years</option>
-														{(selectedCourses == "Senior High School"
-															? ["Grade 11", "Grade 12"]
-															: ["1st Year", "2nd Year", "3rd Year", "4th Year"]
-														).map((year) => (
-															<option key={year} value={year}>
-																{year}
-															</option>
-														))}
-													</select>
+														<SelectTrigger className="text-sm">
+															<SelectValue placeholder="Select a Year" />
+														</SelectTrigger>
+														<SelectContent>
+															<SelectItem value="All">All Years</SelectItem>
+															{(selectedCourses == "Senior High School"
+																? ["Grade 11", "Grade 12"]
+																: [
+																		"1st Year",
+																		"2nd Year",
+																		"3rd Year",
+																		"4th Year",
+																	]
+															).map((year) => (
+																<SelectItem key={year} value={year}>
+																	{year}
+																</SelectItem>
+															))}
+														</SelectContent>
+													</Select>
 												</div>
 
 												{selectedCourses !== "All" && (
@@ -617,10 +649,10 @@ export default function EntryExitPage() {
 																	? "Track"
 																	: "Institute"}
 															</label>
-															<select
+															<Select
 																value={selectedCourseID || ""}
-																onChange={(e) => {
-																	const selectedID = e.target.value;
+																onValueChange={(value) => {
+																	const selectedID = value;
 
 																	const selectedCourse = filterCoursesData.find(
 																		(course) => course.id === selectedID,
@@ -639,19 +671,28 @@ export default function EntryExitPage() {
 
 																	setSelectedCourseID(selectedID);
 																}}
-																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 															>
-																<option value="All">
-																	{selectedCourses === "Senior High School"
-																		? "All Tracks"
-																		: "All Institutes"}
-																</option>
-																{filterCoursesData.map((course) => (
-																	<option key={course.id} value={course.id}>
-																		{course.cs_title}
-																	</option>
-																))}
-															</select>
+																<SelectTrigger className="text-sm">
+																	<SelectValue
+																		placeholder={`Select a ${selectedCourses === "Senior High School" ? "Track" : "Institute"}`}
+																	/>
+																</SelectTrigger>
+																<SelectContent>
+																	<SelectItem value="All">
+																		{selectedCourses === "Senior High School"
+																			? "All Tracks"
+																			: "All Institutes"}
+																	</SelectItem>
+																	{filterCoursesData.map((course) => (
+																		<SelectItem
+																			key={course.id}
+																			value={course.id}
+																		>
+																			{course.cs_title}
+																		</SelectItem>
+																	))}
+																</SelectContent>
+															</Select>
 														</div>
 
 														{/* STRAND / PROGRAM */}
@@ -662,30 +703,36 @@ export default function EntryExitPage() {
 																	? "Strand"
 																	: "Program"}
 															</label>
-															<select
+															<Select
 																value={selectedProgram}
-																onChange={(e) => {
+																onValueChange={(value) => {
 																	if (
 																		selectedCourses === "Senior High School"
 																	) {
-																		setSelectedStrand(e.target.value);
+																		setSelectedStrand(value);
 																	} else {
-																		setSelectedProgram(e.target.value);
+																		setSelectedProgram(value);
 																	}
 																}}
-																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 															>
-																<option value="All">
-																	{selectedCourses === "Senior High School"
-																		? "All Strands"
-																		: "All Programs"}
-																</option>
-																{subCoursesData.map((sub, index) => (
-																	<option key={index} value={sub}>
-																		{sub}
-																	</option>
-																))}
-															</select>
+																<SelectTrigger className="text-sm">
+																	<SelectValue
+																		placeholder={`Select a ${selectedCourses === "Senior High School" ? "Strand" : "Program"}`}
+																	/>
+																</SelectTrigger>
+																<SelectContent>
+																	<SelectItem value="All">
+																		{selectedCourses === "Senior High School"
+																			? "All Strands"
+																			: "All Programs"}
+																	</SelectItem>
+																	{subCoursesData.map((sub, index) => (
+																		<SelectItem key={index} value={sub}>
+																			{sub}
+																		</SelectItem>
+																	))}
+																</SelectContent>
+															</Select>
 														</div>
 													</>
 												)}
@@ -754,7 +801,7 @@ export default function EntryExitPage() {
 													: renderlibraryDetails(user)}
 
 												<div>
-													<h5 className="font-medium text-foreground mb-4 text-base">
+													<h5 className="font-medium text-foreground mb-4 text-lg">
 														In & Out Details
 													</h5>
 													{renderuserLog(user)}
@@ -785,8 +832,8 @@ export default function EntryExitPage() {
 							{viewType === "table" && (
 								<Card className="bg-card border-border transition-colors duration-300 shadow-sm">
 									<CardContent className="p-0 overflow-x-auto">
-										<table className="w-full">
-											<thead className="bg-muted/30">
+										<table className="w-full border border-border">
+											<thead className="bg-muted">
 												<tr className="border-b border-border">
 													{[
 														"Status",
@@ -796,7 +843,7 @@ export default function EntryExitPage() {
 													].map((header) => (
 														<th
 															key={header}
-															className="text-left py-4 px-6 font-semibold text-foreground text-sm"
+															className="text-center py-4 px-6 font-semibold text-foreground text-sm"
 														>
 															{header}
 														</th>
@@ -811,7 +858,7 @@ export default function EntryExitPage() {
 															index % 2 === 0 ? "bg-background" : "bg-muted/10"
 														}`}
 													>
-														<td className="py-4 px-6 text-left text-foreground text-sm">
+														<td className="py-4 px-6 text-center text-foreground text-sm">
 															<Badge
 																className={`${getStatusColor(user?.lo_status)} text-xs`}
 															>
@@ -819,16 +866,16 @@ export default function EntryExitPage() {
 															</Badge>
 														</td>
 
-														<td className="py-4 px-6 text-left text-foreground text-sm">
+														<td className="py-4 px-6 text-center text-foreground text-sm">
 															{isPersonnel
 																? renderuserDetails(user, true)
 																: renderlibraryDetails(user, true)}
 														</td>
-														<td className="py-4 px-6 text-left text-foreground text-sm min-w-[350px]">
+														<td className="py-4 px-6 text-center text-foreground text-sm min-w-[350px]">
 															{renderuserLog(user)}
 														</td>
 
-														<td className="py-4 px-6 text-left text-foreground text-sm">
+														<td className="py-4 px-6 text-center text-foreground text-sm">
 															<Button
 																onClick={() =>
 																	router.push(

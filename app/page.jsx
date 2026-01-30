@@ -85,7 +85,7 @@ export default function HomePage() {
 					</svg>
 				</div>
 
-				<div className="px-6 sm:px-6 md:px-16 lg:px-[100px] xl:px-[150px]">
+				<div className="py-3 px-6 sm:px-6 md:px-16 lg:px-[100px] xl:px-[150px]">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-24 items-center relative z-10">
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}

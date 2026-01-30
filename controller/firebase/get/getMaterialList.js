@@ -41,7 +41,7 @@ export async function getMaterialList(
 	pageCursors,
 	setPageCursors,
 	currentPage,
-	mock = false
+	mock = false,
 ) {
 	setLoading(true);
 
@@ -53,7 +53,7 @@ export async function getMaterialList(
 			conditions.push(where("ma_liID", "==", li_id));
 		} else {
 			const librarySnap = await getDocs(
-				query(collection(db, "library"), where("li_status", "==", "Active"))
+				query(collection(db, "library"), where("li_status", "==", "Active")),
 			);
 			if (librarySnap.docs.length > 0) {
 				const refs = librarySnap.docs.map((d) => d.ref);
@@ -90,13 +90,13 @@ export async function getMaterialList(
 
 		if (dateRangeStart !== "" && dateRangeStart.length === 4) {
 			conditions.push(
-				where("ma_copyright", ">=", convertYearToTimestamp(dateRangeStart))
+				where("ma_copyright", ">=", convertYearToTimestamp(dateRangeStart)),
 			);
 		}
 
 		if (dateRangeEnd !== "" && dateRangeEnd.length === 4) {
 			conditions.push(
-				where("ma_copyright", "<=", convertYearToTimestamp(dateRangeEnd))
+				where("ma_copyright", "<=", convertYearToTimestamp(dateRangeEnd)),
 			);
 		}
 
@@ -128,8 +128,8 @@ export async function getMaterialList(
 							materialRef,
 							...conditions,
 							startAfter(pageCursors[currentPage - 2]),
-							limit(pageLimit)
-					  )
+							limit(pageLimit),
+						)
 					: query(materialRef, ...conditions, limit(pageLimit));
 		} else {
 			finalQuery = query(materialRef, ...conditions);
@@ -193,14 +193,14 @@ export async function getMaterialList(
 							checks.push(
 								d.ma_title
 									?.toLowerCase()
-									.includes(advancedSearch.title.toLowerCase())
+									.includes(advancedSearch.title.toLowerCase()),
 							);
 						}
 						if (advancedSearch.author) {
 							checks.push(
 								d.ma_author
 									?.toLowerCase()
-									.includes(advancedSearch.author.toLowerCase())
+									.includes(advancedSearch.author.toLowerCase()),
 							);
 						}
 						if (advancedSearch.subject && Array.isArray(d.ma_subjects)) {
@@ -208,29 +208,29 @@ export async function getMaterialList(
 								d.ma_subjects.some((subj) =>
 									subj
 										.toLowerCase()
-										.includes(advancedSearch.subject.toLowerCase())
-								)
+										.includes(advancedSearch.subject.toLowerCase()),
+								),
 							);
 						}
 						if (advancedSearch.callNumber) {
 							checks.push(
 								d.ma_libraryCall
 									?.toLowerCase()
-									.includes(advancedSearch.callNumber.toLowerCase())
+									.includes(advancedSearch.callNumber.toLowerCase()),
 							);
 						}
 						if (advancedSearch.isbn) {
 							checks.push(
 								d.ma_isbn
 									?.toLowerCase()
-									.includes(advancedSearch.isbn.toLowerCase())
+									.includes(advancedSearch.isbn.toLowerCase()),
 							);
 						}
 						if (advancedSearch.publisher) {
 							checks.push(
 								d.ma_publisher
 									?.toLowerCase()
-									.includes(advancedSearch.publisher.toLowerCase())
+									.includes(advancedSearch.publisher.toLowerCase()),
 							);
 						}
 
@@ -253,8 +253,7 @@ export async function getMaterialList(
 						ma_copyright: formatYear(d.ma_copyright) || "NA",
 						ma_libraryCall: d.ma_libraryCall || "NA",
 						ma_status: d.ma_status || "NA",
-						ma_library:
-							(liData.li_name || "") + " - " + (liData.li_schoolname || ""),
+						ma_library: liData.li_name || "",
 						ma_type: mtData.mt_name || "NA",
 						ma_category: caData.ca_name || "NA",
 						ma_shelf: shData.sh_name || "NA",
@@ -266,13 +265,13 @@ export async function getMaterialList(
 					console.warn("Reference fetching error:", err);
 					return null;
 				}
-			})
+			}),
 		);
 
 		setMaterialData(
 			mock
 				? (prev) => ({ ...prev, totalMaterial: data.filter(Boolean) })
-				: data.filter(Boolean)
+				: data.filter(Boolean),
 		);
 
 		if (hasSearchFilters) {
@@ -298,7 +297,7 @@ export async function getMaterialFilter(
 	setShelves,
 	setBranch = null,
 	setDonor = null,
-	Alert
+	Alert,
 ) {
 	try {
 		const categoryConditions = [where("ca_status", "==", "Active")];
@@ -322,7 +321,7 @@ export async function getMaterialFilter(
 			category: query(collection(db, "category"), ...categoryConditions),
 			materialType: query(
 				collection(db, "materialType"),
-				...materialTypeConditions
+				...materialTypeConditions,
 			),
 			shelf: query(collection(db, "shelves"), ...shelfConditions),
 			donor: donorConditions
@@ -342,7 +341,7 @@ export async function getMaterialFilter(
 		if (!li_id && setBranch) {
 			const branchQuery = query(
 				collection(db, "library"),
-				where("li_status", "==", "Active")
+				where("li_status", "==", "Active"),
 			);
 			promises.push(getDocs(branchQuery));
 		}
@@ -364,14 +363,14 @@ export async function getMaterialFilter(
 		}
 
 		setCategory(
-			categorySnap.docs.map((d) => ({ id: d.id, ca_name: d.data().ca_name }))
+			categorySnap.docs.map((d) => ({ id: d.id, ca_name: d.data().ca_name })),
 		);
 
 		setMaterialType(
 			materialTypeSnap.docs.map((d) => ({
 				id: d.id,
 				mt_name: d.data().mt_name,
-			}))
+			})),
 		);
 
 		setShelves(
@@ -379,7 +378,7 @@ export async function getMaterialFilter(
 				id: d.id,
 				sh_name: d.data().sh_name,
 				sh_qr: d.data().sh_qr,
-			}))
+			})),
 		);
 
 		if (setDonor && donorSnap) {
@@ -387,7 +386,7 @@ export async function getMaterialFilter(
 				donorSnap.docs.map((d) => ({
 					id: d.id,
 					do_name: d.data().do_name,
-				}))
+				})),
 			);
 		}
 
@@ -396,7 +395,7 @@ export async function getMaterialFilter(
 				branchSnapResult.docs.map((d) => ({
 					id: d.id,
 					li_name: d.data().li_name,
-				}))
+				})),
 			);
 		}
 	} catch (error) {

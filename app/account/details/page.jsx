@@ -7,6 +7,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { FiArrowLeft, FiImage, FiUpload } from "react-icons/fi";
 import { ExternalLink } from "lucide-react";
 
@@ -70,7 +77,7 @@ export default function AccountDetails() {
 			id,
 			formData,
 			setBtnloading,
-			Alert
+			Alert,
 		);
 		setEditMode("");
 	};
@@ -85,7 +92,7 @@ export default function AccountDetails() {
 			`${formData?.us_fname}  ${formData?.us_mname} ${formData?.us_lname}`,
 			academicData,
 			setBtnloading,
-			Alert
+			Alert,
 		);
 		setEditMode("");
 	};
@@ -100,7 +107,7 @@ export default function AccountDetails() {
 			`${formData?.us_fname}  ${formData?.us_mname} ${formData?.us_lname}`,
 			addressData,
 			setBtnloading,
-			Alert
+			Alert,
 		);
 		setEditMode("");
 	};
@@ -116,7 +123,7 @@ export default function AccountDetails() {
 				setAddressData,
 				setAssociatedLibraries,
 				setLoading,
-				Alert
+				Alert,
 			);
 			return () => unsubscribe && unsubscribe();
 		}
@@ -143,7 +150,7 @@ export default function AccountDetails() {
 					academicData.us_courses === "Senior High School"
 						? "us_tracks"
 						: "us_institute"
-				]
+				],
 		);
 
 		course && setSelectedCourseID(course.id);
@@ -155,7 +162,7 @@ export default function AccountDetails() {
 				selectedCourseID,
 				filterCoursesData,
 				setSubCoursesData,
-				Alert
+				Alert,
 			);
 		} else {
 			setSubCoursesData([]);
@@ -200,15 +207,15 @@ export default function AccountDetails() {
 				<div className="mb-6 animate-fade-in">
 					<button
 						onClick={() => router.back()}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 					>
 						<FiArrowLeft className="w-4 h-4" />
 						Back to Previous page
 					</button>
 				</div>
 
-				<div className="mb-8 animate-slide-up">
-					<h1 className="font-semibold text-foreground text-xl">
+				<div className="w-fit mb-8 animate-slide-up">
+					<h1 className="font-semibold text-foreground text-2xl mb-1">
 						Account Details
 					</h1>
 					<p className="text-muted-foreground text-base">
@@ -236,9 +243,9 @@ export default function AccountDetails() {
 							<div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-slide-up-delay-2">
 								<Card className="h-fit bg-card border-border transition-colors duration-300">
 									<CardContent className="p-6">
-										<h2 className="font-semibold text-foreground text-base mb-[5px]">
+										<h3 className="text-foreground font-semibold text-xl mb-1">
 											Basic Information
-										</h2>
+										</h3>
 										<p className="text-muted-foreground text-sm mb-4">
 											View the personal details associated with this account.
 										</p>
@@ -253,8 +260,7 @@ export default function AccountDetails() {
 													value={formData?.us_schoolID || ""}
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="Enter school ID"
-													className="bg-card border-border text-foreground h-9"
-													
+													className="bg-card border-border text-foreground h-9 text-sm"
 													required
 													disabled={editMode == ""}
 												/>
@@ -269,8 +275,7 @@ export default function AccountDetails() {
 														value={formData?.us_fname || ""}
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="Enter your first name"
-														className="bg-card border-border text-foreground h-9"
-														
+														className="bg-card border-border text-foreground h-9 text-sm"
 														required
 														disabled={editMode == ""}
 													/>
@@ -285,8 +290,7 @@ export default function AccountDetails() {
 														value={formData?.us_mname || ""}
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="Enter your middle name"
-														className="bg-card border-border text-foreground h-9"
-														
+														className="bg-card border-border text-foreground h-9 text-sm"
 														required
 														disabled={editMode == ""}
 													/>
@@ -302,8 +306,7 @@ export default function AccountDetails() {
 														value={formData?.us_lname || ""}
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="Enter your last name"
-														className="bg-card border-border text-foreground h-9"
-														
+														className="bg-card border-border text-foreground h-9 text-sm"
 														required
 														disabled={editMode == ""}
 													/>
@@ -318,8 +321,7 @@ export default function AccountDetails() {
 														value={formData?.us_suffix || ""}
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="Jr., Sr., III (optional)"
-														className="bg-card border-border text-foreground h-9"
-														
+														className="bg-card border-border text-foreground h-9 text-sm"
 														disabled={editMode == ""}
 													/>
 												</div>
@@ -330,17 +332,25 @@ export default function AccountDetails() {
 													<label className="block text-foreground font-medium mb-2 text-sm">
 														Sex
 													</label>
-													<select
-														name="us_sex"
+													<Select
 														value={formData?.us_sex || ""}
-														onChange={(e) => handleChange(e, setFormData)}
-														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
+														onValueChange={(value) =>
+															setFormData((prev) => ({
+																...prev,
+																us_sex: value,
+															}))
+														}
 														required
 														disabled={editMode == ""}
 													>
-														<option value="Male">Male</option>
-														<option value="Female">Female</option>
-													</select>
+														<SelectTrigger className="w-full h-9">
+															<SelectValue placeholder="Select sex" />
+														</SelectTrigger>
+														<SelectContent>
+															<SelectItem value="Male">Male</SelectItem>
+															<SelectItem value="Female">Female</SelectItem>
+														</SelectContent>
+													</Select>
 												</div>
 												<div>
 													<label className="block text-foreground font-medium mb-2 text-sm">
@@ -352,7 +362,6 @@ export default function AccountDetails() {
 														value={formData?.us_birthday || ""}
 														onChange={(e) => handleChange(e, setFormData)}
 														className="bg-card border-border text-foreground h-9"
-														
 														required
 														disabled={editMode == ""}
 													/>
@@ -370,8 +379,7 @@ export default function AccountDetails() {
 														value={formData?.us_email || ""}
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="@gmail.com"
-														className="bg-card border-border text-foreground h-9"
-														
+														className="bg-card border-border text-foreground h-9 text-sm"
 														required
 														disabled={editMode == ""}
 													/>
@@ -385,8 +393,7 @@ export default function AccountDetails() {
 														value={formData?.us_phoneNumber || ""}
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="+639xxxxxxxxx"
-														className="bg-card border-border text-foreground h-9"
-														
+														className="bg-card border-border text-foreground h-9 text-sm"
 														required
 														pattern="^\+639\d{9}$"
 														title="Enter a valid Philippine mobile number (e.g., +639123456789)"
@@ -400,15 +407,14 @@ export default function AccountDetails() {
 
 								<Card className="bg-card border-border transition-colors duration-300 h-fit">
 									<CardHeader className="pb-4">
-										<CardTitle className="text-foreground flex items-center gap-2 text-base m">
-											<FiImage className="w-4 h-4" />
+										<CardTitle className="text-foreground flex items-center gap-2 text-xl">
 											Profile Picture
 										</CardTitle>
 										<p className="text-muted-foreground text-sm mb-4">
 											Note: Format photos SVG, PNG, or JPG Max size 2mb
 										</p>
 									</CardHeader>
-									<CardContent className="pt-0 space-y-6">
+									<CardContent className="pt-2 space-y-6">
 										<label
 											htmlFor="cover-image-upload"
 											className="w-[200px] h-[200px] mx-auto border-2 border-dashed border-border rounded-full text-center transition-colors cursor-pointer flex items-center justify-center overflow-hidden bg-muted/30"
@@ -482,12 +488,12 @@ export default function AccountDetails() {
 											formData?.us_level != "USR-1" && (
 												<div className="mt-8">
 													<div className="flex items-center justify-between">
-														<h2 className="font-semibold text-foreground text-base mb-[5px]">
+														<h3 className="text-foreground font-semibold text-xl mb-1">
 															Associated{" "}
 															{associatedLibraries?.length === 1
 																? "Library"
 																: "Libraries"}
-														</h2>
+														</h3>
 													</div>
 													<p className="text-muted-foreground text-sm mb-4">
 														{associatedLibraries?.length === 1
@@ -516,7 +522,7 @@ export default function AccountDetails() {
 
 																	<div className="flex flex-col justify-between flex-1">
 																		<div>
-																			<p className="font-medium text-foreground text-base">
+																			<p className="font-medium text-foreground text-base mb-1">
 																				{library?.li_name || ""}
 																			</p>
 																			<p className="text-primary-custom text-sm">
@@ -533,7 +539,7 @@ export default function AccountDetails() {
 																				title="View Library Details"
 																				onClick={() =>
 																					router.push(
-																						`/library/details?id=${library?.id}`
+																						`/library/details?id=${library?.id}`,
 																					)
 																				}
 																			>
@@ -559,9 +565,9 @@ export default function AccountDetails() {
 								<form onSubmit={handleSubmitAcademic}>
 									<Card className="bg-card border-border transition-colors duration-300 max-w-full animate-slide-up-delay-2">
 										<CardContent className="p-6">
-											<h2 className="font-semibold text-foreground text-base mb-[5px]">
+											<h3 className="text-foreground font-semibold text-xl mb-1">
 												Academic
-											</h2>
+											</h3>
 											<p className="text-muted-foreground text-sm mb-4">
 												Includes section, year level, and institute information.
 											</p>
@@ -573,51 +579,66 @@ export default function AccountDetails() {
 														<label className="block text-foreground font-medium mb-2 text-sm">
 															Courses
 														</label>
-														<select
-															name="us_courses"
+														<Select
 															value={academicData?.us_courses || ""}
-															onChange={(e) => handleChange(e, setAcademicData)}
-															className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
+															onValueChange={(value) =>
+																setAcademicData((prev) => ({
+																	...prev,
+																	us_courses: value,
+																}))
+															}
 															required
 															disabled={editMode == ""}
 														>
-															<option value="All">Select Courses</option>
-															{["Senior High School", "College Courses"].map(
-																(courses) => (
-																	<option key={courses} value={courses}>
-																		{courses}
-																	</option>
-																)
-															)}
-														</select>
+															<SelectTrigger className="w-full h-9">
+																<SelectValue placeholder="Select Courses" />
+															</SelectTrigger>
+															<SelectContent>
+																{["Senior High School", "College Courses"].map(
+																	(courses) => (
+																		<SelectItem key={courses} value={courses}>
+																			{courses}
+																		</SelectItem>
+																	),
+																)}
+															</SelectContent>
+														</Select>
 													</div>
 													<div>
 														<label className="block text-foreground font-medium mb-2 text-sm">
 															Year
 														</label>
-														<select
-															name="us_year"
+														<Select
 															value={academicData?.us_year || ""}
-															onChange={(e) => handleChange(e, setAcademicData)}
-															className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
+															onValueChange={(value) =>
+																setAcademicData((prev) => ({
+																	...prev,
+																	us_year: value,
+																}))
+															}
 															required
 															disabled={editMode == ""}
 														>
-															{(academicData?.us_courses ===
-															"Senior High School"
-																? ["Grade 11", "Grade 12"]
-																: [
-																		"1st Year",
-																		"2nd Year",
-																		"3rd Year",
-																		"4th Year",
-																  ]
-															).map((ye, index) => (
-																<option key={index} value={ye}>
-																	{ye}
-																</option>
-															))}
-														</select>
+															<SelectTrigger className="w-full h-9">
+																<SelectValue placeholder="Select Year" />
+															</SelectTrigger>
+															<SelectContent>
+																{(academicData?.us_courses ===
+																"Senior High School"
+																	? ["Grade 11", "Grade 12"]
+																	: [
+																			"1st Year",
+																			"2nd Year",
+																			"3rd Year",
+																			"4th Year",
+																		]
+																).map((ye, index) => (
+																	<SelectItem key={index} value={ye}>
+																		{ye}
+																	</SelectItem>
+																))}
+															</SelectContent>
+														</Select>
 													</div>
 												</div>
 
@@ -631,18 +652,11 @@ export default function AccountDetails() {
 																	? "Tracks"
 																	: "Institute"}
 															</label>
-															<select
-																name={
-																	academicData.us_courses ===
-																	"Senior High School"
-																		? "us_tracks"
-																		: "us_institute"
-																}
+															<Select
 																value={selectedCourseID}
-																onChange={(e) => {
-																	const selectedID = e.target.value;
+																onValueChange={(selectedID) => {
 																	const selectedCourse = filterCoursesData.find(
-																		(course) => course.id === selectedID
+																		(course) => course.id === selectedID,
 																	);
 
 																	setAcademicData((prev) => ({
@@ -656,22 +670,30 @@ export default function AccountDetails() {
 
 																	setSelectedCourseID(selectedID);
 																}}
-																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 																required
 																disabled={editMode === ""}
 															>
-																<option value="">
-																	{academicData.us_courses ===
-																	"Senior High School"
-																		? "Select Track"
-																		: "Select Institute"}
-																</option>
-																{filterCoursesData.map((course) => (
-																	<option key={course.id} value={course.id}>
-																		{course.cs_title}
-																	</option>
-																))}
-															</select>
+																<SelectTrigger className="w-full h-9">
+																	<SelectValue
+																		placeholder={
+																			academicData.us_courses ===
+																			"Senior High School"
+																				? "Select Track"
+																				: "Select Institute"
+																		}
+																	/>
+																</SelectTrigger>
+																<SelectContent>
+																	{filterCoursesData.map((course) => (
+																		<SelectItem
+																			key={course.id}
+																			value={course.id}
+																		>
+																			{course.cs_title}
+																		</SelectItem>
+																	))}
+																</SelectContent>
+															</Select>
 														</div>
 
 														{/* Strand / Program */}
@@ -682,38 +704,43 @@ export default function AccountDetails() {
 																	? "Strand"
 																	: "Program"}
 															</label>
-															<select
-																name={
-																	academicData.us_courses ===
-																	"Senior High School"
-																		? "us_strand"
-																		: "us_program"
-																}
+															<Select
 																value={
 																	academicData.us_courses ===
 																	"Senior High School"
 																		? academicData?.us_strand
 																		: academicData?.us_program
 																}
-																onChange={(e) =>
-																	handleChange(e, setAcademicData)
+																onValueChange={(value) =>
+																	setAcademicData((prev) => ({
+																		...prev,
+																		[academicData.us_courses ===
+																		"Senior High School"
+																			? "us_strand"
+																			: "us_program"]: value,
+																	}))
 																}
-																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 																required
 																disabled={editMode === ""}
 															>
-																<option value="">
-																	{academicData.us_courses ===
-																	"Senior High School"
-																		? "Select Strand"
-																		: "Select Program"}
-																</option>
-																{subCoursesData.map((subCourse, index) => (
-																	<option key={index} value={subCourse}>
-																		{subCourse}
-																	</option>
-																))}
-															</select>
+																<SelectTrigger className="w-full h-9">
+																	<SelectValue
+																		placeholder={
+																			academicData.us_courses ===
+																			"Senior High School"
+																				? "Select Strand"
+																				: "Select Program"
+																		}
+																	/>
+																</SelectTrigger>
+																<SelectContent>
+																	{subCoursesData.map((subCourse, index) => (
+																		<SelectItem key={index} value={subCourse}>
+																			{subCourse}
+																		</SelectItem>
+																	))}
+																</SelectContent>
+															</Select>
 														</div>
 													</div>
 												)}
@@ -728,7 +755,6 @@ export default function AccountDetails() {
 														onChange={(e) => handleChange(e, setAcademicData)}
 														placeholder="Enter section"
 														className="bg-card border-border text-foreground h-9"
-														
 														required
 														disabled={editMode == ""}
 													/>
@@ -778,9 +804,9 @@ export default function AccountDetails() {
 							<form onSubmit={handleSubmitAddress}>
 								<Card className="bg-card border-border transition-colors duration-300 max-w-full animate-slide-up-delay-2">
 									<CardContent className="p-6">
-										<h2 className="font-semibold text-foreground text-base mb-[5px]">
+										<h3 className="text-foreground font-semibold text-xl mb-1">
 											Address
-										</h2>
+										</h3>
 										<p className="text-muted-foreground text-sm mb-4">
 											Details such as street, barangay, municipal, and province.
 										</p>
@@ -796,63 +822,101 @@ export default function AccountDetails() {
 													onChange={(e) => handleChange(e, setAddressData)}
 													placeholder="Purok 2"
 													className="bg-card border-border text-foreground h-9"
-													
 													required
 													disabled={editMode == ""}
 												/>
 											</div>
-											<select
+											<Select
 												name="us_province"
 												value={addressData?.us_province || ""}
-												onChange={(e) => handleChange(e, setAddressData)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2  h-9 mt-6 text-sm"
+												onValueChange={(value) =>
+													handleChange(
+														{ target: { name: "us_province", value } },
+														setAddressData,
+													)
+												}
 												required
 												disabled={editMode == ""}
 											>
-												<option value={addressData?.us_province || ""}>
-													{extractProvinceName(addressData?.us_province)}
-												</option>
-												{provinces.map((p) => (
-													<option key={p.code} value={`${p.code}|${p.name}`}>
-														{p.name}
-													</option>
-												))}
-											</select>
+												<SelectTrigger className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 mt-6 text-sm">
+													<SelectValue
+														placeholder={extractProvinceName(
+															addressData?.us_province,
+														)}
+													/>
+												</SelectTrigger>
+												<SelectContent>
+													{provinces.map((p) => (
+														<SelectItem
+															key={p.code}
+															value={`${p.code}|${p.name}`}
+														>
+															{p.name}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
 
-											<select
+											<Select
 												name="us_municipal"
 												value={addressData?.us_municipal || ""}
-												onChange={(e) => handleChange(e, setAddressData)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
+												onValueChange={(value) =>
+													handleChange(
+														{ target: { name: "us_municipal", value } },
+														setAddressData,
+													)
+												}
 												required
 												disabled={editMode == ""}
 											>
-												<option value={addressData?.us_municipal || ""}>
-													{extractProvinceName(addressData.us_municipal)}
-												</option>
-												{municipals.map((m) => (
-													<option key={m.code} value={`${m.code}|${m.name}`}>
-														{m.name}
-													</option>
-												))}
-											</select>
-											<select
+												<SelectTrigger className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm">
+													<SelectValue
+														placeholder={extractProvinceName(
+															addressData.us_municipal,
+														)}
+													/>
+												</SelectTrigger>
+												<SelectContent>
+													{municipals.map((m) => (
+														<SelectItem
+															key={m.code}
+															value={`${m.code}|${m.name}`}
+														>
+															{m.name}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
+											<Select
 												name="us_barangay"
 												value={addressData?.us_barangay || ""}
-												onChange={(e) => handleChange(e, setAddressData)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
+												onValueChange={(value) =>
+													handleChange(
+														{ target: { name: "us_barangay", value } },
+														setAddressData,
+													)
+												}
 												required
 												disabled={editMode == ""}
 											>
-												<option value={addressData?.us_barangay || ""}>
-													{extractProvinceName(addressData.us_barangay)}
-												</option>
-												{barangays.map((b) => (
-													<option key={b.code} value={`${b.code}|${b.name}`}>
-														{b.name}
-													</option>
-												))}
-											</select>
+												<SelectTrigger className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm">
+													<SelectValue
+														placeholder={extractProvinceName(
+															addressData.us_barangay,
+														)}
+													/>
+												</SelectTrigger>
+												<SelectContent>
+													{barangays.map((b) => (
+														<SelectItem
+															key={b.code}
+															value={`${b.code}|${b.name}`}
+														>
+															{b.name}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
 										</div>
 
 										{superadmin && (

@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
-import { FiImage, FiArrowLeft, FiX, FiTrash2, FiUpload } from "react-icons/fi";
+import { FiTrash2, FiUpload } from "react-icons/fi";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { ArrowLeft } from "lucide-react";
 
 import { Header } from "@/components/header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -98,15 +99,15 @@ export default function RegisterDiscussionRoom() {
 					<div className="mb-6 animate-fade-in">
 						<button
 							onClick={() => router.back()}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 						>
-							<FiArrowLeft className="w-4 h-4" />
+							<ArrowLeft className="w-4 h-4" />
 							Back to Previous page
 						</button>
 					</div>
 
 					<div className="mb-8 animate-slide-up">
-						<h1 className="font-semibold text-foreground text-xl">
+						<h1 className="font-semibold text-foreground text-2xl mb-1">
 							{type === "register"
 								? "Register Discussion Room"
 								: "Update Discussion Room"}
@@ -122,9 +123,9 @@ export default function RegisterDiscussionRoom() {
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-slide-up-delay-1 items-start">
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardContent className="p-6">
-									<h2 className="font-semibold text-foreground text-base mb-[5px]">
+									<h3 className="text-foreground font-semibold text-xl mb-1">
 										Discussion Room Information
-									</h2>
+									</h3>
 									<p className="text-muted-foreground text-sm mb-4">
 										Enter the facility details and specifications for the
 										discussion room resource.
@@ -227,8 +228,7 @@ export default function RegisterDiscussionRoom() {
 
 							<Card className="bg-card border-border shadow-sm animate-slide-up-delay-2">
 								<CardHeader className="pb-4">
-									<CardTitle className="text-foreground flex items-center gap-2 text-base">
-										<FiImage className="w-4 h-4" />
+									<CardTitle className="text-foreground flex items-center gap-2 text-xl">
 										Cover Image
 									</CardTitle>
 									<p className="text-muted-foreground text-sm">

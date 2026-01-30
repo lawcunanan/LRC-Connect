@@ -160,7 +160,7 @@ export default function AdminWelcomePage() {
 												className="text-center animate-fade-in"
 												style={{ animationDelay: "0.5s" }}
 											>
-												<p className="font-semibold text-foreground mb-1 text-sm line-clamp-2">
+												<p className="font-semibold text-foreground mb-1 text-base line-clamp-2">
 													{material?.ma_title}
 												</p>
 												<p className="text-muted-foreground text-sm line-clamp-1">
@@ -187,7 +187,7 @@ export default function AdminWelcomePage() {
 								className="text-center mb-6 animate-fade-in"
 								style={{ animationDelay: "0.4s" }}
 							>
-								<h2 className="font-semibold text-foreground text-xl">
+								<h2 className="font-semibold text-foreground text-2xl mb-1">
 									Associated Library
 								</h2>
 								<p className="text-muted-foreground text-base">
@@ -213,7 +213,7 @@ export default function AdminWelcomePage() {
 											/>
 										</div>
 										<div className="p-4">
-											<h4 className="font-medium text-foreground text-base">
+											<h4 className="font-medium text-foreground text-base mb-1">
 												{library.li_name}
 											</h4>
 											<p className="text-muted-foreground mb-2 text-sm">

@@ -10,6 +10,13 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
+import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
@@ -131,7 +138,7 @@ export default function FeedbackAndFAQs() {
 
 					<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 						<div className="mb-8 animate-slide-up">
-							<h1 className="font-semibold text-foreground text-xl">
+							<h1 className="font-semibold text-foreground text-2xl mb-1">
 								Feedback & FAQs
 							</h1>
 							<p className="text-muted-foreground text-base">
@@ -140,40 +147,48 @@ export default function FeedbackAndFAQs() {
 						</div>
 
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-slide-up-delay-1">
-							<Card className="bg-card border-border transition-colors duration-300 h-fit max-h-[1200px] flex flex-col">
-								<CardContent className="p-6 overflow-auto">
-									<h3 className="text-foreground font-semibold text-base">
-										User Feedback
-									</h3>
-									<p className="text-muted-foreground mb-4 text-sm">
-										View and manage feedback from users about the system
-										application.
-									</p>
+							<Card className="bg-card border-border transition-colors duration-300 max-h-[1200px] flex flex-col">
+								<CardContent className="p-6 flex flex-col overflow-hidden">
+									<div className="flex-shrink-0 mb-4">
+										<h3 className="text-foreground font-semibold text-lg">
+											User Feedback
+										</h3>
+										<p className="text-muted-foreground mb-4 text-sm">
+											View and manage feedback from users about the system
+											application.
+										</p>
 
-									<div className="mb-6 flex  items-center gap-4">
-										<div className="relative flex-1">
-											<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-											<Input
-												type="text"
-												placeholder="Search feedback..."
-												value={searchQuery}
-												onChange={(e) => setSearchQuery(e.target.value)}
-												className="pl-10 bg-card border-border text-foreground h-9 text-sm"
-											/>
+										<div className="mb-6 flex flex-col md:flex-row gap-3">
+											<div className="relative flex-1 border border-input rounded-md bg-background shadow-sm">
+												<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5" />
+												<Input
+													type="text"
+													placeholder="Search feedback..."
+													value={searchQuery}
+													onChange={(e) => setSearchQuery(e.target.value)}
+													className="pl-10 pr-4 bg-transparent border-0 focus:ring-0 text-foreground h-9 text-sm flex-1"
+												/>
+											</div>
+
+											<div className="flex items-center gap-4">
+												<Select
+													value={selectedStatus}
+													onValueChange={setSelectedStatus}
+												>
+													<SelectTrigger>
+														<SelectValue placeholder="Select status" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="All">All Status</SelectItem>
+														<SelectItem value="unread">Unread</SelectItem>
+														<SelectItem value="read">Read</SelectItem>
+													</SelectContent>
+												</Select>
+											</div>
 										</div>
-
-										<select
-											value={selectedStatus}
-											onChange={(e) => setSelectedStatus(e.target.value)}
-											className="border border-border bg-card text-foreground rounded-md px-3 py-1.5 h-9 text-sm"
-										>
-											<option value="All">All Status</option>
-											<option value="unread">Unread</option>
-											<option value="read">Read</option>
-										</select>
 									</div>
 
-									<div className="space-y-4">
+									<div className="flex-1 overflow-y-auto space-y-4">
 										{feedbackData?.map((feedback) => (
 											<div
 												key={feedback?.id}
@@ -183,24 +198,20 @@ export default function FeedbackAndFAQs() {
 														: "bg-card border-primary/20 shadow-sm"
 												} hover:border-primary/50 transition-colors`}
 											>
-												{userDetails &&
-													["USR-2", "USR-3"].includes(
-														userDetails?.us_level,
-													) && (
-														<Checkbox
-															id={`feedback-${feedback?.id}`}
-															checked={feedback?.fe_isRead}
-															onCheckedChange={(checked) =>
-																handleCheckboxChange(
-																	feedback?.id,
-																	feedback?.fe_type,
-																	feedback?.fe_isRead,
-																)
-															}
-															className="mt-1"
-															title="Mark as read"
-														/>
-													)}
+												<Checkbox
+													id={`feedback-${feedback?.id}`}
+													checked={feedback?.fe_isRead}
+													onCheckedChange={(checked) =>
+														handleCheckboxChange(
+															feedback?.id,
+															feedback?.fe_type,
+															feedback?.fe_isRead,
+														)
+													}
+													className="mt-1"
+													title="Mark as read"
+												/>
+
 												<Avatar className="h-10 w-10">
 													<AvatarImage
 														src={feedback?.fe_avatar || "/placeholder.svg"}
@@ -213,7 +224,7 @@ export default function FeedbackAndFAQs() {
 												<div className="flex-1 space-y-2">
 													<div className="flex items-start justify-between ">
 														<div>
-															<p className="text-foreground font-medium text-base">
+															<p className="text-foreground font-medium text-sm">
 																{feedback?.fe_sender}
 															</p>
 
@@ -230,17 +241,17 @@ export default function FeedbackAndFAQs() {
 														</span>
 													</div>
 
-													<span className="inline-block px-2 py-0.5 bg-primary/10 text-primary rounded-full text-xs">
+													<span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
 														{feedback?.fe_type}
 													</span>
 
-													<p className="text-muted-foreground text-sm">
+													<p className="text-foreground text-sm">
 														{feedback?.fe_content}
 													</p>
 
 													{feedback?.fe_screenshot && (
 														<div>
-															<p className="text-foreground font-medium mt-4 mb-2 text-sm">
+															<p className="text-muted-foreground font-medium mt-4 mb-2 text-sm">
 																Screenshot:
 															</p>
 															<img
@@ -282,7 +293,7 @@ export default function FeedbackAndFAQs() {
 								<CardContent className="p-6 overflow-auto">
 									<div className="flex items-start justify-between mb-1  gap-6">
 										<div>
-											<h3 className="text-foreground font-semibold text-base">
+											<h3 className="text-foreground font-semibold text-lg">
 												Frequently Asked Questions
 											</h3>
 											<p className="text-muted-foreground mb-4 text-sm">

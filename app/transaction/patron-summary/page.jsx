@@ -7,6 +7,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import EmptyState from "@/components/tags/empty";
 import {
 	FiArrowLeft,
@@ -130,13 +137,13 @@ export default function PatronSummaryPage() {
 							onClick={() => router.back()}
 							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 						>
-							<FiArrowLeft className="w-4 h-4" />
+							<FiArrowLeft className="h-5" />
 							Back to Previous page
 						</button>
 					</div>
 
 					<div className="mb-8 animate-slide-up">
-						<h1 className="font-semibold text-foreground text-xl">
+						<h1 className="font-semibold text-foreground text-2xl mb-1">
 							Patron Summary
 						</h1>
 						<p className="text-muted-foreground text-base">
@@ -146,24 +153,23 @@ export default function PatronSummaryPage() {
 
 					<div className="mb-8 animate-slide-up-delay-1">
 						<div className="flex items-center justify-between mb-4 gap-6">
-							<div className="relative flex items-center flex-1 max-w-lg">
-								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+							<div className="relative flex items-center flex-1 max-w-lg border border-input rounded-md bg-background shadow-sm">
+								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5" />
 								<Input
 									placeholder="Search patron..."
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
-									className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
+									className="pl-10 pr-4 h-9 bg-transparent border-0 focus:ring-0 text-foreground rounded-md text-sm flex-1"
 								/>
-								<div className="absolute right-16 top-1/2 transform -translate-y-1/2">
-									<FiCamera
-										onClick={() => setIsScannerOpen(true)}
-										className="w-4 h-4 text-muted-foreground"
-									/>
-								</div>
+								<FiCamera
+									onClick={() => setIsScannerOpen(true)}
+									className="h-5 text-muted-foreground mx-2 cursor-pointer"
+								/>
+								<div className="h-6 w-px bg-border mx-2"></div>
 								<Button
 									onClick={() => setShowFilters(!showFilters)}
 									variant="ghost"
-									className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
+									className="h-full px-3 text-foreground hover:bg-accent rounded-l-none text-sm mr-2"
 								>
 									Filter
 								</Button>
@@ -241,7 +247,7 @@ export default function PatronSummaryPage() {
 									</span>
 								)}
 								{showOverdueOnly && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-sm">
 										Overdue Only
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -250,7 +256,7 @@ export default function PatronSummaryPage() {
 									</span>
 								)}
 								{showActivePenaltiesOnly && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-sm">
 										Active Penalties Only
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -259,7 +265,7 @@ export default function PatronSummaryPage() {
 									</span>
 								)}
 								{sortByTransactions !== "none" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-sm">
 										Sort by Transactions:{" "}
 										{sortByTransactions === "asc"
 											? "Low to High"
@@ -271,7 +277,7 @@ export default function PatronSummaryPage() {
 									</span>
 								)}
 								{sortByPenalties !== "none" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-sm">
 										Sort by Penalties:{" "}
 										{sortByPenalties === "asc" ? "Low to High" : "High to Low"}
 										<FiX
@@ -308,55 +314,67 @@ export default function PatronSummaryPage() {
 										<label className="block font-medium text-foreground  text-sm">
 											Select an Account Status
 										</label>
-										<select
+										<Select
 											value={selectedStatus}
-											onChange={(e) => setSelectedStatus(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-sm"
+											onValueChange={setSelectedStatus}
 										>
-											<option value="Active">Active</option>
-											<option value="Inactive">Inactive</option>
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select an Account Status" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="Active">Active</SelectItem>
+												<SelectItem value="Inactive">Inactive</SelectItem>
+											</SelectContent>
+										</Select>
 									</div>
 
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-xs">
 											Select a Student Library
 										</label>
-										<select
+										<Select
 											value={selectedLibrary}
-											onChange={(e) => setSelectedLibrary(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-xs"
+											onValueChange={setSelectedLibrary}
 										>
-											<option value="All">All Libraries</option>
-											{libraryData.map((library) => (
-												<option key={library.id} value={library.id}>
-													{library.li_name}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Student Library" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">All Libraries</SelectItem>
+												{libraryData.map((library) => (
+													<SelectItem key={library.id} value={library.id}>
+														{library.li_name}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-xs">
 											Select a Patron Type
 										</label>
-										<select
+										<Select
 											value={selectedStudentType}
-											onChange={(e) => setSelectedStudentType(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-xs"
+											onValueChange={setSelectedStudentType}
 										>
-											<option value="All">All Patron Types</option>
-											{[
-												"Student",
-												"Student Assistant",
-												"Faculty",
-												"Administrator",
-											].map((type) => (
-												<option key={type} value={type}>
-													{type}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Patron Type" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">All Patron Types</SelectItem>
+												{[
+													"Student",
+													"Student Assistant",
+													"Faculty",
+													"Administrator",
+												].map((type) => (
+													<SelectItem key={type} value={type}>
+														{type}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 
 									<div className="space-y-3">
@@ -394,37 +412,43 @@ export default function PatronSummaryPage() {
 												<label className="block text-foreground text-xs">
 													Total Resources Transacted
 												</label>
-												<select
+												<Select
 													value={sortByTransactions}
-													onChange={(e) => {
-														setSortByTransactions(e.target.value);
-														if (e.target.value !== "none")
-															setSortByPenalties("none");
+													onValueChange={(value) => {
+														setSortByTransactions(value);
+														if (value !== "none") setSortByPenalties("none");
 													}}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-8 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-xs"
 												>
-													<option value="none">No sorting</option>
-													<option value="asc">Low to High</option>
-													<option value="desc">High to Low</option>
-												</select>
+													<SelectTrigger className="text-sm h-8">
+														<SelectValue placeholder="Total Resources Transacted" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="none">No sorting</SelectItem>
+														<SelectItem value="asc">Low to High</SelectItem>
+														<SelectItem value="desc">High to Low</SelectItem>
+													</SelectContent>
+												</Select>
 											</div>
 											<div className="space-y-1">
 												<label className="block text-foreground text-xs">
 													Total Active Penalties
 												</label>
-												<select
+												<Select
 													value={sortByPenalties}
-													onChange={(e) => {
-														setSortByPenalties(e.target.value);
-														if (e.target.value !== "none")
-															setSortByTransactions("none");
+													onValueChange={(value) => {
+														setSortByPenalties(value);
+														if (value !== "none") setSortByTransactions("none");
 													}}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-8 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-xs"
 												>
-													<option value="none">No sorting</option>
-													<option value="asc">Low to High</option>
-													<option value="desc">High to Low</option>
-												</select>
+													<SelectTrigger className="text-sm h-8">
+														<SelectValue placeholder="Total Active Penalties" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="none">No sorting</SelectItem>
+														<SelectItem value="asc">Low to High</SelectItem>
+														<SelectItem value="desc">High to Low</SelectItem>
+													</SelectContent>
+												</Select>
 											</div>
 										</div>
 									</div>
@@ -555,12 +579,12 @@ const renderPatronCard = (patron, handleViewPenalties, router) => (
 					onClick={() => router.push(`/account/details?id=${patron.id}`)}
 					title="View Profile"
 				>
-					<ExternalLink className="w-4 h-4" />
+					<ExternalLink className="h-5" />
 				</Button>
 			</div>
 
 			<div>
-				<h5 className="font-medium text-foreground mb-4 text-base">
+				<h5 className="font-medium text-foreground mb-4 text-lg">
 					Transaction Summary
 				</h5>
 
@@ -589,7 +613,7 @@ const renderPatronCard = (patron, handleViewPenalties, router) => (
 			</div>
 
 			<div>
-				<h5 className="font-medium text-foreground mb-4 text-base">
+				<h5 className="font-medium text-foreground mb-4 text-lg">
 					Current Status
 				</h5>
 
@@ -647,7 +671,7 @@ const renderPatronTable = (transactionData, handleViewPenalties, router) => (
 	<Card className="bg-card border-border transition-colors duration-300 animate-slide-up">
 		<CardContent className="p-0 overflow-x-auto">
 			<table className="w-full">
-				<thead className="bg-muted/30">
+				<thead className="bg-muted">
 					<tr className="border-b border-border">
 						{[
 							"Patron",
@@ -673,7 +697,7 @@ const renderPatronTable = (transactionData, handleViewPenalties, router) => (
 								index % 2 === 0 ? "bg-background" : "bg-muted/10"
 							}`}
 						>
-							<td className="py-4 px-6 min-w-[300px] text-sm">
+							<td className="py-3 px-4 min-w-[300px] text-sm">
 								<div className="flex items-start gap-3">
 									<div className="relative flex-shrink-0">
 										<img
@@ -702,13 +726,13 @@ const renderPatronTable = (transactionData, handleViewPenalties, router) => (
 								</div>
 							</td>
 
-							<td className="py-4 px-6 min-w-[250px] text-sm">
+							<td className="py-3 px-4 min-w-[250px] text-sm">
 								<p className="text-muted-foreground text-sm">
 									{patron.us_library}
 								</p>
 							</td>
 
-							<td className="py-4 px-6 min-w-[250px] text-sm">
+							<td className="py-3 px-4 min-w-[250px] text-sm">
 								<div className="flex gap-4 text-center">
 									{[
 										{ key: "us_reserved", label: "Reserved" },
@@ -731,7 +755,7 @@ const renderPatronTable = (transactionData, handleViewPenalties, router) => (
 								</div>
 							</td>
 
-							<td className="py-4 px-6 min-w-[250px] text-sm">
+							<td className="py-3 px-4 min-w-[250px] text-sm">
 								<div className="flex gap-4 text-center">
 									{[
 										{ key: "us_currentOverdue", label: "Overdue" },
@@ -753,7 +777,7 @@ const renderPatronTable = (transactionData, handleViewPenalties, router) => (
 								</div>
 							</td>
 
-							<td className="py-4 px-6 text-sm">
+							<td className="py-3 px-4 text-sm">
 								<div className="flex items-center gap-2">
 									<Button
 										variant="outline"

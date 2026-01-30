@@ -9,6 +9,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+	SelectGroup,
+	SelectLabel,
+} from "@/components/ui/select";
+import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
@@ -144,7 +153,7 @@ export default function AccountList() {
 			pageCursors,
 			setPageCursors,
 			currentPage,
-			false
+			false,
 		);
 
 		return () => {
@@ -179,7 +188,7 @@ export default function AccountList() {
 				selectedCourseID,
 				filterCoursesData,
 				setSubCoursesData,
-				Alert
+				Alert,
 			);
 		} else {
 			setSubCoursesData([]);
@@ -203,9 +212,9 @@ export default function AccountList() {
 			<div className="flex-1 flex flex-col overflow-hidden">
 				<Header />
 
-				<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
+				<main className="flex-1 overflow-auto p-6 pt-24">
 					<div className="mb-8 animate-fade-in">
-						<h1 className="font-semibold text-foreground text-xl">
+						<h1 className="font-semibold text-foreground text-2xl mb-1">
 							{type && type === "patron" ? "Patrons" : "Personnel"}
 						</h1>
 						<p className="text-muted-foreground text-base">
@@ -223,25 +232,23 @@ export default function AccountList() {
 											lg:flex-row gap-4`}
 							>
 								<div className="flex items-center flex-1">
-									<div className="relative flex-1 max-w-lg">
-										<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+									<div className="relative flex items-center flex-1 max-w-lg border border-input rounded-md bg-background shadow-sm">
+										<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 z-10" />
 										<Input
 											placeholder="Search user..."
 											value={searchQuery}
 											onChange={(e) => setSearchQuery(e.target.value)}
-											className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-											
+											className="pl-10 pr-4 h-9 bg-transparent border-0 focus:ring-0 text-foreground text-sm flex-1"
 										/>
-										<div className="absolute right-16 top-1/2 transform -translate-y-1/2">
-											<FiCamera
-												onClick={() => setIsScannerOpen(true)}
-												className="w-4 h-4 text-muted-foreground"
-											/>
-										</div>
+										<FiCamera
+											onClick={() => setIsScannerOpen(true)}
+											className="w-4 h-4 text-muted-foreground mx-2 cursor-pointer"
+										/>
+										<div className="h-6 w-px bg-border mx-2"></div>
 										<Button
 											onClick={() => setShowFilters(!showFilters)}
 											variant="ghost"
-											className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
+											className="h-9 px-3 text-sm border-0 bg-transparent hover:bg-accent"
 										>
 											Filter
 										</Button>
@@ -259,7 +266,7 @@ export default function AccountList() {
 									)}
 
 								{userDetails?.us_level == "USR-1" && (
-									<div className="flex gap-2">
+									<div className="flex gap-4">
 										<Button
 											onClick={() => setShowManualSearchModal(true)}
 											variant="outline"
@@ -282,7 +289,7 @@ export default function AccountList() {
 														className="text-sm"
 														onClick={() =>
 															router.push(
-																`account/register?id=${selectedLibrary}&type=patron`
+																`account/register?id=${selectedLibrary}&type=patron`,
 															)
 														}
 													>
@@ -301,7 +308,7 @@ export default function AccountList() {
 														onClick={() =>
 															handleDownload(
 																"/template/Patron Template.xlsx",
-																"Patron Template.xlsx"
+																"Patron Template.xlsx",
 															)
 														}
 													>
@@ -316,7 +323,7 @@ export default function AccountList() {
 												className="bg-primary-custom hover:bg-secondary-custom text-white h-9 w-fit text-sm"
 												onClick={() =>
 													router.push(
-														`account/register?id=${selectedLibrary}&type=personnel`
+														`account/register?id=${selectedLibrary}&type=personnel`,
 													)
 												}
 											>
@@ -440,9 +447,9 @@ export default function AccountList() {
 								</div>
 							)}
 
-							<div className="overflow-x-auto">
-								<table className="w-full">
-									<thead className="bg-muted/30">
+							<div className="overflow-x-auto rounded-lg">
+								<table className="w-full border border-border ">
+									<thead className="bg-muted">
 										<tr className="border-b border-border">
 											{[
 												"School ID",
@@ -460,14 +467,14 @@ export default function AccountList() {
 																	: ["Institute", "Program"]
 																: []),
 															"Section",
-													  ]
+														]
 													: []),
 
 												"Action",
 											].map((header) => (
 												<th
 													key={header}
-													className="text-left py-4 px-6 font-semibold text-foreground text-sm"
+													className="text-center py-4 px-6 font-semibold text-foreground text-sm"
 												>
 													{header}
 												</th>
@@ -482,45 +489,45 @@ export default function AccountList() {
 													index % 2 === 0 ? "bg-background" : "bg-muted/10"
 												}`}
 											>
-												<td className="py-4 px-6 text-left text-foreground text-sm min-w-[150px]">
+												<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 													{user?.us_schoolID}
 												</td>
-												<td className="py-4 px-6 text-left text-foreground text-sm min-w-[150px]">
+												<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 													<Badge
 														className={`${getStatusColor(
-															user?.us_status
+															user?.us_status,
 														)} text-sm`}
 													>
 														{user?.us_status}
 													</Badge>
 												</td>
-												<td className="py-4 px-6 text-left text-foreground text-sm min-w-[150px]">
+												<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 													{user?.us_type}
 												</td>
-												<td className="py-4 px-6 text-left text-foreground text-sm min-w-[250px]">
+												<td className="py-4 px-6 text-center text-foreground text-sm min-w-[250px]">
 													{user?.us_name}
 												</td>
-												<td className="py-4 px-6 text-left text-foreground text-sm min-w-[200px]">
+												<td className="py-4 px-6 text-center text-foreground text-sm min-w-[200px]">
 													{user?.us_email}
 												</td>
 
 												{type === "patron" && (
 													<>
-														<td className="py-4 px-6 text-left text-foreground text-sm min-w-[200px]">
+														<td className="py-4 px-6 text-center text-foreground text-sm min-w-[200px]">
 															{user?.us_courses || "NA"}
 														</td>
 
-														<td className="py-4 px-6 text-left text-foreground text-sm min-w-[200px]">
+														<td className="py-4 px-6 text-center text-foreground text-sm min-w-[200px]">
 															{user?.us_year || "NA"}
 														</td>
 														{selectedCourses !== "All" && (
 															<>
-																<td className="py-4 px-6 text-left text-foreground text-sm min-w-[250px]">
+																<td className="py-4 px-6 text-center text-foreground text-sm min-w-[250px]">
 																	{selectedCourses === "Senior High School"
 																		? user?.us_tracks || "NA"
 																		: user?.us_institute || "NA"}
 																</td>
-																<td className="py-4 px-6 text-left text-foreground text-sm min-w-[250px]">
+																<td className="py-4 px-6 text-center text-foreground text-sm min-w-[250px]">
 																	{selectedCourses === "Senior High School"
 																		? user?.us_strand || "NA"
 																		: user?.us_program || "NA"}
@@ -528,21 +535,21 @@ export default function AccountList() {
 															</>
 														)}
 
-														<td className="py-4 px-6 text-left text-foreground text-sm min-w-[250px]">
+														<td className="py-4 px-6 text-center text-foreground text-sm min-w-[250px]">
 															{user?.us_section || "NA"}
 														</td>
 													</>
 												)}
 
-												<td className="py-3 px-4 text-left">
-													<div className="flex gap-2">
+												<td className="py-4 px-6 text-center">
+													<div className="flex gap-2 justify-center">
 														<Button
 															variant="ghost"
 															size="sm"
 															className="hover:bg-accent h-8 w-8 p-0"
 															onClick={() =>
 																router.push(
-																	`/account/details?id=${user?.us_id}`
+																	`/account/details?id=${user?.us_id}`,
 																)
 															}
 															title="View Profile"
@@ -558,8 +565,8 @@ export default function AccountList() {
 																		size="sm"
 																		className="hover:bg-accent h-8 w-8 p-0"
 																		onClick={() => {
-																			setShowTypeModal(true),
-																				setSelectedAccount(user);
+																			(setShowTypeModal(true),
+																				setSelectedAccount(user));
 																		}}
 																		title="Change user type"
 																	>
@@ -571,8 +578,8 @@ export default function AccountList() {
 																		size="sm"
 																		className="hover:bg-accent h-8 w-8 p-0"
 																		onClick={() => {
-																			setResetPasswordModal(true),
-																				setSelectedAccount(user);
+																			(setResetPasswordModal(true),
+																				setSelectedAccount(user));
 																		}}
 																		title="Reset Password"
 																	>
@@ -584,8 +591,8 @@ export default function AccountList() {
 																		size="sm"
 																		className="hover:bg-accent h-8 w-8 p-0"
 																		onClick={() => {
-																			setShowRemoveModal(true),
-																				setSelectedAccount(user);
+																			(setShowRemoveModal(true),
+																				setSelectedAccount(user));
 																		}}
 																		title="Deactivate account / Transfer to another library"
 																	>
@@ -636,17 +643,21 @@ export default function AccountList() {
 											<label className="block font-medium text-foreground text-sm">
 												Select a Library
 											</label>
-											<select
+											<Select
 												value={selectedLibrary}
-												onChange={(e) => setSelectedLibrary(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-sm"
+												onValueChange={setSelectedLibrary}
 											>
-												{libraries.map((library) => (
-													<option key={library.id} value={library.id}>
-														{library.li_name}
-													</option>
-												))}
-											</select>
+												<SelectTrigger className="text-sm">
+													<SelectValue placeholder="Select a Library" />
+												</SelectTrigger>
+												<SelectContent>
+													{libraries.map((library) => (
+														<SelectItem key={library.id} value={library.id}>
+															{library.li_name}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
 										</div>
 									)}
 
@@ -655,14 +666,18 @@ export default function AccountList() {
 											<label className="block font-medium text-foreground  text-sm">
 												Select an Account Status
 											</label>
-											<select
+											<Select
 												value={selectedStatus}
-												onChange={(e) => setSelectedStatus(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-sm"
+												onValueChange={setSelectedStatus}
 											>
-												<option value="Active">Active</option>
-												<option value="Inactive">Inactive</option>
-											</select>
+												<SelectTrigger className="text-sm">
+													<SelectValue placeholder="Select an Account Status" />
+												</SelectTrigger>
+												<SelectContent>
+													<SelectItem value="Active">Active</SelectItem>
+													<SelectItem value="Inactive">Inactive</SelectItem>
+												</SelectContent>
+											</Select>
 										</div>
 									)}
 
@@ -670,69 +685,82 @@ export default function AccountList() {
 										<label className="block font-medium text-foreground  text-sm">
 											Select a User Type
 										</label>
-										<select
+										<Select
 											value={selectedType}
-											onChange={(e) => setSelectedType(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+											onValueChange={setSelectedType}
 										>
-											<option value="All">All User Types</option>
-											{typeData.map((group, i) => (
-												<optgroup key={i} label={group.label}>
-													{group.options.map((type, idx) => (
-														<option key={idx} value={type}>
-															{type}
-														</option>
-													))}
-												</optgroup>
-											))}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a User Type" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">All User Types</SelectItem>
+												{typeData.map((group, i) => (
+													<SelectGroup key={i}>
+														<SelectLabel>{group.label}</SelectLabel>
+														{group.options.map((type, idx) => (
+															<SelectItem key={idx} value={type}>
+																{type}
+															</SelectItem>
+														))}
+													</SelectGroup>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-sm">
 											Select a Course
 										</label>
-										<select
+										<Select
 											value={selectedCourses}
-											onChange={(e) => {
+											onValueChange={(value) => {
 												setSelectedInstitute("All");
 												setSelectedProgram("All");
 												setSelectedStrand("All");
 												setSelectedTracks("All");
-												setSelectedCourses(e.target.value);
+												setSelectedCourses(value);
 											}}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 										>
-											<option value="All">All Courses</option>
-											{["Senior High School", "College Courses"].map(
-												(courses) => (
-													<option key={courses} value={courses}>
-														{courses}
-													</option>
-												)
-											)}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Course" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">All Courses</SelectItem>
+												{["Senior High School", "College Courses"].map(
+													(courses) => (
+														<SelectItem key={courses} value={courses}>
+															{courses}
+														</SelectItem>
+													),
+												)}
+											</SelectContent>
+										</Select>
 									</div>
 
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-sm">
 											Select a Year
 										</label>
-										<select
+										<Select
 											value={selectedYear}
-											onChange={(e) => setSelectedYear(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+											onValueChange={setSelectedYear}
 										>
-											<option value="All">All Years</option>
-											{(selectedCourses == "Senior High School"
-												? ["Grade 11", "Grade 12"]
-												: ["1st Year", "2nd Year", "3rd Year", "4th Year"]
-											).map((year) => (
-												<option key={year} value={year}>
-													{year}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Year" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">All Years</SelectItem>
+												{(selectedCourses == "Senior High School"
+													? ["Grade 11", "Grade 12"]
+													: ["1st Year", "2nd Year", "3rd Year", "4th Year"]
+												).map((year) => (
+													<SelectItem key={year} value={year}>
+														{year}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 
 									{selectedCourses !== "All" && (
@@ -745,13 +773,13 @@ export default function AccountList() {
 														? "Track"
 														: "Institute"}
 												</label>
-												<select
+												<Select
 													value={selectedCourseID || ""}
-													onChange={(e) => {
-														const selectedID = e.target.value;
+													onValueChange={(value) => {
+														const selectedID = value;
 
 														const selectedCourse = filterCoursesData.find(
-															(course) => course.id === selectedID
+															(course) => course.id === selectedID,
 														);
 
 														if (
@@ -765,19 +793,25 @@ export default function AccountList() {
 
 														setSelectedCourseID(selectedID);
 													}}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 												>
-													<option value="All">
-														{selectedCourses === "Senior High School"
-															? "All Tracks"
-															: "All Institutes"}
-													</option>
-													{filterCoursesData.map((course) => (
-														<option key={course.id} value={course.id}>
-															{course.cs_title}
-														</option>
-													))}
-												</select>
+													<SelectTrigger className="text-sm">
+														<SelectValue
+															placeholder={`Select a ${selectedCourses === "Senior High School" ? "Track" : "Institute"}`}
+														/>
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="All">
+															{selectedCourses === "Senior High School"
+																? "All Tracks"
+																: "All Institutes"}
+														</SelectItem>
+														{filterCoursesData.map((course) => (
+															<SelectItem key={course.id} value={course.id}>
+																{course.cs_title}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
 											</div>
 
 											{/* STRAND / PROGRAM */}
@@ -788,28 +822,34 @@ export default function AccountList() {
 														? "Strand"
 														: "Program"}
 												</label>
-												<select
+												<Select
 													value={selectedProgram}
-													onChange={(e) => {
+													onValueChange={(value) => {
 														if (selectedCourses === "Senior High School") {
-															setSelectedStrand(e.target.value);
+															setSelectedStrand(value);
 														} else {
-															setSelectedProgram(e.target.value);
+															setSelectedProgram(value);
 														}
 													}}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 												>
-													<option value="All">
-														{selectedCourses === "Senior High School"
-															? "All Strands"
-															: "All Programs"}
-													</option>
-													{subCoursesData.map((sub, index) => (
-														<option key={index} value={sub}>
-															{sub}
-														</option>
-													))}
-												</select>
+													<SelectTrigger className="text-sm">
+														<SelectValue
+															placeholder={`Select a ${selectedCourses === "Senior High School" ? "Strand" : "Program"}`}
+														/>
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="All">
+															{selectedCourses === "Senior High School"
+																? "All Strands"
+																: "All Programs"}
+														</SelectItem>
+														{subCoursesData.map((sub, index) => (
+															<SelectItem key={index} value={sub}>
+																{sub}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
 											</div>
 										</>
 									)}
@@ -824,7 +864,6 @@ export default function AccountList() {
 											value={selectedSection}
 											onChange={(e) => setSelectedSection(e.target.value)}
 											className="h-9 bg-card text-foreground border-border"
-											
 										/>
 									</div>
 								</div>

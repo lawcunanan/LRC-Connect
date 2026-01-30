@@ -6,6 +6,13 @@ import { Header } from "@/components/header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { FiArrowLeft, FiSearch, FiGrid, FiList, FiX } from "react-icons/fi";
 import EmptyState from "@/components/tags/empty";
 
@@ -229,51 +236,63 @@ export default function CongresssPage() {
 										<label className="block font-medium text-foreground text-sm">
 											Select a Language
 										</label>
-										<select
+										<Select
 											value={selectedLanguage}
-											onChange={(e) => setSelectedLanguage(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+											onValueChange={setSelectedLanguage}
 										>
-											{languages.map((language) => (
-												<option key={language} value={language}>
-													{language}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Language" />
+											</SelectTrigger>
+											<SelectContent>
+												{languages.map((language) => (
+													<SelectItem key={language} value={language}>
+														{language}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-sm">
 											Select a Subject
 										</label>
-										<select
+										<Select
 											value={selectedSubject}
-											onChange={(e) => setSelectedSubject(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+											onValueChange={setSelectedSubject}
 										>
-											{subjects.map((subject) => (
-												<option key={subject} value={subject}>
-													{subject}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Subject" />
+											</SelectTrigger>
+											<SelectContent>
+												{subjects.map((subject) => (
+													<SelectItem key={subject} value={subject}>
+														{subject}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-sm">
 											Select a Collection
 										</label>
-										<select
+										<Select
 											value={selectedCollection}
-											onChange={(e) => setSelectedCollection(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+											onValueChange={setSelectedCollection}
 										>
-											{collections.map((collection) => (
-												<option key={collection} value={collection}>
-													{collection}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Collection" />
+											</SelectTrigger>
+											<SelectContent>
+												{collections.map((collection) => (
+													<SelectItem key={collection} value={collection}>
+														{collection}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 								</div>
 

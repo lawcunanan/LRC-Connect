@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { FiArrowLeft, FiEdit3 } from "react-icons/fi";
 import { QrCode, Sparkles, Building2, GraduationCap } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PatronSelectionModal } from "@/components/modal/patron-selection-modal";
 import { AIResourcesModal } from "@/components/modal/ai-resources-modal";
 
@@ -51,15 +52,15 @@ export default function ComputerDetails() {
 				<div className="mb-6 animate-fade-in">
 					<button
 						onClick={() => router.back()}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 					>
-						<FiArrowLeft className="w-3 h-3" />
+						<FiArrowLeft className="w-4 h-4" />
 						Back to Previous page
 					</button>
 				</div>
 
-				<div className="mb-8 animate-slide-up">
-					<h1 className="font-semibold text-foreground text-xl">
+				<div className="w-fit mb-8 animate-slide-up">
+					<h1 className="font-semibold text-foreground text-2xl mb-1">
 						Computer Details
 					</h1>
 					<p className="text-muted-foreground text-base">
@@ -88,7 +89,7 @@ export default function ComputerDetails() {
 
 									<Badge
 										className={`absolute -top-2 -right-2 px-3 py-1 text-xs ${getStatusColor(
-											formData?.co_status
+											formData?.co_status,
 										)}`}
 									>
 										{formData?.co_status}
@@ -106,7 +107,7 @@ export default function ComputerDetails() {
 							<p className="text-base text-foreground-700 font-medium">
 								Asset Tag: {formData?.co_assetTag}
 							</p>
-							<p className="text-muted-foreground leading-relaxed text-base">
+							<p className="text-muted-foreground leading-relaxed text-sm">
 								{formData?.co_description}
 							</p>
 
@@ -125,8 +126,8 @@ export default function ComputerDetails() {
 															router,
 															"Computer",
 															formData?.id,
-															userDetails?.uid
-													  );
+															userDetails?.uid,
+														);
 											}}
 										>
 											Reserve
@@ -143,106 +144,121 @@ export default function ComputerDetails() {
 						</div>
 
 						<div className="space-y-6">
-							<div className="p-6  rounded-lg shadow-sm border border-border">
-								<h3 className="font-medium text-foreground text-base mb-3 leading-none">
-									Computer Details
-								</h3>
-								<div className="space-y-4">
-									<div className="flex flex-col sm:flex-row sm:items-start gap-2">
-										<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
-											Specifications
-										</Label>
-										<p className="text-sm text-muted-foreground sm:flex-1">
-											{formData?.co_specifications}
-										</p>
-									</div>
-									<div className="flex flex-col sm:flex-row sm:items-start gap-2">
-										<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
-											Date Acquired
-										</Label>
-										<p className="text-sm text-muted-foreground sm:flex-1">
-											{formData?.co_date}
-										</p>
-									</div>
-									<div className="flex flex-col sm:flex-row sm:items-start gap-2">
-										<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
-											Min Duration
-										</Label>
-										<p className="text-sm text-muted-foreground sm:flex-1">
-											{formData?.co_minDurationFormatted}
-										</p>
-									</div>
-									<div className="flex flex-col sm:flex-row sm:items-start gap-2">
-										<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
-											Max Duration
-										</Label>
-										<p className="text-sm text-muted-foreground sm:flex-1">
-											{formData?.co_maxDurationFormatted}
-										</p>
-									</div>
-								</div>
-							</div>
+							<Tabs defaultValue="details" className="w-full">
+								<TabsList className="grid w-full grid-cols-2 mb-6 bg-muted">
+									<TabsTrigger value="details" className="text-sm">
+										Computer Details
+									</TabsTrigger>
+									<TabsTrigger value="location" className="text-sm">
+										Location & Details
+									</TabsTrigger>
+								</TabsList>
 
-							<div className="rounded-lg p-6 shadow-sm border border-border">
-								<h3 className="font-medium text-foreground text-base  mb-3">
-									Location & Details
-								</h3>
-
-								<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-									<div className="flex items-start gap-2">
-										<GraduationCap className="w-4 h-4 text-foreground mt-[2px] flex-shrink-0" />
-										<span className="text-muted-foreground">|</span>
-										<div className="leading-none space-y-2">
-											<label className="text-sm font-medium text-foreground">
-												School Name
-											</label>
-											<p className="text-sm text-muted-foreground leading-4">
-												{formData?.co_school}
-											</p>
+								<TabsContent value="details">
+									<div className="p-6 rounded-lg shadow-sm border border-border">
+										<h3 className="font-medium text-foreground text-base mb-3 leading-none">
+											Computer Details
+										</h3>
+										<div className="space-y-4">
+											<div className="flex flex-col sm:flex-row sm:items-start gap-2">
+												<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
+													Specifications
+												</Label>
+												<p className="text-sm text-muted-foreground sm:flex-1">
+													{formData?.co_specifications}
+												</p>
+											</div>
+											<div className="flex flex-col sm:flex-row sm:items-start gap-2">
+												<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
+													Date Acquired
+												</Label>
+												<p className="text-sm text-muted-foreground sm:flex-1">
+													{formData?.co_date}
+												</p>
+											</div>
+											<div className="flex flex-col sm:flex-row sm:items-start gap-2">
+												<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
+													Min Duration
+												</Label>
+												<p className="text-sm text-muted-foreground sm:flex-1">
+													{formData?.co_minDurationFormatted}
+												</p>
+											</div>
+											<div className="flex flex-col sm:flex-row sm:items-start gap-2">
+												<Label className="text-sm font-medium text-foreground sm:w-1/3 shrink-0">
+													Max Duration
+												</Label>
+												<p className="text-sm text-muted-foreground sm:flex-1">
+													{formData?.co_maxDurationFormatted}
+												</p>
+											</div>
 										</div>
 									</div>
+								</TabsContent>
 
-									<div className="flex items-start gap-2">
-										<Building2 className="w-4 h-4 text-foreground mt-[2px] flex-shrink-0" />
-										<span className="text-muted-foreground">|</span>
-										<div className="leading-none space-y-2">
-											<label className="text-sm font-medium text-foreground">
-												Library Name
-											</label>
-											<p className="text-sm text-muted-foreground leading-4">
-												{formData?.co_library}
-											</p>
+								<TabsContent value="location">
+									<div className="rounded-lg p-6 shadow-sm border border-border">
+										<h3 className="font-medium text-foreground text-base mb-3">
+											Location & Details
+										</h3>
+
+										<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+											<div className="flex items-start gap-2">
+												<GraduationCap className="w-5 h-5 text-foreground mt-[2px] flex-shrink-0" />
+												<span className="text-muted-foreground">|</span>
+												<div className="leading-none space-y-2">
+													<label className="text-sm font-medium text-foreground">
+														School Name
+													</label>
+													<p className="text-sm text-muted-foreground leading-4">
+														{formData?.co_school}
+													</p>
+												</div>
+											</div>
+
+											<div className="flex items-start gap-2">
+												<Building2 className="w-5 h-5 text-foreground mt-[2px] flex-shrink-0" />
+												<span className="text-muted-foreground">|</span>
+												<div className="leading-none space-y-2">
+													<label className="text-sm font-medium text-foreground">
+														Library Name
+													</label>
+													<p className="text-sm text-muted-foreground leading-4">
+														{formData?.co_library}
+													</p>
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
 
-								<div className="flex gap-3 mt-6 justify-end border-t  pt-4">
-									<Button
-										onClick={() => setAiModalOpen(true)}
-										className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700  shadow-sm text-sm h-9 shimmer"
-									>
-										<Sparkles className="w-4 h-4 mr-1" />
-										AI Assistant
-									</Button>
-									{userDetails &&
-										["USR-2", "USR-3", "USR-4"].includes(
-											userDetails?.us_level
-										) && (
+										<div className="flex gap-3 mt-6 justify-end border-t pt-4">
 											<Button
-												onClick={() =>
-													router.push(
-														`/resources/computer/register?type=edit&id=${id}`
-													)
-												}
-												variant="outline"
-												className="hover:bg-secondary bg-transparent text-sm h-9"
+												onClick={() => setAiModalOpen(true)}
+												className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 shadow-sm text-sm h-9 shimmer"
 											>
-												<FiEdit3 className="w-3 h-3 mr-1" />
-												Edit
+												<Sparkles className="w-5 h-5 mr-1" />
+												AI Assistant
 											</Button>
-										)}
-								</div>
-							</div>
+											{userDetails &&
+												["USR-2", "USR-3", "USR-4"].includes(
+													userDetails?.us_level,
+												) && (
+													<Button
+														onClick={() =>
+															router.push(
+																`/resources/computer/register?type=edit&id=${id}`,
+															)
+														}
+														variant="outline"
+														className="hover:bg-secondary bg-transparent text-sm h-9"
+													>
+														<FiEdit3 className="w-3 h-3 mr-1" />
+														Edit
+													</Button>
+												)}
+										</div>
+									</div>
+								</TabsContent>
+							</Tabs>
 						</div>
 					</div>
 				</div>

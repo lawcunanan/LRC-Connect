@@ -125,7 +125,9 @@ export default function CoursesPage() {
 
 					<main className="flex-1 overflow-auto p-6 pt-24">
 						<div className="mb-8 animate-fade-in">
-							<h1 className="font-semibold text-foreground text-xl">Courses</h1>
+							<h1 className="font-semibold text-foreground text-2xl mb-1">
+								Courses
+							</h1>
 							<p className="text-muted-foreground text-base">
 								Manage academic courses and curriculum offerings
 							</p>
@@ -135,9 +137,9 @@ export default function CoursesPage() {
 							<Card className="bg-card border-border transition-colors duration-300 h-fit">
 								<CardContent className="p-6">
 									<div className="flex items-start justify-between mb-4">
-										<h2 className="font-semibold text-foreground text-base leading-none">
+										<h3 className="text-foreground font-semibold text-xl mb-1">
 											Senior High School
-										</h2>
+										</h3>
 										<Button
 											onClick={() =>
 												openActionModal("track", "add", null, null, null, null)
@@ -155,8 +157,7 @@ export default function CoursesPage() {
 											value={searchSHS}
 											onChange={(e) => setSearchSHS(e.target.value)}
 											placeholder="Search tracks..."
-											className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-											
+											className="pl-10 pr-24 h-9 bg-background border border-border text-foreground rounded-md shadow-sm"
 										/>
 									</div>
 
@@ -177,7 +178,7 @@ export default function CoursesPage() {
 																asChild
 																onClick={(e) => e.stopPropagation()}
 															>
-																<FiMoreVertical className="w-3.5 h-3.5 text-muted-foreground" />
+																<FiMoreVertical className="w-4 h-4 text-muted-foreground" />
 															</DropdownMenuTrigger>
 															<DropdownMenuContent align="end" className="w-40">
 																<DropdownMenuItem
@@ -276,7 +277,7 @@ export default function CoursesPage() {
 																			className="p-1 hover:bg-accent rounded transition-colors"
 																			title="More actions"
 																		>
-																			<FiMoreVertical className="w-3 h-3 text-muted-foreground" />
+																			<FiMoreVertical className="w-4 h-4 text-muted-foreground" />
 																		</button>
 																	</DropdownMenuTrigger>
 																	<DropdownMenuContent
@@ -353,9 +354,9 @@ export default function CoursesPage() {
 							<Card className="bg-card border-border transition-colors duration-300 h-fit">
 								<CardContent className="p-6">
 									<div className="flex items-start justify-between mb-4">
-										<h2 className="font-semibold text-foreground text-base leading-none">
+										<h3 className="text-foreground font-semibold text-xl mb-1">
 											College Courses
-										</h2>
+										</h3>
 										<Button
 											onClick={() =>
 												openActionModal(
@@ -380,7 +381,7 @@ export default function CoursesPage() {
 											value={searchCollege}
 											onChange={(e) => setSearchCollege(e.target.value)}
 											placeholder="Search institute..."
-											className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
+											className="pl-10 pr-24 h-9 bg-background border border-border text-foreground rounded-md shadow-sm text-sm"
 										/>
 									</div>
 
@@ -401,7 +402,7 @@ export default function CoursesPage() {
 																asChild
 																onClick={(e) => e.stopPropagation()}
 															>
-																<FiMoreVertical className="w-3.5 h-3.5 text-muted-foreground" />
+																<FiMoreVertical className="w-4 h-4 text-muted-foreground" />
 															</DropdownMenuTrigger>
 															<DropdownMenuContent align="end" className="w-40">
 																<DropdownMenuItem
@@ -500,7 +501,7 @@ export default function CoursesPage() {
 																			className="p-1 hover:bg-accent rounded transition-colors"
 																			title="More actions"
 																		>
-																			<FiMoreVertical className="w-3 h-3 text-muted-foreground" />
+																			<FiMoreVertical className="w-4 h-4 text-muted-foreground" />
 																		</button>
 																	</DropdownMenuTrigger>
 																	<DropdownMenuContent

@@ -8,6 +8,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+	SelectGroup,
+	SelectLabel,
+} from "@/components/ui/select";
 
 import {
 	FiFileText,
@@ -149,7 +158,7 @@ export default function AuditPage() {
 				pageLimit,
 				pageCursors,
 				setPageCursors,
-				currentPage
+				currentPage,
 			);
 		}
 
@@ -296,8 +305,8 @@ export default function AuditPage() {
 
 	const renderTableContent = () => {
 		return (
-			<table className="w-full">
-				<thead className="bg-muted/30">
+			<table className="w-full border border-border">
+				<thead className="bg-muted">
 					<tr className="border-b border-border">
 						{[
 							"Timestamp",
@@ -313,7 +322,7 @@ export default function AuditPage() {
 						].map((header) => (
 							<th
 								key={header}
-								className="text-left py-4 px-6 font-semibold text-foreground text-sm"
+								className="text-center py-4 px-6 font-semibold text-foreground text-sm"
 							>
 								{header}
 							</th>
@@ -325,41 +334,40 @@ export default function AuditPage() {
 					{auditData?.map((audit, index) => (
 						<tr
 							key={index}
-							className={`border-b border-border hover:bg-accent/30 transition-colors `}
+							className={`border-b border-border hover:bg-accent/30 transition-colors ${
+								index % 2 === 0 ? "bg-background" : "bg-muted/10"
+							}`}
 						>
-							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[150px]">
+							<td className="py-4 px-6 text-center text-foreground text-sm min-w-[250px]">
 								{audit?.au_createdAtFormatted}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[120px]">
+							<td className="py-4 px-6 text-center text-foreground text-sm min-w-[120px]">
 								{audit?.au_schoolId}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[100px]">
+							<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 								{audit?.au_userType}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[180px]">
+							<td className="py-4 px-6 text-center text-foreground text-sm min-w-[250px]">
 								{audit?.au_fullname}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[150px]">
+							<td className="py-4 px-6 text-center text-foreground text-sm min-w-[350px]">
 								{audit?.au_library}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[130px]">
+							<td className="py-4 px-6 text-center text-foreground text-sm min-w-[130px]">
 								{audit?.au_actionType}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[350px] max-w-[600px]">
+							<td className="py-4 px-6 text-center text-foreground text-sm min-w-[350px] max-w-[600px]">
 								{audit?.au_description}
 							</td>
-							<td className="py-4 px-6 text-left text-sm min-w-[80px]">
-								<Badge
-									className={getStatusColor(audit?.au_status)}
-									
-								>
+							<td className="py-4 px-6 text-center text-foreground text-sm min-w-[80px]">
+								<Badge className={getStatusColor(audit?.au_status)}>
 									{audit?.au_status}
 								</Badge>
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[120px]">
+							<td className="py-4 px-6 text-center text-foreground text-sm min-w-[120px]">
 								{audit?.au_ipAddress}
 							</td>
-							<td className="py-4 px-6 text-left text-foreground text-sm min-w-[140px]">
+							<td className="py-4 px-6 text-center text-foreground text-sm min-w-[250px]">
 								{audit?.au_device}
 							</td>
 						</tr>
@@ -389,7 +397,7 @@ export default function AuditPage() {
 
 						<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 							<div className="mb-8 animate-fade-in">
-								<h1 className="font-semibold text-foreground text-xl">
+								<h1 className="font-semibold text-foreground text-2xl mb-1">
 									Audit Trail
 								</h1>
 								<p className="text-muted-foreground text-base">
@@ -404,25 +412,23 @@ export default function AuditPage() {
 										{`System Activity Log (${auditData?.length} events)`}
 									</CardTitle>
 									<div className="flex items-left justify-between flex-col sm:flex-row gap-4">
-										<div className="relative flex-1 max-w-lg">
-											<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+										<div className="relative flex items-center flex-1 max-w-lg border border-input rounded-md bg-background shadow-sm">
+											<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 z-10" />
 											<Input
 												placeholder="Search user..."
 												value={searchQuery}
 												onChange={(e) => setSearchQuery(e.target.value)}
-												className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-												
+												className="pl-10 pr-4 h-9 bg-transparent border-0 focus:ring-0 text-foreground text-sm flex-1"
 											/>
-											<div className="absolute right-16 top-1/2 transform -translate-y-1/2">
-												<FiCamera
-													onClick={() => setIsScannerOpen(true)}
-													className="w-4 h-4 text-muted-foreground"
-												/>
-											</div>
+											<FiCamera
+												onClick={() => setIsScannerOpen(true)}
+												className="w-4 h-4 text-muted-foreground mx-2 cursor-pointer"
+											/>
+											<div className="h-6 w-px bg-border mx-2"></div>
 											<Button
 												onClick={() => setShowFilters(!showFilters)}
 												variant="ghost"
-												className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
+												className="h-9 px-3 border-0 text-foreground hover:bg-accent text-sm rounded-l-none"
 											>
 												Filter
 											</Button>
@@ -498,7 +504,7 @@ export default function AuditPage() {
 
 								<CardContent className="p-0 pt-8">
 									{viewMode === "table" ? (
-										<div className="overflow-x-auto">
+										<div className="overflow-x-auto rounded-lg">
 											{renderTableContent()}
 											<EmptyState data={auditData} loading={loading} />
 										</div>
@@ -539,17 +545,21 @@ export default function AuditPage() {
 													<label className="block font-medium text-foreground text-sm">
 														Select a Library
 													</label>
-													<select
+													<Select
 														value={selectedLibrary}
-														onChange={(e) => setSelectedLibrary(e.target.value)}
-														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-sm"
+														onValueChange={setSelectedLibrary}
 													>
-														{libraries.map((library) => (
-															<option key={library.id} value={library.id}>
-																{library.li_name}
-															</option>
-														))}
-													</select>
+														<SelectTrigger className="w-full h-9 text-sm">
+															<SelectValue placeholder="All Libraries" />
+														</SelectTrigger>
+														<SelectContent>
+															{libraries.map((library) => (
+																<SelectItem key={library.id} value={library.id}>
+																	{library.li_name}
+																</SelectItem>
+															))}
+														</SelectContent>
+													</Select>
 												</div>
 											)}
 
@@ -557,83 +567,97 @@ export default function AuditPage() {
 												<label className="block font-medium text-foreground text-sm">
 													Select a Student Library
 												</label>
-												<select
+												<Select
 													value={selectedStudLibrary}
-													onChange={(e) =>
-														setSelectedStudLibrary(e.target.value)
-													}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-sm"
+													onValueChange={setSelectedStudLibrary}
 												>
-													<option value="All">All Libraries</option>
-													{libraries.map((library) => (
-														<option key={library.id} value={library.id}>
-															{library.li_name}
-														</option>
-													))}
-												</select>
+													<SelectTrigger className="w-full h-9 text-sm">
+														<SelectValue placeholder="All Libraries" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="All">All Libraries</SelectItem>
+														{libraries.map((library) => (
+															<SelectItem key={library.id} value={library.id}>
+																{library.li_name}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
 											</div>
 
 											<div className="space-y-2">
 												<label className="block font-medium text-foreground text-sm">
 													Select a User Type
 												</label>
-												<select
+												<Select
 													value={selectedusType}
-													onChange={(e) => setSelectedUsType(e.target.value)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9"
-													
-													required
+													onValueChange={setSelectedUsType}
 												>
-													<option value="All">All User Types</option>
-													{userTypes.map((group, idx) => (
-														<optgroup key={idx} label={group.group}>
-															{group.options.map((option, i) => (
-																<option key={i} value={option}>
-																	{option}
-																</option>
-															))}
-														</optgroup>
-													))}
-												</select>
+													<SelectTrigger className="w-full h-9 text-sm">
+														<SelectValue placeholder="All User Types" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="All">All User Types</SelectItem>
+														{userTypes.map((group, idx) => (
+															<SelectGroup key={idx}>
+																<SelectLabel>{group.group}</SelectLabel>
+																{group.options.map((option, i) => (
+																	<SelectItem key={i} value={option}>
+																		{option}
+																	</SelectItem>
+																))}
+															</SelectGroup>
+														))}
+													</SelectContent>
+												</Select>
 											</div>
 
 											<div className="space-y-2">
 												<label className="block font-medium text-foreground text-sm">
 													Select an Action Type
 												</label>
-												<select
+												<Select
 													value={selectedAction}
-													onChange={(e) => setSelectedAction(e.target.value)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9"
-													
-													required
+													onValueChange={setSelectedAction}
 												>
-													<option value="All">All Action Types</option>
-													{actionOptions.map((group, index) => (
-														<optgroup key={index} label={group.label}>
-															{group.options.map((opt) => (
-																<option key={opt.value} value={opt.value}>
-																	{opt.label}
-																</option>
-															))}
-														</optgroup>
-													))}
-												</select>
+													<SelectTrigger className="w-full h-9 text-sm">
+														<SelectValue placeholder="All Action Types" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="All">
+															All Action Types
+														</SelectItem>
+														{actionOptions.map((group, index) => (
+															<SelectGroup key={index}>
+																<SelectLabel>{group.label}</SelectLabel>
+																{group.options.map((opt) => (
+																	<SelectItem key={opt.value} value={opt.value}>
+																		{opt.label}
+																	</SelectItem>
+																))}
+															</SelectGroup>
+														))}
+													</SelectContent>
+												</Select>
 											</div>
 
 											<div className="space-y-2">
 												<label className="block font-medium text-foreground  text-sm">
 													Select Severity Level Status
 												</label>
-												<select
+												<Select
 													value={selectedStatus}
-													onChange={(e) => setSelectedStatus(e.target.value)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent  text-sm"
+													onValueChange={setSelectedStatus}
 												>
-													<option value="Low">Low</option>
-													<option value="Medium">Medium</option>
-													<option value="High">High</option>
-												</select>
+													<SelectTrigger className="w-full h-9 text-sm">
+														<SelectValue placeholder="Select Status" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="Low">Low</SelectItem>
+														<SelectItem value="Medium">Medium</SelectItem>
+														<SelectItem value="High">High</SelectItem>
+													</SelectContent>
+												</Select>
 											</div>
 
 											<div className="space-y-2">

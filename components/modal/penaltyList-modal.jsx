@@ -6,6 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import EmptyState from "@/components/tags/empty";
 import { FiSearch, FiChevronDown } from "react-icons/fi";
 import { Modal } from "@/components/modal";
@@ -46,7 +53,7 @@ export function PenaltyListModal({
 
 	//FILTER
 	const [searchQuery, setSearchQuery] = useState("");
-	const [selectedType, setSelectedType] = useState("");
+	const [selectedType, setSelectedType] = useState("all");
 
 	const handleSelectAll = (checked) => {
 		if (checked) {
@@ -125,7 +132,7 @@ export function PenaltyListModal({
 			>
 				<div className="flex flex-col h-full max-h-[90vh]">
 					<div className="flex items-center flex-1 px-6 pt-6">
-						<div className="relative flex-1 max-w-lg">
+						<div className="relative flex-1 max-w-lg border border-border rounded-md">
 							<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 
 							<Input
@@ -135,20 +142,21 @@ export function PenaltyListModal({
 								className="pl-10 pr-28 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
 							/>
 
-							<div className="absolute right-0 top-0 h-full flex items-center pr-2">
+							<div className="absolute right-0 top-0 h-full flex items-center">
 								<div className="relative">
-									<select
-										value={selectedType}
-										onChange={(e) => setSelectedType(e.target.value)}
-										className="h-full pl-2 pr-6 text-xs rounded-l-none border-l border-border focus:outline-none bg-background appearance-none text-sm"
-									>
-										<option disabled>Filter</option>
-										<option value="">All Resource Types</option>
-										<option value="Material">Material</option>
-										<option value="Discussion Room">Discussion Room</option>
-										<option value="Computer">Computer</option>
-									</select>
-									<FiChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-muted-foreground w-4 h-4" />
+									<Select value={selectedType} onValueChange={setSelectedType}>
+										<SelectTrigger className="h-full rounded-l-none focus:outline-none border-0 border-l border-border">
+											<SelectValue />
+										</SelectTrigger>
+										<SelectContent>
+											<SelectItem value="all">All Resource Types</SelectItem>
+											<SelectItem value="Material">Material</SelectItem>
+											<SelectItem value="Discussion Room">
+												Discussion Room
+											</SelectItem>
+											<SelectItem value="Computer">Computer</SelectItem>
+										</SelectContent>
+									</Select>
 								</div>
 							</div>
 						</div>
@@ -291,13 +299,13 @@ const PenaltyTable = ({
 
 	return (
 		<div className="flex-1 overflow-auto border border-border rounded-lg">
-			<table className="w-full">
-				<thead className="bg-muted/30 sticky top-0">
+			<table className="w-full border border-border">
+				<thead className="bg-muted">
 					<tr className="border-b border-border">
 						{columns.map((col, idx) => (
 							<th
 								key={idx}
-								className="text-left py-4 px-6 font-semibold text-foreground text-sm"
+								className="text-center py-4 px-6 font-semibold text-foreground text-sm"
 							>
 								{col === "Check Box" ? (
 									<Checkbox
@@ -326,7 +334,10 @@ const PenaltyTable = ({
 								switch (col) {
 									case "Check Box":
 										return (
-											<td key={colIndex} className="py-4 px-6 text-sm">
+											<td
+												key={colIndex}
+												className="py-4 px-6 text-center text-foreground text-sm"
+											>
 												<Checkbox
 													checked={selectedPenalties.includes(report?.id)}
 													onCheckedChange={(checked) =>
@@ -339,7 +350,7 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 min-w-[150px] text-sm"
+												className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]"
 											>
 												<p className="font-medium text-foreground text-sm">
 													{report.tr_qr}
@@ -353,7 +364,7 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 min-w-[400px] text-sm"
+												className="py-4 px-6 text-center text-foreground text-sm min-w-[400px]"
 											>
 												{renderResource(report, true)}
 											</td>
@@ -374,7 +385,7 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 min-w-[200px] text-sm"
+												className="py-4 px-6 text-center text-foreground text-sm min-w-[200px]"
 											>
 												{renderPatron(report?.tr_personnel, true) ||
 													"No personnel assigned."}
@@ -384,7 +395,7 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 min-w-[250px] text-sm"
+												className="py-4 px-6 text-center text-foreground text-sm min-w-[250px]"
 											>
 												{renderSchedule(report)}
 											</td>
@@ -393,7 +404,7 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 min-w-[350px] text-sm"
+												className="py-4 px-6 text-center text-foreground text-sm min-w-[350px]"
 											>
 												<ul className="list-disc pl-4">
 													{report?.re_remarks.map((remark, i) => (
@@ -406,7 +417,7 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 min-w-[200px] text-sm text-foreground"
+												className="py-4 px-6 text-center text-foreground text-sm min-w-[200px]"
 											>
 												{report?.re_instruction || "No instruction provided."}
 											</td>
@@ -415,7 +426,7 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 min-w-[150px] text-sm text-foreground"
+												className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]"
 											>
 												{report?.re_deadline || "No deadline."}
 											</td>
@@ -425,14 +436,14 @@ const PenaltyTable = ({
 										return (
 											<td
 												key={colIndex}
-												className="py-4 px-6 text-sm  min-w-[150px] text-foreground"
+												className="py-3 px-4 text-sm  min-w-[150px] text-foreground border-r border-border"
 											>
 												{report?.re_dateSettled || report?.tr_dateWaived || "—"}
 											</td>
 										);
 									case "Actions":
 										return (
-											<td key={colIndex} className="py-4 px-6 text-sm">
+											<td key={colIndex} className="py-3 px-4 text-sm">
 												<Button
 													onClick={() => handleActionClick(report)}
 													variant="outline"

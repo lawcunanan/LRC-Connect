@@ -5,6 +5,13 @@ import { useRouter, usePathname } from "next/navigation";
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import EmptyState from "@/components/tags/empty";
 import {
 	FiArrowLeft,
@@ -124,7 +131,7 @@ export default function BranchPage() {
 				pageLimit,
 				pageCursors,
 				setPageCursors,
-				currentPage
+				currentPage,
 			);
 		}
 	}, [
@@ -151,7 +158,7 @@ export default function BranchPage() {
 				setShelves,
 				setBranch,
 				null,
-				Alert
+				Alert,
 			);
 		}
 	}, [userDetails]);
@@ -162,15 +169,14 @@ export default function BranchPage() {
 			<main className="pt-28 pb-6 px-6 sm:px-6 md:px-16 lg:px-[100px] xl:px-[150px]">
 				<button
 					onClick={() => router.back()}
-					className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit mb-6 animate-fade-in text-xs"
-					
+					className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit mb-6 animate-fade-in text-sm"
 				>
 					<FiArrowLeft className="w-4 h-4" />
 					Back to Previous page
 				</button>
 
 				<div className="mb-8 animate-slide-up w-fit">
-					<h1 className="font-semibold text-foreground text-xl">
+					<h1 className="font-semibold text-foreground text-2xl mb-1">
 						Branches Resources
 					</h1>
 					<p className="text-muted-foreground text-base">
@@ -180,14 +186,13 @@ export default function BranchPage() {
 
 				<div className="mb-8 animate-slide-up-delay-1">
 					<div className="flex items-center justify-between mb-4 gap-6">
-						<div className="relative flex items-center flex-1 max-w-lg">
+						<div className="relative flex items-center flex-1 max-w-lg border border-input rounded-md bg-background shadow-sm">
 							<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 							<Input
 								placeholder="Search material..."
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
-								className="pl-10 pr-28 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-								
+								className="pl-10 pr-28 h-9 bg-transparent border-0 focus:ring-0 text-foreground rounded-md shadow-sm text-sm"
 							/>
 
 							<div className="absolute right-0 top-0 h-full flex items-center gap-2 pr-2">
@@ -196,10 +201,11 @@ export default function BranchPage() {
 									onClick={() => setIsScannerOpen(true)}
 								/>
 
+								<div className="h-6 w-px bg-border mx-2"></div>
 								<Button
 									onClick={() => setShowFilters(!showFilters)}
 									variant="ghost"
-									className="h-8 px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
+									className="h-8 px-3 border-0 text-foreground hover:bg-accent rounded-l-none text-sm"
 								>
 									Filter
 								</Button>
@@ -264,11 +270,11 @@ export default function BranchPage() {
 						selectedBranch !== "All" ||
 						selectedFormat !== "All") && (
 						<div className="flex items-center gap-2 mb-4">
-							<span className="text-muted-foreground text-xs">
+							<span className="text-muted-foreground text-sm">
 								Active Filters:
 							</span>
 							{selectedBranch !== "All" && (
-								<span className="px-2 py-1 bg-primary-custom/10 text-primary rounded flex items-center gap-1 text-xs">
+								<span className="px-2 py-1 bg-primary-custom/10 text-primary rounded flex items-center gap-1 text-sm">
 									Branch:{" "}
 									{branch.find((branch) => branch.id === selectedBranch)
 										?.li_name || "Unknown"}
@@ -279,7 +285,7 @@ export default function BranchPage() {
 								</span>
 							)}
 							{selectedFormat !== "All" && (
-								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
+								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 									Format: {selectedFormat || "Unknown"}
 									<FiX
 										className="w-3 h-3 cursor-pointer"
@@ -288,7 +294,7 @@ export default function BranchPage() {
 								</span>
 							)}
 							{selectedType !== "All" && (
-								<span className="px-2 py-1 bg-primary-custom/10 text-primary rounded flex items-center gap-1 text-xs">
+								<span className="px-2 py-1 bg-primary-custom/10 text-primary rounded flex items-center gap-1 text-sm">
 									Type:{" "}
 									{materialTypes.find((type) => type.id === selectedType)
 										?.mt_name || "Unknown"}
@@ -299,10 +305,10 @@ export default function BranchPage() {
 								</span>
 							)}
 							{selectedCategory !== "All" && (
-								<span className="px-2 py-1 bg-primary-custom/10 text-primary rounded flex items-center gap-1 text-xs">
+								<span className="px-2 py-1 bg-primary-custom/10 text-primary rounded flex items-center gap-1 text-sm">
 									Category:{" "}
 									{categories.find(
-										(category) => category.id === selectedCategory
+										(category) => category.id === selectedCategory,
 									)?.ca_name || "Unknown"}
 									<FiX
 										className="w-3 h-3 cursor-pointer"
@@ -311,7 +317,7 @@ export default function BranchPage() {
 								</span>
 							)}
 							{selectedShelf !== "All" && (
-								<span className="px-2 py-1 bg-primary-custom/10 text-primary rounded flex items-center gap-1 text-xs">
+								<span className="px-2 py-1 bg-primary-custom/10 text-primary rounded flex items-center gap-1 text-sm">
 									Shelf:{" "}
 									{shelves.find((shelf) => shelf.id === selectedShelf)
 										?.sh_name || "Unknown"}
@@ -322,13 +328,13 @@ export default function BranchPage() {
 								</span>
 							)}
 							{selectedStatus !== "All" && (
-								<span className="px-2 py-1 bg-primary-custom/10 text-primary rounded flex items-center gap-1 text-xs">
+								<span className="px-2 py-1 bg-primary-custom/10 text-primary rounded flex items-center gap-1 text-sm">
 									Status: {selectedStatus}
 								</span>
 							)}
 
 							{copyrightYearStart !== "" && (
-								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
+								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 									Year Start: {copyrightYearStart}{" "}
 									<FiX
 										className="w-3 h-3 cursor-pointer"
@@ -338,7 +344,7 @@ export default function BranchPage() {
 							)}
 
 							{copyrightYearEnd !== "" && (
-								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
+								<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 									Year End: {copyrightYearEnd}{" "}
 									<FiX
 										className="w-3 h-3 cursor-pointer"
@@ -407,7 +413,6 @@ export default function BranchPage() {
 															}))
 														}
 														className="h-9 bg-card text-foreground border-border"
-														
 													/>
 												</div>
 
@@ -425,7 +430,6 @@ export default function BranchPage() {
 															}))
 														}
 														className="h-9 bg-card text-foreground border-border"
-														
 													/>
 												</div>
 
@@ -443,7 +447,6 @@ export default function BranchPage() {
 															}))
 														}
 														className="h-9 bg-card text-foreground border-border"
-														
 													/>
 												</div>
 
@@ -461,7 +464,6 @@ export default function BranchPage() {
 															}))
 														}
 														className="h-9 bg-card text-foreground border-border"
-														
 													/>
 												</div>
 
@@ -479,7 +481,6 @@ export default function BranchPage() {
 															}))
 														}
 														className="h-9 bg-card text-foreground border-border"
-														
 													/>
 												</div>
 
@@ -497,7 +498,6 @@ export default function BranchPage() {
 															}))
 														}
 														className="h-9 bg-card text-foreground border-border"
-														
 													/>
 												</div>
 
@@ -541,104 +541,130 @@ export default function BranchPage() {
 										<label className="block font-medium text-foreground text-sm">
 											Select a Library Campus
 										</label>
-										<select
+										<Select
 											value={selectedBranch}
-											onChange={(e) => setSelectedBranch(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+											onValueChange={setSelectedBranch}
 										>
-											<option value="All">All Campuses</option>
-											{branch.map((branch, index) => (
-												<option key={index} value={branch.id}>
-													{branch.li_name}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Library Campus" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">All Campuses</SelectItem>
+												{branch.map((branch, index) => (
+													<SelectItem key={index} value={branch.id}>
+														{branch.li_name}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-sm">
 											Select a Material Format
 										</label>
-										<select
+										<Select
 											value={selectedFormat}
-											onChange={(e) => setSelectedFormat(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+											onValueChange={setSelectedFormat}
 										>
-											<option value="All">All Material Formats</option>
-											{["Hard Copy", "Soft Copy", "Audio Copy"].map(
-												(format, index) => (
-													<option key={index} value={format}>
-														{format}
-													</option>
-												)
-											)}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Material Format" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">
+													All Material Formats
+												</SelectItem>
+												{["Hard Copy", "Soft Copy", "Audio Copy"].map(
+													(format, index) => (
+														<SelectItem key={index} value={format}>
+															{format}
+														</SelectItem>
+													),
+												)}
+											</SelectContent>
+										</Select>
 									</div>
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-sm">
 											Select a Material Type
 										</label>
-										<select
+										<Select
 											value={selectedType}
-											onChange={(e) => setSelectedType(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+											onValueChange={setSelectedType}
 										>
-											<option value="All">All Material Types</option>
-											{materialTypes.map((type, index) => (
-												<option key={index} value={type.id}>
-													{type.mt_name}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Material Type" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">All Material Types</SelectItem>
+												{materialTypes.map((type, index) => (
+													<SelectItem key={index} value={type.id}>
+														{type.mt_name}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-sm">
 											Select a Category
 										</label>
-										<select
+										<Select
 											value={selectedCategory}
-											onChange={(e) => setSelectedCategory(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+											onValueChange={setSelectedCategory}
 										>
-											<option value="All">All Categories</option>
-											{categories.map((category, index) => (
-												<option key={index} value={category.id}>
-													{category.ca_name}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Category" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">All Categories</SelectItem>
+												{categories.map((category, index) => (
+													<SelectItem key={index} value={category.id}>
+														{category.ca_name}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-sm">
 											Select a Shelf
 										</label>
-										<select
+										<Select
 											value={selectedShelf}
-											onChange={(e) => setSelectedShelf(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+											onValueChange={setSelectedShelf}
 										>
-											<option value="All">All Shelves</option>
-											{shelves.map((shelf, index) => (
-												<option key={index} value={shelf.id}>
-													{shelf.sh_name}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Shelf" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">All Shelves</SelectItem>
+												{shelves.map((shelf, index) => (
+													<SelectItem key={index} value={shelf.id}>
+														{shelf.sh_name}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-sm">
 											Select a Status
 										</label>
-										<select
+										<Select
 											value={selectedStatus}
-											onChange={(e) => setSelectedStatus(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+											onValueChange={setSelectedStatus}
 										>
-											{statuses.map((status) => (
-												<option key={status} value={status}>
-													{status}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="text-sm">
+												<SelectValue placeholder="Select a Status" />
+											</SelectTrigger>
+											<SelectContent>
+												{statuses.map((status) => (
+													<SelectItem key={status} value={status}>
+														{status}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>{" "}
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-sm">
@@ -653,7 +679,6 @@ export default function BranchPage() {
 														setCopyrightYearStart(e.target.value)
 													}
 													className="h-9 bg-card text-foreground border-border"
-													
 													type="number"
 													min="1900"
 													max="2030"
@@ -665,7 +690,6 @@ export default function BranchPage() {
 													value={copyrightYearEnd}
 													onChange={(e) => setCopyrightYearEnd(e.target.value)}
 													className="h-9 bg-card text-foreground border-border"
-													
 													type="number"
 													min="1900"
 													max="2030"
@@ -734,8 +758,8 @@ export default function BranchPage() {
 										return (
 											<div key={index}>
 												<div className="flex items-start gap-6 mb-4">
-													<div className="flex flex-wrap items-center gap-2">
-														<h3 className="font-semibold text-foreground text-base">
+													<div className="flex flex-wrap items-center gap-2 max-w-3xl">
+														<h3 className="font-semibold text-foreground text-xl">
 															{branch}
 														</h3>
 														<span className="text-muted-foreground text-sm">
@@ -754,7 +778,7 @@ export default function BranchPage() {
 												{renderMaterials(materials, true, true, router)}
 											</div>
 										);
-									}
+									},
 								)}
 							</div>
 						)}

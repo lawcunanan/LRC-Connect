@@ -6,17 +6,17 @@ import { Header } from "@/components/header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { Sidebar } from "@/components/sidebar";
 import { Badge } from "@/components/ui/badge";
 import EmptyState from "@/components/tags/empty";
-import {
-	FiSearch,
-	FiGrid,
-	FiList,
-	FiChevronDown,
-	FiPlus,
-	FiCamera,
-} from "react-icons/fi";
+import { FiSearch, FiGrid, FiList, FiPlus, FiCamera } from "react-icons/fi";
 
 import { useUserAuth } from "@/contexts/UserContextAuth";
 import { useAlertActions } from "@/contexts/AlertContext";
@@ -80,10 +80,10 @@ export default function discussionResourcesPage() {
 				<div className="flex-1 flex flex-col overflow-hidden">
 					<Header />
 
-					<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
+					<main className="flex-1 overflow-auto p-6 pt-24 ">
 						<div className="flex items-left justify-between mb-8 animate-slide-up flex-col sm:flex-row gap-4">
 							<div className="w-fit">
-								<h1 className="font-semibold text-foreground text-xl">
+								<h1 className="font-semibold text-foreground text-2xl mb-1">
 									Discussion Room Resources
 								</h1>
 								<p className="text-muted-foreground text-base">
@@ -109,13 +109,13 @@ export default function discussionResourcesPage() {
 
 						<div className="mb-8 animate-slide-up-delay-1">
 							<div className="flex items-center justify-between mb-4 gap-6">
-								<div className="relative flex items-center flex-1 max-w-lg">
+								<div className="relative flex items-center flex-1 max-w-lg border border-input rounded-md bg-background shadow-sm">
 									<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 									<Input
 										placeholder="Search discussions..."
 										value={searchQuery}
 										onChange={(e) => setSearchQuery(e.target.value)}
-										className="pl-10 pr-32 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
+										className="pl-10 pr-32 h-9 bg-transparent border-0 focus:ring-0 text-foreground rounded-md shadow-sm text-sm"
 									/>
 
 									<div className="absolute right-0 top-0 h-full flex items-center gap-2 pr-2">
@@ -125,19 +125,19 @@ export default function discussionResourcesPage() {
 											title="Scan QR / Barcode"
 										/>
 
-										<div className="relative">
-											<select
-												value={selectedStatus}
-												onChange={(e) => setSelectedStatus(e.target.value)}
-												className="h-full pl-2 pr-6 text-xs rounded-l-none border-l border-border focus:outline-none bg-background appearance-none text-sm"
-											>
-												<option disabled>Filter</option>
-												<option value="Active">Active</option>
-												<option value="Inactive">Inactive</option>
-											</select>
-
-											<FiChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-muted-foreground w-4 h-4" />
-										</div>
+										<div className="h-6 w-px bg-border mx-2"></div>
+										<Select
+											value={selectedStatus}
+											onValueChange={(value) => setSelectedStatus(value)}
+										>
+											<SelectTrigger className="h-8 px-3 border-0 text-foreground hover:bg-accent rounded-l-none text-sm w-auto">
+												<SelectValue placeholder="Filter" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="Active">Active</SelectItem>
+												<SelectItem value="Inactive">Inactive</SelectItem>
+											</SelectContent>
+										</Select>
 									</div>
 								</div>
 
@@ -177,7 +177,12 @@ export default function discussionResourcesPage() {
 									{discussionData.map((discussion, index) => (
 										<Card
 											key={index}
-											className="bg-card border-none shadow-sm transition-colors duration-300 hover:shadow-md rounded-lg h-fit"
+											className="bg-card border-none shadow-sm transition-colors duration-300 hover:shadow-md rounded-lg h-fit cursor-pointer"
+											onClick={() =>
+												router.push(
+													`/resources/discussion/details?id=${discussion.id}`,
+												)
+											}
 										>
 											<CardContent className="flex gap-4 p-4">
 												<img
@@ -188,7 +193,7 @@ export default function discussionResourcesPage() {
 
 												<div className="flex-1 min-w-0 space-y-2">
 													<div>
-														<h4 className="font-medium text-foreground text-base">
+														<h4 className="font-medium text-foreground text-base mb-1">
 															{discussion.dr_name}
 														</h4>
 														<p className="text-muted-foreground text-sm">
@@ -214,11 +219,6 @@ export default function discussionResourcesPage() {
 														variant="link"
 														size="sm"
 														className="text-primary-custom hover:text-secondary-custom text-sm p-0"
-														onClick={() =>
-															router.push(
-																`/resources/discussion/details?id=${discussion.id}`,
-															)
-														}
 													>
 														View details
 													</Button>
@@ -233,7 +233,7 @@ export default function discussionResourcesPage() {
 								<Card className="bg-card border-border transition-colors duration-300 animate-slide-up">
 									<CardContent className="p-0 overflow-x-auto">
 										<table className="w-full">
-											<thead className="bg-muted/30">
+											<thead className="bg-muted">
 												<tr className="border-b border-border">
 													{[
 														"Cover",
@@ -243,11 +243,10 @@ export default function discussionResourcesPage() {
 														"Min & Max Duration",
 														"Equipment",
 														"Description",
-														"Action",
 													].map((header) => (
 														<th
 															key={header}
-															className="text-left py-4 px-6 font-semibold text-foreground text-sm"
+															className="text-center py-4 px-6 font-semibold text-foreground text-sm"
 														>
 															{header}
 														</th>
@@ -258,23 +257,28 @@ export default function discussionResourcesPage() {
 												{discussionData.map((discussion, index) => (
 													<tr
 														key={index}
-														className={`border-b border-border hover:bg-accent/30 transition-colors ${
+														className={`cursor-pointer border-b border-border hover:bg-accent/30 transition-colors ${
 															index % 2 === 0 ? "bg-background" : "bg-muted/10"
 														}`}
+														onClick={() =>
+															router.push(
+																`/resources/discussion/details?id=${discussion.id}`,
+															)
+														}
 													>
-														<td className="py-4 px-6  w-28  min-w-[180px] text-sm">
+														<td className="py-4 px-6 text-center w-28  min-w-[180px] text-sm">
 															<img
 																src={
 																	discussion.dr_photoURL || "/placeholder.svg"
 																}
 																alt="computer"
-																className={`h-28 w-28 object-cover rounded-lg bg-gray-100 flex-shrink-0 `}
+																className={`h-20 w-28 object-cover rounded-lg bg-gray-100 flex-shrink-0 `}
 															/>
 														</td>
-														<td className="py-4 px-6 text-foreground  font-medium  text-sm min-w-[250px]">
+														<td className="py-4 px-6 text-center text-foreground  font-medium  text-sm min-w-[250px]">
 															{discussion.dr_name}
 														</td>
-														<td className="py-4 px-6 min-w-[150px] text-sm">
+														<td className="py-4 px-6 text-center min-w-[150px] text-sm">
 															<Badge
 																className={`${getStatusColor(
 																	discussion.dr_status,
@@ -283,36 +287,21 @@ export default function discussionResourcesPage() {
 																{discussion.dr_status}
 															</Badge>
 														</td>
-														<td className="py-4 px-6 text-foreground text-sm min-w-[150px]">
+														<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 															{discussion.dr_capacity}
 														</td>
 
-														<td className="py-4 px-6 text-foreground text-sm min-w-[150px]">
+														<td className="py-4 px-6 text-center text-foreground text-sm min-w-[250px]">
 															{discussion.dr_minDurationFormatted} -{" "}
 															{discussion.dr_maxDurationFormatted}
 														</td>
-														<td className="py-4 px-6 text-foreground text-sm min-w-[150px]">
+														<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 															{discussion.dr_equipment}
 														</td>
-														<td className="py-4 px-6 text-foreground text-sm min-w-[350px]">
+														<td className="py-4 px-6 text-center text-foreground text-sm min-w-[350px]">
 															<div className="line-clamp-3">
 																{discussion.dr_description}{" "}
 															</div>
-														</td>
-
-														<td className="py-4 px-6 text-sm">
-															<Button
-																variant="link"
-																size="sm"
-																className="text-primary-custom hover:text-secondary-custom text-sm p-0"
-																onClick={() =>
-																	router.push(
-																		`/resources/discussion/details?id=${discussion.id}`,
-																	)
-																}
-															>
-																View details
-															</Button>
 														</td>
 													</tr>
 												))}

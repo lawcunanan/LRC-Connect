@@ -6,6 +6,13 @@ import { Header } from "@/components/header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { FiImage, FiArrowLeft, FiUpload } from "react-icons/fi";
 
 import { useUserAuth } from "@/contexts/UserContextAuth";
@@ -95,7 +102,7 @@ export default function RegisterAccount() {
 				selectedCourseID,
 				filterCoursesData,
 				setSubCoursesData,
-				Alert
+				Alert,
 			);
 		} else {
 			setSubCoursesData([]);
@@ -140,7 +147,7 @@ export default function RegisterAccount() {
 					<div className="mb-6 animate-fade-in">
 						<button
 							onClick={() => router.back()}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 						>
 							<FiArrowLeft className="w-4 h-4" />
 							Back to Previous page
@@ -148,7 +155,7 @@ export default function RegisterAccount() {
 					</div>
 
 					<div className="mb-8 animate-slide-up">
-						<h1 className="font-semibold text-foreground text-xl">
+						<h1 className="font-semibold text-foreground text-2xl mb-1">
 							Register Account
 						</h1>
 						<p className="text-muted-foreground text-base">
@@ -161,9 +168,9 @@ export default function RegisterAccount() {
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-slide-up-delay-1">
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardContent className="p-6">
-									<h2 className="font-semibold text-foreground text-base mb-[5px]">
+									<h3 className="text-foreground font-semibold text-xl mb-1">
 										Account Information
-									</h2>
+									</h3>
 									<p className="text-muted-foreground text-sm mb-4">
 										Complete the form below to add a new user account.
 									</p>
@@ -174,45 +181,45 @@ export default function RegisterAccount() {
 												<label className="block text-foreground font-medium mb-2 text-sm">
 													User Type
 												</label>
-												<select
+												<Select
 													name="us_type"
 													value={formData?.us_type || ""}
-													onChange={(e) => handleChange(e, setFormData)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9"
-													
+													onValueChange={(value) =>
+														setFormData((prev) => ({ ...prev, us_type: value }))
+													}
 													required
 												>
-													<option value="">Select User Type</option>
-													{type && type === "patron" && (
-														<optgroup label="Patrons">
-															<option value="Student">Student</option>
-															<option value="Faculty">Faculty</option>
-															<option value="Administrator">
-																Administrator
-															</option>
-														</optgroup>
-													)}{" "}
-													{type && type === "personnel" && (
-														<>
-															<optgroup label="Assistants">
-																<option value="Student Assistant">
+													<SelectTrigger className="w-full h-9">
+														<SelectValue placeholder="Select User Type" />
+													</SelectTrigger>
+													<SelectContent>
+														{type && type === "patron" && (
+															<>
+																<SelectItem value="Student">Student</SelectItem>
+																<SelectItem value="Faculty">Faculty</SelectItem>
+																<SelectItem value="Administrator">
+																	Administrator
+																</SelectItem>
+															</>
+														)}
+														{type && type === "personnel" && (
+															<>
+																<SelectItem value="Student Assistant">
 																	Student Assistant
-																</option>
-																<option value="Administrative Assistant">
+																</SelectItem>
+																<SelectItem value="Administrative Assistant">
 																	Administrative Assistant
-																</option>
-															</optgroup>
-															<optgroup label="Librarians">
-																<option value="Chief Librarian">
+																</SelectItem>
+																<SelectItem value="Chief Librarian">
 																	Chief Librarian
-																</option>
-																<option value="Head Librarian">
+																</SelectItem>
+																<SelectItem value="Head Librarian">
 																	Head Librarian
-																</option>
-															</optgroup>
-														</>
-													)}
-												</select>
+																</SelectItem>
+															</>
+														)}
+													</SelectContent>
+												</Select>
 											</div>
 											<div>
 												<label className="block text-foreground font-medium mb-2 text-sm">
@@ -224,7 +231,6 @@ export default function RegisterAccount() {
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="Enter school ID"
 													className="bg-card border-border text-foreground h-9"
-													
 													required
 												/>
 											</div>
@@ -240,7 +246,6 @@ export default function RegisterAccount() {
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="Enter your first name"
 												className="bg-card border-border text-foreground h-9"
-												
 												required
 											/>
 										</div>
@@ -255,7 +260,6 @@ export default function RegisterAccount() {
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="Enter your middle name"
 												className="bg-card border-border text-foreground h-9"
-												
 											/>
 										</div>
 
@@ -269,7 +273,6 @@ export default function RegisterAccount() {
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="Enter your last name"
 												className="bg-card border-border text-foreground h-9"
-												
 												required
 											/>
 										</div>
@@ -284,7 +287,6 @@ export default function RegisterAccount() {
 												onChange={(e) => handleChange(e, setFormData)}
 												placeholder="Jr., Sr., III (optional)"
 												className="bg-card border-border text-foreground h-9"
-												
 											/>
 										</div>
 
@@ -293,17 +295,22 @@ export default function RegisterAccount() {
 												<label className="block text-foreground font-medium mb-2 text-sm">
 													Sex
 												</label>
-												<select
+												<Select
 													name="us_sex"
 													value={formData?.us_sex || ""}
-													onChange={(e) => handleChange(e, setFormData)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
+													onValueChange={(value) =>
+														setFormData((prev) => ({ ...prev, us_sex: value }))
+													}
 													required
 												>
-													<option value="">Select</option>
-													<option value="Male">Male</option>
-													<option value="Female">Female</option>
-												</select>
+													<SelectTrigger className="w-full h-9">
+														<SelectValue placeholder="Select" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="Male">Male</SelectItem>
+														<SelectItem value="Female">Female</SelectItem>
+													</SelectContent>
+												</Select>
 											</div>
 											<div>
 												<label className="block text-foreground font-medium mb-2 text-sm">
@@ -315,13 +322,12 @@ export default function RegisterAccount() {
 													value={formData?.us_birthday || ""}
 													onChange={(e) => handleChange(e, setFormData)}
 													className="bg-card border-border text-foreground h-9"
-													
 													required
 													max={
 														new Date(
 															new Date().setFullYear(
-																new Date().getFullYear() - 16
-															)
+																new Date().getFullYear() - 16,
+															),
 														)
 															.toISOString()
 															.split("T")[0]
@@ -341,7 +347,6 @@ export default function RegisterAccount() {
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="+639xxxxxxxxx"
 													className="bg-card border-border text-foreground h-9"
-													
 													pattern="^\+639\d{9}$"
 													title="Enter a valid Philippine mobile number (e.g., +639123456789)"
 												/>
@@ -357,7 +362,6 @@ export default function RegisterAccount() {
 													onChange={(e) => handleChange(e, setFormData)}
 													placeholder="@gmail.com"
 													className="bg-card border-border text-foreground h-9"
-													
 													required
 												/>
 											</div>
@@ -365,9 +369,9 @@ export default function RegisterAccount() {
 
 										{type && type == "patron" && (
 											<div className="pt-8">
-												<h2 className="font-semibold text-foreground text-base mb-[5px]">
+												<h3 className="text-foreground font-semibold text-xl mb-1">
 													Academic
-												</h2>
+												</h3>
 												<p className="text-muted-foreground text-sm mb-4">
 													Provide province, municipality, and barangay for
 													accurate location data.
@@ -379,49 +383,67 @@ export default function RegisterAccount() {
 															<label className="block text-foreground font-medium mb-2 text-sm">
 																Courses
 															</label>
-															<select
+															<Select
 																name="us_courses"
 																value={formData?.us_courses}
-																onChange={(e) => handleChange(e, setFormData)}
-																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
+																onValueChange={(value) =>
+																	setFormData((prev) => ({
+																		...prev,
+																		us_courses: value,
+																	}))
+																}
 																required
 															>
-																<option value="All">Select Courses</option>
-																{["Senior High School", "College Courses"].map(
-																	(courses) => (
-																		<option key={courses} value={courses}>
+																<SelectTrigger className="w-full h-9">
+																	<SelectValue placeholder="Select Courses" />
+																</SelectTrigger>
+																<SelectContent>
+																	{[
+																		"Senior High School",
+																		"College Courses",
+																	].map((courses) => (
+																		<SelectItem key={courses} value={courses}>
 																			{courses}
-																		</option>
-																	)
-																)}
-															</select>
+																		</SelectItem>
+																	))}
+																</SelectContent>
+															</Select>
 														</div>
 														<div>
 															<label className="block text-foreground font-medium mb-2 text-sm">
 																Year
 															</label>
-															<select
+															<Select
 																name="us_year"
 																value={formData?.us_year}
-																onChange={(e) => handleChange(e, setFormData)}
-																className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
+																onValueChange={(value) =>
+																	setFormData((prev) => ({
+																		...prev,
+																		us_year: value,
+																	}))
+																}
 																required
 															>
-																<option value="">Select Year</option>
-																{(formData?.us_courses === "Senior High School"
-																	? ["Grade 11", "Grade 12"]
-																	: [
-																			"1st Year",
-																			"2nd Year",
-																			"3rd Year",
-																			"4th Year",
-																	  ]
-																).map((ye, index) => (
-																	<option key={index} value={ye}>
-																		{ye}
-																	</option>
-																))}
-															</select>
+																<SelectTrigger className="w-full h-9">
+																	<SelectValue placeholder="Select Year" />
+																</SelectTrigger>
+																<SelectContent>
+																	{(formData?.us_courses ===
+																	"Senior High School"
+																		? ["Grade 11", "Grade 12"]
+																		: [
+																				"1st Year",
+																				"2nd Year",
+																				"3rd Year",
+																				"4th Year",
+																			]
+																	).map((ye, index) => (
+																		<SelectItem key={index} value={ye}>
+																			{ye}
+																		</SelectItem>
+																	))}
+																</SelectContent>
+															</Select>
 														</div>
 													</div>
 
@@ -433,19 +455,12 @@ export default function RegisterAccount() {
 																		? "Tracks"
 																		: "Institute"}
 																</label>
-																<select
-																	name={
-																		formData.us_courses === "Senior High School"
-																			? "us_tracks"
-																			: "us_institute"
-																	}
+																<Select
 																	value={selectedCourseID || ""}
-																	onChange={(e) => {
-																		const selectedID = e.target.value;
-
+																	onValueChange={(selectedID) => {
 																		const selectedCourse =
 																			filterCoursesData.find(
-																				(course) => course.id === selectedID
+																				(course) => course.id === selectedID,
 																			);
 
 																		setFormData((prev) => ({
@@ -459,21 +474,29 @@ export default function RegisterAccount() {
 
 																		setSelectedCourseID(selectedID);
 																	}}
-																	className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
 																	required
 																>
-																	<option value="">
-																		{formData.us_courses ===
-																		"Senior High School"
-																			? "Select Track"
-																			: "Select Institute"}
-																	</option>
-																	{filterCoursesData.map((course) => (
-																		<option key={course.id} value={course.id}>
-																			{course.cs_title}
-																		</option>
-																	))}
-																</select>
+																	<SelectTrigger className="w-full h-9">
+																		<SelectValue
+																			placeholder={
+																				formData.us_courses ===
+																				"Senior High School"
+																					? "Select Track"
+																					: "Select Institute"
+																			}
+																		/>
+																	</SelectTrigger>
+																	<SelectContent>
+																		{filterCoursesData.map((course) => (
+																			<SelectItem
+																				key={course.id}
+																				value={course.id}
+																			>
+																				{course.cs_title}
+																			</SelectItem>
+																		))}
+																	</SelectContent>
+																</Select>
 															</div>
 
 															<div>
@@ -482,33 +505,44 @@ export default function RegisterAccount() {
 																		? "Strand"
 																		: "Program"}
 																</label>
-																<select
-																	name={
-																		formData.us_courses === "Senior High School"
-																			? "us_strand"
-																			: "us_program"
-																	}
+																<Select
 																	value={
 																		formData.us_courses === "Senior High School"
 																			? formData?.us_strand
 																			: formData?.us_program
 																	}
-																	onChange={(e) => handleChange(e, setFormData)}
-																	className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
+																	onValueChange={(value) =>
+																		setFormData((prev) => ({
+																			...prev,
+																			[formData.us_courses ===
+																			"Senior High School"
+																				? "us_strand"
+																				: "us_program"]: value,
+																		}))
+																	}
 																	required
 																>
-																	<option value="">
-																		{formData.us_courses ===
-																		"Senior High School"
-																			? "Select Strand"
-																			: "Select Program"}
-																	</option>
-																	{subCoursesData.map((subCourses, index) => (
-																		<option key={index} value={subCourses}>
-																			{subCourses}
-																		</option>
-																	))}
-																</select>
+																	<SelectTrigger className="w-full h-9">
+																		<SelectValue
+																			placeholder={
+																				formData.us_courses ===
+																				"Senior High School"
+																					? "Select Strand"
+																					: "Select Program"
+																			}
+																		/>
+																	</SelectTrigger>
+																	<SelectContent>
+																		{subCoursesData.map((subCourses, index) => (
+																			<SelectItem
+																				key={index}
+																				value={subCourses}
+																			>
+																				{subCourses}
+																			</SelectItem>
+																		))}
+																	</SelectContent>
+																</Select>
 															</div>
 														</div>
 													)}
@@ -523,7 +557,6 @@ export default function RegisterAccount() {
 															onChange={(e) => handleChange(e, setFormData)}
 															placeholder="Enter section"
 															className="bg-card border-border text-foreground h-9"
-															
 															required
 														/>
 													</div>
@@ -536,8 +569,7 @@ export default function RegisterAccount() {
 
 							<Card className="bg-card border-border transition-colors duration-300 h-fit">
 								<CardHeader className="pb-4">
-									<CardTitle className="text-foreground flex items-center gap-2 text-base">
-										<FiImage className="w-4 h-4" />
+									<CardTitle className="text-foreground flex items-center gap-2 text-xl">
 										Profile Picture
 									</CardTitle>
 									<p className="text-muted-foreground text-sm">
@@ -579,9 +611,9 @@ export default function RegisterAccount() {
 									</label>
 
 									<div className="mb-6">
-										<h2 className="font-semibold text-foreground text-base mb-[5px]">
+										<h3 className="text-foreground font-semibold text-xl mb-1">
 											Address
-										</h2>
+										</h3>
 										<p className="text-muted-foreground text-sm mb-4">
 											Provide province, municipality, and barangay for accurate
 											location data.
@@ -599,54 +631,83 @@ export default function RegisterAccount() {
 														onChange={(e) => handleChange(e, setFormData)}
 														placeholder="e.g., 123 Sampaguita St."
 														className="bg-card border-border text-foreground h-9"
-														
 														required
 													/>
 												</div>
 
-												<select
-													name="us_province"
+												<Select
 													value={formData?.us_province}
-													onChange={(e) => handleChange(e, setFormData)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2  h-9 mt-6 text-sm"
+													onValueChange={(value) =>
+														setFormData((prev) => ({
+															...prev,
+															us_province: value,
+														}))
+													}
 													required
 												>
-													<option value="">Select Province</option>
-													{provinces.map((p) => (
-														<option key={p.code} value={`${p.code}|${p.name}`}>
-															{p.name}
-														</option>
-													))}
-												</select>
+													<SelectTrigger className="w-full h-9 mt-6">
+														<SelectValue placeholder="Select Province" />
+													</SelectTrigger>
+													<SelectContent>
+														{provinces.map((p) => (
+															<SelectItem
+																key={p.code}
+																value={`${p.code}|${p.name}`}
+															>
+																{p.name}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
 
-												<select
-													name="us_municipal"
+												<Select
 													value={formData?.us_municipal}
-													onChange={(e) => handleChange(e, setFormData)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
+													onValueChange={(value) =>
+														setFormData((prev) => ({
+															...prev,
+															us_municipal: value,
+														}))
+													}
 													required
 												>
-													<option value="">Select Municipality</option>
-													{municipals.map((m) => (
-														<option key={m.code} value={`${m.code}|${m.name}`}>
-															{m.name}
-														</option>
-													))}
-												</select>
-												<select
-													name="us_barangay"
+													<SelectTrigger className="w-full h-9">
+														<SelectValue placeholder="Select Municipality" />
+													</SelectTrigger>
+													<SelectContent>
+														{municipals.map((m) => (
+															<SelectItem
+																key={m.code}
+																value={`${m.code}|${m.name}`}
+															>
+																{m.name}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
+												<Select
 													value={formData?.us_barangay}
-													onChange={(e) => handleChange(e, setFormData)}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 text-sm"
+													onValueChange={(value) =>
+														setFormData((prev) => ({
+															...prev,
+															us_barangay: value,
+														}))
+													}
 													required
 												>
-													<option value="">Select Barangay</option>
-													{barangays.map((b) => (
-														<option key={b.code} value={`${b.code}|${b.name}`}>
-															{b.name}
-														</option>
-													))}
-												</select>
+													<SelectTrigger className="w-full h-9">
+														<SelectValue placeholder="Select Barangay" />
+													</SelectTrigger>
+													<SelectContent>
+														{barangays.map((b) => (
+															<SelectItem
+																key={b.code}
+																value={`${b.code}|${b.name}`}
+															>
+																{b.name}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
 											</div>
 										</div>
 									</div>

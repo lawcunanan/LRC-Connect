@@ -66,19 +66,19 @@ export default function MaterialDetailsPage() {
 				<div className="mb-6 animate-fade-in">
 					<button
 						onClick={() => router.back()}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 					>
 						<FiArrowLeft className="w-4 h-4" />
-						Back to Previous pages
+						Back to Previous page
 					</button>
 				</div>
 
-				<div className="mb-8 animate-slide-up">
-					<h1 className="font-semibold text-foreground text-xl">
+				<div className="w-fit mb-8 animate-slide-up">
+					<h1 className="font-semibold text-foreground text-2xl mb-1">
 						Material Details
 					</h1>
-					<p className="text-muted-foreground text-sm">
-						View detailed information about this library material
+					<p className="text-muted-foreground text-base">
+						View and manage detailed information about this library material
 					</p>
 				</div>
 
@@ -254,9 +254,9 @@ export default function MaterialDetailsPage() {
 							<TabsContent value="holdings">
 								<div className="space-y-4">
 									{formData?.ma_holdings?.length > 0 && (
-										<div className="overflow-x-auto ">
-											<table className="w-full">
-												<thead className="bg-muted/60">
+										<div className="overflow-x-auto rounded-lg">
+											<table className="w-full border border-border">
+												<thead className="bg-muted">
 													<tr className="border-b border-border">
 														<th className="text-left py-3 px-3 text-foreground font-medium text-sm">
 															Accession No.
@@ -280,27 +280,27 @@ export default function MaterialDetailsPage() {
 															className="border-b border-border/50 hover:bg-muted/20 transition-colors duration-200 cursor-pointer"
 														>
 															<td
-																className="py-3 px-3 text-foreground text-sm"
+																className="py-3 px-3 text-center text-foreground text-sm border-r border-border"
 																style={{ width: "30%" }}
 															>
 																{holding.ho_access}
 															</td>
 
 															<td
-																className="py-3 px-3 text-foreground text-sm"
+																className="py-3 px-3 text-center text-foreground text-sm border-r border-border"
 																style={{ width: "30%" }}
 															>
 																{holding.ho_volume}
 															</td>
 
 															<td
-																className="py-3 px-3 text-foreground text-sm"
+																className="py-3 px-3 text-center text-foreground text-sm border-r border-border"
 																style={{ width: "20%" }}
 															>
 																{holding.ho_copy}
 															</td>
 															<td
-																className="py-3 px-3 text-foreground text-sm"
+																className="py-3 px-3 text-center text-foreground text-sm"
 																style={{ width: "20%" }}
 															>
 																{holding.ho_status}
@@ -318,7 +318,7 @@ export default function MaterialDetailsPage() {
 								<div className="rounded-lg p-6 shadow-sm border border-border">
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 										<div className="flex items-start gap-2">
-											<GraduationCap className="w-4 h-4 text-foreground mt-[2px] flex-shrink-0" />
+											<GraduationCap className="w-5 h-5 text-foreground mt-[2px] flex-shrink-0" />
 											<span className="text-muted-foreground">|</span>
 											<div className="leading-none space-y-2">
 												<label className="text-sm font-medium text-foreground">
@@ -331,7 +331,7 @@ export default function MaterialDetailsPage() {
 										</div>
 
 										<div className="flex items-start gap-2">
-											<Building2 className="w-4 h-4 text-foreground mt-[2px] flex-shrink-0" />
+											<Building2 className="w-5 h-5 text-foreground mt-[2px] flex-shrink-0" />
 											<span className="text-muted-foreground">|</span>
 											<div className="leading-none space-y-2">
 												<label className="text-sm font-medium text-foreground">
@@ -344,7 +344,7 @@ export default function MaterialDetailsPage() {
 										</div>
 
 										<div className="flex items-start gap-2">
-											<FiTag className="w-4 h-4 text-foreground mt-[2px] flex-shrink-0" />
+											<FiTag className="w-5 h-5 text-foreground mt-[2px] flex-shrink-0" />
 											<span className="text-muted-foreground">|</span>
 											<div className="leading-none space-y-2">
 												<label className="text-sm font-medium text-foreground">
@@ -357,7 +357,7 @@ export default function MaterialDetailsPage() {
 										</div>
 
 										<div className="flex items-start gap-2">
-											<FiMapPin className="w-4 h-4 text-foreground mt-[2px] flex-shrink-0" />
+											<FiMapPin className="w-5 h-5 text-foreground mt-[2px] flex-shrink-0" />
 											<span className="text-muted-foreground">|</span>
 											<div className="leading-none space-y-2">
 												<label className="text-sm font-medium text-foreground">
@@ -370,7 +370,7 @@ export default function MaterialDetailsPage() {
 										</div>
 
 										<div className="flex items-start gap-2">
-											<FiBookOpen className="w-4 h-4 text-foreground mt-[2px] flex-shrink-0" />
+											<FiBookOpen className="w-5 h-5 text-foreground mt-[2px] flex-shrink-0" />
 											<span className="text-muted-foreground">|</span>
 											<div className="leading-none space-y-2">
 												<label className="text-sm font-medium text-foreground">
@@ -383,7 +383,7 @@ export default function MaterialDetailsPage() {
 										</div>
 
 										<div className="flex items-start gap-2">
-											<FiGrid className="w-4 h-4 text-foreground mt-[2px] flex-shrink-0" />
+											<FiGrid className="w-5 h-5 text-foreground mt-[2px] flex-shrink-0" />
 											<span className="text-muted-foreground">|</span>
 											<div className="leading-none space-y-2">
 												<label className="text-sm font-medium text-foreground">
@@ -396,7 +396,7 @@ export default function MaterialDetailsPage() {
 										</div>
 
 										<div className="flex items-start gap-2">
-											<FiPackage className="w-4 h-4 text-foreground mt-[2px] flex-shrink-0" />
+											<FiPackage className="w-5 h-5 text-foreground mt-[2px] flex-shrink-0" />
 											<span className="text-muted-foreground">|</span>
 											<div className="leading-none space-y-2">
 												<label className="text-sm font-medium text-foreground">

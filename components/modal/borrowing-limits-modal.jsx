@@ -48,7 +48,7 @@ export default function BorrowingLimitsModal({
 				userDetails?.uid,
 				limits,
 				setBtnLoading,
-				Alert
+				Alert,
 			);
 			onClose();
 		}
@@ -71,7 +71,7 @@ export default function BorrowingLimitsModal({
 				aria-modal="true"
 				className="relative z-10 w-full max-w-md mx-4 max-h-[90vh] flex flex-col bg-card border border-border rounded-xl shadow-lg overflow-hidden transform animate-slide-up scale-100 transition-transform duration-300"
 			>
-				<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 bg-primary-custom text-white rounded-t-lg">
+				<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 border-b border-border">
 					<CardTitle className="text-base font-semibold flex items-center gap-2">
 						<FiBookOpen className="w-5 h-5" />
 						Borrowing Limits
@@ -79,7 +79,7 @@ export default function BorrowingLimitsModal({
 					<button
 						onClick={onClose}
 						aria-label="Close modal"
-						className="p-2 hover:bg-white/20 rounded-md transition-colors"
+						className="p-2 hover:bg-accent rounded-md transition-colors"
 					>
 						<FiX className="w-4 h-4" />
 					</button>
@@ -128,7 +128,6 @@ export default function BorrowingLimitsModal({
 															handleInputChange(key, field, e.target.value)
 														}
 														className="h-9 bg-background border border-border text-foreground"
-														
 														placeholder={field === "maxItems" ? "5" : "14"}
 													/>
 												</div>

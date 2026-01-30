@@ -8,13 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-import {
-	FiTrash2,
-	FiArrowLeft,
-	FiImage,
-	FiUpload,
-	FiMapPin,
-} from "react-icons/fi";
+import { FiTrash2, FiArrowLeft, FiUpload, FiMapPin } from "react-icons/fi";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 import { useUserAuth } from "@/contexts/UserContextAuth";
@@ -75,7 +69,7 @@ export default function LibraryDetails() {
 				<div className="mb-6 animate-fade-in">
 					<button
 						onClick={() => router.back()}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 					>
 						<FiArrowLeft className="w-4 h-4" />
 						Back to Previous page
@@ -83,7 +77,7 @@ export default function LibraryDetails() {
 				</div>
 
 				<div className="w-fit mb-8 animate-slide-up">
-					<h1 className="font-semibold text-foreground text-xl">
+					<h1 className="font-semibold text-foreground text-2xl mb-1">
 						Library Details
 					</h1>
 					<p className="text-muted-foreground text-base">
@@ -94,9 +88,9 @@ export default function LibraryDetails() {
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-slide-up-delay-2">
 					<Card className="h-fit bg-card border-border transition-colors duration-300">
 						<CardContent className="p-6">
-							<h2 className="font-semibold text-foreground text-base mb-[5px]">
+							<h3 className="text-foreground font-semibold text-xl mb-1">
 								Library Information
-							</h2>
+							</h3>
 							<p className="text-muted-foreground text-sm mb-4">
 								Here’s everything you need to know about this library.
 							</p>
@@ -246,8 +240,7 @@ export default function LibraryDetails() {
 
 					<Card className="bg-card border-border transition-colors duration-300 h-fit">
 						<CardHeader className="pb-4">
-							<CardTitle className="text-foreground flex items-center gap-2 text-base">
-								<FiImage className="w-4 h-4" />
+							<CardTitle className="text-foreground flex items-center gap-2 text-xl ">
 								Cover Image
 							</CardTitle>
 							<p className="text-muted-foreground text-sm">

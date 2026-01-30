@@ -403,7 +403,7 @@ export default function MaterialTypeRegistrationPage() {
 					<div className="grid grid-cols-1 lg:grid-cols-3 gap-20">
 						<div className="lg:col-span-2 space-y-8">
 							<div className="animate-slide-up">
-								<h1 className="font-semibold text-foreground text-xl">
+								<h1 className="font-semibold text-foreground text-2xl mb-1">
 									Register New Materdial Type
 								</h1>
 								<p className="text-muted-foreground text-base">
@@ -449,7 +449,7 @@ export default function MaterialTypeRegistrationPage() {
 
 										<div>
 											<div className="mb-2">
-												<h2 className="font-semibold text-foreground text-base mb-[5px]">
+												<h2 className="text-foreground font-semibold text-xl mb-1">
 													Add Section
 												</h2>
 												<p className="text-muted-foreground text-sm">
@@ -509,7 +509,7 @@ export default function MaterialTypeRegistrationPage() {
 											id={section.mt_section + sectionIndex}
 										>
 											<CardHeader className="pb-4">
-												<CardTitle className="text-foreground text-base flex items-start justify-between leading-none">
+												<CardTitle className="text-foreground font-semibold text-xl mb-1 flex items-start justify-between leading-none">
 													<span>
 														{section.mt_section.charAt(0).toUpperCase() +
 															section.mt_section.slice(1)}
@@ -728,14 +728,8 @@ export default function MaterialTypeRegistrationPage() {
 						<div className="space-y-8">
 							<Card className="bg-card border-border shadow-sm animate-slide-up-delay-2">
 								<CardHeader className="pb-4">
-									<CardTitle className="text-foreground flex items-center justify-between text-base">
+									<CardTitle className="text-foreground font-semibold text-xl mb-1">
 										List of Registered Material Types
-										<Badge
-											variant="secondary"
-											className="bg-muted text-foreground text-xs"
-										>
-											{registeredMaterialTypes.length}
-										</Badge>
 									</CardTitle>
 									<p className="text-muted-foreground text-sm">
 										These material types will be used during material
@@ -786,7 +780,7 @@ export default function MaterialTypeRegistrationPage() {
 
 							<Card className="bg-card border-border shadow-sm animate-slide-up-delay-3">
 								<CardHeader className="pb-4">
-									<CardTitle className="text-foreground text-base">
+									<CardTitle className="text-foreground font-semibold text-xl mb-1">
 										Material Category Registration
 									</CardTitle>
 									<p className="text-muted-foreground text-sm">

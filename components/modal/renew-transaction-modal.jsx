@@ -2,7 +2,6 @@
 import { Timestamp } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { Modal } from "@/components/modal";
 import { Button } from "@/components/ui/button";
 import {
 	FiCalendar,
@@ -10,7 +9,9 @@ import {
 	FiChevronRight,
 	FiClock,
 } from "react-icons/fi";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { FiX } from "react-icons/fi";
+import { Modal } from "@/components/modal";
 
 import Lottie from "lottie-react";
 import successAnimation from "@/public/lottie/success.json";
@@ -60,8 +61,8 @@ export function RenewTransactionModal({
 			new Date(
 				initialSelectedDate.getFullYear(),
 				initialSelectedDate.getMonth(),
-				1
-			)
+				1,
+			),
 		);
 	}, [isOpen, transaction?.tr_dateDue]);
 
@@ -79,7 +80,7 @@ export function RenewTransactionModal({
 
 	const handleDateSelect = (day) => {
 		setSelectedDate(
-			new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day)
+			new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day),
 		);
 	};
 
@@ -93,8 +94,8 @@ export function RenewTransactionModal({
 			transaction?.tr_dateDue instanceof Timestamp
 				? transaction.tr_dateDue.toDate()
 				: transaction?.tr_dateDue
-				? new Date(transaction.tr_dateDue)
-				: null;
+					? new Date(transaction.tr_dateDue)
+					: null;
 
 		for (let i = 0; i < firstDay; i++) {
 			days.push(<div key={`empty-${i}`} className="w-10 h-10"></div>);
@@ -104,7 +105,7 @@ export function RenewTransactionModal({
 			const currentDay = new Date(
 				currentMonth.getFullYear(),
 				currentMonth.getMonth(),
-				day
+				day,
 			);
 
 			const isSelected =
@@ -125,12 +126,12 @@ export function RenewTransactionModal({
 						isSelected
 							? "bg-primary-custom text-white shadow-md scale-105"
 							: isPastDate
-							? "text-muted-foreground/40 cursor-not-allowed"
-							: "text-foreground hover:bg-accent hover:scale-105 hover:shadow-sm"
+								? "text-muted-foreground/40 cursor-not-allowed"
+								: "text-foreground hover:bg-accent hover:scale-105 hover:shadow-sm"
 					}`}
 				>
 					{day}
-				</button>
+				</button>,
 			);
 		}
 
@@ -189,7 +190,7 @@ export function RenewTransactionModal({
 				setBtnLoading,
 				Alert,
 				router,
-				setSuccess
+				setSuccess,
 			);
 		}
 	};
@@ -204,7 +205,7 @@ export function RenewTransactionModal({
 			setLoading,
 			Alert,
 			null,
-			null
+			null,
 		);
 
 		return () => {
@@ -249,10 +250,7 @@ export function RenewTransactionModal({
 								<div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
 									<div className="flex items-center gap-3 flex-1">
 										<div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-											<FiCalendar
-												className=" text-white"
-												
-											/>
+											<FiCalendar className=" text-white" />
 										</div>
 										<div>
 											<p className="text-muted-foreground text-sm">
@@ -266,15 +264,10 @@ export function RenewTransactionModal({
 
 									<div className="flex items-center gap-3 flex-1">
 										<div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
-											<FiCalendar
-												className="text-white"
-												
-											/>
+											<FiCalendar className="text-white" />
 										</div>
 										<div>
-											<p className="text-muted-foreground text-sm">
-												Due Date
-											</p>
+											<p className="text-muted-foreground text-sm">Due Date</p>
 											<h4 className="font-medium text-foreground text-base">
 												{formatDisplayDate(selectedDate)}
 											</h4>
@@ -283,22 +276,17 @@ export function RenewTransactionModal({
 
 									<div className="flex items-center gap-3 flex-1">
 										<div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-											<FiClock
-												className=" text-white"
-												
-											/>
+											<FiClock className=" text-white" />
 										</div>
 										<div>
-											<p className="text-muted-foreground text-sm">
-												Duration
-											</p>
+											<p className="text-muted-foreground text-sm">Duration</p>
 											<h4 className="font-medium text-foreground text-base">
 												{calculateDuration(
 													[],
 													transaction?.tr_date,
 													selectedDate,
 													null,
-													null
+													null,
 												) || "--"}
 											</h4>
 										</div>

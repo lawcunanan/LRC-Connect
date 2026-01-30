@@ -359,15 +359,15 @@ export default function ReservationPage() {
 					<div className="mb-6 animate-fade-in">
 						<button
 							onClick={() => router.back()}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit group text-xs"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit group text-sm"
 						>
 							<FiArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
 							Back to Previous page
 						</button>
 					</div>
 
-					<div className="mb-10 animate-slide-up">
-						<h1 className="font-semibold text-foreground text-xl">
+					<div className="w-fit mb-10 animate-slide-up">
+						<h1 className="font-semibold text-foreground text-2xl mb-1">
 							{libraryDetails?.li_name || "Library Name"}
 						</h1>
 						<p className="text-muted-foreground text-base">
@@ -444,7 +444,7 @@ export default function ReservationPage() {
 
 							<Card className="bg-card border-border animate-slide-up-delay-3 shadow-sm">
 								<CardHeader className="pb-2">
-									<CardTitle className="text-base leading-none">
+									<CardTitle className="text-lg leading-none">
 										Configure Reservation
 									</CardTitle>
 								</CardHeader>
@@ -621,7 +621,7 @@ export default function ReservationPage() {
 						<div className="space-y-6">
 							<Card className="bg-card border-border animate-slide-up-delay-1 shadow-sm">
 								<CardHeader className="pb-4">
-									<CardTitle className="flex items-center gap-2 text-base">
+									<CardTitle className="flex items-center gap-2 text-lg">
 										<FiInfo className="w-5 h-5 text-primary-custom" />
 										{resourceType === "Material"
 											? "Borrowing Information (Days)"
@@ -671,7 +671,7 @@ export default function ReservationPage() {
 
 							<Card className="bg-card border-border animate-slide-up-delay-2 shadow-sm">
 								<CardHeader className="pb-4">
-									<CardTitle className="flex items-center gap-2 text-base">
+									<CardTitle className="flex items-center gap-2 text-lg">
 										<FiClock className="w-5 h-5 text-primary-custom" />
 										Operating Hours
 									</CardTitle>

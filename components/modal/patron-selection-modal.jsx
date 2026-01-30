@@ -87,7 +87,7 @@ export function PatronSelectionModal({
 		>
 			<div className="p-6">
 				<div className="mb-6 space-y-4">
-					<div className="relative">
+					<div className="relative border border-border rounded-md">
 						<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 						<Input
 							placeholder="Search by name, school ID, or email..."
@@ -152,8 +152,8 @@ export function PatronSelectionModal({
 				</div>
 
 				<div className="space-y-3 overflow-x-auto">
-					<table className="w-full">
-						<thead className="bg-muted/100">
+					<table className="w-full border border-border">
+						<thead className="bg-muted">
 							<tr className="border-b border-border">
 								{[
 									<Checkbox disabled={true} />,
@@ -170,7 +170,7 @@ export function PatronSelectionModal({
 								].map((header) => (
 									<th
 										key={header}
-										className="text-left py-4 px-6 font-semibold text-foreground text-sm"
+										className="text-center py-4 px-6 font-semibold text-foreground text-sm"
 									>
 										{header}
 									</th>
@@ -186,46 +186,46 @@ export function PatronSelectionModal({
 									}`}
 									onClick={() => setSelectedPatron(patron)}
 								>
-									<td className="py-4 px-6 text-sm">
+									<td className="py-4 px-6 text-center text-foreground text-sm">
 										<Checkbox
 											checked={selectedPatron?.us_id === patron?.us_id}
 										/>
 									</td>
-									<td className="py-4 px-6 flex text-sm">
+									<td className="py-4 px-6 text-center text-foreground text-sm flex justify-center">
 										<img
 											src={patron?.us_photoURL || "/placeholder.svg"}
 											alt="avatar"
 											className="w-12 h-12 rounded-full object-cover bg-gray-100 flex-shrink-0"
 										/>
 									</td>
-									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
+									<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 										{patron?.us_schoolID}
 									</td>
-									<td className="py-4 px-6 min-w-[130px] text-sm text-foreground">
+									<td className="py-4 px-6 text-center text-foreground text-sm min-w-[130px]">
 										<Badge className={getTypeColor(patron?.us_type)}>
 											{patron?.us_type}
 										</Badge>
 									</td>
-									<td className="py-4 px-6 min-w-[200px] text-sm text-foreground font-medium">
+									<td className="py-4 px-6 text-center text-foreground text-sm min-w-[200px] font-medium">
 										{patron?.us_name}
 									</td>
 
-									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
+									<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 										{patron?.us_email}
 									</td>
-									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
+									<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 										{patron?.us_courses}
 									</td>
-									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
+									<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 										{patron?.us_year}
 									</td>
-									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
+									<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 										{patron?.us_tracks || patron?.us_institute}
 									</td>
-									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
+									<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 										{patron?.us_strand || patron?.us_program}
 									</td>
-									<td className="py-4 px-6 min-w-[150px] text-sm text-foreground">
+									<td className="py-4 px-6 text-center text-foreground text-sm min-w-[150px]">
 										{patron?.us_section}
 									</td>
 								</tr>

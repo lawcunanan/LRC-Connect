@@ -9,6 +9,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import EmptyState from "@/components/tags/empty";
 
 import {
@@ -313,7 +320,7 @@ export default function TransactionPage() {
 					<div className="mb-6 animate-fade-in">
 						<button
 							onClick={() => router.push(`/butch`)}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 						>
 							<FiArrowLeft className="w-4 h-4" />
 							Back to Previous page
@@ -321,7 +328,7 @@ export default function TransactionPage() {
 					</div>
 
 					<div className="mb-8 animate-slide-up">
-						<h1 className="font-semibold text-foreground text-xl">
+						<h1 className="font-semibold text-foreground text-2xl mb-1">
 							Transaction Management
 						</h1>
 						<p className="text-muted-foreground text-base">
@@ -332,24 +339,23 @@ export default function TransactionPage() {
 
 					<div className="mb-8 animate-slide-up-delay-1">
 						<div className="flex items-left justify-between flex-col sm:flex-row gap-4 mb-4">
-							<div className="relative flex items-center flex-1 max-w-lg">
-								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+							<div className="relative flex items-center flex-1 max-w-lg border border-input rounded-md bg-background shadow-sm">
+								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5" />
 								<Input
 									placeholder="Search transactions by QR..."
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
-									className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
+									className="pl-10 pr-4 h-9 bg-transparent border-0 focus:ring-0 text-foreground rounded-md text-sm flex-1"
 								/>
-								<div className="absolute right-16 top-1/2 transform -translate-y-1/2">
-									<FiCamera
-										onClick={() => setIsScannerOpen(true)}
-										className="w-4 h-4 text-muted-foreground"
-									/>
-								</div>
+								<FiCamera
+									onClick={() => setIsScannerOpen(true)}
+									className="h-5 text-muted-foreground mx-2 cursor-pointer"
+								/>
+								<div className="h-6 w-px bg-border mx-2"></div>
 								<Button
 									onClick={() => setShowFilters(!showFilters)}
 									variant="ghost"
-									className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
+									className="h-full px-3 text-foreground hover:bg-accent rounded-l-none text-sm mr-2"
 								>
 									Filter
 								</Button>
@@ -382,7 +388,7 @@ export default function TransactionPage() {
 											: "bg-background text-foreground hover:bg-accent shadow-sm"
 									}`}
 								>
-									<FiGrid className="w-4 h-4" />
+									<FiGrid className="h-5" />
 								</Button>
 								<Button
 									onClick={() => setViewType("table")}
@@ -394,7 +400,7 @@ export default function TransactionPage() {
 											: "bg-background text-foreground hover:bg-accent shadow-sm"
 									}`}
 								>
-									<FiList className="w-4 h-4" />
+									<FiList className="h-5" />
 								</Button>
 							</div>
 						</div>
@@ -410,11 +416,11 @@ export default function TransactionPage() {
 							showOverdueOnly ||
 							showLateOnly) && (
 							<div className="flex items-center gap-2 mb-4 flex-wrap">
-								<span className="text-muted-foreground text-xs">
+								<span className="text-muted-foreground text-sm">
 									Active Filters:
 								</span>
 								{selectedLibrary !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-sm">
 										Library:{" "}
 										{libraries.find((lib) => lib.id === selectedLibrary)
 											?.li_name || "Unknown"}
@@ -426,7 +432,7 @@ export default function TransactionPage() {
 								)}
 
 								{selectedResourceType !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-sm">
 										Resource: {selectedResourceType}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -435,7 +441,7 @@ export default function TransactionPage() {
 									</span>
 								)}
 								{selectedMaterialList !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-sm">
 										Material:{" "}
 										{materialList.find((m) => m.id === selectedMaterialList)
 											?.ma_qr || "Unknown"}
@@ -447,7 +453,7 @@ export default function TransactionPage() {
 								)}
 
 								{selectedMaterialFormat !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-sm">
 										Format: {selectedMaterialFormat}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -456,7 +462,7 @@ export default function TransactionPage() {
 									</span>
 								)}
 								{selectedMaterialType !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-sm">
 										Type:{" "}
 										{materialTypes.find((t) => t.id === selectedMaterialType)
 											?.mt_name || "Unknown"}
@@ -468,7 +474,7 @@ export default function TransactionPage() {
 								)}
 
 								{selectedMaterialCategory !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-sm">
 										Category:{" "}
 										{materialCategories.find(
 											(c) => c.id === selectedMaterialCategory,
@@ -481,7 +487,7 @@ export default function TransactionPage() {
 								)}
 
 								{selectedDiscussionRoomList !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-sm">
 										Room:{" "}
 										{discussionRoomList.find(
 											(r) => r.id === selectedDiscussionRoomList,
@@ -494,7 +500,7 @@ export default function TransactionPage() {
 								)}
 
 								{selectedComputerList !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-sm">
 										Computer:{" "}
 										{computerList.find((c) => c.id === selectedComputerList)
 											?.co_qr || "Unknown"}
@@ -505,7 +511,7 @@ export default function TransactionPage() {
 									</span>
 								)}
 								{showOverdueOnly && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-sm">
 										Overdue Only
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -515,7 +521,7 @@ export default function TransactionPage() {
 								)}
 
 								{showLateOnly && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1  text-sm">
 										Late Return Only
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -542,7 +548,7 @@ export default function TransactionPage() {
 										onClick={() => setShowFilters(false)}
 										className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white"
 									>
-										<FiX className="w-4 h-4" />
+										<FiX className="h-5" />
 									</button>
 								</div>
 
@@ -551,28 +557,32 @@ export default function TransactionPage() {
 										<label className="block font-medium text-foreground text-sm">
 											Select a Library
 										</label>
-										<select
+										<Select
 											value={selectedLibrary}
-											onChange={(e) => setSelectedLibrary(e.target.value)}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+											onValueChange={setSelectedLibrary}
 										>
-											<option value="All">All Libraries</option>
-											{libraries.map((library) => (
-												<option key={library.id} value={library.id}>
-													{library.li_name}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="w-full h-9 text-sm">
+												<SelectValue placeholder="All Libraries" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">All Libraries</SelectItem>
+												{libraries.map((library) => (
+													<SelectItem key={library.id} value={library.id}>
+														{library.li_name}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 
 									<div className="space-y-2">
 										<label className="block font-medium text-foreground text-sm">
 											Select a Resource Type
 										</label>
-										<select
+										<Select
 											value={selectedResourceType}
-											onChange={(e) => {
-												setSelectedResourceType(e.target.value);
+											onValueChange={(value) => {
+												setSelectedResourceType(value);
 												setSelectedMaterialList("All");
 												setSelectedMaterialFormat("All");
 												setSelectedMaterialType("All");
@@ -580,15 +590,19 @@ export default function TransactionPage() {
 												setSelectedDiscussionRoomList("All");
 												setSelectedComputerList("All");
 											}}
-											className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
 										>
-											<option value="All">All Resource Types</option>
-											{resourceTypes.map((type) => (
-												<option key={type} value={type}>
-													{type}
-												</option>
-											))}
-										</select>
+											<SelectTrigger className="w-full h-9 text-sm">
+												<SelectValue placeholder="All Resource Types" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">All Resource Types</SelectItem>
+												{resourceTypes.map((type) => (
+													<SelectItem key={type} value={type}>
+														{type}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
 									</div>
 
 									{selectedResourceType == "Material" && (
@@ -597,80 +611,90 @@ export default function TransactionPage() {
 												<label className="block font-medium text-foreground text-sm">
 													Select a Material
 												</label>
-												<select
+												<Select
 													value={selectedMaterialList}
-													onChange={(e) =>
-														setSelectedMaterialList(e.target.value)
-													}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+													onValueChange={setSelectedMaterialList}
 												>
-													<option value="All">All Materials</option>
-													{materialList.map((material) => (
-														<option key={material.id} value={material.id}>
-															{material.ma_qr}
-														</option>
-													))}
-												</select>
+													<SelectTrigger className="w-full h-9 text-sm">
+														<SelectValue placeholder="All Materials" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="All">All Materials</SelectItem>
+														{materialList.map((material) => (
+															<SelectItem key={material.id} value={material.id}>
+																{material.ma_qr}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
 											</div>
 
 											<div className="space-y-2">
 												<label className="block font-medium text-foreground text-sm">
 													Select a Material Format
 												</label>
-												<select
+												<Select
 													value={selectedMaterialFormat}
-													onChange={(e) =>
-														setSelectedMaterialFormat(e.target.value)
-													}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+													onValueChange={setSelectedMaterialFormat}
 												>
-													<option value="All">All Formats</option>
-													{materialFormats.map((format) => (
-														<option key={format} value={format}>
-															{format}
-														</option>
-													))}
-												</select>
+													<SelectTrigger className="w-full h-9 text-sm">
+														<SelectValue placeholder="All Formats" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="All">All Formats</SelectItem>
+														{materialFormats.map((format) => (
+															<SelectItem key={format} value={format}>
+																{format}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
 											</div>
 
 											<div className="space-y-2">
 												<label className="block font-medium text-foreground text-sm">
 													Select a Material Type
 												</label>
-												<select
+												<Select
 													value={selectedMaterialType}
-													onChange={(e) =>
-														setSelectedMaterialType(e.target.value)
-													}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+													onValueChange={setSelectedMaterialType}
 												>
-													<option value="All">All Material Types</option>
-													{materialTypes.map((type) => (
-														<option key={type.id} value={type.id}>
-															{type.mt_name}
-														</option>
-													))}
-												</select>
+													<SelectTrigger className="w-full h-9 text-sm">
+														<SelectValue placeholder="All Material Types" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="All">
+															All Material Types
+														</SelectItem>
+														{materialTypes.map((type) => (
+															<SelectItem key={type.id} value={type.id}>
+																{type.mt_name}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
 											</div>
 
 											<div className="space-y-2">
 												<label className="block font-medium text-foreground text-sm">
 													Select Category
 												</label>
-												<select
+												<Select
 													value={selectedMaterialCategory}
-													onChange={(e) =>
-														setSelectedMaterialCategory(e.target.value)
-													}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+													onValueChange={setSelectedMaterialCategory}
 												>
-													<option value="All">All Categories</option>
-													{materialCategories.map((category) => (
-														<option key={category.id} value={category.id}>
-															{category.ca_name}
-														</option>
-													))}
-												</select>
+													<SelectTrigger className="w-full h-9 text-sm">
+														<SelectValue placeholder="All Categories" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="All">All Categories</SelectItem>
+														{materialCategories.map((category) => (
+															<SelectItem key={category.id} value={category.id}>
+																{category.ca_name}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
 											</div>
 										</>
 									)}
@@ -681,20 +705,24 @@ export default function TransactionPage() {
 												<label className="block font-medium text-foreground text-sm">
 													Select a Discussion Room
 												</label>
-												<select
+												<Select
 													value={selectedDiscussionRoomList}
-													onChange={(e) =>
-														setSelectedDiscussionRoomList(e.target.value)
-													}
-													className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+													onValueChange={setSelectedDiscussionRoomList}
 												>
-													<option value="All">All Discussion Rooms</option>
-													{discussionRoomList.map((room) => (
-														<option key={room.id} value={room.id}>
-															{room.dr_qr}
-														</option>
-													))}
-												</select>
+													<SelectTrigger className="w-full h-9 text-sm">
+														<SelectValue placeholder="All Discussion Rooms" />
+													</SelectTrigger>
+													<SelectContent>
+														<SelectItem value="All">
+															All Discussion Rooms
+														</SelectItem>
+														{discussionRoomList.map((room) => (
+															<SelectItem key={room.id} value={room.id}>
+																{room.dr_qr}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
 											</div>
 										</>
 									)}
@@ -704,20 +732,22 @@ export default function TransactionPage() {
 											<label className="block font-medium text-foreground text-sm">
 												Select a Computer
 											</label>
-											<select
+											<Select
 												value={selectedComputerList}
-												onChange={(e) =>
-													setSelectedComputerList(e.target.value)
-												}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+												onValueChange={setSelectedComputerList}
 											>
-												<option value="All">All Computers</option>
-												{computerList.map((computer) => (
-													<option key={computer.id} value={computer.id}>
-														{computer.co_qr}
-													</option>
-												))}
-											</select>
+												<SelectTrigger className="w-full h-9 text-sm">
+													<SelectValue placeholder="All Computers" />
+												</SelectTrigger>
+												<SelectContent>
+													<SelectItem value="All">All Computers</SelectItem>
+													{computerList.map((computer) => (
+														<SelectItem key={computer.id} value={computer.id}>
+															{computer.co_qr}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
 										</div>
 									)}
 
@@ -834,14 +864,14 @@ export default function TransactionPage() {
 																}
 																title="View Transaction Details"
 															>
-																<ExternalLink className="w-4 h-4" />
+																<ExternalLink className="h-5" />
 															</Button>
 															{renderStatusBadge(transaction)}
 														</div>
 													</div>
 
 													<div>
-														<h5 className="font-medium text-foreground mb-4 text-base">
+														<h5 className="font-medium text-foreground mb-4 text-lg">
 															Resources Details
 														</h5>
 														{renderResource(transaction)}
@@ -849,7 +879,7 @@ export default function TransactionPage() {
 
 													{isPersonnel && (
 														<div>
-															<h5 className="font-medium text-foreground mb-4 text-base">
+															<h5 className="font-medium text-foreground mb-4 text-lg">
 																Patron Details
 															</h5>
 															{renderPatron(transaction?.tr_patron)}
@@ -857,7 +887,7 @@ export default function TransactionPage() {
 													)}
 
 													<div>
-														<h5 className="font-medium text-foreground mb-4 text-base">
+														<h5 className="font-medium text-foreground mb-4 text-lg">
 															Schedule
 														</h5>
 														{renderSchedule(transaction)}
@@ -877,8 +907,8 @@ export default function TransactionPage() {
 								{viewType === "table" && (
 									<Card className="bg-card border-border transition-colors duration-300 shadow-sm">
 										<CardContent className="p-0 overflow-x-auto">
-											<table className="w-full">
-												<thead className="bg-muted/30">
+											<table className="w-full ">
+												<thead className="bg-muted">
 													<tr className="border-b border-border">
 														{userDetails &&
 															[
@@ -908,7 +938,7 @@ export default function TransactionPage() {
 																	: "bg-muted/10"
 															}`}
 														>
-															<td className="py-4 px-6 min-w-[250px] text-sm">
+															<td className="py-4 px-6 text-left text-foreground text-sm min-w-[250px]">
 																<p className="font-medium text-foreground text-sm">
 																	{transaction?.tr_qr}
 																</p>
@@ -918,27 +948,27 @@ export default function TransactionPage() {
 																{renderStatusBadge(transaction, "left")}
 															</td>
 
-															<td className="py-4 px-6 min-w-[310px] text-sm">
+															<td className="py-4 px-6 text-left text-foreground text-sm min-w-[310px]">
 																{renderResource(transaction, true)}
 															</td>
 
 															{isPersonnel && (
-																<td className="py-4 px-6 min-w-[250px] text-sm">
+																<td className="py-4 px-6 text-left text-foreground text-sm min-w-[250px]">
 																	{renderPatron(transaction?.tr_patron, true)}
 																</td>
 															)}
 
-															<td className="py-4 px-6 min-w-[300px] text-sm">
+															<td className="py-4 px-6 text-left text-foreground text-sm min-w-[300px]">
 																{renderSchedule(transaction)}
 															</td>
 
 															{!isPersonnel && (
-																<td className="py-4 px-6 min-w-[300px] text-sm">
+																<td className="py-4 px-6 text-left text-foreground text-sm min-w-[300px]">
 																	{renderLibrary(transaction)}
 																</td>
 															)}
 
-															<td className="py-4 px-6 text-sm">
+															<td className="py-4 px-6 text-left text-foreground text-sm">
 																<div className="flex items-center gap-2">
 																	<Button
 																		variant="ghost"

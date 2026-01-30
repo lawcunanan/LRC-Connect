@@ -64,12 +64,10 @@ export default function DocumentPreviewPage({
 
 				<div className="flex items-start justify-between no-print mb-8 animate-slide-up gap-6">
 					<div>
-						<h1 className="font-semibold text-foreground text-xl">
-							Document Preview
-						</h1>
-						<p className="text-muted-foreground text-base">
+						<h1 className="font-semibold text-foreground text-2xl mb-1">
 							Ensure all data is correct before printing the official copy
-						</p>
+						</h1>
+						<p className="text-muted-foreground text-base">Document Preview</p>
 					</div>
 
 					<Button
@@ -114,7 +112,7 @@ export default function DocumentPreviewPage({
 									{activeFilters.map((filter) => (
 										<span
 											key={filter.key}
-											className="bg-primary-custom/10 text-primary-custom rounded text-xs flex items-center gap-1"
+											className="bg-primary-custom/10 text-primary-custom rounded text-sm flex items-center gap-1"
 										>
 											{filter.label}: {filter.value}
 										</span>

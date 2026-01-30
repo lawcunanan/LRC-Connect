@@ -132,7 +132,7 @@ export default function About() {
 				libraryData?.li_name,
 				openHours,
 				setBtnLoading,
-				Alert
+				Alert,
 			);
 		}
 	};
@@ -220,7 +220,7 @@ export default function About() {
 	const handleResourceToggle = async (
 		resourceKey,
 		resourceName,
-		currentStatus
+		currentStatus,
 	) => {
 		const action = currentStatus ? "deactivate" : "activate";
 		const title = `${
@@ -257,7 +257,7 @@ export default function About() {
 					resourceName,
 					newSettings,
 					setBtnLoading,
-					Alert
+					Alert,
 				);
 			}
 		}
@@ -267,7 +267,7 @@ export default function About() {
 		setIsPersonnel(
 			!["USR-1", "USR-5", "USR-6"].includes(userDetails?.us_level)
 				? true
-				: false
+				: false,
 		);
 	}, [userDetails]);
 
@@ -280,7 +280,7 @@ export default function About() {
 			setLoading,
 			Alert,
 			setResourceSettings,
-			setOpenHours
+			setOpenHours,
 		);
 		return () => {
 			if (unsubscribe) unsubscribe();
@@ -294,9 +294,9 @@ export default function About() {
 			<div className="flex-1 flex flex-col overflow-hidden">
 				<Header />
 
-				<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
+				<main className="flex-1 overflow-auto p-6 pt-24">
 					<div className="mb-8 animate-fade-in">
-						<h1 className="font-semibold text-foreground text-xl">
+						<h1 className="font-semibold text-foreground text-2xl mb-1">
 							About & Settings
 						</h1>
 						<p className="text-muted-foreground text-base">
@@ -305,28 +305,19 @@ export default function About() {
 						</p>
 					</div>
 					<div className="mb-8 animate-slide-up">
-						<div className="relative h-64 rounded-lg overflow-hidden mb-6">
+						<div className=" h-64 rounded-lg overflow-hidden mb-6">
 							<img
 								src={libraryData?.li_photoURL || "/placeholder.jpg"}
 								alt="Library"
 								className="w-full h-full object-cover"
 							/>
-							<div className="absolute inset-0 bg-black/50"></div>
-							<div className="absolute top-6 left-6">
-								<h2 className="font-semibold text-white text-lg">
-									{libraryData?.li_name || ""}
-								</h2>
-								<p className="text-white text-base">
-									{libraryData?.li_schoolname || ""}
-								</p>
-							</div>
 						</div>
 
 						<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardHeader className="!pb-4">
-									<CardTitle className="flex items-center gap-2 text-foreground text-base">
-										<FiInfo className="w-4 h-4" />
+									<CardTitle className="flex items-center gap-2 text-foreground text-lg">
+										<FiInfo className="w-5 h-5" />
 										Basic Information
 									</CardTitle>
 								</CardHeader>
@@ -348,8 +339,8 @@ export default function About() {
 
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardHeader className="!pb-4">
-									<CardTitle className="flex items-center gap-2 text-foreground text-base">
-										<FiPhone className="w-4 h-4" />
+									<CardTitle className="flex items-center gap-2 text-foreground text-lg">
+										<FiPhone className="w-5 h-5" />
 										Contact Information
 									</CardTitle>
 								</CardHeader>
@@ -371,8 +362,8 @@ export default function About() {
 
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardHeader className="!pb-4">
-									<CardTitle className="flex items-center gap-2 text-foreground text-base">
-										<FiMapPin className="w-4 h-4" />
+									<CardTitle className="flex items-center gap-2 text-foreground text-lg">
+										<FiMapPin className="w-5 h-5" />
 										Address
 									</CardTitle>
 								</CardHeader>
@@ -390,8 +381,8 @@ export default function About() {
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 						<Card className="bg-card border-border transition-colors duration-300 animate-slide-up-delay-1">
 							<CardHeader className="!pb-4">
-								<CardTitle className="flex items-center gap-2 text-foreground text-base">
-									<FiClock className="w-4 h-4" />
+								<CardTitle className="flex items-center gap-2 text-foreground text-lg">
+									<FiClock className="w-5 h-5" />
 									Operating Hours
 								</CardTitle>
 								<p className="text-muted-foreground text-sm">
@@ -417,7 +408,6 @@ export default function About() {
 															handleSetToAllChange("open", e.target.value)
 														}
 														className="bg-card border-border text-foreground h-9"
-														
 													/>
 												</div>
 												<div>
@@ -431,7 +421,6 @@ export default function About() {
 															handleSetToAllChange("close", e.target.value)
 														}
 														className="bg-card border-border text-foreground h-9 "
-														
 													/>
 												</div>
 											</div>
@@ -494,7 +483,7 @@ export default function About() {
 															handleOpenHoursChange(
 																day.key,
 																"open",
-																e.target.value
+																e.target.value,
 															)
 														}
 														readOnly={!openHours[day.key].enabled}
@@ -503,7 +492,6 @@ export default function About() {
 																? "bg-muted cursor-not-allowed"
 																: "bg-card"
 														}`}
-														
 													/>
 													<Input
 														type="time"
@@ -512,7 +500,7 @@ export default function About() {
 															handleOpenHoursChange(
 																day.key,
 																"close",
-																e.target.value
+																e.target.value,
 															)
 														}
 														readOnly={!openHours[day.key].enabled}
@@ -521,7 +509,6 @@ export default function About() {
 																? "bg-muted cursor-not-allowed"
 																: "bg-card"
 														}`}
-														
 													/>
 												</div>
 											)}
@@ -533,8 +520,8 @@ export default function About() {
 
 						<Card className="bg-card border-border h-fit transition-colors duration-300 animate-slide-up-delay-2">
 							<CardHeader className="!pb-4">
-								<CardTitle className="flex items-center gap-2 text-foreground text-base">
-									<FiSettings className="w-4 h-4" />
+								<CardTitle className="flex items-center gap-2 text-foreground text-lg">
+									<FiSettings className="w-5 h-5" />
 									Resource Settings
 								</CardTitle>
 								<p className="text-muted-foreground text-sm">
@@ -556,7 +543,7 @@ export default function About() {
 																	: `${resource.colors.disabled.bg} ${resource.colors.disabled.text}`
 															}`}
 														>
-															<IconComponent className="w-4 h-4" />
+															<IconComponent className="w-5 h-5" />
 														</div>
 														<div>
 															<p className="font-medium text-foreground text-sm">
@@ -575,7 +562,7 @@ export default function About() {
 																handleResourceToggle(
 																	resource.key,
 																	resource.name,
-																	resource.enabled
+																	resource.enabled,
 																)
 															}
 														/>

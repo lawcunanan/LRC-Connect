@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { FiImage, FiUpload, FiMapPin } from "react-icons/fi";
+import { FiUpload, FiMapPin } from "react-icons/fi";
 import { ArrowLeft } from "lucide-react";
 
 import { useUserAuth } from "@/contexts/UserContextAuth";
@@ -62,7 +62,7 @@ export default function RegisterLibrary() {
 					<div className="mb-6">
 						<button
 							onClick={() => router.back()}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 						>
 							<ArrowLeft className="w-3 h-3" />
 							Back to Library Management
@@ -70,7 +70,7 @@ export default function RegisterLibrary() {
 					</div>
 
 					<div className="mb-8 animate-slide-up">
-						<h1 className="font-semibold text-foreground text-xl">
+						<h1 className="font-semibold text-foreground text-2xl mb-1">
 							Register Library
 						</h1>
 						<p className="text-muted-foreground text-base">
@@ -83,9 +83,9 @@ export default function RegisterLibrary() {
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-14 animate-slide-up-delay-1">
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardContent className="p-6">
-									<h2 className="font-semibold text-foreground text-base mb-[5px]">
+									<h3 className="text-foreground font-semibold text-xl mb-1">
 										Library Information
-									</h2>
+									</h3>
 									<p className="text-muted-foreground text-sm mb-4">
 										Please provide complete and accurate details of the library
 										and institution to be added to the system.
@@ -227,8 +227,7 @@ export default function RegisterLibrary() {
 
 							<Card className="bg-card border-border transition-colors duration-300 h-fit">
 								<CardHeader className="pb-4">
-									<CardTitle className="text-foreground flex items-center gap-2 text-base">
-										<FiImage className="w-4 h-4" />
+									<CardTitle className="text-foreground flex items-center gap-2 text-xl">
 										Cover Image
 									</CardTitle>
 									<p className="text-muted-foreground text-sm">

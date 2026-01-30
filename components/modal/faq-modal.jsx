@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Modal } from "@/components/modal";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { FiX } from "react-icons/fi";
 
 import { handleChange } from "@/controller/custom/customFunction";
 import { LoadingSpinner } from "@/components/loading";
@@ -73,74 +74,90 @@ export function AddFaqModal({
 	if (!isOpen) return null;
 
 	return (
-		<Modal
-			isOpen={isOpen}
-			onClose={onClose}
-			title={!isEmpty ? "Update FAQ" : "Add FAQ"}
-			size="md"
-		>
-			<form onSubmit={handleSubmit}>
-				<div className="flex-1 overflow-y-auto p-6 space-y-4">
-					<p className="text-muted-foreground mb-4 text-sm">
-						Enter the question and answer for the FAQ.
-					</p>
-
-					<div className="space-y-1">
-						<Label
-							htmlFor="faq-question"
-							className="text-sm font-medium text-foreground"
-						>
-							Question
-						</Label>
-						<Input
-							id="faq-question"
-							name="fa_question"
-							value={formData.fa_question}
-							onChange={(e) => handleChange(e, setFormData)}
-							className="h-9 bg-background border-border text-foreground text-sm"
-							placeholder="e.g., How do I borrow a book?"
-							required
-						/>
-					</div>
-
-					<div className="space-y-1">
-						<Label
-							htmlFor="faq-answer"
-							className="text-sm font-medium text-foreground"
-						>
-							Answer
-						</Label>
-						<Textarea
-							id="faq-answer"
-							name="fa_answer"
-							value={formData.fa_answer}
-							onChange={(e) => handleChange(e, setFormData)}
-							className="h-24 bg-background border-border text-foreground text-sm"
-							placeholder="Provide a detailed answer here..."
-							required
-						/>
-					</div>
-				</div>
-
-				<div className="flex items-center justify-end gap-3 px-6 py-4 bg-muted/30 border-t border-border">
-					<Button
-						type="button"
-						onClick={() => onClose()}
-						variant="outline"
-						className="bg-transparent h-10 px-4 text-sm"
-					>
-						Cancel
-					</Button>
-					<Button
-						type="submit"
-						className="bg-primary-custom hover:bg-secondary-custom text-white text-sm h-10 px-4"
-						disabled={btnLoading}
-					>
-						<LoadingSpinner loading={btnLoading} />
+		<div className="fixed inset-0 z-50 flex items-center justify-center">
+			<div
+				className="fixed inset-0 bg-black/50 transition-opacity"
+				onClick={onClose}
+			/>
+			<Card className="relative bg-card border border-border rounded-lg shadow-lg w-full mx-4 max-w-lg max-h-[90vh] overflow-hidden transition-colors duration-300">
+				<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 bg-primary-custom text-white rounded-t-lg">
+					<CardTitle className="text-base font-semibold flex items-center gap-2">
 						{!isEmpty ? "Update FAQ" : "Add FAQ"}
+					</CardTitle>
+					<Button
+						variant="ghost"
+						size="sm"
+						onClick={onClose}
+						className="h-8 w-8 p-0 text-white hover:bg-white/20"
+					>
+						<FiX className="w-4 h-4" />
 					</Button>
-				</div>
-			</form>
-		</Modal>
+				</CardHeader>
+				<CardContent className="p-0">
+					<form onSubmit={handleSubmit}>
+						<div className="flex-1 overflow-y-auto p-6 space-y-4">
+							<p className="text-muted-foreground mb-4 text-sm">
+								Enter the question and answer for the FAQ.
+							</p>
+
+							<div className="space-y-1">
+								<Label
+									htmlFor="faq-question"
+									className="text-sm font-medium text-foreground"
+								>
+									Question
+								</Label>
+								<Input
+									id="faq-question"
+									name="fa_question"
+									value={formData.fa_question}
+									onChange={(e) => handleChange(e, setFormData)}
+									className="h-9 bg-background border-border text-foreground text-sm"
+									placeholder="e.g., How do I borrow a book?"
+									required
+								/>
+							</div>
+
+							<div className="space-y-1">
+								<Label
+									htmlFor="faq-answer"
+									className="text-sm font-medium text-foreground"
+								>
+									Answer
+								</Label>
+								<Textarea
+									id="faq-answer"
+									name="fa_answer"
+									value={formData.fa_answer}
+									onChange={(e) => handleChange(e, setFormData)}
+									className="h-24 bg-background border-border text-foreground text-sm"
+									placeholder="Provide a detailed answer here..."
+									required
+								/>
+							</div>
+						</div>
+
+						<div className="flex items-center justify-end gap-3 px-6 py-4 bg-muted/30 border-t border-border">
+							<Button
+								type="button"
+								onClick={() => onClose()}
+								variant="outline"
+								className="bg-transparent h-10 px-4 text-sm"
+							>
+								Cancel
+							</Button>
+							<Button
+								type="submit"
+								className="bg-primary-custom hover:bg-secondary-custom text-white text-sm h-10 px-4"
+								disabled={btnLoading}
+							>
+								<LoadingSpinner loading={btnLoading} />
+								{!isEmpty ? "Update FAQ" : "Add FAQ"}
+							</Button>
+						</div>
+					</form>
+				</CardContent>
+			</Card>
+		</div>
 	);
 }

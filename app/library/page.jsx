@@ -7,6 +7,13 @@ import { Sidebar } from "@/components/sidebar";
 import { Header } from "@/components/header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import EmptyState from "@/components/tags/empty";
 import { FiSearch, FiPlus, FiChevronDown, FiCamera } from "react-icons/fi";
 
@@ -65,9 +72,9 @@ export default function LibraryList() {
 				<div className="flex-1 flex flex-col overflow-hidden">
 					<Header />
 
-					<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
+					<main className="flex-1 overflow-auto p-6 pt-24">
 						<div className="mb-8 animate-fade-in">
-							<h1 className="font-semibold text-foreground text-xl">
+							<h1 className="font-semibold text-foreground text-2xl mb-1">
 								Library Management
 							</h1>
 							<p className="text-muted-foreground text-base">
@@ -77,35 +84,31 @@ export default function LibraryList() {
 						</div>
 
 						<div className="flex items-left justify-between flex-col sm:flex-row gap-4 mb-8 animate-slide-up">
-							<div className="relative flex items-center flex-1 max-w-lg">
-								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+							<div className="relative flex items-center flex-1 max-w-lg border border-input rounded-md bg-background shadow-sm">
+								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 z-10" />
 								<Input
 									placeholder="Search library..."
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
-									className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
+									className="pl-10 pr-4 h-9 bg-transparent border-0 focus:ring-0 text-foreground text-sm flex-1"
 								/>
-
-								<div className="absolute right-[87px] top-1/2 transform -translate-y-1/2">
-									<FiCamera
-										onClick={() => setIsScannerOpen(true)}
-										className="w-4 h-4 text-muted-foreground"
-									/>
-								</div>
-
-								<div className="absolute right-0 top-0 h-full flex items-center gap-5">
-									<select
-										value={selectedStatus}
-										onChange={(e) => setSelectedStatus(e.target.value)}
-										className="h-full pl-2 pr-6 text-xs rounded-l-none border-l border-border focus:outline-none bg-background appearance-none text-sm"
-									>
-										<option disabled>Filter</option>
-										<option value="Active">Active</option>
-										<option value="Inactive">Inactive</option>
-									</select>
-
-									<FiChevronDown className="absolute right-2 pointer-events-none text-muted-foreground w-4 h-4" />
-								</div>
+								<FiCamera
+									onClick={() => setIsScannerOpen(true)}
+									className="w-4 h-4 text-muted-foreground mx-2 cursor-pointer"
+								/>
+								<div className="h-6 w-px bg-border mx-2"></div>
+								<Select
+									value={selectedStatus}
+									onValueChange={setSelectedStatus}
+								>
+									<SelectTrigger className="w-24 border-0 ">
+										<SelectValue placeholder="Filter" />
+									</SelectTrigger>
+									<SelectContent>
+										<SelectItem value="Active">Active</SelectItem>
+										<SelectItem value="Inactive">Inactive</SelectItem>
+									</SelectContent>
+								</Select>
 							</div>
 
 							<Button
@@ -124,7 +127,12 @@ export default function LibraryList() {
 									className="hover:shadow-md transition-all  border-l-primary-custom bg-card border-border duration-300 animate-slide-up-delay-2 h-fit"
 									style={{ animationDelay: `${0.2 + index * 0.1}s` }}
 								>
-									<CardContent className="p-0">
+									<CardContent
+										className="p-0 cursor-pointer"
+										onClick={() =>
+											router.push(`/library/details?id=${library.id}`)
+										}
+									>
 										<div className="h-32 w-full bg-muted rounded-t-lg  overflow-hidden">
 											<img
 												src={library.li_photoURL}
@@ -133,7 +141,7 @@ export default function LibraryList() {
 											/>
 										</div>
 										<div className="p-4">
-											<h4 className="font-medium text-foreground text-base">
+											<h4 className="font-medium text-foreground text-base mb-1">
 												{library.li_name}
 											</h4>
 											<p className="text-muted-foreground mb-2 text-sm">
@@ -144,9 +152,6 @@ export default function LibraryList() {
 												variant="link"
 												size="sm"
 												className="text-primary-custom hover:text-secondary-custom text-sm p-0 h-0"
-												onClick={() =>
-													router.push(`/library/details?id=${library.id}`)
-												}
 											>
 												View Details
 											</Button>

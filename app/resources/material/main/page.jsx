@@ -88,9 +88,9 @@ export default function ResourceMaterials() {
 				<div className="flex-1 flex flex-col overflow-hidden">
 					<Header />
 
-					<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
+					<main className="flex-1 overflow-auto p-6 pt-24">
 						<div className="mb-8 animate-fade-in">
-							<h1 className="font-semibold text-foreground text-xl">
+							<h1 className="font-semibold text-foreground text-2xl mb-1">
 								Resource Materials
 							</h1>
 							<p className="text-muted-foreground text-base">
@@ -101,7 +101,7 @@ export default function ResourceMaterials() {
 						<div className="animate-slide-up">
 							<div className="flex items-start justify-between mb-6">
 								<div>
-									<h2 className="font-semibold text-foreground text-lg">
+									<h2 className="font-semibold text-foreground text-xl mb-1">
 										Main Library
 									</h2>
 									<p className="text-muted-foreground text-sm">
@@ -144,7 +144,12 @@ export default function ResourceMaterials() {
 									{materialData.map((material, index) => (
 										<Card
 											key={index}
-											className="w-[450px] bg-card  border-none shadow-sm transition-colors duration-300 hover:shadow-md rounded-lg flex-shrink-0 max-w-lg h-fit"
+											className="w-[450px] bg-card  border-none shadow-sm transition-colors duration-300 hover:shadow-md rounded-lg flex-shrink-0 max-w-lg h-fit cursor-pointer"
+											onClick={() =>
+												router.push(
+													`/resources/material/details?id=${material.id}`,
+												)
+											}
 										>
 											<CardContent className="flex gap-4 p-4">
 												<img
@@ -154,7 +159,7 @@ export default function ResourceMaterials() {
 												/>
 												<div className="flex-1  space-y-2">
 													<div>
-														<h4 className="font-medium text-foreground text-base">
+														<h4 className="font-medium text-foreground text-base mb-1">
 															{material?.ma_title}
 														</h4>
 														<p className="text-primary-custom text-sm">
@@ -184,11 +189,6 @@ export default function ResourceMaterials() {
 														variant="link"
 														size="sm"
 														className="text-primary-custom hover:text-secondary-custom text-sm px-0 "
-														onClick={() =>
-															router.push(
-																`/resources/material/details?id=${material.id}`,
-															)
-														}
 													>
 														View details
 													</Button>
@@ -203,7 +203,7 @@ export default function ResourceMaterials() {
 						<div className="animate-slide-up-delay-1 mt-8">
 							<div className="flex items-start justify-between mb-6">
 								<div>
-									<h2 className="font-semibold text-foreground text-lg">
+									<h2 className="font-semibold text-foreground text-xl mb-1">
 										Library Branches
 									</h2>
 									<p className="text-muted-foreground text-sm">
@@ -242,7 +242,7 @@ export default function ResourceMaterials() {
 													/>
 												</div>
 												<div className="p-4">
-													<h4 className="font-medium text-foreground text-base">
+													<h4 className="font-medium text-foreground text-base mb-1">
 														{branch.li_name}
 													</h4>
 													<p className="text-muted-foreground text-sm">
@@ -259,7 +259,7 @@ export default function ResourceMaterials() {
 						<div className="animate-slide-up-delay-2 mt-8">
 							<div className="flex items-start justify-between mb-6">
 								<div>
-									<h2 className="font-semibold text-foreground text-lg">
+									<h2 className="font-semibold text-foreground text-xl mb-1">
 										Library of Congress Integration
 									</h2>
 									<p className="text-muted-foreground text-sm">
@@ -285,7 +285,7 @@ export default function ResourceMaterials() {
 											<FiBookmark className="w-10 h-10 text-white" />
 										</div>
 										<div className="flex-1">
-											<h3 className="font-medium text-base">
+											<h3 className="text-white font-semibold text-xl">
 												Library of Congress Resources
 											</h3>
 											<p className="text-blue-100 mb-6 leading-relaxed text-sm">

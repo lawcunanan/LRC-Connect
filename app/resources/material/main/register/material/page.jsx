@@ -11,6 +11,13 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
+import {
 	FiArrowLeft,
 	FiUpload,
 	FiRotateCcw,
@@ -405,7 +412,7 @@ export default function MaterialRegistrationPage() {
 					<div className="mb-6 animate-fade-in">
 						<button
 							onClick={() => router.back()}
-							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
+							className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 						>
 							<FiArrowLeft className="w-4 h-4" />
 							Back to Previous page
@@ -413,7 +420,7 @@ export default function MaterialRegistrationPage() {
 					</div>
 
 					<div className="animate-slide-up mb-8">
-						<h1 className="font-semibold text-foreground text-xl">
+						<h1 className="font-semibold text-foreground text-2xl mb-1">
 							{type && type === "register"
 								? "Add New Material to Library"
 								: "Edit Material Information"}
@@ -434,49 +441,55 @@ export default function MaterialRegistrationPage() {
 											<Label className="text-foreground font-medium text-sm ">
 												Material Type <span className="text-red-500">*</span>
 											</Label>
-											<select
+											<Select
 												value={formData.ma_materialType}
-												onChange={(e) =>
+												onValueChange={(value) =>
 													handleInputChange(
 														setFormData,
 														"ma_materialType",
-														e.target.value,
+														value,
 													)
 												}
-												className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3 text-sm"
 												disabled={type && type == "edit"}
 											>
-												<option value="">Select material type</option>
-												{materialTypes.map((type) => (
-													<option key={type.mt_id} value={type.mt_id}>
-														{type.mt_name}
-													</option>
-												))}
-											</select>
+												<SelectTrigger className="mt-2 h-9 w-full bg-background border border-border text-foreground">
+													<SelectValue placeholder="Select material type" />
+												</SelectTrigger>
+												<SelectContent>
+													{materialTypes.map((type) => (
+														<SelectItem key={type.mt_id} value={type.mt_id}>
+															{type.mt_name}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
 										</div>
 										<div>
 											<Label className="text-foreground font-medium text-sm">
 												Material Category{" "}
 												<span className="text-red-500">*</span>
 											</Label>
-											<select
+											<Select
 												value={formData.ma_materialCategory}
-												onChange={(e) =>
+												onValueChange={(value) =>
 													handleInputChange(
 														setFormData,
 														"ma_materialCategory",
-														e.target.value,
+														value,
 													)
 												}
-												className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3 text-sm"
 											>
-												<option value="">Select material category</option>
-												{categories.map((category, index) => (
-													<option key={index} value={category.ca_id}>
-														{category.ca_name}
-													</option>
-												))}
-											</select>
+												<SelectTrigger className="mt-2 h-9 w-full bg-background border border-border text-foreground">
+													<SelectValue placeholder="Select material category" />
+												</SelectTrigger>
+												<SelectContent>
+													{categories.map((category, index) => (
+														<SelectItem key={index} value={category.ca_id}>
+															{category.ca_name}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
 										</div>
 										<div>
 											<Label className="text-foreground font-medium text-sm">
@@ -488,24 +501,27 @@ export default function MaterialRegistrationPage() {
 													Register Shelf
 												</button>
 											</Label>
-											<select
+											<Select
 												value={formData.ma_shelf}
-												onChange={(e) =>
+												onValueChange={(value) =>
 													handleInputChange(
 														setFormData,
 														"ma_shelf",
-														e.target.value,
+														value,
 													)
 												}
-												className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3 text-sm"
 											>
-												<option value="">Select shelf location</option>
-												{shelves.map((shelf, index) => (
-													<option key={index} value={shelf.sh_id}>
-														{shelf.sh_name}
-													</option>
-												))}
-											</select>
+												<SelectTrigger className="mt-2 h-9 w-full bg-background border border-border text-foreground">
+													<SelectValue placeholder="Select shelf location" />
+												</SelectTrigger>
+												<SelectContent>
+													{shelves.map((shelf, index) => (
+														<SelectItem key={index} value={shelf.sh_id}>
+															{shelf.sh_name}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
 										</div>
 									</div>
 								</CardContent>
@@ -514,7 +530,7 @@ export default function MaterialRegistrationPage() {
 							{selectedMaterialType && (
 								<Card className="bg-card border-border shadow-sm animate-slide-up-delay-2">
 									<CardHeader className="pb-2">
-										<CardTitle className="text-foreground text-base">
+										<CardTitle className="text-foreground font-semibold text-xl mb-1">
 											{selectedMaterialType.mt_name} Details
 										</CardTitle>
 									</CardHeader>
@@ -558,25 +574,29 @@ export default function MaterialRegistrationPage() {
 																			Type{" "}
 																			<span className="text-red-500">*</span>
 																		</Label>
-																		<select
+																		<Select
 																			value={formData.ma_acquisitionType}
-																			onChange={(e) =>
+																			onValueChange={(value) =>
 																				handleInputChange(
 																					setFormData,
 																					"ma_acquisitionType",
-																					e.target.value,
+																					value,
 																				)
 																			}
-																			className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3"
 																		>
-																			{["Donated", "Purchased"].map(
-																				(type, index) => (
-																					<option key={index} value={type}>
-																						{type}
-																					</option>
-																				),
-																			)}
-																		</select>
+																			<SelectTrigger className="mt-2 h-9 w-full bg-background border border-border text-foreground">
+																				<SelectValue placeholder="Select type" />
+																			</SelectTrigger>
+																			<SelectContent>
+																				{["Donated", "Purchased"].map(
+																					(type, index) => (
+																						<SelectItem key={index} value={type}>
+																							{type}
+																						</SelectItem>
+																					),
+																				)}
+																			</SelectContent>
+																		</Select>
 																	</div>
 
 																	{formData.ma_acquisitionType === "Donated" ? (
@@ -593,27 +613,30 @@ export default function MaterialRegistrationPage() {
 																					Register Donor
 																				</button>
 																			</Label>
-																			<select
+																			<Select
 																				value={formData.ma_donor}
-																				onChange={(e) =>
+																				onValueChange={(value) =>
 																					handleInputChange(
 																						setFormData,
 																						"ma_donor",
-																						e.target.value,
+																						value,
 																					)
 																				}
-																				className="mt-2 h-9 w-full bg-background border border-border text-foreground rounded-md px-3 text-sm"
 																			>
-																				<option value="">Select Donor</option>
-																				{donors.map((donor, index) => (
-																					<option
-																						key={index}
-																						value={donor.do_id}
-																					>
-																						{donor.do_name}
-																					</option>
-																				))}
-																			</select>
+																				<SelectTrigger className="mt-2 h-9 w-full bg-background border border-border text-foreground">
+																					<SelectValue placeholder="Select Donor" />
+																				</SelectTrigger>
+																				<SelectContent>
+																					{donors.map((donor, index) => (
+																						<SelectItem
+																							key={index}
+																							value={donor.do_id}
+																						>
+																							{donor.do_name}
+																						</SelectItem>
+																					))}
+																				</SelectContent>
+																			</Select>
 																		</div>
 																	) : (
 																		<div>
@@ -742,46 +765,50 @@ export default function MaterialRegistrationPage() {
 																	</Button>
 																</div>
 																{holdings.length > 0 && (
-																	<div className="overflow-x-auto mt-4">
-																		<table className="w-full">
-																			<thead>
+																	<div className="overflow-x-auto rounded-lg mt-4">
+																		<table className="w-full border border-border">
+																			<thead className="bg-muted">
 																				<tr className="border-b border-border">
-																					<th className="text-left py-3 text-foreground font-medium text-sm">
+																					<th className="text-center py-3 px-4 font-semibold text-foreground text-sm">
 																						Accession No.
 																					</th>
 
-																					<th className="text-left py-3 text-foreground font-medium text-sm">
+																					<th className="text-center py-3 px-4 font-semibold text-foreground text-sm">
 																						Volume/Part
 																					</th>
-																					<th className="text-left py-3 text-foreground font-medium text-sm">
+																					<th className="text-center py-3 px-4 font-semibold text-foreground text-sm">
 																						Copy #
 																					</th>
-																					<th className="text-left py-3 text-foreground font-medium text-sm">
+																					<th className="text-center py-3 px-4 font-semibold text-foreground text-sm">
 																						Status
 																					</th>
-																					<th className="text-left py-3 text-foreground font-medium text-sm">
+																					<th className="text-center py-3 px-4 font-semibold text-foreground text-sm">
 																						Action
 																					</th>
 																				</tr>
 																			</thead>
-																			<tbody>
+																			<tbody className="align-top">
 																				{holdings.map((holding, idx) => (
 																					<tr
 																						key={idx}
-																						className="border-b border-border/50 hover:bg-muted/20 transition-colors duration-200 cursor-pointer"
+																						className={`border-b border-border hover:bg-accent/30 transition-colors ${
+																							idx % 2 === 0
+																								? "bg-background"
+																								: "bg-muted/10"
+																						}`}
 																					>
-																						<td className="py-3 text-foreground text-sm">
+																						<td className="py-3 px-4 text-center text-foreground text-sm min-w-[150px]">
 																							{holding.ho_access}
 																						</td>
 
-																						<td className="py-3 text-foreground text-sm">
+																						<td className="py-3 px-4 text-center text-foreground text-sm min-w-[120px]">
 																							{holding.ho_volume}
 																						</td>
 
-																						<td className="py-3 text-foreground text-sm">
+																						<td className="py-3 px-4 text-center text-foreground text-sm min-w-[100px]">
 																							{holding.ho_copy}
 																						</td>
-																						<td className="py-3 text-foreground text-sm">
+																						<td className="py-3 px-4 text-center text-foreground text-sm min-w-[100px]">
 																							<span
 																								className={`px-2 py-1 rounded-full text-xs font-medium ${
 																									holding.ho_status === "Active"
@@ -793,11 +820,8 @@ export default function MaterialRegistrationPage() {
 																							</span>
 																						</td>
 
-																						<td
-																							className="py-3 text-foreground text-sm"
-																							style={{ width: "50px" }}
-																						>
-																							<span className="flex items-center ml-auto gap-1">
+																						<td className="py-3 px-4 text-center text-foreground text-sm min-w-[120px]">
+																							<span className="flex items-center justify-center gap-1">
 																								<Button
 																									variant="ghost"
 																									size="sm"
@@ -1173,8 +1197,7 @@ export default function MaterialRegistrationPage() {
 						<div className="space-y-8">
 							<Card className="bg-card border-border shadow-sm animate-slide-up-delay-2">
 								<CardHeader className="pb-4">
-									<CardTitle className="text-foreground flex items-center  gap-2 text-base">
-										<FiImage className="w-4 h-4" />
+									<CardTitle className="text-foreground font-semibold text-xl">
 										Book Cover
 									</CardTitle>
 									<p className="text-muted-foreground text-sm">
@@ -1239,8 +1262,7 @@ export default function MaterialRegistrationPage() {
 							{files.ma_softQty > 0 && (
 								<Card className="bg-card border-border shadow-sm animate-slide-up-delay-3">
 									<CardHeader className="pb-4">
-										<CardTitle className="text-foreground flex items-center gap-2 text-base">
-											<FiFile className="w-4 h-4" />
+										<CardTitle className="text-foreground font-semibold text-xl">
 											Soft Copy <span className="text-red-500">*</span>
 										</CardTitle>
 										<p className="text-muted-foreground text-sm">
@@ -1299,8 +1321,7 @@ export default function MaterialRegistrationPage() {
 							{files.ma_audioQty > 0 && (
 								<Card className="bg-card border-border shadow-sm animate-slide-up-delay-4">
 									<CardHeader className="pb-4">
-										<CardTitle className="text-foreground flex items-center gap-2 text-base">
-											<FiMusic className="w-4 h-4" />
+										<CardTitle className="text-foreground font-semibold text-xl">
 											Audio Copy <span className="text-red-500">*</span>
 										</CardTitle>
 										<p className="text-muted-foreground text-sm">

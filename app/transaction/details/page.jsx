@@ -55,16 +55,16 @@ export default function TransactionDetailsPage() {
 				<div className="mb-6">
 					<button
 						onClick={() => router.push(`/transaction`)}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-xs"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 					>
-						<ArrowLeft className="w-3 h-3" />
+						<ArrowLeft className="w-4 h-4" />
 						Back to Transaction
 					</button>
 				</div>
 
 				<div className="animate-slide-up flex items-start justify-between mb-8">
 					<div>
-						<h1 className="font-semibold text-foreground text-xl">
+						<h1 className="font-semibold text-foreground text-2xl mb-1">
 							Transaction Details
 						</h1>
 						<p className="text-muted-foreground text-base">
@@ -134,7 +134,7 @@ export default function TransactionDetailsPage() {
 					<div className="space-y-6">
 						<Card className="bg-card border-border overflow-hidden">
 							<CardHeader className="pb-4">
-								<h2 className="font-semibold text-foreground text-base flex items-center gap-2">
+								<h2 className="font-semibold text-foreground text-lg flex items-center gap-2">
 									Transaction QR Code
 								</h2>
 							</CardHeader>
@@ -228,7 +228,7 @@ export function TransactionStatusBar(status) {
 
 	return (
 		<div className="p-6">
-			<h2 className="font-semibold text-foreground text-base flex items-center gap-2 mb-4">
+			<h2 className="font-semibold text-foreground text-lg flex items-center gap-2 mb-4">
 				<FiBarChart className="w-4 h-4" />
 				Transaction Status
 			</h2>
@@ -267,7 +267,7 @@ export function TransactionStatusBar(status) {
 export function TransactionDetailsCard(transaction) {
 	return (
 		<div className="p-6">
-			<h2 className="font-semibold text-foreground text-base flex items-center gap-2 mb-3">
+			<h2 className="font-semibold text-foreground text-lg flex items-center gap-2 mb-3">
 				<div className="flex items-start gap-2">
 					<FiBookOpen className="w-4 h-4 flex-shrink-0 mt-1" />
 					{transaction?.tr_library || "Library"}
@@ -382,7 +382,7 @@ const renderResourceDetails = (transaction, router) => {
 	return (
 		<div className="p-6">
 			<div className="flex items-center justify-between mb-3">
-				<h2 className="font-semibold text-foreground text-base flex items-center gap-2 ">
+				<h2 className="font-semibold text-foreground text-lg flex items-center gap-2 ">
 					<FiBookOpen className="w-4 h-4" />
 					{transaction?.tr_type || "Type"} Resource Details
 				</h2>
@@ -500,7 +500,7 @@ export const renderPatronDetails = (transaction, router) => {
 	return (
 		<div className="p-6">
 			<div className="flex items-center justify-between mb-3">
-				<h2 className="font-semibold text-foreground text-base flex items-center gap-2">
+				<h2 className="font-semibold text-foreground text-lg flex items-center gap-2">
 					<FiUser className="w-4 h-4" />
 					Patron Details
 				</h2>
@@ -583,7 +583,7 @@ export const renderCancellationDetails = (transaction) => {
 		<>
 			<div className="border-t border-border"></div>
 			<div className="p-6">
-				<h2 className="font-semibold text-foreground text-base flex items-center gap-2 mb-2">
+				<h2 className="font-semibold text-foreground text-lg flex items-center gap-2 mb-2">
 					<FiX className="w-4 h-4" />
 					Cancellation Reason(s)
 				</h2>

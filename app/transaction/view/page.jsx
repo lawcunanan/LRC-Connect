@@ -33,7 +33,6 @@ import AssistantPage from "@/components/tags/assistant";
 import { getTransactionDetails } from "../../../controller/firebase/get/getTransactionDetails";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.min.js";
 const ListenPage = () => {
 	const router = useRouter();
 	const pathname = usePathname();
@@ -64,6 +63,13 @@ const ListenPage = () => {
 	const [zoom, setZoom] = useState(100);
 	const [isFullscreen, setIsFullscreen] = useState(false);
 	const [focusAI, setFocusAI] = useState(true);
+
+	// Set PDF.js worker source on client side
+	useEffect(() => {
+		import("react-pdf").then(({ pdfjs }) => {
+			pdfjs.GlobalWorkerOptions.workerSrc = `/pdfjs/pdf.worker.min.js`;
+		});
+	}, []);
 
 	const togglePlay = async () => {
 		if (!audioRef.current || !audioLoaded) {
@@ -313,13 +319,13 @@ const ListenPage = () => {
 						onClick={() => router.back()}
 						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
 					>
-						<ArrowLeft className="w-3 h-3" />
+						<ArrowLeft className="w-4 h-4" />
 						Back to Previous page
 					</button>
 				</div>
 
 				<div className="mb-8 animate-slide-up">
-					<h1 className="font-semibold text-foreground text-xl">
+					<h1 className="font-semibold text-foreground text-2xl mb-1">
 						{transactionData?.tr_format == "Audio Copy"
 							? "Audio Player"
 							: "Reading Page"}
@@ -346,13 +352,13 @@ const ListenPage = () => {
 								<div className="flex items-start justify-between">
 									<div className="flex flex-col gap-1">
 										<div className="flex items-center gap-2">
-											<Hash className="w-4 h-4 text-muted-foreground" />
-											<h2 className="font-semibold text-foreground text-base">
+											<Hash className="w-5 h-5 text-muted-foreground" />
+											<h2 className="font-semibold text-foreground text-xl">
 												{transactionData?.tr_qr || "Transaction ID"}
 											</h2>
 										</div>
 										<div className="flex items-center gap-2">
-											<Calendar className="w-4 h-4 text-muted-foreground" />
+											<Calendar className="w-5 h-5 text-muted-foreground" />
 											<span className="text-muted-foreground text-sm">
 												Due: {transactionData?.tr_dateDueFormatted}
 											</span>
@@ -377,7 +383,7 @@ const ListenPage = () => {
 												disabled={currentPage === 1}
 												className="h-8 w-8 p-0 bg-transparent"
 											>
-												<ChevronLeft className="w-4 h-4" />
+												<ChevronLeft className="w-5 h-5" />
 											</Button>
 
 											<div className="flex items-center gap-2">
@@ -445,9 +451,9 @@ const ListenPage = () => {
 											className="h-8 px-3 flex items-center gap-2 bg-transparent"
 										>
 											{isFullscreen ? (
-												<Minimize2 className="w-4 h-4" />
+												<Minimize2 className="w-5 h-5" />
 											) : (
-												<Maximize2 className="w-4 h-4" />
+												<Maximize2 className="w-5 h-5" />
 											)}
 											<span className="text-sm">
 												{isFullscreen ? "Collapse View" : "Fullscreen"}
@@ -601,9 +607,9 @@ const ListenPage = () => {
 																aria-label={muted ? "Unmute" : "Mute"}
 															>
 																{muted ? (
-																	<VolumeX className="w-4 h-4" />
+																	<VolumeX className="w-5 h-5" />
 																) : (
-																	<Volume2 className="w-4 h-4" />
+																	<Volume2 className="w-5 h-5" />
 																)}
 															</button>
 															<div className="w-20">

@@ -6,6 +6,15 @@ import { Modal } from "./index";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+	SelectGroup,
+	SelectLabel,
+} from "@/components/ui/select";
 import EmptyState from "@/components/tags/empty";
 import { Checkbox } from "@/components/ui/checkbox";
 import { FiSearch, FiCamera, FiUserPlus, FiChevronDown } from "react-icons/fi";
@@ -101,7 +110,7 @@ export function ManualSearchModal({
 				<div className="p-6">
 					<div className="flex items-center gap-4 mb-6 justify-between">
 						<div
-							className={`relative flex-1 ${
+							className={`relative flex-1 border border-border rounded-md ${
 								userType === "patron" ? "max-w-sm" : "max-w-lg"
 							}`}
 						>
@@ -114,55 +123,65 @@ export function ManualSearchModal({
 							/>
 							<div className="absolute right-0 top-0 h-full flex items-center gap-1 pr-2">
 								<div className="relative">
-									<select
-										value={selectedType}
-										onChange={(e) => setSelectedType(e.target.value)}
-										className="h-full pl-2 pr-6 text-xs border-l border-border focus:outline-none bg-background appearance-none text-sm"
-									>
-										{userType === "patron" ? (
-											<>
-												<option value="All">All User Types</option>
-												<optgroup label="Patrons">
-													<option value="Student">Student</option>
-													<option value="Faculty">Faculty</option>
-													<option value="Administrator">Administrator</option>
-												</optgroup>
-											</>
-										) : (
-											<>
-												<option value="All">All Type</option>
-												<optgroup label="Assistants">
-													<option value="Student Assistant">
-														Student Assistant
-													</option>
-													<option value="Administrative Assistant">
-														Administrative Assistant
-													</option>
-												</optgroup>
-												<optgroup label="Librarians">
-													<option value="Chief Librarian">
-														Chief Librarian
-													</option>
-													<option value="Head Librarian">Head Librarian</option>
-												</optgroup>
-											</>
-										)}
-									</select>
-									<FiChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-muted-foreground w-4 h-4" />
+									<Select value={selectedType} onValueChange={setSelectedType}>
+										<SelectTrigger className="h-full pl-2 pr-6 text-xs focus:outline-none bg-background appearance-none text-sm">
+											<SelectValue placeholder="All User Types" />
+										</SelectTrigger>
+										<SelectContent>
+											{userType === "patron" ? (
+												<>
+													<SelectItem value="All">All User Types</SelectItem>
+													<SelectGroup label="Patrons">
+														<SelectLabel>Patrons</SelectLabel>
+														<SelectItem value="Student">Student</SelectItem>
+														<SelectItem value="Faculty">Faculty</SelectItem>
+														<SelectItem value="Administrator">
+															Administrator
+														</SelectItem>
+													</SelectGroup>
+												</>
+											) : (
+												<>
+													<SelectItem value="All">All Type</SelectItem>
+													<SelectGroup label="Assistants">
+														<SelectLabel>Assistants</SelectLabel>
+														<SelectItem value="Student Assistant">
+															Student Assistant
+														</SelectItem>
+														<SelectItem value="Administrative Assistant">
+															Administrative Assistant
+														</SelectItem>
+													</SelectGroup>
+													<SelectGroup label="Librarians">
+														<SelectLabel>Librarians</SelectLabel>
+														<SelectItem value="Chief Librarian">
+															Chief Librarian
+														</SelectItem>
+														<SelectItem value="Head Librarian">
+															Head Librarian
+														</SelectItem>
+													</SelectGroup>
+												</>
+											)}
+										</SelectContent>
+									</Select>
 								</div>
 
 								{userType !== "patron" && (
 									<div className="relative">
-										<select
+										<Select
 											value={selectedStatus}
-											onChange={(e) => setSelectedStatus(e.target.value)}
-											className="h-full pl-2 pr-6 text-xs border-l border-border focus:outline-none bg-background appearance-none text-sm"
+											onValueChange={setSelectedStatus}
 										>
-											<option value="All">All Account Status</option>
-											<option value="Active">Active</option>
-											<option value="Inactive">Inactive</option>
-										</select>
-										<FiChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-muted-foreground w-4 h-4" />
+											<SelectTrigger className="h-full pl-2 pr-6 text-xs focus:outline-none bg-background appearance-none text-sm">
+												<SelectValue placeholder="All Account Status" />
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value="All">All Account Status</SelectItem>
+												<SelectItem value="Active">Active</SelectItem>
+												<SelectItem value="Inactive">Inactive</SelectItem>
+											</SelectContent>
+										</Select>
 									</div>
 								)}
 							</div>

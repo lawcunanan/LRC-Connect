@@ -5,6 +5,13 @@ import { useRouter, usePathname } from "next/navigation";
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { IoQrCodeOutline } from "react-icons/io5";
 import {
 	DropdownMenu,
@@ -182,7 +189,7 @@ export default function MaterialsPage() {
 				<main className="pt-28 pb-6 px-6 sm:px-6 md:px-16 lg:px-[100px] xl:px-[150px]">
 					<button
 						onClick={() => router.back()}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit mb-6 animate-fade-in text-xs"
+						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit mb-6 animate-fade-in text-sm"
 					>
 						<FiArrowLeft className="w-4 h-4" />
 						Back to Previous page
@@ -190,7 +197,7 @@ export default function MaterialsPage() {
 
 					<div className="flex items-left justify-between mb-8 animate-slide-up flex-col sm:flex-row gap-4">
 						<div className="w-fit">
-							<h1 className="font-semibold text-foreground text-xl">
+							<h1 className="font-semibold text-foreground text-2xl mb-1">
 								Material Resources
 							</h1>
 							<p className="text-muted-foreground text-base">
@@ -256,13 +263,13 @@ export default function MaterialsPage() {
 
 					<div className="mb-8 animate-slide-up-delay-1">
 						<div className="flex items-center justify-between mb-4 gap-6">
-							<div className="relative flex items-center flex-1 max-w-lg">
+							<div className="relative flex items-center flex-1 max-w-lg border border-input rounded-md bg-background shadow-sm">
 								<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
 								<Input
 									placeholder="Search material..."
 									value={searchQuery}
 									onChange={(e) => setSearchQuery(e.target.value)}
-									className="pl-10 pr-28 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
+									className="pl-10 pr-28 h-9 bg-transparent border-0 focus:ring-0 text-foreground rounded-md shadow-sm text-sm"
 								/>
 
 								<div className="absolute right-0 top-0 h-full flex items-center gap-2 pr-2">
@@ -270,10 +277,11 @@ export default function MaterialsPage() {
 										className="w-4 h-4 text-muted-foreground cursor-pointer"
 										onClick={() => setIsScannerOpen(true)}
 									/>
+									<div className="h-6 w-px bg-border mx-2"></div>
 									<Button
 										onClick={() => setShowFilters(!showFilters)}
 										variant="ghost"
-										className="h-8 px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
+										className="h-8 px-3 border-0 text-foreground hover:bg-accent rounded-l-none text-sm"
 									>
 										Filter
 									</Button>
@@ -336,17 +344,17 @@ export default function MaterialsPage() {
 							selectedStatus !== "All" ||
 							selectedShelf !== "All") && (
 							<div className="flex items-center gap-2 mb-4">
-								<span className="text-muted-foreground text-xs">
+								<span className="text-muted-foreground text-sm">
 									Active Filters:
 								</span>
 								{selectedStatus !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Status: {selectedStatus}
 									</span>
 								)}
 
 								{selectedFormat !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Format: {selectedFormat || "Unknown"}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -356,7 +364,7 @@ export default function MaterialsPage() {
 								)}
 
 								{selectedType !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Type:{" "}
 										{materialTypes.find((type) => type.id === selectedType)
 											?.mt_name || "Unknown"}
@@ -367,7 +375,7 @@ export default function MaterialsPage() {
 									</span>
 								)}
 								{selectedCategory !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Category:{" "}
 										{categories.find(
 											(category) => category.id === selectedCategory,
@@ -380,7 +388,7 @@ export default function MaterialsPage() {
 								)}
 
 								{selectedShelf !== "All" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Shelf:{" "}
 										{shelves.find((shelf) => shelf.id === selectedShelf)
 											?.sh_name || "Unknown"}
@@ -392,7 +400,7 @@ export default function MaterialsPage() {
 								)}
 
 								{copyrightYearStart !== "" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Year Start: {copyrightYearStart}{" "}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -402,7 +410,7 @@ export default function MaterialsPage() {
 								)}
 
 								{copyrightYearEnd !== "" && (
-									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-xs">
+									<span className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded flex items-center gap-1 text-sm">
 										Year End: {copyrightYearEnd}{" "}
 										<FiX
 											className="w-3 h-3 cursor-pointer"
@@ -599,73 +607,93 @@ export default function MaterialsPage() {
 											<label className="block font-medium text-foreground text-sm">
 												Select a Material Format
 											</label>
-											<select
+											<Select
 												value={selectedFormat}
-												onChange={(e) => setSelectedFormat(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+												onValueChange={setSelectedFormat}
 											>
-												<option value="All">All Material Formats</option>
-												{["Hard Copy", "Soft Copy", "Audio Copy"].map(
-													(format, index) => (
-														<option key={index} value={format}>
-															{format}
-														</option>
-													),
-												)}
-											</select>
+												<SelectTrigger className="text-sm">
+													<SelectValue placeholder="Select a Material Format" />
+												</SelectTrigger>
+												<SelectContent>
+													<SelectItem value="All">
+														All Material Formats
+													</SelectItem>
+													{["Hard Copy", "Soft Copy", "Audio Copy"].map(
+														(format, index) => (
+															<SelectItem key={index} value={format}>
+																{format}
+															</SelectItem>
+														),
+													)}
+												</SelectContent>
+											</Select>
 										</div>
 
 										<div className="space-y-2">
 											<label className="block font-medium text-foreground text-sm">
 												Select a Material Type
 											</label>
-											<select
+											<Select
 												value={selectedType}
-												onChange={(e) => setSelectedType(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+												onValueChange={setSelectedType}
 											>
-												<option value="All">All Material Types</option>
-												{materialTypes.map((type, index) => (
-													<option key={index} value={type.id}>
-														{type.mt_name}
-													</option>
-												))}
-											</select>
+												<SelectTrigger className="text-sm">
+													<SelectValue placeholder="Select a Material Type" />
+												</SelectTrigger>
+												<SelectContent>
+													<SelectItem value="All">
+														All Material Types
+													</SelectItem>
+													{materialTypes.map((type, index) => (
+														<SelectItem key={index} value={type.id}>
+															{type.mt_name}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
 										</div>
 
 										<div className="space-y-2">
 											<label className="block font-medium text-foreground text-sm">
 												Select a Category
 											</label>
-											<select
+											<Select
 												value={selectedCategory}
-												onChange={(e) => setSelectedCategory(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+												onValueChange={setSelectedCategory}
 											>
-												<option value="All">All Categories</option>
-												{categories.map((category, index) => (
-													<option key={index} value={category.id}>
-														{category.ca_name}
-													</option>
-												))}
-											</select>
+												<SelectTrigger className="text-sm">
+													<SelectValue placeholder="Select a Category" />
+												</SelectTrigger>
+												<SelectContent>
+													<SelectItem value="All">All Categories</SelectItem>
+													{categories.map((category, index) => (
+														<SelectItem key={index} value={category.id}>
+															{category.ca_name}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
 										</div>
 										<div className="space-y-2">
 											<label className="block font-medium text-foreground text-sm">
 												Select a Shelf
 											</label>
-											<select
+											<Select
 												value={selectedShelf}
-												onChange={(e) => setSelectedShelf(e.target.value)}
-												className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+												onValueChange={setSelectedShelf}
 											>
-												<option value="All">All Shelves</option>
-												{shelves.map((shelf, index) => (
-													<option key={index} value={shelf.id}>
-														{shelf.sh_name}
-													</option>
-												))}
-											</select>
+												<SelectTrigger className="text-sm">
+													<SelectValue placeholder="Select a Shelf" />
+												</SelectTrigger>
+												<SelectContent>
+													<SelectItem value="All">All Shelves</SelectItem>
+													{shelves.map((shelf, index) => (
+														<SelectItem key={index} value={shelf.id}>
+															{shelf.sh_name}
+														</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
 										</div>
 
 										{userDetails &&
@@ -674,17 +702,21 @@ export default function MaterialsPage() {
 													<label className="block font-medium text-foreground text-sm">
 														Select a Status
 													</label>
-													<select
+													<Select
 														value={selectedStatus}
-														onChange={(e) => setSelectedStatus(e.target.value)}
-														className="w-full border border-border bg-card text-foreground rounded-md px-3 py-2 h-9 focus:ring-2 focus:ring-primary-custom focus:border-transparent text-sm"
+														onValueChange={setSelectedStatus}
 													>
-														{statuses.map((status) => (
-															<option key={status} value={status}>
-																{status}
-															</option>
-														))}
-													</select>
+														<SelectTrigger className="text-sm">
+															<SelectValue placeholder="Select a Status" />
+														</SelectTrigger>
+														<SelectContent>
+															{statuses.map((status) => (
+																<SelectItem key={status} value={status}>
+																	{status}
+																</SelectItem>
+															))}
+														</SelectContent>
+													</Select>
 												</div>
 											)}
 
@@ -781,7 +813,7 @@ export default function MaterialsPage() {
 												<div key={index}>
 													<div className="flex items-start gap-6  mb-4">
 														<div className="flex flex-wrap items-center gap-2">
-															<h3 className="font-semibold text-foreground text-base">
+															<h3 className="font-semibold text-foreground text-xl">
 																{type}
 															</h3>
 															<span className="text-muted-foreground text-sm">

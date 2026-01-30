@@ -7,6 +7,13 @@ import { Header } from "@/components/header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FiBook, FiUsers, FiClock, FiSearch } from "react-icons/fi";
 
@@ -129,7 +136,7 @@ export default function Dashboard() {
 
 					<main className="flex-1 overflow-auto p-6 pt-24 ">
 						<div className="mb-8 animate-fade-in">
-							<h1 className="font-semibold text-foreground text-xl">
+							<h1 className="font-semibold text-foreground text-2xl mb-1">
 								Dashboard
 							</h1>
 							<p className="text-muted-foreground text-base">
@@ -141,12 +148,12 @@ export default function Dashboard() {
 							<Card className="bg-card border-border transition-colors duration-300">
 								<CardContent className="p-6">
 									<div className="flex items-center justify-between mb-2">
-										<p className="text-muted-foreground text-sm">
+										<p className="text-muted-foreground text-">
 											Active Libraries
 										</p>
-										<FiBook className="w-4 h-4 text-green-500" />
+										<FiBook className="w-4 h-4" />
 									</div>
-									<p className="font-bold text-green-600 text-xl">
+									<p className="font-bold 00 text-2xl">
 										{statistics.activeLibraries}
 									</p>
 								</CardContent>
@@ -158,9 +165,9 @@ export default function Dashboard() {
 										<p className="text-muted-foreground text-sm">
 											Inactive Libraries
 										</p>
-										<FiBook className="w-4 h-4 text-red-500" />
+										<FiBook className="w-4 h-4 " />
 									</div>
-									<p className="font-bold text-red-600 text-xl">
+									<p className="font-bold  text-2xl">
 										{statistics.inactiveLibraries}
 									</p>
 								</CardContent>
@@ -172,9 +179,9 @@ export default function Dashboard() {
 										<p className="text-muted-foreground text-sm">
 											Active Accounts
 										</p>
-										<FiUsers className="w-4 h-4 text-green-500" />
+										<FiUsers className="w-4 h-4 " />
 									</div>
-									<p className="font-bold text-green-600 text-xl">
+									<p className="font-bold text-2xl">
 										{statistics.activeAccounts}
 									</p>
 								</CardContent>
@@ -186,9 +193,9 @@ export default function Dashboard() {
 										<p className="text-muted-foreground text-sm">
 											Inactive Accounts
 										</p>
-										<FiUsers className="w-4 h-4 text-red-500" />
+										<FiUsers className="w-4 h-4" />
 									</div>
-									<p className="font-bold text-red-600 text-xl">
+									<p className="font-bold text-2xl">
 										{statistics.inactiveAccounts}
 									</p>
 								</CardContent>
@@ -200,7 +207,7 @@ export default function Dashboard() {
 								<Card className="bg-card border-border transition-colors duration-300 max-h-[1200px] flex flex-col">
 									<CardContent className="p-6 flex flex-col overflow-hidden">
 										<div className="flex-shrink-0 mb-4">
-											<h3 className="text-foreground font-semibold text-base">
+											<h3 className="text-foreground font-semibold text-xl">
 												Feedback Management
 											</h3>
 
@@ -217,32 +224,40 @@ export default function Dashboard() {
 														placeholder="Search feedback..."
 														value={searchQuery}
 														onChange={(e) => setSearchQuery(e.target.value)}
-														className="pl-10 pr-4 h-9 bg-background border-none text-foreground rounded-md shadow-sm text-sm"
+														className="pl-10 pr-4 h-9 bg-background border text-foreground rounded-md shadow-sm text-sm"
 													/>
 												</div>
 
 												<div className="flex items-center gap-4">
-													<select
+													<Select
 														value={selectedLibrary}
-														onChange={(e) => setSelectedLibrary(e.target.value)}
-														className="border border-border bg-card text-foreground rounded-md px-3 py-1.5 h-9 flex-1 text-sm "
+														onValueChange={setSelectedLibrary}
 													>
-														{libraries.map((library) => (
-															<option key={library.id} value={library.id}>
-																{library.li_name}
-															</option>
-														))}
-													</select>
+														<SelectTrigger>
+															<SelectValue placeholder="Select library" />
+														</SelectTrigger>
+														<SelectContent>
+															{libraries.map((library) => (
+																<SelectItem key={library.id} value={library.id}>
+																	{library.li_name}
+																</SelectItem>
+															))}
+														</SelectContent>
+													</Select>
 
-													<select
+													<Select
 														value={selectedStatus}
-														onChange={(e) => setSelectedStatus(e.target.value)}
-														className="border border-border bg-card text-foreground rounded-md px-3 py-1.5 h-9 flex-1 text-sm"
+														onValueChange={setSelectedStatus}
 													>
-														<option value="All">All Status</option>
-														<option value="unread">Unread</option>
-														<option value="read">Read</option>
-													</select>
+														<SelectTrigger>
+															<SelectValue placeholder="Select status" />
+														</SelectTrigger>
+														<SelectContent>
+															<SelectItem value="All">All Status</SelectItem>
+															<SelectItem value="unread">Unread</SelectItem>
+															<SelectItem value="read">Read</SelectItem>
+														</SelectContent>
+													</Select>
 												</div>
 											</div>
 										</div>
@@ -283,7 +298,7 @@ export default function Dashboard() {
 													<div className="flex-1 space-y-2">
 														<div className="flex items-start justify-between ">
 															<div>
-																<p className="text-foreground font-medium text-sm">
+																<p className="text-foreground font-medium text-base">
 																	{feedback?.fe_sender}
 																</p>
 
@@ -300,17 +315,17 @@ export default function Dashboard() {
 															</span>
 														</div>
 
-														<span className="inline-block px-2 py-0.5 bg-primary/10 text-primary rounded-full text-xs">
+														<span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
 															{feedback?.fe_type}
 														</span>
 
-														<p className="text-muted-foreground text-sm">
+														<p className="text-foreground text-sm">
 															{feedback?.fe_content}
 														</p>
 
 														{feedback?.fe_screenshot && (
 															<div>
-																<p className="text-foreground font-medium mt-4 mb-2 text-sm">
+																<p className="text-muted-foreground font-medium mt-4 mb-2 text-sm">
 																	Screenshot:
 																</p>
 																<img
@@ -353,7 +368,7 @@ export default function Dashboard() {
 							<div className="lg:col-span-1">
 								<Card className="bg-card border-border transition-colors duration-300 h-fit">
 									<CardContent className="p-6 flex flex-col items-center justify-center text-center">
-										<h3 className="text-foreground font-semibold text-base">
+										<h3 className="text-foreground font-semibold text-xl">
 											Today's Audits
 										</h3>
 										<p className="text-muted-foreground mb-6 text-sm">
@@ -361,11 +376,8 @@ export default function Dashboard() {
 										</p>
 
 										<div className="mb-6">
-											<div className="w-32 h-32 rounded-full bg-primary/20 flex items-center justify-center border-2 border-primary/20 shimmer">
-												<p
-													className="font-bold text-primary text-4xl"
-													style={{ lineHeight: "1" }}
-												>
+											<div className="w-32 h-32 rounded-full flex items-center justify-center border-2 border-primary">
+												<p className="font-bold text-4xl">
 													{statistics.todayAuditTrails}
 												</p>
 											</div>
@@ -373,15 +385,15 @@ export default function Dashboard() {
 
 										<div className="w-full pt-6 border-t border-border">
 											<div className="flex items-center justify-center gap-2 mb-1">
-												<FiClock className="w-4 h-4 text-muted-foreground" />
-												<h4 className="font-semibold text-foreground text-sm">
+												<FiClock className="w-5 h-5 text-muted-foreground" />
+												<h4 className="font-semibold text-foreground text-base">
 													Last Update
 												</h4>
 											</div>
 											<p className="text-muted-foreground mb-4 text-sm">
 												Most recent system activity
 											</p>
-											<p className="font-semibold text-foreground bg-muted rounded-lg px-4 py-2 inline-block text-sm">
+											<p className="text-white bg-primary rounded-lg px-4 py-2 inline-block text-sm">
 												{statistics.lastUpdate}
 											</p>
 										</div>

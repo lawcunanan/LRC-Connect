@@ -96,7 +96,7 @@ export default function DiscussionRoomReports() {
 					setCtrPage,
 					pageCursors,
 					setPageCursors,
-					currentPage
+					currentPage,
 				);
 			} else if (section.key == "totalRooms") {
 				getDiscussionList(
@@ -113,7 +113,7 @@ export default function DiscussionRoomReports() {
 					pageCursors,
 					setPageCursors,
 					currentPage,
-					true
+					true,
 				);
 			}
 		}
@@ -155,8 +155,7 @@ export default function DiscussionRoomReports() {
 
 		const commonHeaderStyle =
 			"text-left py-3 px-6 font-semibold text-foreground text-sm";
-		const commonCellStyle =
-			"py-3 px-6 text-foreground text-sm min-w-[170px]";
+		const commonCellStyle = "py-3 px-6 text-foreground text-sm min-w-[170px]";
 
 		const renderHeaders = () => {
 			switch (section.id) {
@@ -192,7 +191,7 @@ export default function DiscussionRoomReports() {
 											}
 										/>
 									</th>
-								)
+								),
 							)}
 						</tr>
 					);
@@ -297,7 +296,7 @@ export default function DiscussionRoomReports() {
 
 		return (
 			<table className="w-full">
-				<thead className="bg-muted/30">{renderHeaders()}</thead>
+				<thead className="bg-muted">{renderHeaders()}</thead>
 				<tbody className="align-top">{renderRows()}</tbody>
 			</table>
 		);
@@ -345,7 +344,7 @@ export default function DiscussionRoomReports() {
 
 						<main className="flex-1 overflow-auto p-6 pt-24 overflow-auto">
 							<div className="mb-8 animate-fade-in">
-								<h1 className="font-semibold text-foreground text-xl">
+								<h1 className="font-semibold text-foreground text-2xl mb-1">
 									Essential Reports - Discussion Room Analytics
 								</h1>
 								<p className="text-muted-foreground text-base">
@@ -386,7 +385,7 @@ export default function DiscussionRoomReports() {
 									/>
 									<div className="relative bg-card w-80 h-full shadow-lg transform transition-transform duration-300 translate-x-0 animate-slide-in-left">
 										<div className="flex items-center justify-between p-4 border-b border-border text-white bg-primary-custom">
-											<h2 className="font-semibold text-white text-base">
+											<h2 className="font-semibold text-white text-sm">
 												Filters
 											</h2>
 											<button
@@ -402,7 +401,7 @@ export default function DiscussionRoomReports() {
 												setFilters,
 												filters,
 												sections,
-												activeSection
+												activeSection,
 											)}
 										</div>
 
@@ -434,22 +433,20 @@ export default function DiscussionRoomReports() {
 									</CardTitle>
 
 									<div className="flex items-left justify-between flex-col sm:flex-row gap-4">
-										<div className="relative flex items-center flex-1 max-w-lg">
-											<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+										<div className="relative flex items-center flex-1 max-w-lg border border-input rounded-md bg-background shadow-sm">
+											<FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5" />
 											<Input
 												placeholder="Search discussion rooms..."
 												value={searchQuery}
 												onChange={(e) => setSearchQuery(e.target.value)}
-												className="pl-10 pr-24 h-9 bg-background border-none text-foreground rounded-md shadow-sm"
-												
+												className="pl-10 pr-4 bg-transparent border-0 focus:ring-0 text-foreground h-9 text-sm flex-1"
 											/>
-											<div className="absolute right-16 top-1/2 transform -translate-y-1/2">
-												<FiCamera className="w-4 h-4 text-muted-foreground" />
-											</div>
+											<FiCamera className="h-5 text-muted-foreground mx-2 cursor-pointer" />
+											<div className="h-6 w-px bg-border mx-2"></div>
 											<Button
 												onClick={() => setShowFilters(!showFilters)}
 												variant="ghost"
-												className="absolute right-0 top-0 h-full px-3 border-l border-border text-foreground hover:bg-accent rounded-l-none text-sm"
+												className="h-full px-3 text-foreground hover:bg-accent rounded-l-none text-sm"
 											>
 												Filter
 											</Button>
@@ -505,13 +502,13 @@ export default function DiscussionRoomReports() {
 											className="flex items-center gap-2  flex-wrap"
 											style={{ marginTop: "15px" }}
 										>
-											<span className="text-muted-foreground text-xs">
+											<span className="text-muted-foreground text-sm">
 												Active Filters:
 											</span>
 											{activeFilters.map((filter) => (
 												<span
 													key={filter.key}
-													className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-xs"
+													className="px-2 py-1 bg-primary-custom/10 text-primary-custom rounded  flex items-center gap-1 text-sm"
 												>
 													{filter.label}: {filter.value}
 													<FiX
@@ -526,7 +523,7 @@ export default function DiscussionRoomReports() {
 
 								<CardContent className="p-0 pt-8">
 									{viewMode === "table" ? (
-										<div className="overflow-x-auto">
+										<div className="overflow-x-auto rounded-lg border border-border">
 											{renderTableContent()}
 										</div>
 									) : (

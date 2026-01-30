@@ -91,18 +91,18 @@ export function Sidebar({ isOpen: propIsOpen, setIsOpen: propSetIsOpen }) {
 				)}
 				style={{ width: "16rem" }}
 			>
-				<div className="flex-1 px-3 py-4 mt-[75px] md:mt-[75px] ">
+				<div className="flex-1 px-3 py-4 mt-[55px] md:mt-[75px] ">
 					{users && !["USR-5", "USR-6"].includes(userDetails?.us_level) && (
 						<button
 							onClick={() => router.push("/home")}
-							className="flex items-center gap-3 px-3 py-2 text-foreground rounded-lg hover:bg-accent transition-colors w-full text-left text-sm mb-4"
+							className="flex items-center gap-3 px-3 py-2 text-foreground rounded-lg hover:bg-accent transition-colors w-full text-left text-sm "
 						>
 							<FiArrowLeft className="w-4 h-4" />
-							Back
+							Back to Home
 						</button>
 					)}
 
-					<div className="space-y-1">
+					<div className="space-y-1 mt-4">
 						<p className="px-3 text-muted-foreground uppercase tracking-wider mb-2 text-xs">
 							General
 						</p>
