@@ -306,13 +306,15 @@ export default function About() {
 						</p>
 					</div>
 					<div className="mb-8 animate-slide-up">
-<div className={`h-64 rounded-lg overflow-hidden mb-6 ${imageLoading ? 'bg-gray-200' : ''}`}>
-						<img
-							src={libraryData?.li_photoURL || "/placeholder.jpg"}
-							alt="Library"
-							className="w-full h-full object-cover"
-							onLoad={() => setImageLoading(false)}
-							onError={() => setImageLoading(false)}
+						<div
+							className={`h-64 rounded-lg overflow-hidden mb-6 ${imageLoading ? "bg-gray-200" : ""}`}
+						>
+							<img
+								src={libraryData?.li_photoURL || "/placeholder.jpg"}
+								alt="Library"
+								className="w-full h-full object-cover"
+								onLoad={() => setImageLoading(false)}
+								onError={() => setImageLoading(false)}
 							/>
 						</div>
 
