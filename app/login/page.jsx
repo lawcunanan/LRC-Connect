@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FiMail, FiLock } from "react-icons/fi";
-import { ArrowLeft } from "lucide-react";
 
 import { useRouter } from "next/navigation";
 
@@ -42,24 +41,14 @@ export default function LoginPage() {
 	};
 
 	return (
-		<div className="min-h-screen bg-background  duration-300 ">
-			<main className="p-6 sm:pt-20 pb-6 px-6 sm:px-6 md:px-16 lg:px-[100px] xl:px-[150px]">
-				<div className="mb-8">
-					<button
-						onClick={() => router.push("/")}
-						className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors w-fit text-sm"
-					>
-						<ArrowLeft className="w-3 h-3" />
-						Back to Welcome Page
-					</button>
-				</div>
-
-				<Card className="overflow-hidden border-0 shadow-none mt-28">
-					<CardContent className="p-0 flex items-center justify-center ">
-						<div className="flex items-center justify-center  w-full max-w-[380px] p-0">
+		<div className="min-h-screen bg-background flex items-center justify-center duration-300">
+			<main className="p-6 w-full max-w-[380px]">
+				<Card className="overflow-hidden border-0 shadow-none">
+					<CardContent className="p-0 flex items-center justify-center">
+						<div className="flex items-center justify-center w-full max-w-[380px] p-0">
 							<div className="w-full">
-								<div className="text-center mb-8 ">
-									<h1 className=" text-2xl font-bold text-foreground ">
+								<div className="text-center mb-8">
+									<h1 className=" text-2xl font-bold text-foreground">
 										Welcome back
 									</h1>
 									<p className="text-muted-foreground text-base">

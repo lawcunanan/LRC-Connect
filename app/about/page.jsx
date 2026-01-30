@@ -43,6 +43,7 @@ export default function About() {
 	const Alert = useAlertActions();
 	const { setLoading, setPath } = useLoading();
 	const [btnLoading, setBtnLoading] = useState(false);
+	const [imageLoading, setImageLoading] = useState(true);
 
 	const [libraryData, setLibraryData] = useState({});
 	const [openHours, setOpenHours] = useState({
@@ -305,11 +306,13 @@ export default function About() {
 						</p>
 					</div>
 					<div className="mb-8 animate-slide-up">
-						<div className=" h-64 rounded-lg overflow-hidden mb-6">
-							<img
-								src={libraryData?.li_photoURL || "/placeholder.jpg"}
-								alt="Library"
-								className="w-full h-full object-cover"
+<div className={`h-64 rounded-lg overflow-hidden mb-6 ${imageLoading ? 'bg-gray-200' : ''}`}>
+						<img
+							src={libraryData?.li_photoURL || "/placeholder.jpg"}
+							alt="Library"
+							className="w-full h-full object-cover"
+							onLoad={() => setImageLoading(false)}
+							onError={() => setImageLoading(false)}
 							/>
 						</div>
 
